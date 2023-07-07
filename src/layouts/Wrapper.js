@@ -13,6 +13,7 @@ function Wrapper(props) {
     </>
   );
 }
+
 Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
 };
