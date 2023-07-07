@@ -4,7 +4,7 @@ import Wrapper from '../components/Wrapper';
 function Home() {
   return (
     <Wrapper>
-      <div>test</div>
+      <div>test 1</div>
     </Wrapper>
   );
 }
