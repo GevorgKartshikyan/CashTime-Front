@@ -1,4 +1,4 @@
-.btn {
+.btn,.join-block__btn1,.join-block__btn2{
   width: 415px;
   height: 57px;
   display: flex;
@@ -13,12 +13,39 @@
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+  border: 1px solid #E17A01;
 
   &:hover {
     background-color: transparent;
     color:#E17A01;
-    border: 1px solid #E17A01;
 
   }
-
 }
+
+.color-blue{
+  background-color: #031054;
+  border: 1px solid #031054;
+  &:hover {
+    background-color: transparent;
+    color:#031054;
+  }
+}
+
+.join-block__btn1,.join-block__btn2{
+  margin-top: 49px;
+  border-radius: 100px;
+  width: 173px;
+  height: 56px;
+  font-size: 14px;
+  line-height: normal;}
+
+.join-block__btn2{
+  margin-left: 16px;
+  background-color: transparent;
+  color: #031054;
+   &:hover{
+     background-color: #E17A01;
+     color: white;
+   }
+   }
+
