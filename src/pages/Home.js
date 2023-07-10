@@ -1,12 +1,10 @@
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../layouts/Wrapper';
 
 function Home() {
   return (
     <Wrapper>
-
-      <div>test Narek</div>
-
+      <div>test text</div>
     </Wrapper>
   );
 }
