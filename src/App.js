@@ -1,11 +1,9 @@
 import React from 'react';
-// import Home from './pages/Home';
-import UserCard from './components/User_card';
+import Home from './pages/Home';
 
 function App() {
   return (
-  // <Home />
-    <UserCard />
+    <Home />
   );
 }
 
