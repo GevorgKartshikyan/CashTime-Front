@@ -10,7 +10,7 @@ function Wrapper(props) {
     <>
       <Header />
       {children}
-      <Button title="Test Button" className="global_btn" />
+      <Button title="Test Button" className="btn" />
       <Footer />
     </>
   );

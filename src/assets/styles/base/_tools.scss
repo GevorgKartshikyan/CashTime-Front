@@ -14,7 +14,7 @@ body {
   background: #EDEDED;
   color: #031054;
   line-height: 1.5;
-  font-family: "lato", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
 }
 
@@ -34,9 +34,11 @@ body {
 
 a {
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 button {
   cursor: pointer;
   border: none;
+  transition: all 0.3s ease;
 }
