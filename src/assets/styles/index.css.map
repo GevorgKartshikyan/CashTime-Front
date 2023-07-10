@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"main.css"}
+=======
+{"version":3,"sourceRoot":"","sources":["base/_tools.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA","file":"main.css"}
+>>>>>>> 9f58fe93d6a1456cf353a4a42bce77d436ed1dc2
