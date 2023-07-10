@@ -1,3 +1,19 @@
+
+@import "abstracts/variables";
+
+@import "base/tools";
+@import "base/fonts";
+
+@import "components/button";
+@import "components/create-firts";
+
+@import "layouts/header";
+@import "layouts/footer";
+
+@import "pages/home";
+
+@import "media/media";
+
 @import "abstracts/variables";
 
 @import "base/tools";
@@ -13,3 +29,4 @@
 @import "pages/home";
 
 @import "media/media";
+
