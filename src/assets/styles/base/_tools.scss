@@ -34,9 +34,15 @@ body {
 
 a {
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 button {
   cursor: pointer;
   border: none;
+  transition: all 0.3s ease;
+}
+
+img {
+  pointer-events: none;
 }
