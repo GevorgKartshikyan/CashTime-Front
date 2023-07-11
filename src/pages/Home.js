@@ -1,9 +1,14 @@
 import React from 'react';
 import Wrapper from '../layouts/Wrapper';
-import { ReactComponent as JoinImg } from '../assets/images/homejoin.svg';
+import HomeJob from '../components/Home-job';
+import JoinImg from '../assets/images/homejoin.svg';
+import seeJobs from '../assets/images/seeJobs.svg';
+import jobFind from '../assets/images/jobFind.svg';
+import createProfile from '../assets/images/createProfile.svg';
 import Button from '../components/Button';
-import { ReactComponent as JobLocationIcon } from '../assets/images/home_location_icon.svg';
-import { ReactComponent as SearchIcon } from '../assets/images/Search_Icon.svg';
+import JobLocationIcon from '../assets/images/home_location_icon.svg';
+import SearchIcon from '../assets/images/Search_Icon.svg';
+import JobHiring from '../layouts/Job_hiring';
 
 function Home() {
   return (
@@ -27,7 +32,7 @@ function Home() {
                 </div>
               </div>
               <div className="join__right">
-                <JoinImg className="join__right__img" />
+                <img className="join__right__img" src={JoinImg} alt="" />
               </div>
             </div>
             <div className="join__bottom">
@@ -38,16 +43,22 @@ function Home() {
                 </label>
                 <span className="join__bottom__form__line" />
                 <label htmlFor="input-city" className="join__bottom__form__label">
-                  <JobLocationIcon className="join__bottom__form__icon" />
+                  <img className="join__bottom__form__icon" src={JobLocationIcon} alt="" />
                   <input type="text" maxLength="15" className="join__bottom__form__city" id="input-city" placeholder="City Name" />
                 </label>
                 <button type="submit" className="join__bottom__form__button">
-                  <SearchIcon className="join__bottom__form__button__icon" />
+                  <img className="join__bottom__form__button__icon" src={SearchIcon} alt="" />
                 </button>
               </form>
             </div>
           </div>
         </div>
+      </section>
+      <JobHiring />
+      <section className="information">
+        <HomeJob rowReverse="" firstText="Let The Job Find You" secondText="Create A free Profile To Get Hired Easily" buttonTxt="Get Hired" img={jobFind} />
+        <HomeJob rowReverse="row" firstText="Start Looking For a Job Perfect" secondText="Tell us more about yourself and we'll match you with the right jobs to help you reach them." buttonTxt="See Jobs" img={seeJobs} />
+        <HomeJob rowReverse="" firstText="Create a Profile For a Better Experience" secondText="Your profile is your application. Apply to jobs instantly." buttonTxt="See Jobs" img={createProfile} />
       </section>
     </Wrapper>
   );
