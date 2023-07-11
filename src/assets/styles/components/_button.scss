@@ -21,8 +21,6 @@
 
     }
   }
-
-
   .color-blue {
     background-color: #031054;
     border: 1px solid #031054;
@@ -51,5 +49,12 @@
       background-color: #E17A01;
       color: white;
     }
+
   }
+
+.btn.job__card__btn {
+  width: 149px;
+  height: 48px;
+  flex-shrink: 0;
+}
 
