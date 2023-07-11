@@ -6,8 +6,43 @@
   box-sizing: border-box;
 }
 
-.container {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #EDEDED;
+  color: #031054;
+  line-height: 1.5;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+
+.wrapper {
   width: 100%;
   margin: 0 auto;
+  overflow: hidden;
+  background: #EDEDED;
+}
+
+.container {
+  width: 100%;
   max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+img {
+  pointer-events: none;
 }

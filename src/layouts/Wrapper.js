@@ -9,6 +9,7 @@ function Wrapper(props) {
     <>
       <Header />
       {children}
+
       <Footer />
     </>
   );

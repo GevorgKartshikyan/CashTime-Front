@@ -1,0 +1,80 @@
+.examples__block{
+  width: 415px;
+  margin-top: 40px;
+}
+.create__first{
+  width: 478px;
+  text-align: center;
+}
+.create__job{
+  margin-top: 223px;
+}
+.create__first__title{
+  color: #031054;
+  text-align: center;
+  font-family: Lato , sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+.examples__input{
+  width: 415px;
+  margin-top: 59px;
+  height: 37px;
+  flex-shrink: 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #D9D9D9;
+  border: none;
+  outline: none;
+  color: rgba(0, 0, 0, 0.50);
+  font-family: Lato,sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.examples{
+  margin-top: 41px;
+  width: 415px;
+  &__desc{
+    color:  #031054;
+    font-family: Lato , sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+.examples__list{
+  color:  #031054;
+  font-family: Lato , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+.job__form__first{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.job__btn{
+  color: #031054;
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.job__buttons{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 550px;
+  margin-bottom: 60px;
+}
