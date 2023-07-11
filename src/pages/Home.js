@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import JobLocationIcon from '../assets/images/home_location_icon.svg';
 import SearchIcon from '../assets/images/Search_Icon.svg';
 import JobHiring from '../layouts/Job_hiring';
+import HomeProPage from '../components/HomeProPage';
 
 function Home() {
   return (
@@ -60,6 +61,7 @@ function Home() {
         <HomeJob rowReverse="row" firstText="Start Looking For a Job Perfect" secondText="Tell us more about yourself and we'll match you with the right jobs to help you reach them." buttonTxt="See Jobs" img={seeJobs} />
         <HomeJob rowReverse="" firstText="Create a Profile For a Better Experience" secondText="Your profile is your application. Apply to jobs instantly." buttonTxt="See Jobs" img={createProfile} />
       </section>
+      <HomeProPage />
     </Wrapper>
   );
 }
