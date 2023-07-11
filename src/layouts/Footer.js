@@ -4,9 +4,13 @@ import { ReactComponent as Logo } from '../assets/images/header_logo.svg';
 
 function Footer() {
   return (
-    <div>
-      <h1>hello</h1>
-    </div>
+    <footer className="footer">
+      <div className="container">
+        {/* <div className="footer__row"> */}
+
+        {/* </div> */}
+      </div>
+    </footer>
   );
 }
 
