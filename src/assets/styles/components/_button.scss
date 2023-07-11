@@ -40,16 +40,21 @@
     height: 56px;
     font-size: 14px;
     line-height: normal;
+
+    &:hover {
+      background-color: transparent;
+      color: #031054;
+    }
   }
 
   .join-block__btn2 {
     margin-left: 16px;
-    background-color: transparent;
-    color: #031054;
-
-    &:hover {
-      background-color: #E17A01;
-      color: white;
-    }
   }
 
+.join__bottom__form__button{
+    background-color: transparent;
+  width: 33px;
+  height: 33px;
+  margin-left: 5px;
+
+}
