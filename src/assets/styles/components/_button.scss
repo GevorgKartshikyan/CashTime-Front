@@ -1,5 +1,5 @@
-
 .btn, .join-block__btn1, .join-block__btn2 {
+
   width: 415px;
   height: 57px;
   display: flex;
@@ -19,28 +19,8 @@
   &:hover {
     background-color: transparent;
     color: #E17A01;
-  }
-  .color-blue {
-    background-color: #031054;
-    border: 1px solid #031054;
 
-    &:hover {
-      background-color: transparent;
-      color: #031054;
-    }
   }
-
-  .join-block__btn1, .join-block__btn2 {
-    margin-top: 49px;
-    border-radius: 100px;
-    width: 173px;
-    height: 56px;
-    font-size: 14px;
-    line-height: normal;
-  }
-
-  .join-block__btn2 {
-    margin-left: 16px;
 }
 
 .color-blue {
@@ -53,17 +33,6 @@
   }
 }
 
-    &:hover {
-      background-color: #E17A01;
-      color: white;
-    }
-
-  }
-
-.btn.job__card__btn {
-  width: 149px;
-  height: 48px;
-  flex-shrink: 0;
 .join-block__btn1, .join-block__btn2 {
   margin-top: 49px;
   border-radius: 100px;
@@ -75,6 +44,8 @@
     background-color: transparent;
     color: #031054;
   }
+
+
 }
 
 .join-block__btn2 {
@@ -91,5 +62,12 @@
   width: 33px;
   height: 33px;
   margin-left: 5px;
-}}
+
+}
+
+.btn.job__card__btn {
+  width: 149px;
+  height: 48px;
+  flex-shrink: 0;
+}
 

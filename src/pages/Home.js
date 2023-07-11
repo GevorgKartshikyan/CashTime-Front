@@ -6,8 +6,8 @@ import seeJobs from '../assets/images/seeJobs.svg';
 import jobFind from '../assets/images/jobFind.svg';
 import createProfile from '../assets/images/createProfile.svg';
 import Button from '../components/Button';
-import { ReactComponent as JobLocationIcon } from '../assets/images/home_location_icon.svg';
-import { ReactComponent as SearchIcon } from '../assets/images/Search_Icon.svg';
+import JobLocationIcon from '../assets/images/home_location_icon.svg';
+import SearchIcon from '../assets/images/Search_Icon.svg';
 
 function Home() {
   return (
@@ -31,7 +31,7 @@ function Home() {
                 </div>
               </div>
               <div className="join__right">
-                <JoinImg className="join__right__img" />
+                <img className="join__right__img" src={JoinImg} alt="" />
               </div>
             </div>
             <div className="join__bottom">
@@ -42,11 +42,11 @@ function Home() {
                 </label>
                 <span className="join__bottom__form__line" />
                 <label htmlFor="input-city" className="join__bottom__form__label">
-                  <JobLocationIcon className="join__bottom__form__icon" />
+                  <img className="join__bottom__form__icon" src={JobLocationIcon} alt="" />
                   <input type="text" maxLength="15" className="join__bottom__form__city" id="input-city" placeholder="City Name" />
                 </label>
                 <button type="submit" className="join__bottom__form__button">
-                  <SearchIcon className="join__bottom__form__button__icon" />
+                  <img className="join__bottom__form__button__icon" src={SearchIcon} alt="" />
                 </button>
               </form>
             </div>
