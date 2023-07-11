@@ -22,12 +22,6 @@ function Home() {
                 <div className="join__left__block join-block">
                   <Button className="join-block__btn1" title="Sign Up as a Freelancer" />
                   <Button className="join-block__btn2" title="Sign Up as a Client" />
-                  {/* <button type="button" className="join-block__btn1"> */}
-                  {/*   Sign Up as a Freelancer */}
-                  {/* </button> */}
-                  {/* <button type="button" className="join-block__btn2"> */}
-                  {/*   Sign Up as a Client */}
-                  {/* </button> */}
                 </div>
               </div>
               <div className="join__right">
@@ -39,6 +33,11 @@ function Home() {
                 Find a Part
                 Time Job Of Your Choice , Easy and Quick
               </h3>
+              <form className="join__bottom__form">
+                <input type="text" />
+                <input type="text" />
+                <button type="submit">jhjhhjjh</button>
+              </form>
             </div>
           </div>
         </div>
