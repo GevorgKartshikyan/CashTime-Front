@@ -1,6 +1,7 @@
 import React from 'react';
 import Wrapper from '../layouts/Wrapper';
-import JoinImg from '../assets/images/homejoin.svg';
+import { ReactComponent as JoinImg } from '../assets/images/homejoin.svg';
+import Button from '../components/Button';
 
 function Home() {
   return (
@@ -19,20 +20,25 @@ function Home() {
                   any Kind Within Seconds, and Freelancers to Find a Job
                 </p>
                 <div className="join__left__block join-block">
-                  <button type="button" className="join-block__btn1">
-                    Sign Up as a Freelancer
-                  </button>
-                  <button type="button" className="join-block__btn2">
-                    Sign Up as a Client
-                  </button>
+                  <Button className="join-block__btn1" title="Sign Up as a Freelancer" />
+                  <Button className="join-block__btn2" title="Sign Up as a Client" />
+                  {/* <button type="button" className="join-block__btn1"> */}
+                  {/*   Sign Up as a Freelancer */}
+                  {/* </button> */}
+                  {/* <button type="button" className="join-block__btn2"> */}
+                  {/*   Sign Up as a Client */}
+                  {/* </button> */}
                 </div>
               </div>
               <div className="join__right">
-                <img src={JoinImg} alt="IMG" className="join__right__img" />
+                <JoinImg className="join__right__img" />
               </div>
             </div>
             <div className="join__bottom">
-              <h3 className="join__bottom__title">Find a Part Time Job Of Your Choice , Easy and Quick</h3>
+              <h3 className="join__bottom__title">
+                Find a Part
+                Time Job Of Your Choice , Easy and Quick
+              </h3>
             </div>
           </div>
         </div>
