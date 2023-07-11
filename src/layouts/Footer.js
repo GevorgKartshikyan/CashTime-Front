@@ -2,9 +2,13 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div>
-      <h1>hello</h1>
-    </div>
+    <footer className="footer">
+      <div className="container">
+        {/* <div className="footer__row"> */}
+
+        {/* </div> */}
+      </div>
+    </footer>
   );
 }
 
