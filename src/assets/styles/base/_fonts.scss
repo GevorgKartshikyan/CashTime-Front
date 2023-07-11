@@ -24,3 +24,16 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Poly';
+  src: url('../../fonts/Poly-Regular.eot');
+  src: url('../../fonts/Poly-Regular.eot?#iefix') format('embedded-opentype'),
+  url('../../fonts/Poly-Regular.woff2') format('woff2'),
+  url('../../fonts/Poly-Regular.woff') format('woff'),
+  url('../../fonts/Poly-Regular.ttf') format('truetype'),
+  url('../../fonts/Poly-Regular.svg#Poly-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
