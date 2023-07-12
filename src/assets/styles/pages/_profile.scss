@@ -1,0 +1,20 @@
+.profile{
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 206px;
+
+  &__row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    &__img{
+      width: 128px;
+      height: 128px;
+      border-radius: 128px;
+    }
+  }
+}
+
