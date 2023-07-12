@@ -89,6 +89,7 @@
       font-weight: 400;
       line-height: normal;
       outline: none;
+      color: rgba(3, 16, 84, 0.50);
     }
     &__job{
       margin-left: 30px;
@@ -123,6 +124,7 @@ padding: 130px 0 160px;
 
 .pro__plan{
   padding: 125px 0 80px;
+  margin-bottom: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,7 +144,7 @@ padding: 130px 0 160px;
      position: relative;
    &__icon{
    position: absolute;
-  left:180px;
+   left:180px;
      bottom:248px;
 
    }
