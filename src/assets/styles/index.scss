@@ -6,9 +6,11 @@
 
 @import "components/button";
 @import "components/create-firts";
+@import "components/user-card";
 
 @import "layouts/header";
 @import "layouts/footer";
+@import "layouts/job-hiring";
 
 @import "pages/home";
 
@@ -19,12 +21,10 @@
 @import "base/tools";
 @import "base/fonts";
 
-@import "components/button";
-
-
 @import "layouts/header";
 @import "layouts/footer";
 @import "layouts/procard";
+@import "layouts/homejob";
 
 @import "pages/home";
 
