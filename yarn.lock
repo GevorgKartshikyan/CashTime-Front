@@ -7634,11 +7634,7 @@ react-dev-utils@^12.0.1:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-<<<<<<< HEAD
 react-dom@^18.2.0:
-=======
-"react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18", react-dom@^18.0.0, react-dom@^18.2.0, react-dom@>=16.8:
->>>>>>> hovhannes
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -7666,9 +7662,6 @@ react-is@^18.0.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-<<<<<<< HEAD
-react-refresh@^0.11.0:
-=======
 react-lifecycles-compat@^3.0.0:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
@@ -7684,8 +7677,7 @@ react-modal@^3.16.1:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
-react-refresh@^0.11.0, "react-refresh@>=0.10.0 <1.0.0":
->>>>>>> hovhannes
+react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
@@ -7760,11 +7752,7 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-<<<<<<< HEAD
 react@^18.2.0:
-=======
-"react@^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18", react@^18.0.0, react@^18.2.0, "react@>= 16", react@>=16.8:
->>>>>>> hovhannes
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
