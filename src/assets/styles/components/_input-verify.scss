@@ -1,0 +1,18 @@
+.input__verify {
+  text-align: center;
+  border: none;
+  background-color: #ADC4DE;
+  width: 80px;
+  margin: 35px 0 0 0;
+  height: 80px;
+  font-size: 30px;
+}
+
+.input__verify__upto_3 {
+  margin-right: 20px;
+  margin-top: 40px;
+}
+
+.input__verify:focus {
+  outline: none;
+}
