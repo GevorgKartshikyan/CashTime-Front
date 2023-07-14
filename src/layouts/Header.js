@@ -17,21 +17,20 @@ function Header() {
   const [isActiveLanguage, setIsActiveLanguage] = useState(false);
   const ref = useRef(null);
   const languages = useRef(null);
-  const handleModal = useCallback(() => {
-    setIsActiveModal((prevState) => {
-      let newFlag = false;
-      if (prevState === false) {
-        newFlag = true;
-      } else if (prevState === true) {
-        newFlag = false;
-      }
-
-      return newFlag;
-    });
-  }, []);
   useEffect(() => {
     const handleOut = (event) => {
-      if (languages.current && !languages.current.contains(event.target) && event.target.id !== 'dropdown-button') {
+      if (languages.current && !languages.current.contains(event.target) && event.target.id !== 'dropdown-language-button') {
+        setIsActiveLanguage(false);
+      }
+    };
+    document.addEventListener('click', handleOut);
+    return () => {
+      document.removeEventListener('click', handleOut);
+    };
+  }, [isActiveLanguage]);
+  useEffect(() => {
+    const handleOut = (event) => {
+      if (ref.current && !ref.current.contains(event.target) && event.target.id !== 'dropdown-button') {
         setIsActiveModal(false);
       }
     };
@@ -39,8 +38,7 @@ function Header() {
     return () => {
       document.removeEventListener('click', handleOut);
     };
-  }, []);
-  // console.log(isActiveModal);
+  }, [isActiveModal]);
   const handleLanguage = useCallback(() => {
     setIsActiveLanguage((prevState) => {
       let newFlag = false;
@@ -52,18 +50,19 @@ function Header() {
 
       return newFlag;
     });
-  }, []);
-  useEffect(() => {
-    const handleOut = (event) => {
-      if (languages.current && !languages.current.contains(event.target) && event.target.id !== 'dropdown-language-button') {
-        setIsActiveLanguage(false);
+  }, [isActiveLanguage]);
+  const handleModal = useCallback(() => {
+    setIsActiveModal((prevState) => {
+      let newFlag = false;
+      if (prevState === false) {
+        newFlag = true;
+      } else if (prevState === true) {
+        newFlag = false;
       }
-    };
-    document.addEventListener('click', handleOut);
-    return () => {
-      document.removeEventListener('click', handleOut);
-    };
-  }, []);
+
+      return newFlag;
+    });
+  }, [isActiveModal]);
   return (
     <header className="header">
       <div className="container">
