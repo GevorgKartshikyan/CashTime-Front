@@ -16,6 +16,7 @@ body {
   line-height: 1.5;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -41,8 +42,4 @@ button {
   cursor: pointer;
   border: none;
   transition: all 0.3s ease;
-}
-
-img {
-  pointer-events: none;
 }

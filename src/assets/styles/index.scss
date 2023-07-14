@@ -6,11 +6,21 @@
 
 @import "components/button";
 @import "components/create-firts";
+@import "components/user-card";
+@import "components/history-block";
+@import "components/chat-box";
+@import "components/languages";
+@import "components/input-verify";
 
 @import "layouts/header";
 @import "layouts/footer";
+@import "layouts/job-hiring";
+@import "layouts/history";
 
 @import "pages/home";
+@import "pages/verify-email";
+@import "pages/verified";
+@import "pages/sign-up";
 
 @import "media/media";
 
@@ -19,12 +29,10 @@
 @import "base/tools";
 @import "base/fonts";
 
-@import "components/button";
-
-
 @import "layouts/header";
 @import "layouts/footer";
 @import "layouts/procard";
+@import "layouts/homejob";
 
 @import "pages/home";
 
