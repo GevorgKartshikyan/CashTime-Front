@@ -16,6 +16,7 @@ body {
   line-height: 1.5;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -45,4 +46,17 @@ button {
 
 img {
   pointer-events: none;
+}
+
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

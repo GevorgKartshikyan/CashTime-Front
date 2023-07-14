@@ -6,7 +6,11 @@
 
 @import "components/button";
 @import "components/create-firts";
-
+@import "components/create_second";
+@import "components/create_third";
+@import "components/crate-fourth";
+@import "components/create-fifth";
+@import "components/create-sixth";
 @import "layouts/header";
 @import "layouts/footer";
 
@@ -20,12 +24,12 @@
 @import "base/fonts";
 
 @import "components/button";
-
+@import "pages/create-job";
 
 @import "layouts/header";
 @import "layouts/footer";
 @import "layouts/procard";
-
+@import "layouts/step-indicator";
 @import "pages/home";
 
 @import "media/media";
