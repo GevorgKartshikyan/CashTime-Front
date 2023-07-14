@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-// import App from './App';
 import './assets/styles/index.scss';
-import CreateJob from './pages/Create-job';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <CreateJob />,
+  <App />,
 );
 
 // If you want to start measuring performance in your app, pass a function
