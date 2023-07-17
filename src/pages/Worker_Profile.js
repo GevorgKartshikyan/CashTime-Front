@@ -10,7 +10,7 @@ import MessageSvg from '../assets/images/messageTwo.svg';
 import Education from '../assets/images/education.svg';
 import LanguageSvg from '../assets/images/globe.svg';
 
-function Worker_Profile() {
+function WorkerProfile() {
   const [available, setAvailable] = useState(false);
   return (
     <div className="profile">
@@ -54,4 +54,4 @@ function Worker_Profile() {
   );
 }
 
-export default Worker_Profile;
+export default WorkerProfile;
