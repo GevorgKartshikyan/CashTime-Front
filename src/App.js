@@ -14,7 +14,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
-        <Route path="/create" element={<CreateJob />} />
+        <Route path="/create-job" element={<CreateJob />} />
       </Routes>
     </BrowserRouter>
   );
