@@ -1,0 +1,110 @@
+.worker-offers{
+  padding: 185px 25% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.worker-offer-ticket{
+  background-color: #4A62B6;
+  width: 335px;
+  border-radius: 22px;
+  padding: 12px 16px;
+  margin-bottom: 78px;
+
+
+  &__first-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__title{
+      color: white;
+      font-family:"Lato", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    &__block{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__img{
+      width: 47px;
+      height: 47px;
+    }
+
+    &__name{
+      color: black;
+      font-family:"Lato", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &__left{
+      &__text{
+        color: white;
+        font-family:"Lato", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+    &__right{
+      &__svg{
+        width: 20px;
+        height: 20px;
+        margin-right: 9px;
+        margin-top: 9px;
+      }
+    }
+  }
+  &__second-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+    margin-top: 10px;
+
+    &__price{
+      color: #EDECEC;
+      font-family:"Lato", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+  &__button {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    background-color: #E17A01;
+    color: white;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    border: 1px solid #E17A01;
+    margin-bottom: 7px;
+
+    &:hover {
+      background-color: transparent;
+      color: white;
+      border-color: white;
+    }
+  }
+}

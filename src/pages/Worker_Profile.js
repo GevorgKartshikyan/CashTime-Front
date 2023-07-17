@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import WorkerProfileRow from '../components/worke_profile_row';
+import WorkerProfileRow from '../components/Worke_profile_row';
 import UserImage from '../assets/images/face.png';
 import EditSvg from '../assets/images/edit.svg';
 import EditTwoSvg from '../assets/images/editTwo.svg';
@@ -10,7 +10,7 @@ import MessageSvg from '../assets/images/messageTwo.svg';
 import Education from '../assets/images/education.svg';
 import LanguageSvg from '../assets/images/globe.svg';
 
-function WorkerProfile() {
+function Worker_Profile() {
   const [available, setAvailable] = useState(false);
   return (
     <div className="profile">
@@ -50,9 +50,8 @@ function WorkerProfile() {
       <WorkerProfileRow title="Message" svg={MessageSvg} />
       <WorkerProfileRow title="Education" svg={Education} />
       <WorkerProfileRow title="Languages" svg={LanguageSvg} />
-
     </div>
   );
 }
 
-export default WorkerProfile;
+export default Worker_Profile;
