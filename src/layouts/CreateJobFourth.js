@@ -78,14 +78,14 @@ function CreateJobFourth(props) {
             <div className="price-container">
               <div>
                 <p className="price-from">From</p>
-                <input value={`${priceFrom}${currencySign}`} onChange={handleInputFromChange} type="number" className="price-from-input" />
+                <input value={`${priceFrom}${currencySign}`} onChange={handleInputFromChange} type="text" className="price-from-input" />
               </div>
               <span className="hr">/hr</span>
             </div>
             <div className="price-container">
               <div style={{ marginLeft: '20px' }}>
                 <p className="price-from">To</p>
-                <input value={`${priceTo}${currencySign}`} onChange={handleInputToChange} type="number" className="price-to-input" />
+                <input value={`${priceTo}${currencySign}`} onChange={handleInputToChange} type="text" className="price-to-input" />
               </div>
               <span className="hr">/hr</span>
             </div>
@@ -100,7 +100,7 @@ function CreateJobFourth(props) {
             transition={{ duration: 0.7, delay: 0.1, ease: 'easeInOut' }}
           >
             <p className="max-price">{`Maximum project budget (${currency})`}</p>
-            <input value={maxPrice} type="number" className="price-to-input project" onChange={handleProjectChange} />
+            <input value={maxPrice} type="text" className="price-to-input project" onChange={handleProjectChange} />
           </motion.div>
         )}
       </div>

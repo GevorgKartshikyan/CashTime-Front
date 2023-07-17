@@ -161,7 +161,6 @@ input[type=number] {
 
 .create__job__title {
   color: #031054;
-  text-align: center;
   font-family: Lato, sans-serif;
   font-size: 36px;
   font-style: normal;
@@ -824,15 +823,21 @@ input[type=number] {
   height: 110px;
   background-color: #E17A01;
   border-radius: 50%;
-  align-self: flex-start;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 44px;
+  margin-bottom: 12px;
+}
+
+.image-container {
+  width: 100%;
 }
 
 .job-image {
   width: 110px;
   height: 110px;
+  margin-top: 44px;
   border-radius: 50%;
 }
 
@@ -840,7 +845,7 @@ input[type=number] {
   display: none;
 }
 
-.label-desc {
+.label-desc-sixth {
   color: #FFF;
   text-align: center;
   font-family: Roboto, sans-serif;
@@ -851,7 +856,7 @@ input[type=number] {
   letter-spacing: 0.1px;
 }
 
-.label-container {
+.label-container-sixth {
   display: flex;
   width: 160px;
   background-color: #E17A01;
@@ -860,6 +865,28 @@ input[type=number] {
   padding: 10px 16px;
   border-radius: 400px;
   cursor: pointer;
+}
+
+.job__form__container__sixth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* width: 541px; */
+  height: 100%;
+}
+
+.sixth-labels-desc {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 4px;
+}
+
+.options-row-sixth {
+  margin-top: 30px;
 }
 
 .header {
@@ -1927,10 +1954,10 @@ input[type=number] {
 }
 
 .job__buttons {
-  margin-top: 40px;
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 15px;
 }
 
 .job__btn {
@@ -1945,6 +1972,7 @@ input[type=number] {
 .button-row {
   position: absolute;
   bottom: 0;
+  z-index: -60;
 }
 
 .header {
