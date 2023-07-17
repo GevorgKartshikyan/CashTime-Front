@@ -1,0 +1,39 @@
+.selected-image{
+  width: 110px;
+  height: 110px;
+  background-color: #E17A01;
+  border-radius: 50%;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.job-image{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+.job-image-input{
+  display: none;
+}
+
+.label-desc{
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+.label-container{
+  display: flex;
+  width: 160px;
+  background-color: #E17A01;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 400px;
+  cursor: pointer;
+}

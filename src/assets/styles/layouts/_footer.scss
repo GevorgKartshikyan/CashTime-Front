@@ -47,7 +47,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -75,10 +75,6 @@
 .footer__links__col :nth-child(1) {
   font-size: 24px;
   font-weight: 700;
-}
-
-.footer__links .footer__links__col:nth-child(n+1) {
-  margin-right: 170px;
 }
 
 .footer__copyright {

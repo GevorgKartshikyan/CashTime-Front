@@ -6,10 +6,8 @@
   width: 478px;
   text-align: center;
 }
-.create__job{
-  margin-top: 223px;
-}
-.create__first__title{
+
+.create__job__title{
   color: #031054;
   text-align: center;
   font-family: Lato , sans-serif;
@@ -57,24 +55,13 @@
   margin-left: 20px;
   margin-top: 15px;
 }
-.job__form__first{
+.job__form__container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 541px;
+  height: 100%;
 }
-.job__btn{
-  color: #031054;
-  font-family: Lato, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-.job__buttons{
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  width: 550px;
-  margin-bottom: 60px;
-}
+
+

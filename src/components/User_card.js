@@ -36,7 +36,7 @@ function UserCard(props) {
 UserCard.propTypes = {
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  image: PropTypes.element.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default UserCard;

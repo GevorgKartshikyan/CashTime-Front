@@ -41,6 +41,17 @@
     &__block {
       display: flex;
       align-items: center;
+      & > svg {
+        cursor: pointer;
+      }
+      & > img {
+        cursor: pointer;
+      }
+      &__avatar {
+        background-color: transparent;
+        width: 37px;
+        height: 37px;
+      }
       &-login, &-register {
         width: 62px;
         height: 27px;
@@ -55,7 +66,15 @@
       }
       &__globe{
         margin-right: 22px;
+        background-color: transparent;
       }
     }
   }
+}
+
+.header__menu__list__bg {
+  width: 375px;
+  position: relative;
+  margin-left: auto;
+  margin-right: -15px;
 }

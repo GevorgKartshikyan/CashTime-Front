@@ -1,0 +1,47 @@
+.job-third-checkbox{
+  width: 540px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 76px;
+}
+.level-label{
+  width: 80%;
+  display: flex;
+  padding: 5px 30px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 53px;
+  background: #FFF;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.label-desc{
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #031054;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.level-input{
+  display: none;
+}
+.check-container{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6750A414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.check-squad{
+  width: 24px;
+  height: 24px;
+  background-color: #E17A01;
+  border-radius: 20%;
+}
