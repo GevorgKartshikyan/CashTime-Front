@@ -6,6 +6,7 @@ import WriteReview from './pages/Write-Review';
 import SignUp from './pages/Sign-Up';
 import VerifyEmail from './pages/Verify-email';
 import Verified from './pages/Verified';
+import Messages from './pages/Messages';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
         <Route path="/create-job" element={<CreateJob />} />
+        <Route path="/messages" element={<Messages />} />
       </Routes>
     </BrowserRouter>
   );
