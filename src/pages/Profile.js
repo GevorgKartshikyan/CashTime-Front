@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UserImage from '../assets/images/face.png';
 import EditSvg from '../assets/images/edit.svg';
 import UserSvg from '../assets/images/user.svg';
@@ -11,7 +12,9 @@ function Profile() {
     <div className="profile">
       <div className="profile__row">
         <img src={UserImage} alt="" className="profile__row__img" />
-        <img src={EditSvg} alt="" className="profile__row__svg" />
+        <Link to="/">
+          <img src={EditSvg} alt="" className="profile__row__svg" />
+        </Link>
       </div>
       <ProfileEditRow title="First Name" text="Your Name" svg={UserSvg} />
       <ProfileEditRow title="Add Your CV" text="CV Link" svg={AddCvSvg} />

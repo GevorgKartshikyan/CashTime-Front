@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import MessageSvg from '../assets/images/message.svg';
 import Phone from '../assets/images/phone.svg';
 import Upload from '../assets/images/upload.svg';
@@ -14,8 +15,12 @@ function UserCard(props) {
       <h5 className="user-card__title">{title}</h5>
       <p className="user-card__text">{text}</p>
       <div className="user-card__svgs-block">
-        <img className="user-card__svgs-block__svgs" src={MessageSvg} alt="" />
-        <img className="user-card__svgs-block__svgs" src={Phone} alt="" />
+        <Link to="/">
+          <img className="user-card__svgs-block__svgs" src={MessageSvg} alt="" />
+        </Link>
+        <Link to="/">
+          <img className="user-card__svgs-block__svgs" src={Phone} alt="" />
+        </Link>
       </div>
       <div className="user-card__input-block">
         <label className="user-card__input-block__label" htmlFor="upload">
