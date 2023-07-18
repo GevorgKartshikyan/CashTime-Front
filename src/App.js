@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateJob from './pages/Create-job';
 import WriteReview from './pages/Write-Review';
+import UserRating from './pages/User-Rating';
 import SignUp from './pages/Sign-Up';
 import VerifyEmail from './pages/Verify-email';
 import Verified from './pages/Verified';
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/writereview" element={<WriteReview />} />
+        <Route path="/userrating" element={<UserRating />} />
         <Route path="/create" element={<CreateJob />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />

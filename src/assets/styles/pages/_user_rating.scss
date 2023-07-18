@@ -1,0 +1,74 @@
+.user__rating {
+  background-color: #EDEDED;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.user__rating__row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 100px auto;
+}
+
+.rating__num {
+  margin-bottom: 5px;
+  color: #E17A01;
+  text-align: center;
+  font-size: 62px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.rating__stars {
+  width: 190px;
+}
+
+.based__on {
+  color: rgba(3, 16, 84, 0.50);
+  margin: 18px 0;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.rating__line {
+  width: 340px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.raring__line__text {
+  color: rgba(3, 16, 84, 0.50);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.rating__width {
+  width: 200px;
+  height: 4px;
+  background-color: rgba(3, 16, 84, 0.30);
+}
+
+.bellow__average {
+  width: 100px;
+  background-color: DarkOrange;
+}
+
+.write__review__btn__nav {
+  margin-top: 65px;
+}
