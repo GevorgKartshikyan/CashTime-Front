@@ -7,6 +7,8 @@ import UserRating from './pages/User-Rating';
 import SignUp from './pages/Sign-Up';
 import VerifyEmail from './pages/Verify-email';
 import Verified from './pages/Verified';
+import ConnectCard from './pages/Connect-card';
+import History from './pages/History';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/connect-card" element={<ConnectCard />} />
         <Route path="/create-job" element={<CreateJob />} />
       </Routes>
     </BrowserRouter>
