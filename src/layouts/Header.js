@@ -75,10 +75,10 @@ function Header() {
           <div className="header__menu">
             <div className="header__menu__list">
               <ul>
-                <li><NavLink to="/">Messages</NavLink></li>
+                <li><NavLink to="/messages">Messages</NavLink></li>
                 <li><NavLink to="/">Main</NavLink></li>
-                <li><NavLink to="/">Offer</NavLink></li>
-                <li><NavLink to="/">Profile</NavLink></li>
+                <li><NavLink to="/offer">Offer</NavLink></li>
+                <li><NavLink to="/profile">Profile</NavLink></li>
               </ul>
             </div>
             <div className="header__menu__block header-block">
