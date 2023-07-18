@@ -1,6 +1,11 @@
 .job-hiring{
+  margin-top: 16px;
   padding-top: 28px;
   padding-bottom: 82px;
+  background-image: url("../../images/home_pro_bg_img.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   &__block{;
     &__jobs{
       display: flex;

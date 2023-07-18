@@ -33,9 +33,9 @@ function ConnectCard() {
                   </p>
                 </div>
                 <div className="connect-card__block__bottom">
-                  <input type="number" id="connect-card__input2" className="connect-card__form__input2" />
-                  <input type="number" id="connect-card__input3" className="connect-card__form__input3" />
-                  <input type="number" id="connect-card__input4" className="connect-card__form__input4" />
+                  <input type="text" id="connect-card__input2" maxLength="2" className="connect-card__form__input2" />
+                  <input type="text" id="connect-card__input3" maxLength="4" className="connect-card__form__input3" />
+                  <input type="text" id="connect-card__input4" maxLength="3" className="connect-card__form__input4" />
                 </div>
               </div>
               <button className="connect-card__form__button" type="button">

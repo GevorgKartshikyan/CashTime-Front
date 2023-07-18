@@ -5,6 +5,7 @@ import VerifyEmail from './pages/Verify-email';
 import Verified from './pages/Verified';
 import ConnectCard from './pages/Connect-card';
 import History from './pages/History';
+import CreateJob from './pages/Create-job';
 import SignUp from './pages/Sign-Up';
 
 function App() {
@@ -12,11 +13,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
         <Route path="/history" element={<History />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/connect-card" element={<ConnectCard />} />
+        <Route path="/create-job" element={<CreateJob />} />
       </Routes>
     </BrowserRouter>
   );
