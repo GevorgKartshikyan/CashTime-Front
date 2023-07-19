@@ -9,6 +9,7 @@ import VerifyEmail from './pages/Verify-email';
 import Verified from './pages/Verified';
 import ConnectCard from './pages/Connect-card';
 import History from './pages/History';
+import Offer from './pages/Offer';
 
 function App() {
   return (
@@ -17,14 +18,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/writereview" element={<WriteReview />} />
         <Route path="/userrating" element={<UserRating />} />
-        <Route path="/create" element={<CreateJob />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
         <Route path="/history" element={<History />} />
-        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/connect-card" element={<ConnectCard />} />
         <Route path="/create-job" element={<CreateJob />} />
+        <Route path="/offer" element={<Offer />} />
       </Routes>
     </BrowserRouter>
   );
