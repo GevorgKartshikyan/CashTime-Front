@@ -1,0 +1,33 @@
+.job__display__row{
+  display: flex;
+  justify-content: space-between;
+  width: 478px;
+  align-items: center;
+}
+.finally-small{
+  margin-top: 0;
+  width: 76px;
+  height: 76px;
+  margin-left: -12px;
+  img{
+    width: 40px;
+    height: 40px;
+  }
+}
+.job__finally__title{
+  color: #031054;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.job__finally-price{
+  color: #031054;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  .prices{
+   margin-left: 15px;
+  }
+}

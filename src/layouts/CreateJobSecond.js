@@ -17,13 +17,14 @@ function CreateJobSecond(props) {
       setShowMessage('max length 3');
     }
   }, [selectedSkills, setSelectedSkills]);
+
   useEffect(() => {
     onData({ dataFromChild2: selectedSkills });
   }, [selectedSkills]);
   const handleChange = useCallback((e) => {
     if (selectedSkills.length === 0) {
       setInputValue(e.target.value);
-      onData({ dataFromChild2: e.target.value });
+      onData({ dataFromChild2: [e.target.value] });
     }
   }, [inputValue, selectedSkills]);
   const handleSkillDelete = useCallback((e) => {
