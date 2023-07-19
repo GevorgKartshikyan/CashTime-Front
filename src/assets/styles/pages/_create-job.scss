@@ -8,10 +8,10 @@
   align-items: center;
 }
 .job__buttons{
-  margin-top: 40px;
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 15px;
 }
 .job__btn{
   color: #031054;
@@ -25,4 +25,5 @@
 .button-row{
   position: absolute;
   bottom: 0;
+  z-index: -60;
 }
