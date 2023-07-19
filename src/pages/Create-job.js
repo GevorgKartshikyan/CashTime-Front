@@ -7,9 +7,11 @@ import CreateJobThird from '../layouts/CreateJobThird';
 import CreateJobFourth from '../layouts/CreateJobFourth';
 import CreateJobFifth from '../layouts/CreateJobFifth';
 import CreateJobSixth from '../layouts/CreateJobSixth';
+import CreateJobFinally from '../layouts/CreateJobFinally';
+import Header from '../layouts/Header';
 
 function CreateJob() {
-  const [count, setCount] = useState(6);
+  const [count, setCount] = useState(1);
   const [data, setData] = useState({});
   const [isRight, setIsRight] = useState(false);
   const handleDataFromChild = (childData) => {
@@ -18,7 +20,9 @@ function CreateJob() {
       ...childData,
     }));
   };
-
+  const handleCountChange = (newCount) => {
+    setCount(newCount);
+  };
   const handleNext = (operator) => {
     if (operator === '+') {
       setCount((prevState) => {
@@ -37,7 +41,6 @@ function CreateJob() {
         return newCount;
       });
     }
-    console.log(data);
   };
   const pageVariants = {
     initial: { opacity: 0, x: isRight ? '100%' : '-100%' },
@@ -52,24 +55,30 @@ function CreateJob() {
   };
 
   return (
-    <div className="create__job">
-      <div className="container">
-        <div className="job-row">
-          <motion.div
-            key={count}
-            initial="initial"
-            animate="in"
-            exit="out"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            {count === 1 && <CreateJobFirst onData={handleDataFromChild} />}
-            {count === 2 && <CreateJobSecond onData={handleDataFromChild} />}
-            {count === 3 && <CreateJobThird onData={handleDataFromChild} />}
-            {count === 4 && <CreateJobFourth onData={handleDataFromChild} />}
-            {count === 5 && <CreateJobFifth onData={handleDataFromChild} />}
-            {count === 6 && <CreateJobSixth onData={handleDataFromChild} />}
-          </motion.div>
+    <>
+      <Header />
+      <div className="create__job">
+        <div className="container">
+          <div className="job-row">
+            <motion.div
+              key={count}
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              {count === 1 && <CreateJobFirst onData={handleDataFromChild} />}
+              {count === 2 && <CreateJobSecond onData={handleDataFromChild} />}
+              {count === 3 && <CreateJobThird onData={handleDataFromChild} />}
+              {count === 4 && <CreateJobFourth onData={handleDataFromChild} />}
+              {count === 5 && <CreateJobFifth onData={handleDataFromChild} />}
+              {count === 6 && <CreateJobSixth onData={handleDataFromChild} />}
+              {count === 7 && <CreateJobFinally data={data} edit={handleCountChange} />}
+            </motion.div>
+          </div>
+        </div>
+        <div className="container-job container">
           {count < 7 ? (
             <div className="button-row">
               <StepIndicator step={count} />
@@ -85,47 +94,8 @@ function CreateJob() {
           ) : null}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default CreateJob;
-// import React, { useRef } from 'react';
-//
-// function App() {
-//   const inputs = useRef([]);
-//
-//   const handleInputChange = (index, e) => {
-//     const { value } = e.target;
-//     if (value.length === 1 && index < inputs.current.length - 1) {
-//       inputs.current[index + 1].focus();
-//     }
-//   };
-//
-//   const handleKeyDown = (index, e) => {
-//     const { value } = e.target;
-//     if (e.keyCode === 8 && value.length === 0 && index > 0) {
-//       inputs.current[index - 1].focus();
-//     }
-//   };
-//
-//   return (
-//     <div>
-//       {Array.from({ length: 4 }, (_, index) => (
-//         <input
-//           key={index}
-//           ref={(ref) => {
-//             inputs.current[index] = ref;
-//             return null;
-//           }}
-//           type="text"
-//           maxLength={1}
-//           onChange={(e) => handleInputChange(index, e)}
-//           onKeyDown={(e) => handleKeyDown(index, e)}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-//
-// export default App;
