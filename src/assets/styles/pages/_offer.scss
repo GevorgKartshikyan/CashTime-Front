@@ -357,10 +357,9 @@
 .react-calendar {
   padding: 15px 0 43px 0;
   width: 238px;
-
   max-width: 100%;
   border-radius: 10px;
-  background: rgba(219, 225, 169, 0.31);
+  background: rgba(219, 225, 169, 0.31) !important;
   border: 0;
   &__month-view__weekdays{
     color: #94A3B8;
