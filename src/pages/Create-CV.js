@@ -27,20 +27,22 @@ function CreateCv() {
         <div className="container">
           <div className="create-cv__row">
             <CreateCvFirst />
-            {count < 7 ? (
-              <div className="button-row">
-                <StepIndicator step={count} />
-                <div className="job__buttons">
-                  <button type="button" className="job__btn" onClick={() => handleNext('-')}>
-                    Go Back
-                  </button>
-                  <button type="button" className="job__btn" onClick={() => handleNext('+')}>
-                    Skip Or Next
-                  </button>
-                </div>
-              </div>
-            ) : null}
           </div>
+        </div>
+        <div className="container-job container">
+          {count < 7 ? (
+            <div className="button-row">
+              <StepIndicator step={count} />
+              <div className="job__buttons">
+                <button type="button" className="job__btn" onClick={() => handleNext('-')}>
+                  Go Back
+                </button>
+                <button type="button" className="job__btn" onClick={() => handleNext('+')}>
+                  Skip Or Next
+                </button>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </>
