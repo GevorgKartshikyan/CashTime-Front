@@ -1,0 +1,83 @@
+.job__display__row{
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  width: 478px;
+  align-items: center;
+}
+.finally-small{
+  margin-top: 0;
+  width: 76px;
+  height: 76px;
+  margin-left: -12px;
+  img{
+    width: 40px;
+    height: 40px;
+  }
+}
+.job__finally__title{
+  color: #031054;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  align-self: flex-start;
+  margin-top: 14px;
+}
+.job__finally-price{
+  color: #031054;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  .prices{
+   margin-left: 15px;
+  }
+}
+.job-finally-skill-title{
+  color: #031054;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+.job-finally-skill-desc{
+  color: #031054;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 4px 12px;
+  border-radius: 22px;
+  background:#E17A01;
+  margin-right: 10px;
+}
+.job-finally-skill-level{
+  color: rgba(0, 0, 0, 0.50);
+  font-size: 14px;
+  font-style: normal;
+  width: 360px;
+  word-wrap: break-word;
+  font-weight: 600;
+  margin-left: 50px;
+  line-height: normal;
+}
+.job-finally-scope-container{
+  display: flex;
+    justify-content: space-between;
+  width: 350px;
+}
+.profile__row__svg{
+  cursor: pointer;
+}
+.job-finally-all-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.job-finally-buttons-box{
+  div{
+    margin-top: 20px;
+  }
+}

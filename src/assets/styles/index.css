@@ -867,6 +867,28 @@ input[type=number] {
   cursor: pointer;
 }
 
+.job__form__container__sixth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* width: 541px; */
+  height: 100%;
+}
+
+.sixth-labels-desc {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 4px;
+}
+
+.options-row-sixth {
+  margin-top: 30px;
+}
+
 .worker-offers {
   padding: 185px 25% 0;
   display: flex;
@@ -964,28 +986,6 @@ input[type=number] {
   background-color: transparent;
   color: white;
   border-color: white;
-}
-.job__form__container__sixth {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  /* width: 541px; */
-  height: 100%;
-}
-
-.sixth-labels-desc {
-  color: #000;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 4px;
-}
-
-.options-row-sixth {
-  margin-top: 30px;
->>>>>>> GevorgKartshikyan
 }
 
 .header {

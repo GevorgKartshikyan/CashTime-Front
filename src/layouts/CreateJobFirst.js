@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import StepIndicator from './Step-indicator';
 
 function CreateJobFirst(props) {
   const { onData } = props;

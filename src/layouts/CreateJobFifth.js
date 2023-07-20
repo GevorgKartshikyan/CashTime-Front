@@ -6,7 +6,7 @@ function CreateJobFifth(props) {
   const [description, setDescription] = useState('');
   useEffect(() => {
     onData({ dataFromChild5: description });
-  }, []);
+  }, [description]);
   return (
     <div className="job__form__container">
       <h4 className="create__job__title">Describe Your Job</h4>
