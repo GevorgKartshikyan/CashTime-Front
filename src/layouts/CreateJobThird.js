@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-function splitStringsBySpace(arr) {
-  return arr.flatMap((stringWithSpace) => stringWithSpace.split(' '));
-}
-
-splitStringsBySpace([]);
-
 function CreateJobThird(props) {
   const { onData } = props;
   const levels = ['Entry', 'Intermediate', 'Expert'];

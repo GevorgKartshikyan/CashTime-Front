@@ -50,7 +50,10 @@ function CreateJobSixth(props) {
 
   const { onData } = props;
   // fileSrc for render file for request
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState({
+    fileSrc: '',
+    file: {},
+  });
   const [countries, setCountries] = useState([]);
   const [selectCountry, setSelectCountry] = useState('');
   const [address, setAddress] = useState({
@@ -113,7 +116,7 @@ function CreateJobSixth(props) {
     <div className="job__form__container__sixth">
       <div>
         <h4 className="create__job__title sixth-title">Describe Your Job</h4>
-        {selectedPhoto ? <img src={selectedPhoto.fileSrc} alt="job desc" className="job-image" /> : (
+        {selectedPhoto.fileSrc ? <img src={selectedPhoto.fileSrc} alt="job desc" className="job-image" /> : (
           <div className="selected-image">
             <img src={jobDefaultImg} alt="Selected" />
           </div>
