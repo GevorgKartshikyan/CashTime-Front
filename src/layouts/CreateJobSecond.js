@@ -3,6 +3,15 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
+function splitStringsBySpace(arr) {
+  return arr.flatMap((stringWithSpace) => {
+    if (stringWithSpace.trim() === '') {
+      return [];
+    }
+    return stringWithSpace.split(' ');
+  }).filter((item) => item !== '');
+}
+
 function CreateJobSecond(props) {
   const { onData } = props;
   const skills = ['User Experience', 'Figma', 'Photoshop', 'test'];
@@ -24,12 +33,13 @@ function CreateJobSecond(props) {
   const handleChange = useCallback((e) => {
     if (selectedSkills.length === 0) {
       setInputValue(e.target.value);
-      onData({ dataFromChild2: [e.target.value] });
+      onData({ dataFromChild2: splitStringsBySpace([e.target.value]) });
     }
   }, [inputValue, selectedSkills]);
   const handleSkillDelete = useCallback((e) => {
     setSelectedSkills(selectedSkills.filter((item) => item !== e));
   }, [selectedSkills]);
+
   return (
     <div className="job__form__container">
       <h4 className="create__job__title second">

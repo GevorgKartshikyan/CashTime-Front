@@ -11,7 +11,7 @@ import CreateJobFinally from '../layouts/CreateJobFinally';
 import Header from '../layouts/Header';
 
 function CreateJob() {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(2);
   const [data, setData] = useState({});
   const [isRight, setIsRight] = useState(false);
   const handleDataFromChild = (childData) => {
