@@ -45,7 +45,9 @@ button {
 }
 
 
-
+input:focus {
+  outline: none;
+}
 
 
 input::-webkit-outer-spin-button,
