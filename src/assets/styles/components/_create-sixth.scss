@@ -1,0 +1,66 @@
+.selected-image{
+  width: 110px;
+  height: 110px;
+  background-color: #E17A01;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 44px;
+  margin-bottom: 12px;
+}
+.image-container{
+  width: 100%;
+}
+
+.job-image{
+  width: 110px;
+  height: 110px;
+  margin-top: 44px;
+  border-radius: 50%;
+}
+.job-image-input{
+  display: none;
+}
+
+.label-desc-sixth{
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+.label-container-sixth{
+  display: flex;
+  width: 160px;
+  background-color: #E17A01;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 400px;
+  cursor: pointer;
+}
+
+.job__form__container__sixth{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* width: 541px; */
+  height: 100%;
+}
+.sixth-labels-desc{
+  color:  #000;
+  //text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 4px;
+}
+.options-row-sixth{
+  margin-top: 30px;
+}

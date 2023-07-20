@@ -1,0 +1,213 @@
+.signup__start{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title{
+    color:  #031054;
+    font-family: "Lato",sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: 100px 0 50px;
+  }
+
+  &__form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &__box{
+      position: relative;
+      &__button{
+        background-color: transparent;
+        position: absolute;
+        top:13px;
+        right:15px;
+
+      }
+    }
+    &__input,&__password{
+      font-family: "Lato",sans-serif;
+      color: rgba(3, 16, 84, 0.50);;
+      width: 415px;
+      height: 37px;
+      border: 0;
+      border-radius: 8px;
+      background:#FFF;
+      outline: none;
+      margin-bottom: 15px;
+      padding: 0 35px 0 15px;
+      &::placeholder{
+        color: rgba(3, 16, 84, 0.50);
+      }
+    }
+
+   &__select__phone{
+     font-family: "Lato",sans-serif;
+     font-style: normal;
+     font-weight: 600;
+     line-height: normal;
+     border: 0;
+     border-radius: 8px;
+     width: 415px;
+     height: 37px;
+     padding-left: 100px;
+     color: rgba(3, 16, 84, 0.50);
+     outline: none;
+   }
+
+    &__textarea{
+      color: rgba(3, 16, 84, 0.50);
+      font-family: "Lato",sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 22px;
+      width: 415px;
+      height: 260px;
+      border: 0;
+      border-radius: 22px;
+      background: #FFF;
+      padding: 20px 10px;
+      outline: none;
+      &::placeholder{
+        color: rgba(3, 16, 84, 0.50);
+
+      }
+
+    }
+
+    &__textBox{
+      width: 415px;
+      display: flex;
+      align-items: start;
+      margin: 14px 0 22px 0;
+      padding-left: 15px;
+      &__img{
+        margin: 2px 4px;
+      }
+
+      &__info{
+        width: 316px;
+        color: rgba(3, 16, 84, 0.50);
+        font-family: Lato,"sans-serif";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+      }
+    }
+    &__info{
+      width: 363px;
+      color: rgba(3, 16, 84, 0.50);
+      font-family: "Lato",sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+
+
+  }
+
+  &__signup__with{
+    margin: 35px 0;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    &__info{
+      margin: 0  5px;
+         color:#031054;
+      font-family: "Lato",sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    &__left{
+      width: 111px;
+      height: 3px;
+      background: linear-gradient(228deg, #E17A01 0%, rgba(196, 196, 196, 0.00) 100%);
+    }
+    &__right{
+      width: 111px;
+      height: 3px;
+      background: linear-gradient(128deg, #E17A01 0%, rgba(196, 196, 196, 0.00) 100%);
+
+    }
+  }
+
+  &__icon{
+    display: flex;
+    margin-bottom: 30px;
+    &__boxes{
+      cursor: pointer;
+      margin: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color:#ECE9EC;
+      border: 1px solid #F89AEE;;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+    }
+  }
+
+  &__link__login{
+    color: rgba(3, 16, 84, 0.50);
+    text-align: center;
+    font-family: "Lato",sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 11px 0;
+  }
+}
+
+//   // Phone number(modul) custom styles
+//
+//.custom-phone-dropdown {
+//  background-color: #f1f1f1;
+//  border: 0;
+//  border-radius: 5px;
+//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//  width: 200px;
+//  max-height: 200px;
+//  overflow-y: auto;
+//}
+//.custom-phone-dropdown .dropdown-flag-item {
+//  // Styles for an individual item in a dropdown list
+//  padding: 10px;
+//  color: #333;
+//}
+//.custom-phone-dropdown .dropdown-flag-item:hover {
+//  // Styling when stepping on an element in a combobox
+//  background-color: #ccc;
+//}
+.react-tel-input .flag-dropdown{
+  // Styling dropdown div
+  padding: 0 34px 0 10px;
+  border-top: 0;
+  border-right: 1px solid rgba(3, 16, 84, 0.50);
+  border-left: 0;
+  border-bottom: 0;
+  background-color: transparent;
+}
+.react-tel-input .selected-flag .arrow {
+  // Styling dropdown vector
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid rgba(3, 16, 84, 0.50);
+  margin-left: 15px;
+}
+.react-tel-input .selected-flag .arrow.up{
+  // Styling dropdown vector up
+  border-bottom: 8px solid rgba(3, 16, 84, 0.50);
+}
+.react-tel-input .flag-dropdown.open {
+    border-radius: 30px 0 0 30px;}

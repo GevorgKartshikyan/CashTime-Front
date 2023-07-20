@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Wrapper from '../layouts/Wrapper';
 import VerifyImg from '../assets/images/verify_img.png';
+import InputVerify from '../components/InputVerify';
 
 function VerifyEmail() {
   const [code, setCode] = useState('');
   const [isCodeCorrect, setIsCodeCorrect] = useState(true);
   const navigate = useNavigate();
-
-  const handleChange = (event) => {
-    setCode(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (code === '1234') {
@@ -21,7 +17,6 @@ function VerifyEmail() {
       setIsCodeCorrect(false);
     }
   };
-
   return (
     <Wrapper>
       <div className="verify__email">
@@ -32,16 +27,10 @@ function VerifyEmail() {
             <p className="verify__email__text__two">
               Please enter the 4 digit Code Sent to Your Email
               <br />
-              Youremailexaple.com
+              YourEmailExample.com
             </p>
             <form className="verify__email__form" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={code}
-                maxLength="4"
-                onChange={handleChange}
-                className={`verify__email__input ${!isCodeCorrect ? 'verify__email__input__error' : ''}`}
-              />
+              <InputVerify onData={setCode} />
               {!isCodeCorrect
                 && <p className="verify__email__error">Incorrect code. Please try again.</p>}
               <p className="verify__email__resend">Resend Code</p>

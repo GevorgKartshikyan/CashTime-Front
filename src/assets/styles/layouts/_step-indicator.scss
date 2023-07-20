@@ -1,0 +1,21 @@
+.circles-container{
+  width: 67.735px;
+  height: 70.154px;
+  position: relative;
+}
+
+.small-circle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.step-container{
+  display: flex;
+  align-items: center;
+}
+.step-indicator{
+  margin-top: 40px;
+  display: flex;
+}
+
