@@ -9,7 +9,11 @@ import VerifyEmail from './pages/Verify-email';
 import Verified from './pages/Verified';
 import ConnectCard from './pages/Connect-card';
 import History from './pages/History';
+<<<<<<< HEAD
 import Offer from './pages/Offer';
+=======
+import CreateCV from './pages/Create-CV';
+>>>>>>> Narek
 
 function App() {
   return (
@@ -24,7 +28,11 @@ function App() {
         <Route path="/history" element={<History />} />
         <Route path="/connect-card" element={<ConnectCard />} />
         <Route path="/create-job" element={<CreateJob />} />
+<<<<<<< HEAD
         <Route path="/offer" element={<Offer />} />
+=======
+        <Route path="/create-cv" element={<CreateCV />} />
+>>>>>>> Narek
       </Routes>
     </BrowserRouter>
   );
