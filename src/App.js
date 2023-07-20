@@ -12,6 +12,8 @@ import ConnectCard from './pages/Connect-card';
 import History from './pages/History';
 import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
+import Login from './pages/Login';
+import CreateCVThird from './components/CreateCvThird';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/offer" element={<Offer />} />
         <Route path="/create-cv" element={<CreateCV />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/test" element={<CreateCVThird />} />
       </Routes>
     </BrowserRouter>
   );
