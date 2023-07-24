@@ -11,6 +11,7 @@ import Globe from '../assets/images/globe.svg';
 import Avatar from '../assets/images/avatar.svg';
 import ChatBox from '../components/ChatBox';
 import Languages from '../components/Languages';
+import Notification from '../components/Notification';
 
 function Header() {
   const [isActiveModal, setIsActiveModal] = useState(false);
@@ -99,7 +100,9 @@ function Header() {
         <div ref={languages} className="languages__menu__list__bg">
           {isActiveLanguage ? <Languages /> : null}
         </div>
-        div.languages__menu__list__bg
+        <div className="notification__menu__list__bg">
+          <Notification />
+        </div>
       </div>
     </header>
   );

@@ -1,0 +1,17 @@
+.notification__menu__list__bg{
+  width: 375px;
+  position: relative;
+  margin-left: auto;
+  margin-right: -15px;
+}
+.notification{
+  width: 169px;
+  max-height: 101px;
+  border-radius: 0 0 22px 22px;
+  background: #FFF;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 7;
+}
