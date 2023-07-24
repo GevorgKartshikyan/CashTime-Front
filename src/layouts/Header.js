@@ -99,6 +99,7 @@ function Header() {
         <div ref={languages} className="languages__menu__list__bg">
           {isActiveLanguage ? <Languages /> : null}
         </div>
+        div.languages__menu__list__bg
       </div>
     </header>
   );

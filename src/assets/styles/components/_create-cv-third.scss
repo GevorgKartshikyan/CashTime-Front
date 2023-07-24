@@ -46,7 +46,7 @@
   align-self: flex-start;
   display: flex;
   flex-wrap: wrap;
-
+  width: 300px;
   &__title {
     color: #FFF;
     text-align: center;
@@ -57,13 +57,13 @@
     line-height: 37px;
     letter-spacing: 0.1px;
     display: flex;
-    padding: 10px 16px 10px 12px;
+    padding: 4px 16px;
     justify-content: center;
     align-items: center;
     gap: 8px;
     background: #E17A01;
     border-radius: 100px;
-    margin-right: 32px;
+    margin-right: 12px;
     margin-top: 30px;
     cursor: pointer;
   }
@@ -118,7 +118,7 @@
   flex-direction: column;
   width: 541px;
   height: 100%;
-  margin-top: 150px;
+  margin-top: 70px;
 }
 .create__cv__title{
   color: #031054;
