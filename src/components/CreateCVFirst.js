@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select';
 
 function CreateCvFirst() {
   const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { value: 'beginner', label: 'Beginner(Level A1)' },
+    { value: 'intermediate', label: 'Intermediate(Level B1)' },
+    { value: 'upper-intermediate', label: 'Upper-Intermediate(Level B2)' },
+    { value: 'advanced', label: 'Advanced(Level C1)' },
+    { value: 'mastery', label: 'Mastery(Level C2)' },
   ];
 
   const customStyles = {
@@ -41,29 +44,55 @@ function CreateCvFirst() {
     }),
   };
 
+  const [languages, setLanguages] = useState([
+    { language: '', level: '', id: uuidv4() },
+  ]);
+
+  const [professionValue, setProfessionValue] = useState('');
+
+  const handleProfessionValue = useCallback((e) => {
+    setProfessionValue(e.target.value);
+  }, [professionValue]);
+
+  const handleAddLanguage = useCallback(() => {
+    setLanguages([...languages, { language: '', level: '', id: uuidv4() }]);
+  }, [languages]);
+
+  const handleChange = useCallback((index, key, value) => {
+    const updatedLanguages = [...languages];
+    updatedLanguages[index][key] = value;
+    setLanguages(updatedLanguages);
+  }, [languages]);
   return (
     <div className="create-cv-first">
       <div className="create-cv-first__row">
         <h3 className="create-cv-first__title">
           What’s Your Professional Role?
         </h3>
-        <input type="text" className="create-cv-first__input1" placeholder="UI/UX designer | Softer Engineer | IOS" />
+        <input type="text" className="create-cv-first__input1" value={professionValue} onChange={(e) => handleProfessionValue(e)} placeholder="UI/UX designer | Softer Engineer | IOS" />
         <h3 className="create-cv-first__title">
           Which Languages Do You Know?
         </h3>
-        <div className="create-cv-first__block">
-          <input type="text" className="create-cv-first__input2" placeholder="Armenian" />
-          <div className="create-cv-first__select1">
-            <Select
-              options={options}
-              placeholder="Level"
-              styles={customStyles}
-              components={{
-                IndicatorSeparator: () => null,
-              }}
-            />
+        {languages.map((lang, index) => (
+          <div className="create-cv-first__block" key={lang.id}>
+            <input type="text" className="create-cv-first__input2" value={lang.language} placeholder="Armenian" onChange={(e) => handleChange(index, 'language', e.target.value)} />
+            <div className="create-cv-first__select1">
+              <Select
+                options={options}
+                placeholder="Level"
+                value={options.find((option) => option.value === lang.level)}
+                styles={customStyles}
+                components={{
+                  IndicatorSeparator: () => null,
+                }}
+                onChange={(e) => handleChange(index, 'level', e.value)}
+              />
+            </div>
           </div>
-        </div>
+        ))}
+        <button type="button" className="create-cv-first__button" onClick={handleAddLanguage}>
+          + Add Language
+        </button>
       </div>
     </div>
   );

@@ -9,8 +9,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 150px;
+    align-items: flex-start;
+    margin-top: 70px;
   }
   &__title {
     color: #031054;
@@ -58,5 +58,26 @@
     line-height: normal;
     border: none;
     border-radius: 8px;
+  }
+  &__button {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.1px;
+    padding: 10px 24px;
+    background: #E17A01;
+    border: 1px solid #E17A01;
+    border-radius: 16px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    align-self: flex-start;
+    &:hover {
+      color: #E17A01;
+      background-color: transparent;
+    }
   }
 }
