@@ -1,26 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function CreateJobFourth(props) {
   const { onData } = props;
+  const fourthFormPrice = useSelector((state) => state.createJobForm.dataFromChild4) ?? {};
   const methods = ['Hourly Rate', 'Project Budget'];
-  const [selectedMethod, setSelectedMethod] = useState('Hourly Rate');
-  const [priceFrom, setPriceFrom] = useState('');
-  const [priceTo, setPriceTo] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [selectedMethod, setSelectedMethod] = useState(fourthFormPrice.method || 'Hourly Rate');
+  const [priceFrom, setPriceFrom] = useState(fourthFormPrice.priceFrom || '');
+  const [priceTo, setPriceTo] = useState(fourthFormPrice.priceTo || '');
+  const [maxPrice, setMaxPrice] = useState(fourthFormPrice.maxPrice || '');
   const currency = 'USD';
   const currencySign = '$';
   useEffect(() => {
     onData({
       dataFromChild4: {
-        selectedMethod,
+        method: selectedMethod,
         priceFrom: priceFrom || null,
         priceTo: priceTo || null,
         maxPrice: maxPrice || null,
       },
     });
-  }, [priceFrom, priceTo, maxPrice]);
+  }, [priceFrom, priceTo, maxPrice, selectedMethod]);
   const handleInputFromChange = useCallback((e) => {
     let { value } = e.target;
     value = value.replace(currencySign, '');

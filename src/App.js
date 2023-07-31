@@ -14,6 +14,7 @@ import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
 import CreateCvSixth from './components/CreateCVSixth';
+import TestMap from './pages/TestMap';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/create-cv" element={<CreateCV />} />
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<CreateCvSixth />} />
+        <Route path="/test-map" element={<TestMap />} />
       </Routes>
     </BrowserRouter>
   );
