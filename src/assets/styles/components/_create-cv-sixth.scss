@@ -1,0 +1,51 @@
+.CreateCvSixth{
+  padding-top: 70px;
+  &__services{
+
+    &__text{
+      width: 574px;
+      margin-bottom: 29px;
+      & > h3{
+        color: #031054;
+        font-family: "Lato", sans-serif;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+      }
+    }
+    &__select{
+
+    }
+
+  }
+  &__suggest{
+    & > p{
+      color: #031054;
+      font-family: "Lato", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom: 25px;
+    }
+    & > button{
+      display: flex;
+      padding: 10px 16px 10px 12px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      background:#E17A01;
+      color: #FFFFFF;
+      font-family: "Roboto", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px; /* 142.857% */
+      letter-spacing: 0.1px;
+      border-radius: 40px;
+      width: 140px;
+      height: 40px;
+    }
+  }
+}

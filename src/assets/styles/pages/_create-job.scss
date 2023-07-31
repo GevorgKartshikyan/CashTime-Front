@@ -1,5 +1,17 @@
 .create__job{
-  margin-top: 30px;
+  position: relative;
+  margin-top: 70px;
+  min-height: 100vh;
+  padding-bottom: 150px;
+  & > .container-job.container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
 }
 .job-row{
   display: flex;
@@ -11,6 +23,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  position: relative;
 }
 .job__btn{
   color: #031054;
@@ -24,5 +37,8 @@
 .button-row{
   position: absolute;
   bottom: 0;
-  z-index: -60;
 }
+.big-circle , .small-circle{
+  cursor: pointer;
+}
+

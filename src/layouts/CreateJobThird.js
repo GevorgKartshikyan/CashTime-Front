@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function CreateJobThird(props) {
   const { onData } = props;
+  const thirdFormLevel = useSelector((state) => state.createJobForm.dataFromChild3) ?? '';
   const levels = ['Entry', 'Intermediate', 'Expert'];
-  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState(thirdFormLevel ?? '');
   const handleLevelChange = (event) => {
     setSelectedLevel(event.target.value);
   };
