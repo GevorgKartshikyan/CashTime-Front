@@ -1,22 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import IndicatorsArrows from '../components/IndicatorsArrows';
-import customStyles from '../utils/selectCustomStyles';
 import countyList from '../utils/countyList';
 
-function CreateJobSixth() {
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [error, setError] = useState('');
+function CreateJobSixth(props) {
+  const sixtyFormObj = useSelector((state) => state.createJobForm.dataFromChild6) ?? {};
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      fontFamily: 'Lato,sans-serif',
+      paddingLeft: 5,
+      paddingRight: 15,
+      color: 'rgba(3, 16, 84, 0.50)',
+      width: 415,
+      height: 37,
+      border: state.isFocused ? 0 : 0,
+      borderRadius: 8,
+      background: '#fff',
+      outline: 'none',
+      marginBottom: 15,
+      boxShadow: 'none',
+      '&:hover': {
+        borderColor: 'rgba(3, 16, 84, 0.70)',
+      },
+      '&:focus': {
+        borderColor: 'rgba(3, 16, 84, 0.90)',
+        boxShadow: 'none',
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? '#FFF' : '#333',
+      background: state.isSelected ? 'rgba(3, 16, 84, 0.50)' : null,
+      cursor: 'pointer',
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: 'rgba(3, 16, 84, 0.70)',
+    }),
+    placeholder: (defaultStyles) => ({
+      ...defaultStyles,
+      color: 'rgba(3 16, 84, 0.50)',
+      fontSize: 14,
+    }),
+    menu: (provided) => ({
+      ...provided,
+      color: 'red',
+      zIndex: 999999999999999,
+    }),
+  };
+  const { onData } = props;
+  // fileSrc for render file for request
+  const [selectedPhoto, setSelectedPhoto] = useState({
+    fileSrc: sixtyFormObj.selectedPhoto || '',
+    file: null,
+  });
   const [countries, setCountries] = useState([]);
-  const [selectCountry, setSelectCountry] = useState('');
+  const [selectCountry, setSelectCountry] = useState(sixtyFormObj.selectCountry || '');
   const [address, setAddress] = useState({
     latitude: '',
     longitude: '',
+    fullAddress: '',
+    location: '',
   });
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(sixtyFormObj.phoneNumber ?? '');
+  useEffect(() => {
+    onData({
+      dataFromChild6: {
+        selectCountry,
+        address,
+        selectedPhoto: selectedPhoto.fileSrc,
+        phoneNumber,
+      },
+    }, selectedPhoto.file);
+  }, [selectCountry, address, selectedPhoto, phoneNumber]);
   useEffect(() => {
     const getCountries = async () => {
       const countriesData = await countyList();
@@ -25,44 +87,44 @@ function CreateJobSixth() {
     getCountries();
   }, []);
   const handlePlaceSelect = (place) => {
-    const { lat, lng } = place.geometry.location;
-    console.log('Latitude:', lat());
-    console.log('Longitude:', lng());
-    setAddress({
-      latitude: lat(),
-      longitude: lng(),
-    });
-  };
-
-  const handlePhotoChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'image/bmp', 'image/tiff'];
-
-    if (file && allowedTypes.includes(file.type)) {
-      reader.onload = (e) => {
-        setSelectedPhoto(e.target.result);
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      setSelectedPhoto(null);
-      setError('only image');
+    try {
+      const { lat, lng } = place.geometry.location;
+      const addressComponents = place.address_components;
+      let country = '';
+      let city = '';
+      for (let i = 0; i < addressComponents.length; i += 1) {
+        const component = addressComponents[i];
+        const componentType = component.types[0];
+        if (componentType === 'country') {
+          country = component.long_name;
+        } else if (componentType === 'locality') {
+          city = component.long_name;
+        }
+      }
+      setAddress({
+        latitude: lat(),
+        longitude: lng(),
+        fullAddress: place.formatted_address,
+        country,
+        city,
+      });
+    } catch (e) {
+      console.error(e);
     }
   };
-
-  console.log(address, selectCountry, phoneNumber);
+  const handleFileSelect = useCallback(async (ev) => {
+    const newFile = URL.createObjectURL(ev.target.files[0]);
+    setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
+  }, [selectedPhoto]);
   return (
-    <div className="job__form__container__sixth">
+    <div className="job__form__container__sixth" style={{ zIndex: 777777 }}>
       <div>
         <h4 className="create__job__title sixth-title">Describe Your Job</h4>
-        {selectedPhoto ? <img src={selectedPhoto} alt="job desc" className="job-image" /> : (
+        {selectedPhoto.fileSrc ? <img src={selectedPhoto.fileSrc} alt="job desc" className="job-image" /> : (
           <div className="selected-image">
             <img src={jobDefaultImg} alt="Selected" />
           </div>
         )}
-        {error ? <p>{error}</p> : null}
         <label htmlFor="job-id-input" className="job-image-label">
           <div className="label-container-sixth">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -70,7 +132,7 @@ function CreateJobSixth() {
             </svg>
             <span className="label-desc-sixth">Upload a Picture</span>
           </div>
-          <input type="file" id="job-id-input" onChange={handlePhotoChange} className="job-image-input" />
+          <input type="file" id="job-id-input" onChange={handleFileSelect} className="job-image-input" />
         </label>
       </div>
       <div className="options-row-sixth">
@@ -81,6 +143,7 @@ function CreateJobSixth() {
           <Select
             placeholder="Select County"
             options={countries}
+            value={countries.find((country) => country.value === selectCountry)}
             onChange={(e) => setSelectCountry(e.value)}
             styles={customStyles}
             className="signup__start__form__select"
@@ -88,7 +151,6 @@ function CreateJobSixth() {
             components={{
               IndicatorsContainer: IndicatorsArrows,
             }}
-
           />
         </div>
         <div>
@@ -100,8 +162,13 @@ function CreateJobSixth() {
             className="signup__start__form__input"
             apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
             onPlaceSelected={handlePlaceSelect}
-            types={['address']}
+            options={{
+              language: 'en',
+              componentRestrictions: { country: 'am' },
+              types: ['geocode', 'establishment'],
+            }}
           />
+
         </div>
         <div>
           <p className="sixth-labels-desc">Phone</p>
@@ -109,9 +176,11 @@ function CreateJobSixth() {
             onChange={(value) => {
               setPhoneNumber(`+${value}`);
             }}
-            country="am"
+            buttonClass="dropdown-flag-item"
+            inputClass="signup__start__form__select__phone"
+            country={selectCountry || 'am'}
             value={phoneNumber}
-            placeholder="+(374)-00-00-00"
+            dropdownClass="custom-phone-dropdown"
             inputProps={{
               // dropdownClass: 'custom-phone-dropdown',
               className: 'signup__start__form__select__phone',
@@ -123,5 +192,7 @@ function CreateJobSixth() {
     </div>
   );
 }
-
+CreateJobSixth.propTypes = {
+  onData: PropTypes.func.isRequired,
+};
 export default CreateJobSixth;

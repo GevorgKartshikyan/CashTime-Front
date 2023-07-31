@@ -47,6 +47,7 @@
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
 .raring__line__text {
@@ -60,15 +61,109 @@
 
 .rating__width {
   width: 200px;
-  height: 4px;
-  background-color: rgba(3, 16, 84, 0.30);
+  height: 6px;
+  background-color: rgba(3, 16, 84, 0.25);
 }
 
 .bellow__average {
-  width: 100px;
+  width: 30%;
+  height: 100%;
   background-color: DarkOrange;
 }
 
 .write__review__btn__nav {
   margin-top: 65px;
+}
+
+.review_line {
+  width: 400px;
+  height: 6px;
+  background-color: #0310547F;
+  margin-top: 25px;
+}
+
+.user__review {
+  width: 100%;
+  padding: 25px;
+  margin-top: 32px;
+  border-radius: 20px;
+  background-color: rgba(217, 217, 217, 0.5);
+}
+
+.all__reviews {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user__review_info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.user__review__info__left {
+  display: flex;
+}
+
+.review__info__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.user__logo__review {
+  width: 50px;
+  border-radius: 50px;
+}
+
+.user__review_info__right__text {
+  color: var(--dark-blue, #031054);
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.user__review__name {
+  color: var(--dark-blue, #031054);
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.stars__review__left {
+  display: flex;
+  margin-top: 10px;
+}
+
+.stars__review__img {
+  width: 100px;
+}
+
+.count__review__num {
+  color: rgba(3, 16, 84, 0.50);
+  text-align: center;
+  margin-left: 8px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text__user__review {
+  color: var(--black, #000);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px;
 }

@@ -1,0 +1,116 @@
+.job__display__row{
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  width: 478px;
+  align-items: center;
+}
+.finally-small{
+  margin-top: 0;
+  width: 76px;
+  height: 76px;
+  margin-left: -12px;
+  img{
+    width: 40px;
+    height: 40px;
+  }
+}
+.job__finally__title{
+  color: #031054;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  align-self: flex-start;
+  margin-top: 14px;
+  border: none;
+  background: transparent;
+}
+.job__finally__title.active-input{
+  border: 1px solid black;
+  padding: 4px;
+}
+.job__finally-price{
+  color: #031054;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  .prices{
+   margin-left: 15px;
+  }
+}
+.job-finally-skill-title{
+  color: #031054;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+.job-finally-skill-desc{
+  color: #031054;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 4px 12px;
+  border-radius: 22px;
+  background:#E17A01;
+  margin-right: 10px;
+}
+.job-finally-skill-level{
+  color: rgba(0, 0, 0, 0.50);
+  font-size: 14px;
+  font-style: normal;
+  width: 360px;
+  word-wrap: break-word;
+  font-weight: 600;
+  margin-left: 50px;
+  line-height: normal;
+}
+.job-finally-scope-container{
+  display: flex;
+    justify-content: space-between;
+  width: 350px;
+}
+.profile__row__svg{
+  cursor: pointer;
+}
+.job-finally-all-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.job-finally-buttons-box{
+  div{
+    margin-top: 20px;
+  }
+}
+/* styles.css */
+
+/* Стилизация контейнера с кнопками масштабирования */
+.gm-bundled-control {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилизация кнопок масштабирования */
+.gm-bundled-control button {
+  //background-color: #f0f0f0;
+  color: red;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 8px;
+  margin: 2px;
+  background-color: red;
+}
+
+/* Стилизация кнопок масштабирования при наведении */
+.gm-bundled-control button:hover {
+  background-color: red;
+}

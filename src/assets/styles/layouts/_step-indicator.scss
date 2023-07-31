@@ -17,5 +17,7 @@
 .step-indicator{
   margin-top: 40px;
   display: flex;
+  position: relative;
+  z-index: -1;
 }
 

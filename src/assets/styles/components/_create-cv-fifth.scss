@@ -1,0 +1,42 @@
+.CreateCvFifth{
+  padding-top: 70px;
+  &__text{
+    width: 566px;
+    margin-bottom: 22px;
+    & > h3{
+      color: #031054;
+      font-family: "Lato", sans-serif;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+    }
+  }
+  &__bio{
+    & > form{
+      display: flex;
+      flex-direction: column;
+      width: 560px;
+      align-items: center;
+      & > label{
+        display: flex;
+        margin-bottom: 34px;
+        & > textarea {
+          width: 560px;
+          height: 492px;
+          resize: none;
+          border: none;
+          border-radius: 22px;
+          background: #FFF;
+        }
+      }
+    }
+    & > button{
+      width: 415px;
+      height: 57px;
+      border-radius: 47px;
+      background-color: #031054;
+      color: #ffffff;
+    }
+  }
+}

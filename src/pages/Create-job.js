@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 import CreateJobFirst from '../layouts/CreateJobFirst';
 import CreateJobSecond from '../layouts/CreateJobSecond';
 import StepIndicator from '../layouts/StepIndicator';
@@ -7,19 +8,25 @@ import CreateJobThird from '../layouts/CreateJobThird';
 import CreateJobFourth from '../layouts/CreateJobFourth';
 import CreateJobFifth from '../layouts/CreateJobFifth';
 import CreateJobSixth from '../layouts/CreateJobSixth';
+import CreateJobFinally from '../layouts/CreateJobFinally';
+import Header from '../layouts/Header';
+import setJobFormData from '../store/actions/createJobForm';
 
 function CreateJob() {
-  const [count, setCount] = useState(6);
-  const [data, setData] = useState({});
+  const dispatch = useDispatch();
+  const [count, setCount] = useState(1);
+  const [localData, setLocalData] = useState({});
   const [isRight, setIsRight] = useState(false);
-  const handleDataFromChild = (childData) => {
-    setData((prevData) => ({
+  const [file, setFile] = useState({});
+  // console.log(localData);
+  const handleDataFromChild = (childData, x) => {
+    setLocalData((prevData) => ({
       ...prevData,
       ...childData,
     }));
+    setFile(x);
   };
-
-  const handleNext = (operator) => {
+  const handleNext = (operator, editCount) => {
     if (operator === '+') {
       setCount((prevState) => {
         const newCount = prevState + 1;
@@ -28,6 +35,7 @@ function CreateJob() {
         }
         return newCount;
       });
+      dispatch(setJobFormData({ data: localData }));
     } else if (operator === '-' && count !== 1) {
       setCount((prevState) => {
         const newCount = prevState - 1;
@@ -37,7 +45,9 @@ function CreateJob() {
         return newCount;
       });
     }
-    console.log(data);
+    if (editCount) {
+      setCount(editCount);
+    }
   };
   const pageVariants = {
     initial: { opacity: 0, x: isRight ? '100%' : '-100%' },
@@ -52,27 +62,33 @@ function CreateJob() {
   };
 
   return (
-    <div className="create__job">
-      <div className="container">
-        <div className="job-row">
-          <motion.div
-            key={count}
-            initial="initial"
-            animate="in"
-            exit="out"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            {count === 1 && <CreateJobFirst onData={handleDataFromChild} />}
-            {count === 2 && <CreateJobSecond onData={handleDataFromChild} />}
-            {count === 3 && <CreateJobThird onData={handleDataFromChild} />}
-            {count === 4 && <CreateJobFourth onData={handleDataFromChild} />}
-            {count === 5 && <CreateJobFifth onData={handleDataFromChild} />}
-            {count === 6 && <CreateJobSixth onData={handleDataFromChild} />}
-          </motion.div>
+    <>
+      <Header />
+      <div className="create__job">
+        <div className="container">
+          <div className="job-row">
+            <motion.div
+              key={count}
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              {count === 1 && <CreateJobFirst onData={handleDataFromChild} />}
+              {count === 2 && <CreateJobSecond onData={handleDataFromChild} />}
+              {count === 3 && <CreateJobThird onData={handleDataFromChild} />}
+              {count === 4 && <CreateJobFourth onData={handleDataFromChild} />}
+              {count === 5 && <CreateJobFifth onData={handleDataFromChild} />}
+              {count === 6 && <CreateJobSixth onData={handleDataFromChild} />}
+              {count === 7 && <CreateJobFinally file={file} editCount={handleNext} />}
+            </motion.div>
+          </div>
+        </div>
+        <div className="container-job container">
           {count < 7 ? (
             <div className="button-row">
-              <StepIndicator step={count} />
+              <StepIndicator step={count} editCount={handleNext} />
               <div className="job__buttons">
                 <button type="button" className="job__btn" onClick={() => handleNext('-')}>
                   Go Back
@@ -85,47 +101,8 @@ function CreateJob() {
           ) : null}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default CreateJob;
-// import React, { useRef } from 'react';
-//
-// function App() {
-//   const inputs = useRef([]);
-//
-//   const handleInputChange = (index, e) => {
-//     const { value } = e.target;
-//     if (value.length === 1 && index < inputs.current.length - 1) {
-//       inputs.current[index + 1].focus();
-//     }
-//   };
-//
-//   const handleKeyDown = (index, e) => {
-//     const { value } = e.target;
-//     if (e.keyCode === 8 && value.length === 0 && index > 0) {
-//       inputs.current[index - 1].focus();
-//     }
-//   };
-//
-//   return (
-//     <div>
-//       {Array.from({ length: 4 }, (_, index) => (
-//         <input
-//           key={index}
-//           ref={(ref) => {
-//             inputs.current[index] = ref;
-//             return null;
-//           }}
-//           type="text"
-//           maxLength={1}
-//           onChange={(e) => handleInputChange(index, e)}
-//           onKeyDown={(e) => handleKeyDown(index, e)}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-//
-// export default App;

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import MessageSvg from '../assets/images/message.svg';
 import Phone from '../assets/images/phone.svg';
 import Upload from '../assets/images/upload.svg';
 
 function UserCard(props) {
   const { image, title, text } = props;
+  const { t } = useTranslation();
   return (
     <div className="user-card">
       <div className="user-card__circle">
@@ -25,7 +27,7 @@ function UserCard(props) {
       <div className="user-card__input-block">
         <label className="user-card__input-block__label" htmlFor="upload">
           <img className="user-card__input-block__label__image" src={Upload} alt="" />
-          <span className="user-card__input-block__label__text">Upload Your Saved linkedin PDF</span>
+          <span className="user-card__input-block__label__text">{`${t('upload_pdf_text')}linkedin PDF`}</span>
           <input className="user-card__input-block__input" type="file" id="upload" />
         </label>
       </div>
