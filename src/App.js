@@ -10,6 +10,7 @@ import Verified from './pages/Verified';
 import ConnectCard from './pages/Connect-card';
 import History from './pages/History';
 import Offer from './pages/Offer';
+import TestMap from './pages/TestMap';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/connect-card" element={<ConnectCard />} />
         <Route path="/create-job" element={<CreateJob />} />
         <Route path="/offer" element={<Offer />} />
+        <Route path="/test-map" element={<TestMap />} />
       </Routes>
     </BrowserRouter>
   );
