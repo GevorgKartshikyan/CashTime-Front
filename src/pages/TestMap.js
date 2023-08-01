@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import Autocomplete from 'react-google-autocomplete';
 
-const key = 'AIzaSyDka-NPn5M2pvTGNVeUjpat6Dxch6MdG44';
+const key = 'AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM';
 export default function TestMap() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: key,
