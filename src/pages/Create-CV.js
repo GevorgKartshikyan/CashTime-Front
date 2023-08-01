@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import Header from '../layouts/Header';
 import CreateCvFirst from '../components/CreateCVFirst';
 import StepIndicator from '../layouts/StepIndicator';
@@ -10,6 +11,7 @@ import CreateCVSixth from '../components/CreateCVSixth';
 function CreateCv() {
   const [count, setCount] = useState(1);
   const [data, setData] = useState({});
+  const [isRight, setIsRight] = useState(false);
   const handleDataFromChild = (childData) => {
     setData((prevData) => ({
       ...prevData,
@@ -21,15 +23,32 @@ function CreateCv() {
     if (operator === '+') {
       setCount((prevState) => {
         const newCount = prevState + 1;
-        console.log(count);
+        if (prevState < newCount) {
+          setIsRight(true);
+        }
         return newCount;
       });
     } else if (operator === '-' && count !== 1) {
       setCount((prevState) => {
         const newCount = prevState - 1;
+        if (prevState > newCount) {
+          setIsRight(false);
+        }
         return newCount;
       });
     }
+  };
+
+  const pageVariants = {
+    initial: { opacity: 0, x: isRight ? '100%' : '-100%' },
+    in: { opacity: 1, x: '0' },
+    out: { opacity: 0, x: '-100%' },
+  };
+
+  const pageTransition = {
+    type: 'tween',
+    ease: 'easeInOut',
+    duration: 0.7,
   };
 
   return (
@@ -38,11 +57,20 @@ function CreateCv() {
       <div className="create-cv">
         <div className="container">
           <div className="create-cv__row">
-            {count === 1 && <CreateCvFirst onData={handleDataFromChild} />}
-            {count === 2 && <CreateCVSecond onData={handleDataFromChild} />}
-            {count === 3 && <CreateCVThird onData={handleDataFromChild} />}
-            {count === 4 && <CreateCVFifth onData={handleDataFromChild} />}
-            {count === 5 && <CreateCVSixth onData={handleDataFromChild} />}
+            <motion.div
+              key={count}
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              {count === 1 && <CreateCvFirst onData={handleDataFromChild} />}
+              {count === 2 && <CreateCVSecond onData={handleDataFromChild} />}
+              {count === 3 && <CreateCVThird onData={handleDataFromChild} />}
+              {count === 4 && <CreateCVFifth onData={handleDataFromChild} />}
+              {count === 5 && <CreateCVSixth onData={handleDataFromChild} />}
+            </motion.div>
           </div>
         </div>
         <div className="container-job container">
