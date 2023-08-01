@@ -13,7 +13,7 @@ import History from './pages/History';
 import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
-import CreateCvSixth from './components/CreateCVSixth';
+import CreateCVSixth from './components/CreateCVSixth';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
         <Route path="/offer" element={<Offer />} />
         <Route path="/create-cv" element={<CreateCV />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/test" element={<CreateCvSixth />} />
+        <Route path="/test" element={<CreateCVSixth />} />
       </Routes>
     </BrowserRouter>
   );
