@@ -15,8 +15,12 @@ import WorkerOffers from './pages/Worker_Offers';
 import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
+<<<<<<< HEAD
 import CreateCvSixth from './components/CreateCVSixth';
 import TestMap from './pages/TestMap';
+=======
+import CreateCVSixth from './components/CreateCVSixth';
+>>>>>>> Narek
 
 function App() {
   useEffect(() => {
@@ -39,8 +43,12 @@ function App() {
         <Route path="/offer" element={<Offer />} />
         <Route path="/create-cv" element={<CreateCV />} />
         <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
         <Route path="/test" element={<CreateCvSixth />} />
         <Route path="/test-map" element={<TestMap />} />
+=======
+        <Route path="/test" element={<CreateCVSixth />} />
+>>>>>>> Narek
       </Routes>
     </BrowserRouter>
   );

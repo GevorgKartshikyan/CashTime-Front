@@ -1,8 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
-function CreateCvFirst() {
+function CreateCvFirst(props) {
+  const { onData } = props;
   const options = [
     { value: 'beginner', label: 'Beginner(Level A1)' },
     { value: 'intermediate', label: 'Intermediate(Level B1)' },
@@ -63,6 +65,14 @@ function CreateCvFirst() {
     updatedLanguages[index][key] = value;
     setLanguages(updatedLanguages);
   }, [languages]);
+  useEffect(() => {
+    onData({
+      dataFromChild1: {
+        professionValue,
+        languages,
+      },
+    });
+  }, [languages, professionValue]);
   return (
     <div className="create-cv-first">
       <div className="create-cv-first__row">
@@ -97,5 +107,9 @@ function CreateCvFirst() {
     </div>
   );
 }
+
+CreateCvFirst.propTypes = {
+  onData: PropTypes.func.isRequired,
+};
 
 export default CreateCvFirst;
