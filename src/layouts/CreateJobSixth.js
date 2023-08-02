@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
@@ -8,6 +9,7 @@ import IndicatorsArrows from '../components/IndicatorsArrows';
 import countyList from '../utils/countyList';
 
 function CreateJobSixth(props) {
+  const sixtyFormObj = useSelector((state) => state.createJobForm.dataFromChild6) ?? {};
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -43,35 +45,39 @@ function CreateJobSixth(props) {
     }),
     placeholder: (defaultStyles) => ({
       ...defaultStyles,
-      color: 'rgba(3, 16, 84, 0.50)',
+      color: 'rgba(3 16, 84, 0.50)',
       fontSize: 14,
     }),
+    menu: (provided) => ({
+      ...provided,
+      color: 'red',
+      zIndex: 999999999999999,
+    }),
   };
-
   const { onData } = props;
   // fileSrc for render file for request
   const [selectedPhoto, setSelectedPhoto] = useState({
-    fileSrc: '',
-    file: {},
+    fileSrc: sixtyFormObj.selectedPhoto || '',
+    file: null,
   });
   const [countries, setCountries] = useState([]);
-  const [selectCountry, setSelectCountry] = useState('');
+  const [selectCountry, setSelectCountry] = useState(sixtyFormObj.selectCountry || '');
   const [address, setAddress] = useState({
     latitude: '',
     longitude: '',
     fullAddress: '',
     location: '',
   });
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(sixtyFormObj.phoneNumber ?? '');
   useEffect(() => {
     onData({
       dataFromChild6: {
         selectCountry,
         address,
-        selectedPhoto,
+        selectedPhoto: selectedPhoto.fileSrc,
         phoneNumber,
       },
-    });
+    }, selectedPhoto.file);
   }, [selectCountry, address, selectedPhoto, phoneNumber]);
   useEffect(() => {
     const getCountries = async () => {
@@ -107,13 +113,11 @@ function CreateJobSixth(props) {
     }
   };
   const handleFileSelect = useCallback(async (ev) => {
-    console.log(ev.target.files);
     const newFile = URL.createObjectURL(ev.target.files[0]);
     setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
   }, [selectedPhoto]);
-  console.log(selectedPhoto);
   return (
-    <div className="job__form__container__sixth">
+    <div className="job__form__container__sixth" style={{ zIndex: 777777 }}>
       <div>
         <h4 className="create__job__title sixth-title">Describe Your Job</h4>
         {selectedPhoto.fileSrc ? <img src={selectedPhoto.fileSrc} alt="job desc" className="job-image" /> : (
@@ -139,6 +143,7 @@ function CreateJobSixth(props) {
           <Select
             placeholder="Select County"
             options={countries}
+            value={countries.find((country) => country.value === selectCountry)}
             onChange={(e) => setSelectCountry(e.value)}
             styles={customStyles}
             className="signup__start__form__select"
@@ -156,10 +161,10 @@ function CreateJobSixth(props) {
             placeholder="Write your address"
             className="signup__start__form__input"
             apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
-            componentrestrictions={{ country: 'am' }}
             onPlaceSelected={handlePlaceSelect}
             options={{
               language: 'en',
+              componentRestrictions: { country: 'am' },
               types: ['geocode', 'establishment'],
             }}
           />
@@ -171,9 +176,11 @@ function CreateJobSixth(props) {
             onChange={(value) => {
               setPhoneNumber(`+${value}`);
             }}
-            country="am"
+            buttonClass="dropdown-flag-item"
+            inputClass="signup__start__form__select__phone"
+            country={selectCountry || 'am'}
             value={phoneNumber}
-            placeholder="+(374)-00-00-00"
+            dropdownClass="custom-phone-dropdown"
             inputProps={{
               // dropdownClass: 'custom-phone-dropdown',
               className: 'signup__start__form__select__phone',

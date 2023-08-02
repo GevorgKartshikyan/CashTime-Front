@@ -1,14 +1,16 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as ProPlanIcon } from '../assets/images/home_pro_plan.svg';
 import Button from './Button';
 
 function HomeProPage() {
+  const { t } = useTranslation();
   return (
 
     <section className="pro">
       {/* 1paddingneri pahy 2svgi dirky 3bagraundy */}
       <h1 className="pro__title">
-        Upgrade Your Plan For a Better
+        {t('pro_title')}
         <br />
         Experience
       </h1>
