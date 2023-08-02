@@ -46,6 +46,17 @@
     display: flex;
     flex-direction: row;
 
+    &__label.new-label{
+      background-color: white;
+      cursor: pointer;
+      height: 57px;
+      padding-left: 30px;
+      justify-content: flex-start;
+      margin-bottom: 15px;
+    }
+    &__label.new-upload{
+      justify-content: flex-start;
+    }
     &__label{
       display: flex;
       flex-direction: row;
@@ -61,6 +72,14 @@
 
       &__image{
         width: 19px;
+      }
+      &__text.new-text{
+        color: #031054;
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
       }
       &__text{
         color: white;

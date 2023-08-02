@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Wrapper from '../layouts/Wrapper';
 import HomeJob from '../components/Home-job';
 import JoinImg from '../assets/images/homejoin.svg';
@@ -12,6 +13,7 @@ import JobHiring from '../layouts/Job_hiring';
 import HomeProPage from '../components/HomeProPage';
 
 function Home() {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <section className="join">
@@ -20,16 +22,18 @@ function Home() {
             <div className="join__content">
               <div className="join__left">
                 <h1 className="join__left__title">
-                  Join CashTime as a Client or a Freelancer And Start Making Money Easily
+                  {t('join_left_title')}
                 </h1>
                 <p className="join__left__text">
-                  CashApp is The only Armenian Freelance
-                  App That Will Allow You To find a Specialist Of
-                  any Kind Within Seconds, and Freelancers to Find a Job
+                  {t('join_left_text')}
                 </p>
                 <div className="join__left__block join-block">
-                  <Button className="join-block__btn1" title="Sign Up as a Freelancer" />
-                  <Button className="join-block__btn2" title="Sign Up as a Client" />
+                  <Button className="join-block__btn1" title={t('join_block_btn1')} />
+                  <Button
+                    className="join-block__btn2"
+                    title={t('join_block_btn2'
+                    + '')}
+                  />
                 </div>
               </div>
               <div className="join__right">
@@ -37,15 +41,15 @@ function Home() {
               </div>
             </div>
             <div className="join__bottom">
-              <h3 className="join__bottom__title">Find a Part Time Job Of Your Choice , Easy and Quick</h3>
+              <h3 className="join__bottom__title">{t('join_bottom_title')}</h3>
               <form className="join__bottom__form">
                 <label htmlFor="input-job" className="join__bottom__form__label">
-                  <input type="text" maxLength="15" className="join__bottom__form__job" id="input-job" placeholder="Job Titile" />
+                  <input type="text" maxLength="15" className="join__bottom__form__job" id="input-job" placeholder={t('job_title_text')} />
                 </label>
                 <span className="join__bottom__form__line" />
                 <label htmlFor="input-city" className="join__bottom__form__label">
                   <img className="join__bottom__form__icon" src={JobLocationIcon} alt="" />
-                  <input type="text" maxLength="15" className="join__bottom__form__city" id="input-city" placeholder="City Name" />
+                  <input type="text" maxLength="15" className="join__bottom__form__city" id="input-city" placeholder={t('city_name_text')} />
                 </label>
                 <button type="submit" className="join__bottom__form__button">
                   <img className="join__bottom__form__button__icon" src={SearchIcon} alt="" />
@@ -57,9 +61,9 @@ function Home() {
       </section>
       <JobHiring />
       <section className="information">
-        <HomeJob rowReverse="" firstText="Let The Job Find You" secondText="Create A free Profile To Get Hired Easily" buttonTxt="Get Hired" img={jobFind} />
-        <HomeJob rowReverse="row" firstText="Start Looking For a Job Perfect" secondText="Tell us more about yourself and we'll match you with the right jobs to help you reach them." buttonTxt="See Jobs" img={seeJobs} />
-        <HomeJob rowReverse="" firstText="Create a Profile For a Better Experience" secondText="Your profile is your application. Apply to jobs instantly." buttonTxt="See Jobs" img={createProfile} />
+        <HomeJob rowReverse="" firstText={t('home_job_first_text_first')} secondText={t('home_job_first_text_second')} buttonTxt={t('home_job_first_text_button')} img={jobFind} />
+        <HomeJob rowReverse="row" firstText={t('home_job_second_text_first')} secondText={t('home_job_second_text_second')} buttonTxt={t('home_job_second_text_button')} img={seeJobs} />
+        <HomeJob rowReverse="" firstText={t('home_job_third_text_first')} secondText={t('home_job_third_text_second')} buttonTxt={t('home_job_second_text_button')} img={createProfile} />
       </section>
       <HomeProPage />
     </Wrapper>
