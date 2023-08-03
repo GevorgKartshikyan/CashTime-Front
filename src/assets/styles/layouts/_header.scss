@@ -53,7 +53,10 @@
         height: 37px;
       }
       &-login, &-register {
-        width: 62px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 27px;
         border: 1px solid #E17A01;
         border-radius: 25px;

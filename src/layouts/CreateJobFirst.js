@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function CreateJobFirst(props) {
+  const firstFormTitle = useSelector((state) => state.createJobForm.dataFromChild1) ?? '';
   const { onData } = props;
   const exampleTitles = ['Build responsive WordPress site with booking/payment functionality', 'Graphic designer needed to design ad creative for multiple campaigns', 'Facebook ad specialist needed for product launch'];
-  const [jobTitle, setJobTitle] = useState('');
+  const [jobTitle, setJobTitle] = useState(firstFormTitle ?? '');
   useEffect(() => {
     onData({ dataFromChild1: jobTitle || null });
   }, [jobTitle]);

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
-function CreateCvSecond() {
+function CreateCvSecond(props) {
+  const { onData } = props;
+
+  const [educationHistory, setEducationHistory] = useState({
+    school: '', degree: '', dateAttended: '', dataExpected: '',
+  });
+
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -48,6 +55,14 @@ function CreateCvSecond() {
     { value: 'vanilla', label: 'Vanilla' },
   ];
 
+  useEffect(() => {
+    onData({
+      dataFromChild2: {
+        educationHistory,
+      },
+    });
+  }, [educationHistory]);
+
   return (
     <div className="create__second">
       <div className="create__second__title">
@@ -59,17 +74,19 @@ function CreateCvSecond() {
         <form action="">
           <label htmlFor="school" className="create__second__form__school">
             <p>School*</p>
-            <input type="text" id="school" />
+            <input type="text" id="school" value={educationHistory.school} onChange={(e) => setEducationHistory({ ...educationHistory, school: e.target.value })} />
           </label>
           <label htmlFor="degree" className="create__second__form__degree">
             <p>Degree*</p>
-            <input type="text" id="degree" />
+            <input type="text" id="degree" value={educationHistory.degree} onChange={(e) => setEducationHistory({ ...educationHistory, degree: e.target.value })} />
           </label>
           <div className="create__second__form__dates">
             <p>Dates Attended*</p>
             <Select
               options={options}
               styles={customStyles}
+              value={options.dateAttended}
+              onChange={(e) => setEducationHistory({ ...educationHistory, dateAttended: e.value })}
               components={{
                 IndicatorSeparator: () => null,
               }}
@@ -78,6 +95,8 @@ function CreateCvSecond() {
             <Select
               options={options}
               styles={customStyles}
+              value={options.dataExpected}
+              onChange={(e) => setEducationHistory({ ...educationHistory, dataExpected: e.value })}
               components={{
                 IndicatorSeparator: () => null,
               }}
@@ -89,5 +108,9 @@ function CreateCvSecond() {
     </div>
   );
 }
+
+CreateCvSecond.propTypes = {
+  onData: PropTypes.func.isRequired,
+};
 
 export default CreateCvSecond;

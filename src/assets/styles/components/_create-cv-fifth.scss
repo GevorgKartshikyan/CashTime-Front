@@ -23,20 +23,35 @@
         margin-bottom: 34px;
         & > textarea {
           width: 560px;
-          height: 492px;
+          height: 300px;
           resize: none;
           border: none;
           border-radius: 22px;
           background: #FFF;
+          padding: 20px;
+          color: rgba(0, 0, 0, 0.50);
+          font-family: 'Lato', sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          &:focus {
+            outline: none;
+          }
         }
       }
-    }
-    & > button{
-      width: 415px;
-      height: 57px;
-      border-radius: 47px;
-      background-color: #031054;
-      color: #ffffff;
+      & > button{
+        width: 415px;
+        height: 57px;
+        border-radius: 47px;
+        background-color: #031054;
+        border: 1px solid #031054;
+        color: #ffffff;
+        &:hover {
+          background-color: transparent;
+          color: #031054;
+        }
+      }
     }
   }
 }

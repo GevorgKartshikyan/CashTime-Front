@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-function CreateCvFifth() {
+function CreateCvFifth(props) {
+  const { onData } = props;
+  const [cvBio, setCvBio] = useState('');
+
+  useEffect(() => {
+    onData({
+      dataFromChild4: {
+        cvBio,
+      },
+    });
+  }, [cvBio]);
+
   return (
     <div className="CreateCvFifth">
       <div className="CreateCvFifth__text">
@@ -9,13 +21,17 @@ function CreateCvFifth() {
       <div className="CreateCvFifth__bio">
         <form action="">
           <label htmlFor="bio">
-            <textarea id="bio" cols="30" rows="10" />
+            <textarea id="bio" cols="30" rows="10" value={cvBio} onChange={(e) => setCvBio(e.target.value)} />
           </label>
-          <button type="submit">Save</button>
+          {/* <button type="submit">Save</button> */}
         </form>
       </div>
     </div>
   );
 }
+
+CreateCvFifth.propTypes = {
+  onData: PropTypes.func.isRequired,
+};
 
 export default CreateCvFifth;
