@@ -11,7 +11,6 @@ import Globe from '../assets/images/globe.svg';
 import Avatar from '../assets/images/avatar.svg';
 import ChatBox from '../components/ChatBox';
 import Languages from '../components/Languages';
-import Notification from '../components/Notification';
 
 function Header() {
   const [isActiveModal, setIsActiveModal] = useState(false);
@@ -28,7 +27,7 @@ function Header() {
     return () => {
       document.removeEventListener('click', handleOut);
     };
-  }, [isActiveLanguage]);
+  }, []);
   useEffect(() => {
     const handleOut = (event) => {
       if (ref.current && !ref.current.contains(event.target) && event.target.id !== 'dropdown-button') {
@@ -52,6 +51,7 @@ function Header() {
       return newFlag;
     });
   }, [isActiveLanguage]);
+
   const handleModal = useCallback(() => {
     setIsActiveModal((prevState) => {
       let newFlag = false;
@@ -99,9 +99,6 @@ function Header() {
         </div>
         <div ref={languages} className="languages__menu__list__bg">
           {isActiveLanguage ? <Languages /> : null}
-        </div>
-        <div className="notification__menu__list__bg">
-          <Notification />
         </div>
       </div>
     </header>

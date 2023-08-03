@@ -1,17 +1,38 @@
 .notification__menu__list__bg{
   width: 375px;
-  position: relative;
+  position: absolute;
   margin-left: auto;
   margin-right: -15px;
 }
 .notification{
   width: 169px;
-  max-height: 101px;
-  border-radius: 0 0 22px 22px;
-  background: #FFF;
+  height: 101px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -29px;
+  right: 50px;
   padding: 15px;
   z-index: 7;
+  border-radius: 22px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px 0 rgba(3, 16, 84, 0.25);
+  & > p{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 15px;
+    color: #031054;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0 10px;
+    &:hover{
+      background: #f8f1f1;
+      transition: 0.5s all;
+    }
+  }
 }
