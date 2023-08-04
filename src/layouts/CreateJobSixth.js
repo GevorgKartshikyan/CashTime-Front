@@ -86,6 +86,9 @@ function CreateJobSixth(props) {
     };
     getCountries();
   }, []);
+  const handleChangePhone = (value) => {
+    setPhoneNumber(value);
+  };
   const handlePlaceSelect = (place) => {
     try {
       const { lat, lng } = place.geometry.location;
@@ -173,16 +176,11 @@ function CreateJobSixth(props) {
         <div>
           <p className="sixth-labels-desc">Phone</p>
           <PhoneInput
-            onChange={(value) => {
-              setPhoneNumber(`+${value}`);
-            }}
-            buttonClass="dropdown-flag-item"
-            inputClass="signup__start__form__select__phone"
+            onChange={handleChangePhone}
             country={selectCountry || 'am'}
             value={phoneNumber}
             dropdownClass="custom-phone-dropdown"
             inputProps={{
-              // dropdownClass: 'custom-phone-dropdown',
               className: 'signup__start__form__select__phone',
             }}
           />

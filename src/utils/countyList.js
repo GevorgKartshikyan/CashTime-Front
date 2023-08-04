@@ -6,7 +6,7 @@ const fetchCountries = async () => {
     const { data } = response;
     // console.log(data);
     return data.map((country) => ({
-      value: country.cca2.toLowerCase(),
+      value: country.cca2,
       label: country.name.common,
     }));
   } catch (error) {
