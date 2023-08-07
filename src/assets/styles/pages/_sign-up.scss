@@ -2,6 +2,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__rol{
+    display: flex;
+    &__btn{
+      padding: 10px 50px;
+
+    }
+  }
+
+  &__top__block {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    height: 28px;
+    border-radius: 22px;
+    background: #D9D9D9;
+    transition: all 0.5s;
+
+    &__list, &__map {
+      padding: 0 40px;
+      height: 28px;
+      border-radius: 22px;
+      background: transparent;
+      z-index: 2;
+      transition: all 0.5s;
+    }
+
+    &__map {
+      margin-right: -30px;
+    }
+  }
+
+  .rol__active__btn {
+    background: #031054;
+    transition: all 0.5s;
+    color: white;
+  }
+
   &__title{
     color:  #031054;
     font-family: "Lato",sans-serif;
@@ -169,45 +208,44 @@
   }
 }
 
-//   // Phone number(modul) custom styles
-//
-//.custom-phone-dropdown {
-//  background-color: #f1f1f1;
-//  border: 0;
-//  border-radius: 5px;
-//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//  width: 200px;
-//  max-height: 200px;
-//  overflow-y: auto;
-//}
-//.custom-phone-dropdown .dropdown-flag-item {
-//  // Styles for an individual item in a dropdown list
-//  padding: 10px;
-//  color: #333;
-//}
-//.custom-phone-dropdown .dropdown-flag-item:hover {
-//  // Styling when stepping on an element in a combobox
-//  background-color: #ccc;
-//}
+// Phone number( module react-phone-input-2) custom styles
+
+.custom-phone-dropdown {
+  background-color: #f1f1f1 !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  width: 200px !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+.custom-phone-dropdown .dropdown-flag-item {
+   padding: 10px !important;
+  color: #333 !important;
+}
+.custom-phone-dropdown .dropdown-flag-item:hover {
+  background-color: #ccc !important;
+}
 .react-tel-input .flag-dropdown{
-  // Styling dropdown div
-  padding: 0 34px 0 10px;
-  border-top: 0;
-  border-right: 1px solid rgba(3, 16, 84, 0.50);
-  border-left: 0;
-  border-bottom: 0;
-  background-color: transparent;
+  padding: 0 34px 0 10px !important;
+  border-top: 0 !important;
+  border-right: 1px solid rgba(3, 16, 84, 0.50) !important;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
+  background-color: transparent !important;
 }
 .react-tel-input .selected-flag .arrow {
-  // Styling dropdown vector
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 8px solid rgba(3, 16, 84, 0.50);
-  margin-left: 15px;
+  border-left: 7px solid transparent !important;
+  border-right: 7px solid transparent !important;
+  border-top: 7px solid rgba(3, 16, 84, 0.50) !important;
+  margin-left: 15px !important;
 }
-.react-tel-input .selected-flag .arrow.up{
-  // Styling dropdown vector up
-  border-bottom: 8px solid rgba(3, 16, 84, 0.50);
+.react-tel-input .selected-flag .up{
+  border-top:0 !important;
+  border-right: 7px solid transparent !important;
+  border-bottom: 7px solid rgba(3, 16, 84, 0.50) !important;
+  border-left: 7px solid transparent !important;
 }
 .react-tel-input .flag-dropdown.open {
-    border-radius: 30px 0 0 30px;}
+    border-radius: 30px 0 0 30px !important;}
+
