@@ -97,3 +97,14 @@
     }
   }
 }
+.adminPaginate{
+  width: 100% !important;
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  list-style-type: none;
+  position: relative;
+  justify-content: center;
+}
