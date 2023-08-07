@@ -8,9 +8,10 @@ import UserDashboard from '../components/User-dashboard';
 import AdminEmployees from '../components/AdminEmployees';
 
 function Admin() {
-  const { page } = useParams();
-
   const elements = ['Dashboard', 'Employees', 'Employers', 'Report', 'User'];
+
+  const { page = elements[0].toLowerCase() } = useParams();
+
   return (
     <div className="admin">
       <div className="admin__row">
