@@ -4,6 +4,7 @@ import notifications from '../assets/images/notifications.svg';
 import settings from '../assets/images/settings.svg';
 import adminImg from '../assets/images/adminImg.svg';
 import Dashboard from '../components/Dashboard';
+import UserDashboard from '../components/User-dashboard';
 
 function Admin() {
   const [activePage, setActivePage] = useState(1);
@@ -14,7 +15,7 @@ function Admin() {
     setActivePage(index + 1);
   };
 
-  const elements = ['Dashboard', 'Report', 'User'];
+  const elements = ['Dashboard', 'Employees', 'Employers', 'Report', 'User'];
   return (
     <div className="admin">
       <div className="admin__row">
@@ -30,13 +31,14 @@ function Admin() {
                   onClick={() => handleItemClick(index)}
                   role="presentation"
                 >
-                  <NavLink to="/admin">{element}</NavLink>
+                  <NavLink to={`/admin/${element.toLowerCase()}`}>{element}</NavLink>
                 </li>
               ))}
             </ul>
           </div>
         </div>
         {activePage === 1 && <Dashboard /> }
+        {activePage === 3 && <UserDashboard /> }
         <div className="admin__row__user">
           <div className="admin__row__user__w">
             <div className="admin__row__user__w-notification">

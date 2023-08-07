@@ -42,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<CreateCvSixth />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<TestMap />} />
       </Routes>
     </BrowserRouter>

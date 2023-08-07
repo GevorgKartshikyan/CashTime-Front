@@ -1,9 +1,7 @@
 .admin{
   width: 100%;
-  height: 200vh;
   &__row{
     display: flex;
-    height: 200vh;
     &__menu{
       width: 20%;
       background: #4A62B6;
@@ -232,7 +230,7 @@
 }
 
 .announcements{
-  margin-top: 100px;
+  margin-top: 50px;
   &__title{
     & > h3{
       color: var(--blue, #4A62B6);
@@ -241,6 +239,7 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+      margin-bottom: 50px;
     }
   }
 }
