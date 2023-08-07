@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useParams } from 'react-router-dom';
 import notifications from '../assets/images/notifications.svg';
 import settings from '../assets/images/settings.svg';
 import adminImg from '../assets/images/adminImg.svg';
 import Dashboard from '../components/Dashboard';
 import UserDashboard from '../components/User-dashboard';
+import AdminEmployees from '../components/AdminEmployees';
 
 function Admin() {
-  const [activePage, setActivePage] = useState(1);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleItemClick = (index) => {
-    setActiveIndex(index);
-    setActivePage(index + 1);
-  };
+  const { page } = useParams();
 
   const elements = ['Dashboard', 'Employees', 'Employers', 'Report', 'User'];
   return (
@@ -25,10 +20,10 @@ function Admin() {
           </div>
           <div className="admin__row__menu-list">
             <ul>
-              {elements.map((element, index) => (
+              {elements.map((element) => (
                 <li
-                  className={`admin__row__menu-list-item ${index === activeIndex ? 'active' : ''}`}
-                  onClick={() => handleItemClick(index)}
+                  key={element}
+                  className={`admin__row__menu-list-item ${page === element.toLowerCase() ? 'active' : ''}`}
                   role="presentation"
                 >
                   <NavLink to={`/admin/${element.toLowerCase()}`}>{element}</NavLink>
@@ -37,8 +32,10 @@ function Admin() {
             </ul>
           </div>
         </div>
-        {activePage === 1 && <Dashboard /> }
-        {activePage === 3 && <UserDashboard /> }
+        {page === 'dashboard' || !page ? <Dashboard /> : null}
+        {page === 'employees' && <AdminEmployees /> }
+        {page === 'employers' && <AdminEmployees /> }
+        {page === 'user' && <UserDashboard /> }
         <div className="admin__row__user">
           <div className="admin__row__user__w">
             <div className="admin__row__user__w-notification">
