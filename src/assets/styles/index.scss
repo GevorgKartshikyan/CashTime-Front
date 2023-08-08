@@ -24,6 +24,8 @@
 @import "components/create-cv-third";
 @import "components/create-cv-fifth";
 @import "components/create-cv-sixth";
+@import "components/notification";
+@import "components/announcement";
 
 @import "layouts/header";
 @import "layouts/footer";
@@ -36,6 +38,8 @@
 @import "pages/verified";
 @import "pages/sign-up";
 @import "pages/write_review";
+@import "pages/sign-up-steps-first";
+
 @import "pages/user_rating";
 @import "pages/connect-card";
 @import "pages/create-cv";
@@ -45,6 +49,7 @@
 @import "pages/sign-up";
 @import "pages/write_review";
 @import "pages/login";
+@import "pages/admin";
 
 @import "media/media";
 

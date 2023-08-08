@@ -1,0 +1,99 @@
+.announcements{
+  &__list{
+    & > .announcement {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background-color: #0000ff1a;
+      padding: 10px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      & > .announcement__logo{
+        width: 25px;
+        margin-right: 20px;
+      }
+      & > .announcement__info{
+        & > .announcement__info__title{
+          & > p{
+            color: #000;
+            font-family: "lato", sans-serif;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 25px;
+          }
+        }
+        &> .announcement__info__text{
+          display: flex;
+          & > p{
+            color: #000;
+            font-feature-settings: 'clig' off, 'liga' off;
+            font-family: "lato", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            margin-right: 40px;
+          }
+          & > button{
+            border-radius: 22px;
+            background: #EBF9F1;
+            margin-right: 6px;
+            display: flex;
+            width: 81px;
+            height: 24px;
+            padding: 8px 12px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+          }
+          & > .announcement_accept{
+            color: #1BB618;
+            font-family: "lato", sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+          }
+          & > .announcement_delete{
+            color: #EF0000;
+            font-family: "lato", sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+          }
+        }
+      }
+      & > .announcement__user{
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        cursor: pointer;
+        & > .announcement__user__img{
+          width: 48px;
+          height: 48px;
+          & > img{
+            width: 100%;
+            border-radius: 50%;
+          }
+        }
+        & > .announcement__user__name{
+          width: 150px;
+          display: flex;
+          justify-content: end;
+          & > p{
+            text-align: end;
+            color: #303972;
+            font-family: "lato", sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
+        }
+      }
+    }
+  }
+}
