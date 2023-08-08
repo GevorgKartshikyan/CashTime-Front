@@ -27,7 +27,7 @@ function Header() {
     return () => {
       document.removeEventListener('click', handleOut);
     };
-  }, [isActiveLanguage]);
+  }, []);
   useEffect(() => {
     const handleOut = (event) => {
       if (ref.current && !ref.current.contains(event.target) && event.target.id !== 'dropdown-button') {
@@ -51,6 +51,7 @@ function Header() {
       return newFlag;
     });
   }, [isActiveLanguage]);
+
   const handleModal = useCallback(() => {
     setIsActiveModal((prevState) => {
       let newFlag = false;
