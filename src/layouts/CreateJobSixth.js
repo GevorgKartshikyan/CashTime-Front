@@ -166,7 +166,6 @@ function CreateJobSixth(props) {
             Country*
           </p>
           <Select
-            // menuIsOpen 
             placeholder="Select County"
             options={countries}
             value={countries.find((country) => country.value === selectCountry)}
