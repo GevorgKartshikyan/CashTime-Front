@@ -47,7 +47,14 @@
     font-weight: 400;
     line-height: normal;
     margin-right: 50px;
-  }
+  }::placeholder{
+       color: #FFF;
+       font-family: "Lato", sans-serif;
+       font-size: 18px;
+       font-style: normal;
+       font-weight: 400;
+       line-height: normal;
+     }
 }
 
 .offer__top__block {
@@ -604,9 +611,26 @@
 
       &__left {
         &__opinions {
-          width: 55px;
-          display: flex;
-          justify-content: space-between;
+          &__btn{
+            display: flex;
+            justify-content: center;
+            padding: 8px 20px;
+            align-items: center;
+            background: #E17A01;
+            font-family: "Lato",sans-serif;
+            font-size: 14px;
+            //font-style: normal;
+            //font-weight: 500;
+            line-height: 20px; /* 142.857% */
+            border-radius: 100px;
+            transition: all 0.5s;
+            border: 1px solid transparent;
+            &:hover{
+              background: transparent;
+              color: #E17A01;
+              border: 1px solid #E17A01;
+            }
+          }
         }
 
         &__post-time {

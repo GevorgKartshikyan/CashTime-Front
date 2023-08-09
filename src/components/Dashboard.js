@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import ReactApexChart from 'react-apexcharts';
 import employers from '../assets/images/employers.svg';
 import employees from '../assets/images/employees.svg';
@@ -6,6 +7,7 @@ import services from '../assets/images/services.svg';
 import Announcement from './Announcement';
 
 function Dashboard() {
+  const items = 905;
   const [chartData] = useState({
     series: [
       {
@@ -139,6 +141,22 @@ function Dashboard() {
               title={e.title}
             />
           )))}
+          <ReactPaginate
+            activeClassName="item active-page"
+            breakClassName="item break-me"
+            breakLabel=""
+              // maxPageCount={5}
+            containerClassName="pagination adminPaginate"
+            disabledClassName="disabled-page"
+            marginPagesDisplayed={0}
+            nextClassName="item next"
+              // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
+            onPageChange={() => null}
+            pageCount={items}
+            pageClassName="item pagination-page "
+            pageRangeDisplayed={5}
+            previousClassName="item previous"
+          />
         </div>
       </div>
     </div>

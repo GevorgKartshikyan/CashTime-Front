@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CreateJobFirst from '../layouts/CreateJobFirst';
 import CreateJobSecond from '../layouts/CreateJobSecond';
 import StepIndicator from '../layouts/StepIndicator';
@@ -13,12 +13,12 @@ import Header from '../layouts/Header';
 import setJobFormData from '../store/actions/createJobForm';
 
 function CreateJob() {
+  const phoneError = useSelector((state) => state.phoneErrorHandler);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [localData, setLocalData] = useState({});
   const [isRight, setIsRight] = useState(false);
   const [file, setFile] = useState({});
-  // console.log(localData);
   const handleDataFromChild = (childData, x) => {
     setLocalData((prevData) => ({
       ...prevData,
@@ -26,10 +26,14 @@ function CreateJob() {
     }));
     setFile(x);
   };
+  // console.log(phoneError);
   const handleNext = (operator, editCount) => {
     if (operator === '+') {
       setCount((prevState) => {
-        const newCount = prevState + 1;
+        let newCount = prevState + 1;
+        if (phoneError === 'Wrong phone number format') {
+          newCount = prevState;
+        }
         if (prevState < newCount) {
           setIsRight(true);
         }

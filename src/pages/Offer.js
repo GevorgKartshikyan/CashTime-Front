@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
+// import { defaultStyles } from 'react-select/dist/declarations/src/styles';
 import { ReactComponent as SearchIcon } from '../assets/images/offer_filter_search.svg';
 import DownIcon from '../assets/images/offer_select_down_arrow_icon 2.svg';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
@@ -15,7 +16,7 @@ function Offer() {
   const [experienceShow, setExperienceShow] = useState(false);
   const [dateShow, setDateShow] = useState(false);
   const [selectedDates, setSelectedDates] = useState([]);
-  const [selectedExperience, setSelectedExperience] = useState([]);
+  // const [selectedExperience, setSelectedExperience] = useState([]);
   const [toggleBtn, setToggleBtn] = useState(true);
   const items = 905;
   const [filter, setFilter] = useState({
@@ -31,7 +32,6 @@ function Offer() {
       hour_max: '',
       monthly: '',
       fixed: '',
-      salary: '',
       salary_min: '',
       salary_max: '',
     },
@@ -84,15 +84,15 @@ function Offer() {
     setSelectedDates(date);
   };
 
-  const handleCheckboxChange = useCallback((e) => {
-    setSelectedExperience((prevState) => {
-      const { value } = e.target;
-      if (prevState.includes(value)) {
-        return prevState.filter((item) => item !== value);
-      }
-      return [...prevState, value];
-    });
-  }, [setSelectedExperience]);
+  // const handleCheckboxChange = useCallback((e) => {
+  //   setSelectedExperience((prevState) => {
+  //     const { value } = e.target;
+  //     if (prevState.includes(value)) {
+  //       return prevState.filter((item) => item !== value);
+  //     }
+  //     return [...prevState, value];
+  //   });
+  // }, [setSelectedExperience]);
   const options = [
     {
       value: 'test1',
@@ -329,10 +329,10 @@ function Offer() {
                     <div className="offer__container__left__experience__job__options">
                       <label htmlFor="job-checkbox1" className="label">
                         <input
-                          checked={selectedExperience === 'Hourly'}
+                          checked={filter.job_type.hourly === 'hourly'}
                           style={{ display: 'none' }}
-                          value="Hourly"
-                          onChange={handleCheckboxChange}
+                          value="hourly"
+                          onChange={handeFilterSelects('job_type.hourly')}
                           name="job-checkbox"
                           type="checkbox"
                           id="job-checkbox1"
@@ -340,7 +340,7 @@ function Offer() {
                         />
                         <div className="check-container small-check">
                           <span className="check-squad small-check__squad">
-                            {selectedExperience.includes('Hourly') && (
+                            {filter.job_type.hourly === 'hourly' && (
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
                               <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                             </svg>
@@ -355,10 +355,10 @@ function Offer() {
                       </label>
                       <label htmlFor="job-checkbox2" className="label">
                         <input
-                          checked={selectedExperience === 'Monthly'}
+                          checked={filter.job_type.monthly === 'monthly'}
                           style={{ display: 'none' }}
-                          value="Monthly"
-                          onChange={handleCheckboxChange}
+                          value="monthly"
+                          onChange={handeFilterSelects('job_type.monthly')}
                           name="job-checkbox"
                           type="checkbox"
                           id="job-checkbox2"
@@ -366,7 +366,7 @@ function Offer() {
                         />
                         <div className="check-container small-check">
                           <span className="check-squad small-check__squad">
-                            {selectedExperience.includes('Monthly') && (
+                            {filter.job_type.monthly === 'monthly' && (
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
                               <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                             </svg>
@@ -385,6 +385,7 @@ function Offer() {
                       {/* chekboxy haninq */}
                       <label htmlFor="job-checkbox4">
                         <input
+                          onChange={handeFilterSelects('job_type.hour_min')}
                           type="number"
                           id="job-checkbox4"
                           placeholder="min"
@@ -398,6 +399,7 @@ function Offer() {
                       </span>
                       <label htmlFor="job-checkbox5">
                         <input
+                          onChange={handeFilterSelects('job_type.hour_max')}
                           type="number"
                           id="job-checkbox4"
                           placeholder="max"
@@ -414,10 +416,10 @@ function Offer() {
                     <div className="offer__container__left__experience__job__options">
                       <label htmlFor="job-checkbox7" className="label">
                         <input
-                          checked={selectedExperience === 'Fixed'}
+                          checked={filter.job_type.fixed === 'fixed'}
                           style={{ display: 'none' }}
-                          value="Fixed"
-                          onChange={handleCheckboxChange}
+                          value="fixed"
+                          onChange={handeFilterSelects('job_type.fixed')}
                           name="job-checkbox-salary"
                           type="checkbox"
                           id="job-checkbox7"
@@ -425,7 +427,7 @@ function Offer() {
                         />
                         <div className="check-container small-check">
                           <span className="check-squad small-check__squad">
-                            {selectedExperience.includes('Fixed') && (
+                            {filter.job_type.fixed === 'fixed' && (
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
                               <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                             </svg>
@@ -441,137 +443,6 @@ function Offer() {
 
                     </div>
                     <div className="offer__container__left__experience__job__options__salary">
-                      <label htmlFor="job-checkbox8" className="label">
-                        <input
-                          checked={selectedExperience === '50USD'}
-                          style={{ display: 'none' }}
-                          value="50USD"
-                          onChange={handleCheckboxChange}
-                          name="job-checkbox-salary"
-                          type="checkbox"
-                          id="job-checkbox8"
-                          className="offer__container__left__experience__options__checkbox"
-                        />
-                        <div className="check-container small-check">
-                          <span className="check-squad small-check__squad">
-                            {selectedExperience.includes('50USD') && (
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
-                              <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
-                            </svg>
-                            )}
-                          </span>
-                        </div>
-                        <span
-                          className="offer__container__left__experience__options__label"
-                        >
-                          Less than 50 USD
-                        </span>
-                      </label>
-                      <div
-                        className="offer__container__left__experience__job__options__salary__boxes"
-                      >
-                        <label htmlFor="job-checkbox9" className="label">
-                          <input
-                            checked={selectedExperience === '100-200USD'}
-                            style={{ display: 'none' }}
-                            value="100-200USD"
-                            onChange={handleCheckboxChange}
-                            name="job-checkbox-salary"
-                            type="checkbox"
-                            id="job-checkbox9"
-                            className="offer__container__left__experience__options__checkbox"
-                          />
-                          <div className="check-container small-check">
-                            <span className="check-squad small-check__squad">
-                              {selectedExperience.includes('100-200USD') && (
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
-                                <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
-                              </svg>
-                              )}
-                            </span>
-                          </div>
-                          <span
-                            className="offer__container__left__experience__options__label"
-                          >
-                            100-200
-                          </span>
-                        </label>
-                        <span
-                          className="offer__container__left__experience__job__options__salary__info"
-                        >
-                          $
-                        </span>
-                      </div>
-                      <div
-                        className="offer__container__left__experience__job__options__salary__boxes"
-                      >
-                        <label htmlFor="job-checkbox10" className="label">
-                          <input
-                            checked={selectedExperience === '200-500USD'}
-                            style={{ display: 'none' }}
-                            value="200-500USD"
-                            onChange={handleCheckboxChange}
-                            name="job-checkbox-salary"
-                            type="checkbox"
-                            id="job-checkbox10"
-                            className="offer__container__left__experience__options__checkbox"
-                          />
-                          <div className="check-container small-check">
-                            <span className="check-squad small-check__squad">
-                              {selectedExperience.includes('200-500USD') && (
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
-                                <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
-                              </svg>
-                              )}
-                            </span>
-                          </div>
-                          <span
-                            className="offer__container__left__experience__options__label"
-                          >
-                            200-200
-                          </span>
-                        </label>
-                        <span
-                          className="offer__container__left__experience__job__options__salary__info"
-                        >
-                          $
-                        </span>
-                      </div>
-                      <div
-                        className="offer__container__left__experience__job__options__salary__boxes"
-                      >
-                        <label htmlFor="job-checkbox11" className="label">
-                          <input
-                            checked={selectedExperience === '500-1K-USD'}
-                            style={{ display: 'none' }}
-                            value="500-1K-USD"
-                            onChange={handleCheckboxChange}
-                            name="job-checkbox-salary"
-                            type="checkbox"
-                            id="job-checkbox11"
-                            className="offer__container__left__experience__options__checkbox"
-                          />
-                          <div className="check-container small-check">
-                            <span className="check-squad small-check__squad">
-                              {selectedExperience.includes('500-1K-USD') && (
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
-                                <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
-                              </svg>
-                              )}
-                            </span>
-                          </div>
-                          <span
-                            className="offer__container__left__experience__options__label"
-                          >
-                            500-1K
-                          </span>
-                        </label>
-                        <span
-                          className="offer__container__left__experience__job__options__salary__info"
-                        >
-                          $
-                        </span>
-                      </div>
 
                       <div
                         className="offer__container__left__experience__job__options__salary__lastBox"
@@ -579,6 +450,7 @@ function Offer() {
 
                         <label htmlFor="job-checkbox4">
                           <input
+                            onChange={handeFilterSelects('job_type.salary_min')}
                             type="number"
                             id="job-checkbox4"
                             placeholder="min$"
@@ -588,6 +460,7 @@ function Offer() {
 
                         <label htmlFor="job-checkbox5">
                           <input
+                            onChange={handeFilterSelects('job_type.salary_max')}
                             type="number"
                             id="job-checkbox4"
                             placeholder="max$"
@@ -641,6 +514,7 @@ function Offer() {
                       alt="img"
                     />
                     <input
+                      onChange={handeFilterSelects('tags')}
                       type="text"
                       className="offer__container__left__category__select__options__tags__input"
                       placeholder="Search For Tags"
@@ -658,6 +532,7 @@ function Offer() {
                       alt="img"
                     />
                     <input
+                      onChange={handeFilterSelects('location')}
                       type="text"
                       className="offer__container__left__category__select__options__tags__input"
                       placeholder="Select Location"

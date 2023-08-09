@@ -23,6 +23,7 @@ function CreateJobFinally(props) {
   const dataFromChild5 = useSelector((state) => state.createJobForm.dataFromChild5);
   const fileSrc = useSelector((state) => state.createJobForm.dataFromChild6.selectedPhoto);
   const address = useSelector((state) => state.createJobForm.dataFromChild6.address);
+  const phoneNumber = useSelector((state) => state.createJobForm.dataFromChild6.phoneNumber);
 
   const getPriceRange = () => {
     if (priceFrom && priceTo) {
@@ -98,6 +99,12 @@ function CreateJobFinally(props) {
         <div>
           <span className="job-finally-skill-title">Bio</span>
           <p className="job-finally-skill-level">{dataFromChild5}</p>
+        </div>
+      </div>
+      <div className="job__display__row">
+        <div>
+          <span className="job-finally-skill-title">Phone Number</span>
+          <span className="job-finally-skill-level">{phoneNumber}</span>
         </div>
       </div>
       <div className="job-finally-buttons-box">
