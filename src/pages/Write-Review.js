@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Wrapper from '../layouts/Wrapper';
-import AddService from '../components/addService';
 
 function WriteReview() {
   // State to keep track of the selected star count
@@ -13,7 +12,6 @@ function WriteReview() {
 
   return (
     <Wrapper>
-      <AddService />
       <div className="write__review">
         <div className="container">
           <div className="write__review__row">
