@@ -18,6 +18,7 @@ import Login from './pages/Login';
 import CreateCvSixth from './components/CreateCVSixth';
 import Admin from './pages/Admin';
 import TestMap from './pages/TestMap';
+import MapProfile from './components/MapProfile';
 
 function App() {
   useEffect(() => {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<TestMap />} />
+        <Route path="/mprofile" element={<MapProfile />} />
       </Routes>
     </BrowserRouter>
   );
