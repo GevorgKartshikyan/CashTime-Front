@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import Autocomplete from 'react-google-autocomplete';
+import {
+  GoogleMap, useLoadScript, Marker,
+} from '@react-google-maps/api';
+import LoadingFile from '../layouts/LoadingFile';
+import mapDefaultThem from '../utils/mapDefaultThem';
+import markerSvg from '../assets/images/VectorMap.svg';
+import locationSvg from '../assets/images/locationMark.svg';
+import Header from '../layouts/Header';
 
-const key = 'AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM';
+const key = process.env.REACT_APP_MAP_SECRET;
 export default function TestMap() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: key,
     libraries: ['places'],
+    language: 'en',
   });
-
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <LoadingFile />;
 
   return <Map />;
 }
 
 function Map() {
-  // const [lat, setLat] = useState(40.791235);
-  // const [lng, setLng] = useState(43.848753);
   const [coordinates, setCoordinates] = useState({
     lat: 40.791235,
     lng: 43.848753,
   });
   const containerStyle = {
-    width: '1000px',
-    height: '600px',
+    width: '100vw',
+    height: '95vh',
     textAlign: 'center',
   };
 
@@ -43,31 +47,32 @@ function Map() {
     zoomControlOptions: {
       position: window.google.maps.ControlPosition.RIGHT_CENTER,
     },
+    styles: mapDefaultThem,
+    mapTypeControl: false,
+    fullscreenControl: false,
+    streetViewControl: false,
   };
-  const handlePlaceSelect = (place) => {
-    try {
-      const { lat: latitude, lng: longitude } = place.geometry.location;
-      setCoordinates({
-        lat: latitude(),
-        lng: longitude(),
-      });
-    } catch (e) {
-      console.error(e);
+  const trackUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCoordinates({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+        },
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
     }
   };
+
   return (
-    <>
-      <div>hello</div>
-      <Autocomplete
-        placeholder="Write your address"
-        className="signup__start__form__input"
-        onPlaceSelected={handlePlaceSelect}
-        options={{
-          language: 'en',
-          componentRestrictions: { country: 'am' },
-          types: ['cities'],
-        }}
-      />
+    <div style={{ maxHeight: '100vh', overflow: 'hidden' }}>
+      <Header />
       <GoogleMap
         zoom={15}
         center={coordinates}
@@ -78,13 +83,16 @@ function Map() {
           <Marker
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            onClick={(e) => {
-              console.log(e);
+            icon={{
+              url: markerSvg,
             }}
             position={{ lat: marker.lat, lng: marker.lng }}
           />
         ))}
       </GoogleMap>
-    </>
+      <button className="user__location__button" onClick={trackUserLocation} type="button">
+        <img src={locationSvg} alt="geolocation" />
+      </button>
+    </div>
   );
 }

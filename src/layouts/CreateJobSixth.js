@@ -9,6 +9,8 @@ import IndicatorsArrows from '../components/IndicatorsArrows';
 import countyList from '../utils/countyList';
 import phoneErrorHandler from '../store/actions/phoneErrorHandler';
 
+const key = process.env.REACT_APP_MAP_SECRET;
+
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -136,9 +138,11 @@ function CreateJobSixth(props) {
       console.error(e);
     }
   };
-  const handleFileSelect = useCallback(async (ev) => {
-    const newFile = URL.createObjectURL(ev.target.files[0]);
-    setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
+  const handleFileSelect = useCallback((ev) => {
+    if (ev.target.files[0]) {
+      const newFile = URL.createObjectURL(ev.target.files[0]);
+      setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
+    }
   }, [selectedPhoto]);
   // const onlyCountries = ['us', 'am', 'ru', 'ua'];
   return (
@@ -185,7 +189,7 @@ function CreateJobSixth(props) {
           <Autocomplete
             placeholder="Write your address"
             className="signup__start__form__input"
-            apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
+            apiKey={key}
             onPlaceSelected={handlePlaceSelect}
             options={{
               language: 'en',
