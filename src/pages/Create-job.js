@@ -27,11 +27,12 @@ function CreateJob() {
     setFile(x);
   };
   // console.log(phoneError);
+  // console.log(count);
   const handleNext = (operator, editCount) => {
     if (operator === '+') {
       setCount((prevState) => {
         let newCount = prevState + 1;
-        if (phoneError === 'Wrong phone number format') {
+        if (phoneError === 'Wrong phone number format' && count === 6) {
           newCount = prevState;
         }
         if (prevState < newCount) {

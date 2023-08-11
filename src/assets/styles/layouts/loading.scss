@@ -1,0 +1,48 @@
+.pin {
+  -webkit-animation-name: pin;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background: #312783;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+}
+.pin:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  margin: 8px 0 0 8px;
+  background: #ffe388;
+  position: absolute;
+  border-radius: 50%;
+}
+.pulse {
+  background: rgba(0,0,0,0.2);
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 11px 0px 0px -12px;
+  transform: rotateX(55deg);
+  z-index: -2;
+}
+.pulse:after {
+  content: "";
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  margin: -13px 0 0 -13px;
+  -webkit-animation: pulsate 1s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  opacity: 0;
+  box-shadow: 0 0 1px 2px #312783;
+}
+
