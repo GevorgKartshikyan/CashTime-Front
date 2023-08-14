@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function CreateCvSecond(props) {
   const { onData } = props;
 
-  const [educationHistory, setEducationHistory] = useState({
+  const educationHistoryData = useSelector((state) => (
+    state.createCvForm.dataFromChild2.educationHistory
+  ));
+
+  const [educationHistory, setEducationHistory] = useState(educationHistoryData ?? {
     school: '', degree: '', dateAttended: '', dataExpected: '',
   });
+
+  console.log(educationHistoryData);
 
   const customStyles = {
     control: (provided, state) => ({
@@ -85,7 +92,7 @@ function CreateCvSecond(props) {
             <Select
               options={options}
               styles={customStyles}
-              value={options.dateAttended}
+              value={options.find((option) => option.value === educationHistory.dateAttended)}
               onChange={(e) => setEducationHistory({ ...educationHistory, dateAttended: e.value })}
               components={{
                 IndicatorSeparator: () => null,
@@ -95,7 +102,7 @@ function CreateCvSecond(props) {
             <Select
               options={options}
               styles={customStyles}
-              value={options.dataExpected}
+              value={options.find((option) => option.value === educationHistory.dataExpected)}
               onChange={(e) => setEducationHistory({ ...educationHistory, dataExpected: e.value })}
               components={{
                 IndicatorSeparator: () => null,

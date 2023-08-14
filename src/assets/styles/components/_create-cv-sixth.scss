@@ -1,9 +1,10 @@
 .CreateCvSixth{
+  width: 575px;
   padding-top: 70px;
   &__services{
-
+    width: 100%;
+    position: relative;
     &__text{
-      width: 574px;
       margin-bottom: 29px;
       & > h3{
         color: #031054;
@@ -15,37 +16,62 @@
       }
     }
     &__select{
-
+      width: 530px;
     }
-
   }
   &__suggest{
-    & > p{
+    width: 100%;
+    position: relative;
+    &__title {
       color: #031054;
-      font-family: "Lato", sans-serif;
-      font-size: 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: 36px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 800;
       line-height: normal;
-      margin-bottom: 25px;
+      margin-top: 50px;
     }
-    & > button{
+    &__block {
+      position: relative;
       display: flex;
-      padding: 10px 16px 10px 12px;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      background:#E17A01;
-      color: #FFFFFF;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 20px; /* 142.857% */
-      letter-spacing: 0.1px;
-      border-radius: 40px;
-      width: 140px;
-      height: 40px;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 30px;
+      &-text {
+        color: #031054;
+        text-align: center;
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin-bottom: 10px;
+      }
+      &-bottom {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        & > label {
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 415px;
+          padding: 12px 20px;
+          border-radius: 8px;
+          background: #FFF;
+        }
+        & > p {
+          margin-left: 20px;
+        }
+      }
+      &-input {
+        width: 50px;
+        border: none;
+      }
     }
   }
 }
