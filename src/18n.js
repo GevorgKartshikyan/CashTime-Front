@@ -5,7 +5,7 @@ import russian from './locales/ru/translation.json';
 import armenian from './locales/am/translation.json';
 
 i18n.use(initReactI18next).init({
-  fallbackLng: 'am',
+  fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
