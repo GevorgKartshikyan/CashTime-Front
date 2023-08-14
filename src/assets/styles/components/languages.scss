@@ -1,12 +1,12 @@
 .languages {
-  width: 379px;
-  height: 272px;
+  width: 170px;
   position: absolute;
-  border-radius: 0 0 22px 22px;
-  background: #FFFFFF;
-  right: 50px;
+  border-radius: 0 0 10px 10px;
+  background-color: #B9B8B8;
+  right: 346px;
+  top: 26px;
   z-index: 4;
-  padding: 0 37px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   &__row{
@@ -15,24 +15,27 @@
     align-items: start;
     width: 100%;
     &__item{
-      margin-bottom: 31px;
+      padding-bottom: 30px;
       display: flex;
       width: 100%;
       justify-content: space-between;
       cursor: pointer;
+      &:last-child {
+        padding-bottom: 5px;
+      }
       & > button {
         color: #031054;
         text-align: center;
         font-family: 'Lato', sans-serif;
-        font-size: 20px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
         background-color: transparent;
       }
       & > span{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         border: 2px solid #031054;
         display: flex;

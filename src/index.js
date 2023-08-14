@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import './assets/styles/index.scss';
 import App from './App';
 import i18n from './18n';
-import { Provider } from 'react-redux';
 import store from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

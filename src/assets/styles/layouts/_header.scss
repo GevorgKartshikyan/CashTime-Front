@@ -21,7 +21,7 @@
           list-style-type: none;
           margin-right: 53px;
           & > a{
-            color: var(--dark-blue, #031054);
+            color: #031054;
             font-family: 'Lato', sans-serif;
             font-size: 14px;
             font-style: normal;
@@ -41,6 +41,8 @@
     &__block {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       & > svg {
         cursor: pointer;
       }
@@ -49,8 +51,13 @@
       }
       &__avatar {
         background-color: transparent;
-        width: 37px;
-        height: 37px;
+        width: 28px;
+        height: 28px;
+
+        &__img {
+          width: 100%;
+          height: 100%;
+        }
       }
       &-login, &-register {
         padding: 10px;
@@ -60,7 +67,6 @@
         height: 27px;
         border: 1px solid #E17A01;
         border-radius: 25px;
-        margin-right: 17px;
         background-color: transparent;
         &:hover {
           background-color: #E17A01;
@@ -68,8 +74,14 @@
         }
       }
       &__globe{
-        margin-right: 22px;
         background-color: transparent;
+        width: 28px;
+        height: 28px;
+
+        &__svg{
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
