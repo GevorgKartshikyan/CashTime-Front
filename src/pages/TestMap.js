@@ -7,12 +7,14 @@ import mapDefaultThem from '../utils/mapDefaultThem';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
 import Header from '../layouts/Header';
+import MapProfile from '../components/MapProfile';
 
 const key = process.env.REACT_APP_MAP_SECRET;
+const libraries = ['places'];
 export default function TestMap() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: key,
-    libraries: ['places'],
+    libraries,
     language: 'en',
   });
   if (!isLoaded) return <LoadingFile />;
@@ -56,6 +58,7 @@ function Map() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          console.log(position);
           setCoordinates({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -69,9 +72,11 @@ function Map() {
       console.error('Geolocation is not supported by this browser.');
     }
   };
-
   return (
-    <div style={{ maxHeight: '100vh', overflow: 'hidden' }}>
+    <div style={{
+      maxHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+    }}
+    >
       <Header />
       <GoogleMap
         zoom={15}
@@ -93,6 +98,7 @@ function Map() {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
+      <MapProfile />
     </div>
   );
 }
