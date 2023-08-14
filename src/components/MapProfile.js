@@ -4,7 +4,12 @@ import userStar from '../assets/images/mapProfileStar.svg';
 
 function MapProfile() {
   return (
-    <div className="map-profile">
+    <div
+      className="map-profile"
+      style={{
+        position: 'absolute', bottom: 0,
+      }}
+    >
       <div className="map-profile__user">
         <div className="map-profile__user__info">
           <div className="map-profile__user__info-image">
@@ -47,7 +52,7 @@ function MapProfile() {
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
               <path fillRule="evenodd" clipRule="evenodd" d="M10.0727 13.3124L5.00033 16.02V13.3124H3.33366C2.41318 13.3124 1.66699 12.6751 1.66699 11.889V3.34826C1.66699 2.56211 2.41318 1.9248 3.33366 1.9248H16.667C17.5875 1.9248 18.3337 2.56211 18.3337 3.34826V11.889C18.3337 12.6751 17.5875 13.3124 16.667 13.3124H10.0727ZM6.66699 13.4517L9.59466 11.889H16.667V3.34826H3.33366V11.889H6.66699V13.4517ZM5.83366 9.7538V8.33034H11.667V9.7538H5.83366ZM5.83366 6.90689V5.48344H13.3337V6.90689H5.83366Z" fill="#031054" />
             </svg>
-            Messege
+            Message
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">

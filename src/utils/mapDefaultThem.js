@@ -130,7 +130,7 @@ const mapDefaultThem = [
         visibility: 'on',
       },
       {
-        color: '#c7d2da',
+        color: '#f3f6fb',
       },
     ],
   },
