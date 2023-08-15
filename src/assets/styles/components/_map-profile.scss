@@ -1,12 +1,15 @@
 .map-profile{
-  width: 898px;
+  width: 550px;
   background: #FFF;
   padding: 45px 23px;
+  box-shadow: 10px 2px 20px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  border-radius: 40px 40px 0 0;
   &__user{
     display: flex;
     justify-content: space-between;
     &__info{
-      display: flex;
       &-image{
         width: 130px;
         margin-right: 40px;
@@ -87,7 +90,7 @@
         list-style-type: none;
         display: flex;
         align-items: center;
-        margin-bottom: 8px;
+        margin-bottom: 15px;
         color: #031054;
         text-align: center;
         font-family: "Lato", sans-serif;
