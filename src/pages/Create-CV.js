@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 import Header from '../layouts/Header';
 import CreateCvFirst from '../components/CreateCVFirst';
 import StepIndicator from '../layouts/StepIndicator';
@@ -7,19 +8,24 @@ import CreateCVSecond from '../components/CreateCVSecond';
 import CreateCVThird from '../components/CreateCvThird';
 import CreateCVFifth from '../components/CreateCVFifth';
 import CreateCVSixth from '../components/CreateCVSixth';
+import CreateCVSeventh from '../components/CreateCVSeventh';
+import CreateCVFinally from '../components/CreateCVFinally';
+import createCvFormData from '../store/actions/createCvForm';
 
 function CreateCv() {
+  const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const [data, setData] = useState({});
+  const [localData, setLocalData] = useState({});
   const [isRight, setIsRight] = useState(false);
-  const handleDataFromChild = (childData) => {
-    setData((prevData) => ({
+  const [file, setFile] = useState({});
+  const handleDataFromChild = (childData, x) => {
+    setLocalData((prevData) => ({
       ...prevData,
       ...childData,
     }));
+    setFile(x);
   };
-  console.log(data);
-  const handleNext = (operator) => {
+  const handleNext = (operator, editCount) => {
     if (operator === '+') {
       setCount((prevState) => {
         const newCount = prevState + 1;
@@ -28,6 +34,7 @@ function CreateCv() {
         }
         return newCount;
       });
+      dispatch(createCvFormData({ data: localData }));
     } else if (operator === '-' && count !== 1) {
       setCount((prevState) => {
         const newCount = prevState - 1;
@@ -36,6 +43,9 @@ function CreateCv() {
         }
         return newCount;
       });
+    }
+    if (editCount) {
+      setCount(editCount);
     }
   };
 
@@ -64,12 +74,15 @@ function CreateCv() {
               exit="out"
               variants={pageVariants}
               transition={pageTransition}
+              style={{ alignSelf: 'center' }}
             >
               {count === 1 && <CreateCvFirst onData={handleDataFromChild} />}
               {count === 2 && <CreateCVSecond onData={handleDataFromChild} />}
               {count === 3 && <CreateCVThird onData={handleDataFromChild} />}
               {count === 4 && <CreateCVFifth onData={handleDataFromChild} />}
               {count === 5 && <CreateCVSixth onData={handleDataFromChild} />}
+              {count === 6 && <CreateCVSeventh onData={handleDataFromChild} />}
+              {count === 7 && <CreateCVFinally file={file} editCount={handleNext} />}
             </motion.div>
           </div>
         </div>

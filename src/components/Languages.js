@@ -6,22 +6,23 @@ function Languages() {
     window.localStorage.setItem('language', 'en');
   }
   const { i18n } = useTranslation();
-  const changeLanguage = (language) => {
+  const changeLanguage = (event, language) => {
+    event.stopPropagation();
     window.localStorage.setItem('language', language);
     i18n.changeLanguage(window.localStorage.getItem('language'));
   };
   return (
     <div className="languages">
       <div className="languages__row">
-        <div className="languages__row__item" role="presentation" onClick={() => changeLanguage('en')}>
+        <div className="languages__row__item" role="presentation" onClick={(event) => changeLanguage(event, 'en')}>
           <button type="button">English</button>
           <span className={window.localStorage.getItem('language') === 'en' ? 'languages__row__item__active' : null} />
         </div>
-        <div className="languages__row__item" role="presentation" onClick={() => changeLanguage('am')}>
+        <div className="languages__row__item" role="presentation" onClick={(event) => changeLanguage(event, 'am')}>
           <button type="button">Հայերեն</button>
           <span className={window.localStorage.getItem('language') === 'am' ? 'languages__row__item__active' : null} />
         </div>
-        <div className="languages__row__item" role="presentation" onClick={() => changeLanguage('ru')}>
+        <div className="languages__row__item" role="presentation" onClick={(event) => changeLanguage(event, 'ru')}>
           <button type="button">Русский</button>
           <span className={window.localStorage.getItem('language') === 'ru' ? 'languages__row__item__active' : null} />
         </div>

@@ -13,7 +13,6 @@ function CreateJobSecond(props) {
     { id: 1, defaultSkills: 'User Experience' },
     { id: 2, defaultSkills: 'Figma' },
     { id: 3, defaultSkills: 'Photoshop' },
-    { id: 4, defaultSkills: 'test' },
   ];
   const [selectedSkills, setSelectedSkills] = useState(secondFormArray ?? []);
   const [inputValue, setInputValue] = useState('');

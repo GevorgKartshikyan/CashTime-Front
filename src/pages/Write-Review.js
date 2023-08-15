@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Wrapper from '../layouts/Wrapper';
-import AddService from '../components/addService';
 
 function WriteReview() {
   const [selectedStars, setSelectedStars] = useState(0);
@@ -11,7 +10,6 @@ function WriteReview() {
 
   return (
     <Wrapper>
-      <AddService />
       <div className="write__review">
         <div className="container">
           <div className="write__review__row">

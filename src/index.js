@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import './assets/styles/index.scss';
 import i18n from './18n';

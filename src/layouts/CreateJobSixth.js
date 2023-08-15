@@ -1,59 +1,65 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import IndicatorsArrows from '../components/IndicatorsArrows';
 import countyList from '../utils/countyList';
+import phoneErrorHandler from '../store/actions/phoneErrorHandler';
 
-function CreateJobSixth(props) {
-  const sixtyFormObj = useSelector((state) => state.createJobForm.dataFromChild6) ?? {};
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      fontFamily: 'Lato,sans-serif',
-      paddingLeft: 5,
-      paddingRight: 15,
-      color: 'rgba(3, 16, 84, 0.50)',
-      width: 415,
-      height: 37,
-      border: state.isFocused ? 0 : 0,
-      borderRadius: 8,
-      background: '#fff',
-      outline: 'none',
-      marginBottom: 15,
+const key = process.env.REACT_APP_MAP_SECRET;
+
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    fontFamily: 'Lato,sans-serif',
+    paddingLeft: 5,
+    paddingRight: 15,
+    color: 'rgba(3, 16, 84, 0.50)',
+    width: 415,
+    height: 37,
+    border: state.isFocused ? 0 : 0,
+    borderRadius: 8,
+    background: '#fff',
+    outline: 'none',
+    marginBottom: 15,
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: 'rgba(3, 16, 84, 0.70)',
+    },
+    '&:focus': {
+      borderColor: 'rgba(3, 16, 84, 0.90)',
       boxShadow: 'none',
-      '&:hover': {
-        borderColor: 'rgba(3, 16, 84, 0.70)',
-      },
-      '&:focus': {
-        borderColor: 'rgba(3, 16, 84, 0.90)',
-        boxShadow: 'none',
-      },
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? '#FFF' : '#333',
-      background: state.isSelected ? 'rgba(3, 16, 84, 0.50)' : null,
-      cursor: 'pointer',
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: 'rgba(3, 16, 84, 0.70)',
-    }),
-    placeholder: (defaultStyles) => ({
-      ...defaultStyles,
-      color: 'rgba(3 16, 84, 0.50)',
-      fontSize: 14,
-    }),
-    menu: (provided) => ({
-      ...provided,
-      color: 'red',
-      zIndex: 999999999999999,
-    }),
-  };
+    },
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? '#FFF' : '#333',
+    background: state.isSelected ? 'rgba(3, 16, 84, 0.50)' : null,
+    cursor: 'pointer',
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: 'rgba(3, 16, 84, 0.70)',
+  }),
+  placeholder: (defaultStyles) => ({
+    ...defaultStyles,
+    color: 'rgba(3 16, 84, 0.50)',
+    fontSize: 14,
+  }),
+  menu: (provided) => ({
+    ...provided,
+    color: 'red',
+    // zIndex: 999999999999999,
+  }),
+};
+function CreateJobSixth(props) {
+  const dispatch = useDispatch();
+  const [phoneNumberError, setPhoneNumberError] = useState('');
+  const [phoneFormatLength, setPhoneFormatLength] = useState(0);
+  const sixtyFormObj = useSelector((state) => state.createJobForm.dataFromChild6) ?? {};
   const { onData } = props;
   // fileSrc for render file for request
   const [selectedPhoto, setSelectedPhoto] = useState({
@@ -86,6 +92,26 @@ function CreateJobSixth(props) {
     };
     getCountries();
   }, []);
+  useEffect(() => {
+    if (phoneNumber.length !== phoneFormatLength && phoneNumber) {
+      dispatch(phoneErrorHandler('Wrong phone number format'));
+      setPhoneNumberError('Wrong phone format');
+    } else {
+      setPhoneNumberError('');
+      dispatch(phoneErrorHandler(''));
+    }
+  }, [phoneNumber, phoneFormatLength]);
+  const handleChangePhone = useCallback((value, countryData) => {
+    setPhoneNumber(value);
+    setPhoneFormatLength(countryData.format.replace(/[^\w.]/g, '').length);
+  }, [phoneNumber, phoneFormatLength]);
+  useEffect(() => {
+    if (!phoneNumber) {
+      dispatch(phoneErrorHandler('Wrong phone number format'));
+    } else {
+      setPhoneNumberError('');
+    }
+  }, []);
   const handlePlaceSelect = (place) => {
     try {
       const { lat, lng } = place.geometry.location;
@@ -112,12 +138,15 @@ function CreateJobSixth(props) {
       console.error(e);
     }
   };
-  const handleFileSelect = useCallback(async (ev) => {
-    const newFile = URL.createObjectURL(ev.target.files[0]);
-    setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
+  const handleFileSelect = useCallback((ev) => {
+    if (ev.target.files[0]) {
+      const newFile = URL.createObjectURL(ev.target.files[0]);
+      setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
+    }
   }, [selectedPhoto]);
+  // const onlyCountries = ['us', 'am', 'ru', 'ua'];
   return (
-    <div className="job__form__container__sixth" style={{ zIndex: 777777 }}>
+    <div className="job__form__container__sixth">
       <div>
         <h4 className="create__job__title sixth-title">Describe Your Job</h4>
         {selectedPhoto.fileSrc ? <img src={selectedPhoto.fileSrc} alt="job desc" className="job-image" /> : (
@@ -160,7 +189,7 @@ function CreateJobSixth(props) {
           <Autocomplete
             placeholder="Write your address"
             className="signup__start__form__input"
-            apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
+            apiKey={key}
             onPlaceSelected={handlePlaceSelect}
             options={{
               language: 'en',
@@ -173,19 +202,17 @@ function CreateJobSixth(props) {
         <div>
           <p className="sixth-labels-desc">Phone</p>
           <PhoneInput
-            onChange={(value) => {
-              setPhoneNumber(`+${value}`);
-            }}
-            buttonClass="dropdown-flag-item"
-            inputClass="signup__start__form__select__phone"
+            // onlyCountries={onlyCountries}
+            onChange={handleChangePhone}
             country={selectCountry || 'am'}
             value={phoneNumber}
+            placeholder="+(374)-00-00-00"
             dropdownClass="custom-phone-dropdown"
             inputProps={{
-              // dropdownClass: 'custom-phone-dropdown',
               className: 'signup__start__form__select__phone',
             }}
           />
+          {phoneNumberError ? <p>{phoneNumberError}</p> : null}
         </div>
         <div />
       </div>

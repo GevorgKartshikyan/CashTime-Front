@@ -2,15 +2,13 @@
   position: relative;
   margin-top: 70px;
   min-height: 100vh;
-  padding-bottom: 150px;
+  display: flex;
+  flex-direction: column;
   & > .container-job.container {
-    position: absolute;
+    margin-top: auto;
     display: flex;
     justify-content: center;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+
   }
 }
 .job-row{
@@ -34,10 +32,7 @@
   line-height: normal;
 }
 
-.button-row{
-  position: absolute;
-  bottom: 0;
-}
+
 .big-circle , .small-circle{
   cursor: pointer;
 }

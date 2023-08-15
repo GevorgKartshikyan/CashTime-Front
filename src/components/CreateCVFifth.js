@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function CreateCvFifth(props) {
   const { onData } = props;
-  const [cvBio, setCvBio] = useState('');
+  const cvFormData = useSelector((state) => (state.createCvForm.dataFromChild5.cvBio));
+  const [cvBio, setCvBio] = useState(cvFormData ?? '');
 
   useEffect(() => {
     onData({
-      dataFromChild4: {
+      dataFromChild5: {
         cvBio,
       },
     });
