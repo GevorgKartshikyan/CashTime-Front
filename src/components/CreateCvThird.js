@@ -1,70 +1,107 @@
 import React, {
-  useCallback, useState,
+  useCallback, useEffect, useState,
 } from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
-function CreateCVThird() {
-  const skills = ['User Experience', 'Android', 'Adobe XD', 'Ios', 'Figma'];
-  const [showMessage, setShowMessage] = useState('');
-  const [selectedSkills, setSelectedSkills] = useState([]);
+function CreateCvThird(props) {
+  const { onData } = props;
+  const thirdFormArray = useSelector((state) => state.createCvForm.dataFromChild3) ?? [];
+  const skills = [
+    { id: 1, defaultSkills: 'User Experience' },
+    { id: 2, defaultSkills: 'Figma' },
+    { id: 3, defaultSkills: 'Photoshop' },
+    { id: 4, defaultSkills: 'test' },
+  ];
+  const [selectedSkills, setSelectedSkills] = useState(thirdFormArray ?? []);
   const [inputValue, setInputValue] = useState('');
+
   const handleSkill = useCallback((skill) => {
-    if (!selectedSkills.includes(skill) && selectedSkills.length < 3) {
-      setSelectedSkills([...selectedSkills, skill]);
+    const lowerCaseSelectedSkills = selectedSkills.map((s) => s.skill.toLowerCase());
+    const lowerCaseSkill = skill.toLowerCase();
+
+    if (!lowerCaseSelectedSkills.includes(lowerCaseSkill)) {
+      setSelectedSkills([...selectedSkills, { skill, id: _.uniqueId() }]);
+      setInputValue('');
     }
-    if (selectedSkills.length === 3) {
-      setShowMessage('max length 3');
-    }
-  }, [selectedSkills, setSelectedSkills]);
+  }, [selectedSkills, setSelectedSkills, inputValue]);
+
+  useEffect(() => {
+    onData({ dataFromChild3: selectedSkills });
+  }, [selectedSkills]);
   const handleChange = useCallback((e) => {
-    if (selectedSkills.length === 0) {
-      setInputValue(e.target.value);
-    }
-  }, [inputValue, selectedSkills]);
+    setInputValue(e.target.value);
+  }, [inputValue]);
   const handleSkillDelete = useCallback((e) => {
-    setSelectedSkills(selectedSkills.filter((item) => item !== e));
+    setSelectedSkills(selectedSkills.filter((item) => item.id !== e));
   }, [selectedSkills]);
   return (
-    <div className="create__cv__container">
-      <h4 className="create__cv__title">
+    <div className="create__cv__block">
+      <h4 className="create__job__title second">
         Add Your Skills
       </h4>
-      <div className="create__cv__block">
-        <p className="create__cv__desc">Your Skills*</p>
-        <div className="create__cv__input-container">
-          <input
-            value={selectedSkills.length === 0 ? inputValue : selectedSkills.join(' ')}
-            type="text"
-            className={selectedSkills.length === 0 ? 'create__cv__input' : 'job__second__input hidden'}
-            onChange={handleChange}
-          />
-          <p style={{ height: '20px' }}>{showMessage}</p>
-          <div className="create__cv__selected-container">
-            {selectedSkills.map((e) => (
-              <span className="create__cv__selected" key={e}>
-                <p>{e}</p>
-                <button
-                  type="button"
-                  className="skill-delete"
-                  onClick={() => handleSkillDelete(e)}
+      <div className="job__second__block">
+        <p className="create__second__desc">Your Skills*</p>
+        <div className="input-container">
+          <input value={inputValue} type="text" className="job__second__input" onChange={handleChange} />
+          {inputValue && (
+            <motion.button
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              type="button"
+              className="job-second-btn-for-add-skill"
+              onClick={() => handleSkill(inputValue)}
+            >
+              + Add Skill
+            </motion.button>
+          )}
+          <AnimatePresence>
+            {selectedSkills.length > 0 && (
+              <>
+                <p>Selected Skills</p>
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="job__second-selected-container"
+                  style={{ width: '100%' }}
                 >
-                  X
-                </button>
-              </span>
-            ))}
-          </div>
+                  <>
+                    {selectedSkills.map((e) => (
+                      <motion.p
+                        key={e.id}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.8 } }}
+                        exit={{ opacity: 0, y: -10, transition: { delay: 0, duration: 0.3 } }}
+                        className="job__second-selected-skills"
+                      >
+                        {e.skill}
+                        <button type="button" onClick={() => handleSkillDelete(e.id)}>
+                          X
+                        </button>
+                      </motion.p>
+                    ))}
+                  </>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </div>
-      <div className="create__cv__block">
-        <p className="create__cv__suggested-skills">Suggested skills</p>
-        <div className="create__cv__skills">
+      <div className="job__second__skills_block job__second__block">
+        <p className="suggested-skills">Suggested skills</p>
+        <div className="skills">
           {skills.map((e) => (
             <button
               type="button"
-              key={e}
-              className="create__cv__skills__title"
-              onClick={() => handleSkill(e)}
+              key={e.id}
+              className="skills__title"
+              onClick={() => handleSkill(e.defaultSkills)}
             >
-              {`+ ${e}`}
+              {`+ ${e.defaultSkills}`}
             </button>
           ))}
         </div>
@@ -72,5 +109,8 @@ function CreateCVThird() {
     </div>
   );
 }
+CreateCvThird.propTypes = {
+  onData: PropTypes.func.isRequired,
+};
 
-export default CreateCVThird;
+export default CreateCvThird;

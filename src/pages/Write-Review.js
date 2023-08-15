@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import Wrapper from '../layouts/Wrapper';
 
 function WriteReview() {
-  // State to keep track of the selected star count
   const [selectedStars, setSelectedStars] = useState(0);
 
-  // Function to handle the change in star rating
   const handleStarChange = (event) => {
     setSelectedStars(parseInt(event.target.value, 10));
   };

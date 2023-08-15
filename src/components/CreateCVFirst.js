@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function CreateCvFirst(props) {
   const { onData } = props;
@@ -12,6 +13,11 @@ function CreateCvFirst(props) {
     { value: 'advanced', label: 'Advanced(Level C1)' },
     { value: 'mastery', label: 'Mastery(Level C2)' },
   ];
+
+  const languagesData = useSelector((state) => state.createCvForm.dataFromChild1.languages);
+  const proffesionValueData = useSelector((state) => (
+    state.createCvForm.dataFromChild1.professionValue
+  ));
 
   const customStyles = {
     control: (provided, state) => ({
@@ -46,11 +52,11 @@ function CreateCvFirst(props) {
     }),
   };
 
-  const [languages, setLanguages] = useState([
+  const [languages, setLanguages] = useState(languagesData ?? [
     { language: '', level: '', id: uuidv4() },
   ]);
 
-  const [professionValue, setProfessionValue] = useState('');
+  const [professionValue, setProfessionValue] = useState(proffesionValueData ?? '');
 
   const handleProfessionValue = useCallback((e) => {
     setProfessionValue(e.target.value);

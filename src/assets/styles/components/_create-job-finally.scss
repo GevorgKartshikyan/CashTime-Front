@@ -1,9 +1,8 @@
 .job__display__row{
   display: flex;
   margin-top: 20px;
-  justify-content: space-between;
   width: 478px;
-  align-items: center;
+  align-items: flex-start;
 }
 .finally-small{
   margin-top: 0;
@@ -41,6 +40,8 @@
   }
 }
 .job-finally-skill-title{
+  width: 200px;
+  display: flex;
   color: #031054;
   font-size: 20px;
   font-weight: 600;
@@ -57,12 +58,12 @@
   border-radius: 22px;
   background:#E17A01;
   margin-right: 10px;
+  margin-top: 5px;
 }
 .job-finally-skill-level{
   color: rgba(0, 0, 0, 0.50);
   font-size: 14px;
   font-style: normal;
-  width: 360px;
   word-wrap: break-word;
   font-weight: 600;
   margin-left: 50px;
@@ -75,6 +76,8 @@
 }
 .profile__row__svg{
   cursor: pointer;
+  margin-left: auto;
+  align-self: center;
 }
 .job-finally-all-box{
   display: flex;
@@ -88,3 +91,35 @@
   }
 }
 
+/* Стилизация контейнера с кнопками масштабирования */
+.gm-bundled-control {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилизация кнопок масштабирования */
+.gm-bundled-control button {
+  //background-color: #f0f0f0;
+  color: red;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 8px;
+  margin: 2px;
+  background-color: red;
+}
+
+/* Стилизация кнопок масштабирования при наведении */
+.gm-bundled-control button:hover {
+  background-color: red;
+}
+
+.job-finally-skill-block {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

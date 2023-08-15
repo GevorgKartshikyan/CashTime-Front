@@ -4,7 +4,7 @@ import ChatBoxCard from './ChatBox-card';
 
 function ChatBox() {
   return (
-    <div className="chatbox">
+    <div onClick={(e) => e.stopPropagation()} role="presentation" className="chatbox">
       <ChatBoxCard />
       <ChatBoxCard />
       <ChatBoxCard />

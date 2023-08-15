@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,9 @@ import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
 import Button from '../components/Button';
 import Header from '../layouts/Header';
+import imgUpload from '../assets/images/img_upload_svg.svg';
+import upLoad from '../assets/images/upload.svg';
+// import defaultAvatar from '../assets/images/sign-up-avatar.svg';
 
 function SignUp() {
   const [activeButton, setActiveButton] = useState(false);
@@ -22,7 +25,13 @@ function SignUp() {
     location: '',
     phoneNumber,
   });
-  console.log(formData);
+  const [selectedPhoto, setSelectedPhoto] = useState({
+    fileSrc: '',
+    file: null,
+  });
+  // console.log(selectedPhoto);
+
+  const inputRef = useRef(null);
 
   const handleChange = useCallback((key) => (ev) => {
     setFormData({
@@ -38,6 +47,20 @@ function SignUp() {
   const showConfirmPassword = useCallback(() => {
     setConfirmFlag(!confirmFlag);
   }, [confirmFlag]);
+
+  const handleFileSelect = useCallback((ev) => {
+    if (!ev.target.files[0]) {
+      return;
+    }
+    const fileSrc = URL.createObjectURL(ev.target.files[0]);
+    setSelectedPhoto({ fileSrc, file: ev.target.files[0] });
+  }, [selectedPhoto]);
+
+  const handleDeleteAvatar = useCallback(() => {
+    inputRef.current.value = '';
+    URL.revokeObjectURL(selectedPhoto.fileSrc);
+    setSelectedPhoto({ fileSrc: '', file: null });
+  }, [selectedPhoto]);
 
   return (
     <>
@@ -128,6 +151,30 @@ function SignUp() {
             className="signup__start__form__input"
             placeholder="Location"
           />
+          <div className="signup__start__form__img__box">
+            <div className="signup__start__form__img__box__labelBox">
+              <label htmlFor="hidden-file-input" className="signup__start__form__img__box__labelBox__label">
+                <img
+                  src={upLoad}
+                  alt="upload-img"
+                  className="signup__start__form__img__box__labelBox__label__img"
+                />
+                <h3 className="signup__start__form__img__box__labelBox__label__text">Upload an avatar</h3>
+                <input id="hidden-file-input" ref={inputRef} onChange={handleFileSelect} style={{ display: 'none' }} type="file" />
+              </label>
+            </div>
+            <div className="signup__start__form__img__box__imgBox">
+              {selectedPhoto.file
+                ? <div className="signup__start__form__img__box__imgBox__btn" onClick={handleDeleteAvatar} role="presentation" />
+                : null}
+              {
+              selectedPhoto.file
+                ? <img src={selectedPhoto.fileSrc} alt="img" className="signup__start__form__img__box__imgBox__img" />
+                : <img src={imgUpload} alt="img" className="signup__start__form__img__box__imgBox__defaultImg" />
+            }
+
+            </div>
+          </div>
 
           <PhoneInput
             onChange={(value) => {
