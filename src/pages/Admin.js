@@ -6,6 +6,7 @@ import adminImg from '../assets/images/adminImg.svg';
 import Dashboard from '../components/Dashboard';
 import UserDashboard from '../components/User-dashboard';
 import AdminEmployees from '../components/AdminEmployees';
+import Dispute from '../components/Dispute';
 
 function Admin() {
   const elements = ['Dashboard', 'Employees', 'Employers', 'Report', 'User'];
@@ -37,6 +38,7 @@ function Admin() {
         {page === 'employees' && <AdminEmployees /> }
         {page === 'employers' && <AdminEmployees /> }
         {page === 'user' && <UserDashboard /> }
+        {page === 'report' && <Dispute />}
         <div className="admin__row__user">
           <div className="admin__row__user__w">
             <div className="admin__row__user__w-notification">
