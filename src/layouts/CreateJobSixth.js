@@ -191,9 +191,9 @@ function CreateJobSixth(props) {
             className="signup__start__form__input"
             apiKey={key}
             onPlaceSelected={handlePlaceSelect}
+            language="en"
             options={{
-              language: 'en',
-              componentRestrictions: { country: 'am' },
+              componentRestrictions: { country: selectCountry || 'am' },
               types: ['geocode', 'establishment'],
             }}
           />

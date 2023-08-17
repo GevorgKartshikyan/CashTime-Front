@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   GoogleMap, useLoadScript, Marker,
 } from '@react-google-maps/api';
@@ -7,7 +7,7 @@ import mapDefaultThem from '../utils/mapDefaultThem';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
 import Header from '../layouts/Header';
-import MapProfile from '../components/MapProfile';
+import markHome from '../assets/images/home-map.svg';
 
 const key = process.env.REACT_APP_MAP_SECRET;
 const libraries = ['places'];
@@ -72,6 +72,10 @@ function Map() {
       console.error('Geolocation is not supported by this browser.');
     }
   };
+  useEffect(() => {
+    trackUserLocation();
+  }, []);
+  console.log(8);
   return (
     <div style={{
       maxHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
@@ -84,6 +88,12 @@ function Map() {
         mapContainerStyle={containerStyle}
         options={mapOptions}
       >
+        <Marker
+          position={coordinates}
+          icon={{
+            url: markHome,
+          }}
+        />
         {markers.map((marker, index) => (
           <Marker
             // eslint-disable-next-line react/no-array-index-key
@@ -98,7 +108,7 @@ function Map() {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
-      <MapProfile />
+      {/* <MapProfile /> */}
     </div>
   );
 }
