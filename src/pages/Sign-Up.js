@@ -1,14 +1,14 @@
 import React, { useCallback, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PasswordIcon from '../assets/images/singup_password.svg';
 import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
-import Button from '../components/Button';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
+import Api from '../Api';
 // import defaultAvatar from '../assets/images/sign-up-avatar.svg';
 
 function SignUp() {
@@ -29,9 +29,9 @@ function SignUp() {
     fileSrc: '',
     file: null,
   });
-  // console.log(selectedPhoto);
 
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleChange = useCallback((key) => (ev) => {
     setFormData({
@@ -62,6 +62,16 @@ function SignUp() {
     setSelectedPhoto({ fileSrc: '', file: null });
   }, [selectedPhoto]);
 
+  const handleRegister = useCallback(async (ev) => {
+    ev.preventDefault();
+    const { data } = await Api.register({
+      data: formData,
+    });
+    if (data.status === 'ok') {
+      navigate('/verify');
+    }
+  }, [formData]);
+
   return (
     <>
       <Header />
@@ -90,7 +100,7 @@ function SignUp() {
             Employee
           </button>
         </div>
-        <form className="signup__start__form">
+        <form className="signup__start__form" onSubmit={handleRegister}>
           <input
             onChange={handleChange('email')}
             type="email"
@@ -193,23 +203,22 @@ function SignUp() {
               className: 'signup__start__form__select__phone',
             }}
           />
-
+          <div className="signup__start__signup__with">
+            <span className="signup__start__signup__with__left" />
+            <h3 className="signup__start__signup__with__info">Or Sign up With</h3>
+            <span className="signup__start__signup__with__right" />
+          </div>
+          <div className="signup__start__icon">
+            <div className="signup__start__icon__boxes">
+              <img src={GoogleIcon} alt="IMG" />
+            </div>
+            <div className="signup__start__icon__boxes">
+              <img src={FacebookIcon} alt="IMG" />
+            </div>
+          </div>
+          <button type="submit" className="btn color-blue">Create my Account</button>
+          <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
         </form>
-        <div className="signup__start__signup__with">
-          <span className="signup__start__signup__with__left" />
-          <h3 className="signup__start__signup__with__info">Or Sign up With</h3>
-          <span className="signup__start__signup__with__right" />
-        </div>
-        <div className="signup__start__icon">
-          <div className="signup__start__icon__boxes">
-            <img src={GoogleIcon} alt="IMG" />
-          </div>
-          <div className="signup__start__icon__boxes">
-            <img src={FacebookIcon} alt="IMG" />
-          </div>
-        </div>
-        <Button className="btn color-blue" title="Create my Account" />
-        <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
       </section>
     </>
 
