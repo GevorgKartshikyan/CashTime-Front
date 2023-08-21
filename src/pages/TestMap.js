@@ -6,8 +6,7 @@ import LoadingFile from '../layouts/LoadingFile';
 import mapDefaultThem from '../utils/mapDefaultThem';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
-import Header from '../layouts/Header';
-import MapProfile from '../components/MapProfile';
+// import MapProfile from '../components/MapProfile';
 
 const key = process.env.REACT_APP_MAP_SECRET;
 const libraries = ['places'];
@@ -77,7 +76,7 @@ function Map() {
       maxHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
     }}
     >
-      <Header />
+
       <GoogleMap
         zoom={15}
         center={coordinates}
@@ -86,6 +85,7 @@ function Map() {
       >
         {markers.map((marker, index) => (
           <Marker
+            onClick={() => console.log('a')}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             icon={{
@@ -98,7 +98,7 @@ function Map() {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
-      <MapProfile />
+      {/* <MapProfile /> */}
     </div>
   );
 }
