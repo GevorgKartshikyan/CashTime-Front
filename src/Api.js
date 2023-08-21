@@ -19,6 +19,15 @@ class Api {
   static register(data) {
     return api.post('/users/register', data);
   }
+
+  static list(page, limit) {
+    return api.post('/users/list', {
+      params: {
+        page,
+        limit,
+      },
+    });
+  }
 }
 
 export default Api;
