@@ -25,7 +25,7 @@ class Api {
   }
 
   static list(page, limit) {
-    return api.post('/users/list', {
+    return api.get('/users/list', {
       params: {
         page,
         limit,
