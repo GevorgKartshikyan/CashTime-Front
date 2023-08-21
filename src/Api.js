@@ -17,7 +17,11 @@ class Api {
   }
 
   static register(data) {
-    return api.post('/users/register', data);
+    return api.post('/users/register', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   }
 }
 
