@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewStars from './ReviewStars';
 
-
 function ReviewUserCard(props) {
   const {
     imgSrc, userName, ratingSum, timeText, aboutUser,

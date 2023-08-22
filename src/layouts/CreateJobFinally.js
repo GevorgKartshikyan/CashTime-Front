@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import EditSvg from '../assets/images/edit.svg';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import Button from '../components/Button';
+import Api from '../Api';
 
 function CreateJobFinally(props) {
   const { file, editCount } = props;
@@ -33,6 +34,14 @@ function CreateJobFinally(props) {
     }
     return '';
   };
+
+  const handlePostJob = useCallback(async () => {
+    const { data } = await Api.createJob({
+      data: JSON.stringify(dataForRequest),
+      jobImage: file,
+    });
+    console.log(data);
+  }, [dataForRequest, file]);
 
   return (
     <div className="job-finally-all-box">
@@ -111,7 +120,7 @@ function CreateJobFinally(props) {
         <div>
           <Button className="btn color-blue" title="Save as a Draft" />
         </div>
-        <div>
+        <div role="presentation" onClick={handlePostJob}>
           <Button className="btn color-blue" title="Post This Job" />
         </div>
       </div>
