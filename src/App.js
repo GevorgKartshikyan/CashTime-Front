@@ -20,6 +20,7 @@ import Admin from './pages/Admin';
 import TestMap from './pages/TestMap';
 import Review from './pages/Review';
 import MapProfile from './components/MapProfile';
+import Profile from './pages/Profile';
 
 function App() {
   useEffect(() => {
@@ -29,7 +30,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/writereview" element={<WriteReview />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/review" element={<Review />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />

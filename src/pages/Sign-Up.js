@@ -1,37 +1,43 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback, useRef, useState,
+} from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PasswordIcon from '../assets/images/singup_password.svg';
 import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
-import Button from '../components/Button';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
+import { registerRequest } from '../store/actions/users';
 // import defaultAvatar from '../assets/images/sign-up-avatar.svg';
 
 function SignUp() {
   const [activeButton, setActiveButton] = useState(false);
   const [passwordFlag, setPasswordFlag] = useState(false);
   const [confirmFlag, setConfirmFlag] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [phone, setPhoneNumber] = useState('');
   const [formData, setFormData] = useState({
-    userName: '',
-    userSurname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
     location: '',
-    phoneNumber,
+    phone,
   });
   const [selectedPhoto, setSelectedPhoto] = useState({
     fileSrc: '',
     file: null,
   });
-  // console.log(selectedPhoto);
 
   const inputRef = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const statusRequest = useSelector((state) => state.users.registerRequestStatus);
 
   const handleChange = useCallback((key) => (ev) => {
     setFormData({
@@ -62,15 +68,29 @@ function SignUp() {
     setSelectedPhoto({ fileSrc: '', file: null });
   }, [selectedPhoto]);
 
+  const handleRegister = useCallback(async (ev) => {
+    console.log(statusRequest);
+    setIsLoading(true);
+    ev.preventDefault();
+    try {
+      const { payload } = await dispatch(registerRequest({
+        ...formData,
+        avatar: selectedPhoto.file,
+      }));
+      if (payload.status === 'ok') {
+        navigate('/verify');
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  }, [formData, selectedPhoto]);
+
   return (
     <>
       <Header />
       <section className="signup__start">
         <h3 className="signup__start__title">Sign Up</h3>
-        {/* <div className="signup__start__rol"> */}
-        {/*   <button type="button" className="signup__start__rol__btn">a</button> */}
-        {/*   <button type="button" className="signup__start__rol__btn">a</button> */}
-        {/* </div> */}
         <div className="signup__start__top__block">
 
           <button
@@ -90,7 +110,7 @@ function SignUp() {
             Employee
           </button>
         </div>
-        <form className="signup__start__form">
+        <form className="signup__start__form" onSubmit={handleRegister}>
           <input
             onChange={handleChange('email')}
             type="email"
@@ -99,14 +119,14 @@ function SignUp() {
           />
 
           <input
-            onChange={handleChange('userName')}
+            onChange={handleChange('firstName')}
             type="text"
             className="signup__start__form__input"
             placeholder="Name"
           />
 
           <input
-            onChange={handleChange('userSurname')}
+            onChange={handleChange('lastName')}
             type="text"
             className="signup__start__form__input"
             placeholder="Surname"
@@ -179,37 +199,35 @@ function SignUp() {
           <PhoneInput
             onChange={(value) => {
               setPhoneNumber(value);
-              console.log(phoneNumber);
               setFormData({
                 ...formData,
-                phoneNumber: `+${value}`,
+                phone: `+${value}`,
               });
             }}
             country="am"
-            value={phoneNumber}
+            value={phone}
             placeholder="+(374)-00-00-00"
             dropdownClass="custom-phone-dropdown"
             inputProps={{
               className: 'signup__start__form__select__phone',
             }}
           />
-
+          <div className="signup__start__signup__with">
+            <span className="signup__start__signup__with__left" />
+            <h3 className="signup__start__signup__with__info">Or Sign up With</h3>
+            <span className="signup__start__signup__with__right" />
+          </div>
+          <div className="signup__start__icon">
+            <div className="signup__start__icon__boxes">
+              <img src={GoogleIcon} alt="IMG" />
+            </div>
+            <div className="signup__start__icon__boxes">
+              <img src={FacebookIcon} alt="IMG" />
+            </div>
+          </div>
+          <button type="submit" className="btn color-blue" disabled={isLoading}>Create my Account</button>
+          <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
         </form>
-        <div className="signup__start__signup__with">
-          <span className="signup__start__signup__with__left" />
-          <h3 className="signup__start__signup__with__info">Or Sign up With</h3>
-          <span className="signup__start__signup__with__right" />
-        </div>
-        <div className="signup__start__icon">
-          <div className="signup__start__icon__boxes">
-            <img src={GoogleIcon} alt="IMG" />
-          </div>
-          <div className="signup__start__icon__boxes">
-            <img src={FacebookIcon} alt="IMG" />
-          </div>
-        </div>
-        <Button className="btn color-blue" title="Create my Account" />
-        <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
       </section>
     </>
 

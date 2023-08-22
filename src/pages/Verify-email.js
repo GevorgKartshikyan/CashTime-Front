@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import VerifyImg from '../assets/images/verify_img.png';
 import InputVerify from '../components/InputVerify';
@@ -7,10 +8,11 @@ import InputVerify from '../components/InputVerify';
 function VerifyEmail() {
   const [code, setCode] = useState('');
   const [isCodeCorrect, setIsCodeCorrect] = useState(true);
+  const validationCode = useSelector((state) => state.users.user.validationCode);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (code === '1234') {
+    if (code === validationCode.toString()) {
       setIsCodeCorrect(true);
       navigate('/verified');
     } else {

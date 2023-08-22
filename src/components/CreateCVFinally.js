@@ -19,25 +19,7 @@ function CreateCvFinally(props) {
     setDataForRequest({ ...dataForUpdate, file });
   }, [dataForUpdate, file]);
   console.log(dataForRequest);
-  // const dataFromChild1 = useSelector((state) => state.createCvForm.dataFromChild1);
-  // const dataFromChild2 = useSelector((state) => state.createCvForm.dataFromChild2);
-  // const dataFromChild3 = useSelector((state) => state.createCvForm.dataFromChild3);
-  // const selectedMethod = useSelector((state) => state.createCvForm.dataFromChild4.method);
-  // const priceFrom = useSelector((state) => state.createCvForm.dataFromChild4.priceFrom);
-  // const priceTo = useSelector((state) => state.createCvForm.dataFromChild4.priceTo);
-  // const maxPrice = useSelector((state) => state.createCvForm.dataFromChild4.maxPrice);
-  // const dataFromChild5 = useSelector((state) => state.createCvForm.dataFromChild5);
   const fileSrc = useSelector((state) => state.createCvForm.dataFromChild7.selectedPhoto);
-  // const address = useSelector((state) => state.createCvForm.dataFromChild6.address);
-
-  // const getPriceRange = () => {
-  //   if (priceFrom && priceTo) {
-  //     return `${priceFrom}$-${priceTo}$`;
-  //   } if (priceFrom) {
-  //     return `${priceFrom}$`;
-  //   }
-  //   return '';
-  // };
 
   return (
     <div className="job-finally-all-box">

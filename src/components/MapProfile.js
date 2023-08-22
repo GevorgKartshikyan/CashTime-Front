@@ -27,10 +27,6 @@ function MapProfile() {
             <p>10Miles Away from you</p>
           </div>
         </div>
-        <div className="map-profile__user__not">
-          <p>Report</p>
-          <p>Block</p>
-        </div>
       </div>
       <div className="map-profile__information">
         <ul>
