@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Api from '../../Api';
 
-const registerRequest = createAsyncThunk('/users/registerRequest', async (payload, thunkAPI) => {
+export const registerRequest = createAsyncThunk('/users/registerRequest', async (payload, thunkAPI) => {
   try {
     const { data } = await Api.register(payload);
     return data;
@@ -9,5 +9,13 @@ const registerRequest = createAsyncThunk('/users/registerRequest', async (payloa
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
-
-export default registerRequest;
+export const loginRequest = createAsyncThunk('users/loginRequest', async (payload, thunkAPI) => {
+  try {
+    const { email, password } = payload;
+    const { data } = await Api.login(email, password);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+//  default registerRequest;

@@ -16,6 +16,10 @@ class Api {
     });
   }
 
+  static login(email, password) {
+    return api.post('/users/login', { email, password });
+  }
+
   static register(data) {
     return api.post('/users/register', data, {
       headers: {
