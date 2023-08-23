@@ -20,6 +20,7 @@ import Admin from './pages/Admin';
 import TestMap from './pages/TestMap';
 import Review from './pages/Review';
 import MapProfile from './components/MapProfile';
+import SignUpStepsFirst from './pages/Sign-Up-Steps-First';
 
 function App() {
   useEffect(() => {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-up-steps-first" element={<SignUpStepsFirst />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
         <Route path="/history" element={<History />} />

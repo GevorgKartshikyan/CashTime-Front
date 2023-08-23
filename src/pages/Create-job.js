@@ -93,7 +93,7 @@ function CreateJob() {
         <div className="container-job container">
           {count < 7 ? (
             <div className="button-row">
-              <StepIndicator step={count} editCount={handleNext} />
+              <StepIndicator step={count} count={6} editCount={handleNext} />
               <div className="job__buttons">
                 <button type="button" className="job__btn" onClick={() => handleNext('-')}>
                   Go Back

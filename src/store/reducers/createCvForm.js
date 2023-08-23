@@ -2,6 +2,10 @@ import { createReducer } from '@reduxjs/toolkit';
 import setCvFormData from '../actions/createCvForm';
 
 const initialState = {
+  dataSignUpFirstStep: {
+    isFreelancer: null,
+    yourGoal: null,
+  },
   dataFromChild1: {
     languages: null,
     professionValue: '',
@@ -27,6 +31,10 @@ const initialState = {
 export default createReducer(initialState, (builder) => {
   builder.addCase(setCvFormData, (state, action) => ({
     ...state,
+    dataSignUpFirstStep: {
+      ...state.dataSignUpFirstStep,
+      ...action.payload.data.dataSignUpFirstStep,
+    },
     dataFromChild1: {
       ...state.dataFromChild1,
       ...action.payload.data.dataFromChild1,
