@@ -11,7 +11,7 @@ import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
-import registerRequest from '../store/actions/users';
+import { registerRequest } from '../store/actions/users';
 // import defaultAvatar from '../assets/images/sign-up-avatar.svg';
 
 function SignUp() {
