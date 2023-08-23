@@ -1,9 +1,10 @@
 .offer {
   min-height: 101vh;
+  padding-top: 15px;
 }
 
 .offer__top {
-  margin-top: 15px;
+  //margin-top: 15px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -746,8 +747,25 @@
 //  display: none;
 //}
 
-.map-offer{
-  background-color: #ADC4DE;
-  width: 100%;
-  height: 100vh;
+.map-box-offer{
+
+ position: relative;
+  padding-top: 15px;
+  &__map{
+    min-height: 101vh;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    &__container{
+
+    }
+  }
+}
+
+.offer__top-map{
+  background: transparent;
+  z-index: 99999999;
 }
