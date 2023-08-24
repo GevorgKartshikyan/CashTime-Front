@@ -11,8 +11,12 @@ import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
+<<<<<<< HEAD
 import { registerRequest } from '../store/actions/users';
 // import defaultAvatar from '../assets/images/sign-up-avatar.svg';
+=======
+import registerRequest from '../store/actions/users';
+>>>>>>> hovhannes
 
 function SignUp() {
   const [activeButton, setActiveButton] = useState(false);
@@ -77,6 +81,7 @@ function SignUp() {
         ...formData,
         avatar: selectedPhoto.file,
       }));
+      console.log(payload);
       if (payload.status === 'ok') {
         navigate('/verify');
       }
@@ -110,7 +115,7 @@ function SignUp() {
             Employee
           </button>
         </div>
-        <form className="signup__start__form" onSubmit={handleRegister}>
+        <form className="signup__start__form" onSubmit={(ev) => handleRegister(ev)}>
           <input
             onChange={handleChange('email')}
             type="email"
