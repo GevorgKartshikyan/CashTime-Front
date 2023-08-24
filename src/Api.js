@@ -8,7 +8,6 @@ const api = axios.create({
 
 class Api {
   static createJob(data) {
-    console.log(data);
     return api.post('/jobs/create-job', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -25,7 +24,7 @@ class Api {
   }
 
   static list(page, limit) {
-    return api.post('/users/list', {
+    return api.get('/users/list', {
       params: {
         page,
         limit,

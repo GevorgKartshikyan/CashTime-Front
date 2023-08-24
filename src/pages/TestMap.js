@@ -6,7 +6,6 @@ import LoadingFile from '../layouts/LoadingFile';
 import mapDefaultThem from '../utils/mapDefaultThem';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
-import Header from '../layouts/Header';
 import markHome from '../assets/images/home-map.svg';
 
 const key = process.env.REACT_APP_MAP_SECRET;
@@ -81,7 +80,7 @@ function Map() {
       maxHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
     }}
     >
-      <Header />
+
       <GoogleMap
         zoom={15}
         center={coordinates}
@@ -96,6 +95,7 @@ function Map() {
         />
         {markers.map((marker, index) => (
           <Marker
+            onClick={() => console.log('a')}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             icon={{

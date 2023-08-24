@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
+import TestMap from './pages/TestMap';
 import Home from './pages/Home';
 import CreateJob from './pages/Create-job';
 import WriteReview from './pages/Write-Review';
@@ -15,11 +16,10 @@ import WorkerOffers from './pages/Worker_Offers';
 import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
-import CreateCvSixth from './components/CreateCVSixth';
 import Admin from './pages/Admin';
-import TestMap from './pages/TestMap';
 import Review from './pages/Review';
 import MapProfile from './components/MapProfile';
+import SignUpStepsFirst from './pages/Sign-Up-Steps-First';
 
 function App() {
   useEffect(() => {
@@ -33,6 +33,7 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-up-steps-first" element={<SignUpStepsFirst />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
         <Route path="/history" element={<History />} />
@@ -43,7 +44,6 @@ function App() {
         <Route path="/offer" element={<Offer />} />
         <Route path="/create-cv" element={<CreateCV />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/test" element={<CreateCvSixth />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<TestMap />} />

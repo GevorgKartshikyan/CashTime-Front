@@ -11,7 +11,12 @@ import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
+<<<<<<< HEAD
 import registerRequest from '../store/actions/users';
+=======
+import { registerRequest } from '../store/actions/users';
+// import defaultAvatar from '../assets/images/sign-up-avatar.svg';
+>>>>>>> 3a3f99f5f5385e1f0a94ce89e72979bd4a75c985
 
 function SignUp() {
   const [activeButton, setActiveButton] = useState(false);
