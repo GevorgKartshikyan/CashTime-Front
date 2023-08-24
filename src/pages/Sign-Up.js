@@ -5,6 +5,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Autocomplete from 'react-google-autocomplete';
 import PasswordIcon from '../assets/images/singup_password.svg';
 import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
@@ -19,10 +20,14 @@ import registerRequest from '../store/actions/users';
 >>>>>>> hovhannes
 
 function SignUp() {
-  const [activeButton, setActiveButton] = useState(false);
   const [passwordFlag, setPasswordFlag] = useState(false);
   const [confirmFlag, setConfirmFlag] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [address, setAddress] = useState({
+    latitude: '',
+    longitude: '',
+    fullAddress: '',
+    location: '',
+  });
   const [phone, setPhoneNumber] = useState('');
   const [formData, setFormData] = useState({
     firstName: '',
@@ -30,8 +35,8 @@ function SignUp() {
     email: '',
     password: '',
     confirmPassword: '',
-    location: '',
     phone,
+    role: 'employer',
   });
   const [selectedPhoto, setSelectedPhoto] = useState({
     fileSrc: '',
@@ -73,12 +78,11 @@ function SignUp() {
   }, [selectedPhoto]);
 
   const handleRegister = useCallback(async (ev) => {
-    console.log(statusRequest);
-    setIsLoading(true);
     ev.preventDefault();
     try {
       const { payload } = await dispatch(registerRequest({
         ...formData,
+        address,
         avatar: selectedPhoto.file,
       }));
       console.log(payload);
@@ -87,10 +91,35 @@ function SignUp() {
       }
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
     }
   }, [formData, selectedPhoto]);
 
+  const handlePlaceSelect = (place) => {
+    try {
+      const { lat, lng } = place.geometry.location;
+      const addressComponents = place.address_components;
+      let country = '';
+      let city = '';
+      for (let i = 0; i < addressComponents.length; i += 1) {
+        const component = addressComponents[i];
+        const componentType = component.types[0];
+        if (componentType === 'country') {
+          country = component.long_name;
+        } else if (componentType === 'locality') {
+          city = component.long_name;
+        }
+      }
+      setAddress({
+        latitude: lat(),
+        longitude: lng(),
+        fullAddress: place.formatted_address,
+        country,
+        city,
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <>
       <Header />
@@ -99,16 +128,16 @@ function SignUp() {
         <div className="signup__start__top__block">
 
           <button
-            onClick={() => setActiveButton(false)}
-            className={activeButton ? 'signup__start__top__block__map'
+            onClick={() => setFormData({ ...formData, role: 'employer' })}
+            className={formData.role === 'employee' ? 'signup__start__top__block__map'
               : 'signup__start__top__block__map rol__active__btn'}
             type="button"
           >
             Employer
           </button>
           <button
-            onClick={() => setActiveButton(true)}
-            className={activeButton ? 'signup__start__top__block__list rol__active__btn'
+            onClick={() => setFormData({ ...formData, role: 'employee' })}
+            className={formData.role === 'employee' ? 'signup__start__top__block__list rol__active__btn'
               : 'signup__start__top__block__list'}
             type="button"
           >
@@ -169,12 +198,16 @@ function SignUp() {
             </button>
 
           </div>
-
-          <input
-            onChange={handleChange('location')}
-            type="text"
-            className="signup__start__form__input"
+          <Autocomplete
             placeholder="Location"
+            className="signup__start__form__input"
+            apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
+            onPlaceSelected={handlePlaceSelect}
+            language="en"
+            options={{
+              componentRestrictions: { country: 'am' },
+              types: ['geocode', 'establishment'],
+            }}
           />
           <div className="signup__start__form__img__box">
             <div className="signup__start__form__img__box__labelBox">
@@ -230,7 +263,7 @@ function SignUp() {
               <img src={FacebookIcon} alt="IMG" />
             </div>
           </div>
-          <button type="submit" className="btn color-blue" disabled={isLoading}>Create my Account</button>
+          <button type="submit" className="btn color-blue" disabled={statusRequest === 'pending'}>Create my Account</button>
           <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
         </form>
       </section>
