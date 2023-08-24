@@ -23,6 +23,10 @@ class Api {
       },
     });
   }
+
+  static activate(data) {
+    return api.post('/users/activate', data);
+  }
 }
 
 export default Api;

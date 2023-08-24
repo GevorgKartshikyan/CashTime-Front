@@ -4,15 +4,19 @@ import { useSelector } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import VerifyImg from '../assets/images/verify_img.png';
 import InputVerify from '../components/InputVerify';
+import Api from '../Api';
 
 function VerifyEmail() {
   const [code, setCode] = useState('');
   const [isCodeCorrect, setIsCodeCorrect] = useState(true);
   const validationCode = useSelector((state) => state.users.user.validationCode);
+  const email = useSelector((state) => state.users.user.email);
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (code === validationCode.toString()) {
+      const { data } = await Api.activate({ validationCode, email });
+      console.log(data);
       setIsCodeCorrect(true);
       navigate('/verified');
     } else {
