@@ -40,6 +40,10 @@ class Api {
   static getProfile() {
     return api.get('/users/profile');
   }
+
+  static activate(data) {
+    return api.post('/users/activate', data);
+  }
 }
 
 export default Api;
