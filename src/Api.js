@@ -32,6 +32,14 @@ class Api {
       },
     });
   }
+
+  static getUser(id) {
+    return api.get(`/users/single/${id}`);
+  }
+
+  static getProfile() {
+    return api.get('/users/profile');
+  }
 }
 
 export default Api;
