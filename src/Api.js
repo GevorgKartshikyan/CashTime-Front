@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const { REACT_APP_API_URL } = process.env;
+// const { REACT_APP_API_URL } = process.env;
 
 const api = axios.create({
-  baseURL: REACT_APP_API_URL,
+  baseURL: 'http://localhost:4000',
 });
 
 class Api {
@@ -12,6 +12,23 @@ class Api {
     return api.post('/jobs/create-job', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
+
+  static register(data) {
+    return api.post('/users/register', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
+
+  static list(page, limit) {
+    return api.post('/users/list', {
+      params: {
+        page,
+        limit,
       },
     });
   }
