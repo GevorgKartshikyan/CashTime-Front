@@ -8,7 +8,6 @@ function CreateCvSixth(props) {
   const { onData } = props;
   const dataFromSixth = useSelector((state) => (state.createCvForm.dataFromChild6));
   const [sixthData, setSixthData] = useState(dataFromSixth ? dataFromSixth.sixthData : { category: '', rateSum: '' });
-  console.log(sixthData);
 
   const customStyles = {
     control: (provided, state) => ({

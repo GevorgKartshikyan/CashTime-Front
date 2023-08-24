@@ -16,7 +16,6 @@ import WorkerOffers from './pages/Worker_Offers';
 import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
-import CreateCvSixth from './components/CreateCVSixth';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
 import MapProfile from './components/MapProfile';
@@ -45,7 +44,6 @@ function App() {
         <Route path="/offer" element={<Offer />} />
         <Route path="/create-cv" element={<CreateCV />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/test" element={<CreateCvSixth />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<TestMap />} />
