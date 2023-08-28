@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CreateJobFirst from '../layouts/CreateJobFirst';
 import CreateJobSecond from '../layouts/CreateJobSecond';
 import StepIndicator from '../layouts/StepIndicator';
@@ -13,7 +13,7 @@ import Header from '../layouts/Header';
 import setJobFormData from '../store/actions/createJobForm';
 
 function CreateJob() {
-  const phoneError = useSelector((state) => state.phoneErrorHandler);
+  // const phoneError = useSelector((state) => state.phoneErrorHandler);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [localData, setLocalData] = useState({});
@@ -31,10 +31,7 @@ function CreateJob() {
   const handleNext = (operator, editCount) => {
     if (operator === '+') {
       setCount((prevState) => {
-        let newCount = prevState + 1;
-        if (phoneError === 'Wrong phone number format' && count === 6) {
-          newCount = prevState;
-        }
+        const newCount = prevState + 1;
         if (prevState < newCount) {
           setIsRight(true);
         }
@@ -93,7 +90,7 @@ function CreateJob() {
         <div className="container-job container">
           {count < 7 ? (
             <div className="button-row">
-              <StepIndicator step={count} editCount={handleNext} />
+              <StepIndicator step={count} count={6} editCount={handleNext} />
               <div className="job__buttons">
                 <button type="button" className="job__btn" onClick={() => handleNext('-')}>
                   Go Back

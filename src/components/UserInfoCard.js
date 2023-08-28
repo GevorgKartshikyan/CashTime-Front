@@ -12,7 +12,6 @@ function UserInfoCard(props) {
   const [btnFlag, setBtnFlag] = useState(true);
   const [deleteFlag, setDeleteFlag] = useState(false);
   const [checkboxFlag, setCheckboxFlag] = useState(true);
-  console.log(checkboxFlag);
   return (
   // buttoni chaperi masov
   // selecti vectori pahy

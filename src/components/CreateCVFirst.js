@@ -19,6 +19,8 @@ function CreateCvFirst(props) {
     state.createCvForm.dataFromChild1.professionValue
   ));
 
+  console.log(languagesData, proffesionValueData);
+
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -67,8 +69,12 @@ function CreateCvFirst(props) {
   }, [languages]);
 
   const handleChange = useCallback((index, key, value) => {
-    const updatedLanguages = [...languages];
-    updatedLanguages[index][key] = value;
+    const updatedLanguages = languages.map((lang, i) => {
+      if (i === index) {
+        return { ...lang, [key]: value };
+      }
+      return lang;
+    });
     setLanguages(updatedLanguages);
   }, [languages]);
   useEffect(() => {

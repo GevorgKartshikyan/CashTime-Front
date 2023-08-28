@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import EditSvg from '../assets/images/edit.svg';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import Button from '../components/Button';
@@ -34,12 +35,14 @@ function CreateJobFinally(props) {
     }
     return '';
   };
-
+  const navigate = useNavigate();
   const handlePostJob = useCallback(async () => {
     const { data } = await Api.createJob({
       data: JSON.stringify(dataForRequest),
       jobImage: file,
     });
+    // validate
+    navigate('/');
     console.log(data);
   }, [dataForRequest, file]);
 
@@ -63,15 +66,20 @@ function CreateJobFinally(props) {
       </div>
       {dataFromChild1 ? <p className="job__finally__title">{dataFromChild1}</p> : null}
       <div className="job__display__row">
-        <p className="job__finally-price">
-          {selectedMethod}
+        <div>
+          <p className="job__finally-price">
+            {selectedMethod}
+
+          </p>
+        </div>
+        <div>
           <span className="job__finally-price prices">
             {maxPrice ? `${maxPrice}$` : getPriceRange()}
           </span>
-        </p>
+        </div>
       </div>
       <div className="job__display__row">
-        <div className="job-finally-skills">
+        <div>
           <p className="job-finally-skill-title">SKILLS</p>
           {
             dataFromChild2?.map((e) => (
@@ -89,37 +97,44 @@ function CreateJobFinally(props) {
       <div className="job__display__row">
         <div>
           <span className="job-finally-skill-title">Scope</span>
+        </div>
+        <div>
           <span className="job-finally-skill-level">{dataFromChild3}</span>
         </div>
       </div>
       <div className="job__display__row">
         <div>
           <span className="job-finally-skill-title">Location</span>
+        </div>
+        <div>
           <span className="job-finally-skill-level">{`${address.country ?? ''} ${address.city ?? ''}`}</span>
         </div>
       </div>
       <div className="job__display__row">
         <div>
           <span className="job-finally-skill-title">Address</span>
+        </div>
+        <div>
           <span className="job-finally-skill-level">{address.fullAddress}</span>
         </div>
       </div>
       <div className="job__display__row">
         <div>
           <span className="job-finally-skill-title">Bio</span>
+        </div>
+        <div>
           <p className="job-finally-skill-level">{dataFromChild5}</p>
         </div>
       </div>
       <div className="job__display__row">
         <div>
           <span className="job-finally-skill-title">Phone Number</span>
+        </div>
+        <div>
           <span className="job-finally-skill-level">{phoneNumber}</span>
         </div>
       </div>
       <div className="job-finally-buttons-box">
-        <div>
-          <Button className="btn color-blue" title="Save as a Draft" />
-        </div>
         <div role="presentation" onClick={handlePostJob}>
           <Button className="btn color-blue" title="Post This Job" />
         </div>

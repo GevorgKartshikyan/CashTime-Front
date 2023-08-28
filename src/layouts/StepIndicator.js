@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
 function StepIndicator(props) {
-  const { step, editCount } = props;
+  const { step, editCount, count } = props;
 
   const circleTransition = {
     type: 'tween',
@@ -19,7 +19,7 @@ function StepIndicator(props) {
 
   return (
     <div className="step-indicator">
-      {Array.from({ length: 6 }, (_, index) => (
+      {Array.from({ length: count }, (_, index) => (
         <div className="step-container" key={index}>
           <div className="circles-container">
             <svg onClick={() => { editCount(null, index + 1); }} className="big-circle" xmlns="http://www.w3.org/2000/svg" width="68" height="71" viewBox="0 0 68 71" fill="none">
@@ -49,7 +49,7 @@ function StepIndicator(props) {
               </motion.svg>
             )}
           </div>
-          {index !== 5 && (
+          {index !== count - 1 && (
             <svg className="circles-line" xmlns="http://www.w3.org/2000/svg" width="90" height="4" viewBox="0 0 90 4" fill="none">
               <rect x="0.0960693" y="0.0917969" width="89.4611" height="3.30914" fill="#D1D5DB" />
             </svg>
@@ -63,6 +63,7 @@ function StepIndicator(props) {
 StepIndicator.propTypes = {
   step: PropTypes.number.isRequired,
   editCount: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export default StepIndicator;

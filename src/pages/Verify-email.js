@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
+import Api from '../Api';
 import VerifyImg from '../assets/images/verify_img.png';
 import InputVerify from '../components/InputVerify';
+import { getProfile, getSingleUser } from '../store/actions/users';
 
 function VerifyEmail() {
   const [code, setCode] = useState('');
   const [isCodeCorrect, setIsCodeCorrect] = useState(true);
   const validationCode = useSelector((state) => state.users.user.validationCode);
+  const email = useSelector((state) => state.users.user.email);
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSingleUser);
+    dispatch(getProfile);
+  }, []);
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (code === validationCode.toString()) {
+      const { data } = await Api.activate({ validationCode, email });
+      console.log(data);
       setIsCodeCorrect(true);
       navigate('/verified');
     } else {

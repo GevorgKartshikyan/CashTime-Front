@@ -1,13 +1,10 @@
 .sign-up-steps-first{
-  padding-top: 250px;
-  padding-bottom: 90px;
-  height: 90vh;
-
+  padding-top: 100px;
+  width: 100%;
   &__container{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
   }
   &__buttons-block{
     display: flex;
@@ -32,7 +29,6 @@
     line-height: normal;
   }
   &__block{
-    margin-left: 80px;
 
     &__div{
       width: 47%;
@@ -92,7 +88,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-bottom: 51px;
+      margin-top: 100px;
       &__num{
         width: 80px;
         height: 80px;
@@ -124,6 +120,4 @@
     }
   }
 }
-.sign-up-steps-first.new-css{
-  padding-top: 150px;
-}
+

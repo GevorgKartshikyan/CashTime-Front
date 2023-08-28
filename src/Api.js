@@ -8,7 +8,6 @@ const api = axios.create({
 
 class Api {
   static createJob(data) {
-    console.log(data);
     return api.post('/jobs/create-job', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -28,13 +27,20 @@ class Api {
     });
   }
 
-  static list(page, limit) {
-    return api.post('/users/list', {
-      params: {
-        page,
-        limit,
-      },
-    });
+  static list(page, limit, role) {
+    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}`);
+  }
+
+  static getUser(id) {
+    return api.get(`/users/single/${id}`);
+  }
+
+  static getProfile() {
+    return api.get('/users/profile');
+  }
+
+  static activate(data) {
+    return api.post('/users/activate', data);
   }
 }
 
