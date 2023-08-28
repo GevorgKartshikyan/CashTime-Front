@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useDispatch } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import HomeJob from '../components/Home-job';
 import JoinImg from '../assets/images/homejoin.svg';
