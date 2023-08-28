@@ -3,7 +3,7 @@ import { listRequest, registerRequest } from '../actions/users';
 
 const initialState = {
   user: {},
-  usersData: {},
+  users: [],
   registerRequestStatus: '',
 };
 
@@ -15,7 +15,7 @@ export default createReducer(initialState, (builder) => {
       return { ...state, user, registerRequestStatus: 'fulfilled' };
     })
     .addCase(listRequest.fulfilled, (state, action) => {
-      const { usersData } = action.payload;
-      return { ...state, usersData };
+      const { users } = action.payload;
+      state.users = users;
     });
 });

@@ -12,12 +12,13 @@ export const registerRequest = createAsyncThunk('/users/registerRequest', async 
 });
 export const listRequest = createAsyncThunk('/users/listRequest', async (payload, thunkAPI) => {
   try {
-    console.log(payload);
+    // console.log(payload);
     const {
       page,
       limit,
+      role,
     } = payload;
-    const { data } = await Api.list(page, limit);
+    const { data } = await Api.list(page, limit, role);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);
