@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
+import TestMap from './pages/TestMap';
 import Home from './pages/Home';
 import CreateJob from './pages/Create-job';
 import WriteReview from './pages/Write-Review';
@@ -17,7 +18,6 @@ import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
 import CreateCvSixth from './components/CreateCVSixth';
 import Admin from './pages/Admin';
-import TestMap from './pages/TestMap';
 import Review from './pages/Review';
 import MapProfile from './components/MapProfile';
 import Profile from './pages/Profile';

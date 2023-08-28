@@ -6,7 +6,6 @@ import LoadingFile from '../layouts/LoadingFile';
 import mapDefaultThem from '../utils/mapDefaultThem';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
-// import MapProfile from '../components/MapProfile';
 import markHome from '../assets/images/home-map.svg';
 
 const key = process.env.REACT_APP_MAP_SECRET;
