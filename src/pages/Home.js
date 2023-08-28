@@ -12,6 +12,8 @@ import SearchIcon from '../assets/images/Search_Icon.svg';
 import JobHiring from '../layouts/Job_hiring';
 import HomeProPage from '../components/HomeProPage';
 
+// messages-i, offers-i vra click eneluc error destroy is not a function
+
 function Home() {
   const { t } = useTranslation();
   return (
