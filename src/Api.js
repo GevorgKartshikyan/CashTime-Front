@@ -33,6 +33,7 @@ class Api {
   }
 
   static getUser(id) {
+    console.log(id);
     return api.get(`/users/single/${id}`);
   }
 

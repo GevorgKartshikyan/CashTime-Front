@@ -18,8 +18,7 @@ import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
-import MapProfile from './components/MapProfile';
-import SignUpStepsFirst from './pages/Sign-Up-Steps-First';
+import Profile from './pages/Profile';
 
 function App() {
   useEffect(() => {
@@ -33,7 +32,6 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-up-steps-first" element={<SignUpStepsFirst />} />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/verified" element={<Verified />} />
         <Route path="/history" element={<History />} />
@@ -47,7 +45,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<TestMap />} />
-        <Route path="/mprofile" element={<MapProfile />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
