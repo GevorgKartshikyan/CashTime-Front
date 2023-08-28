@@ -1,89 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReactApexChart from 'react-apexcharts';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import employers from '../assets/images/employers.svg';
 import employees from '../assets/images/employees.svg';
 import services from '../assets/images/services.svg';
 import Announcement from './Announcement';
+import { jobListRequestFromAdmin } from '../store/actions/jobsRequest';
+import charDataObj from '../utils/charDataObj';
 
 function Dashboard() {
-  const items = 905;
-  const [chartData] = useState({
-    series: [
-      {
-        name: 'series1',
-        data: [31, 40, 28, 51, 42, 109, 100],
-      },
-      {
-        name: 'series2',
-        data: [11, 32, 45, 32, 34, 52, 41],
-      },
-    ],
-    options: {
-      chart: {
-        height: 350,
-        type: 'area',
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      xaxis: {
-        type: 'datetime',
-        categories: [
-          '2018-09-19T00:00:00.000Z',
-          '2018-09-19T01:30:00.000Z',
-          '2018-09-19T02:30:00.000Z',
-          '2018-09-19T03:30:00.000Z',
-          '2018-09-19T04:30:00.000Z',
-          '2018-09-19T05:30:00.000Z',
-          '2018-09-19T06:30:00.000Z',
-        ],
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
-      },
-    },
-  });
-  const arr = [
-    {
-      id: 1,
-      name: 'Alice',
-      lastname: 'Muradyan',
-      userImage: 'https://picsum.photos/200',
-      title: 'Looking for a builder who will help me to build a small house with me ',
-      text: 'Builder, Expert, hourly rate, Design skills, Painting, flooring  ',
-    },
-    {
-      id: 2,
-      name: 'Bob',
-      lastname: 'Muradyan',
-      userImage: 'https://picsum.photos/200',
-      title: 'Looking for a builder who will help me to build a small house with me ',
-      text: 'Builder, Expert, hourly rate, Design skills, Painting, flooring  ',
-    },
-    {
-      id: 3,
-      name: 'Charlie',
-      lastname: 'Muradyan',
-      userImage: 'https://picsum.photos/200',
-      title: 'Looking for a builder who will help me to build a small house with me ',
-      text: 'Builder, Expert, hourly rate, Design skills, Painting, flooring  ',
-    },
-    {
-      id: 4,
-      name: 'David',
-      lastname: 'Muradyan',
-      userImage: 'https://picsum.photos/200',
-      title: 'Looking for a builder who will help me to build a small house with me ',
-      text: 'Builder, Expert, hourly rate, Design skills, Painting, flooring  ',
-    },
-  ];
+  const [chartData] = useState(charDataObj);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const jobsAdmin = useSelector((state) => state.jobsRequest.jobListAdmin);
+  const currentPageAdmin = useSelector((state) => state.jobsRequest.currentPageAdmin);
+  const totalPagesAdmin = useSelector((state) => state.jobsRequest.totalPagesAdmin);
+  const page = parseInt(searchParams.get('page') || 1, 10);
+  const limit = parseInt(searchParams.get('limit') || 5, 10);
 
+  useEffect(() => {
+    dispatch(jobListRequestFromAdmin({ page, limit }));
+  }, [page]);
+  const handlePageChange = (event) => {
+    const selectedPage = event.selected + 1;
+    setSearchParams({ page: selectedPage, limit });
+  };
   return (
     <div className="admin__row__dashboard">
       <div className="admin__row__dashboard__title">
@@ -131,13 +74,16 @@ function Dashboard() {
           <h3>New Announcements</h3>
         </div>
         <div className="announcements__list">
-          {arr.map(((e) => (
+          {jobsAdmin.map(((e) => (
             <Announcement
               key={e.id}
-              name={e.name}
-              lastname={e.lastname}
-              userImage={e.userImage}
-              text={e.text}
+              name={e?.['creator.firstName']}
+              lastname={e?.['creator?.lastName']}
+              jobPhoto={e?.jobPhoto}
+              skills={e.skills}
+              description={e?.description}
+              price={e?.price}
+              experience={e.experience}
               title={e.title}
             />
           )))}
@@ -145,16 +91,15 @@ function Dashboard() {
             activeClassName="item active-page"
             breakClassName="item break-me"
             breakLabel=""
-              // maxPageCount={5}
             containerClassName="pagination adminPaginate"
             disabledClassName="disabled-page"
             marginPagesDisplayed={0}
             nextClassName="item next"
-              // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
-            onPageChange={() => null}
-            pageCount={items}
+            onPageChange={handlePageChange}
+            pageCount={totalPagesAdmin}
             pageClassName="item pagination-page "
             pageRangeDisplayed={5}
+            forcePage={currentPageAdmin - 1}
             previousClassName="item previous"
           />
         </div>

@@ -3,6 +3,7 @@ import createCvForm from './createCvForm';
 import phoneErrorHandler from './phoneErrorHandler';
 import users from './users';
 import messages from './messages';
+import jobsRequest from './jobsRequest';
 
 export default {
   messages,
@@ -10,4 +11,5 @@ export default {
   createCvForm,
   phoneErrorHandler,
   users,
+  jobsRequest,
 };
