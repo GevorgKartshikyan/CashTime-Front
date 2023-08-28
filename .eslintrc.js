@@ -35,5 +35,8 @@ module.exports = {
         some: ['nesting', 'id'],
       },
     }],
+    'import/prefer-default-export': 0,
+    'no-param-reassign': 0,
+    'react/prop-types': 'off',
   },
 };
