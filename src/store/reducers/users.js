@@ -1,12 +1,15 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { listRequest, registerRequest, loginRequest } from '../actions/users';
+import {
+  listRequest, registerRequest, loginRequest, getProfile, getSingleUser,
+} from '../actions/users';
 
 const initialState = {
   user: {},
-  users: [],
+  singleUser: {},
+  profile: {},
+  usersData: {},
   registerRequestStatus: '',
   token: '',
-  profile: {},
 };
 
 export default createReducer(initialState, (builder) => {
@@ -29,6 +32,16 @@ export default createReducer(initialState, (builder) => {
     .addCase(listRequest.fulfilled, (state, action) => {
       const { users } = action.payload;
       state.users = users;
+      const { usersData } = action.payload;
+      return { ...state, usersData };
+    })
+    .addCase(getSingleUser.fulfilled, (state, action) => {
+      const { user } = action.payload;
+      return { ...state, singleUser: user };
+    })
+    .addCase(getProfile.fulfilled, (state, action) => {
+      const { user } = action.payload;
+      return { ...state, profile: user };
     });
   // .addCase(loginRequest.rejected, (state, action) => (state));
 });

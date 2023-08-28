@@ -1,15 +1,13 @@
 .profile {
   padding-left: 25%;
   padding-right: 25%;
-  padding-top: 206px;
-
+  padding-top: 50px;
   &__row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-
     &__info {
       &__svg{
         width: 20px;
