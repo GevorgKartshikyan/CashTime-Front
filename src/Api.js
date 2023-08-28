@@ -23,13 +23,8 @@ class Api {
     });
   }
 
-  static list(page, limit) {
-    return api.get('/users/list', {
-      params: {
-        page,
-        limit,
-      },
-    });
+  static list(page, limit, role) {
+    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}`);
   }
 
   static getUser(id) {

@@ -8,17 +8,22 @@ import UserInfoCard from './UserInfoCard';
 import PaginationNext from './PaginationNextLabel';
 import PaginationPreviousLabel from './PaginationPreviousLabel';
 import { listRequest } from '../store/actions/users';
+
 // import { ReactComponent as paginationNext } from '../assets/images/paginate_next.svg';
 
-function AdminEmployees() {
+function AdminEmployers() {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listRequest({ page: 1, limit: 5, role: 'employee' }));
+    dispatch(listRequest({
+      page: 1,
+      limit: 5,
+      role: 'employer',
+    }));
   }, []);
 
-  console.log(users, 'users 1');
+  console.log(users, 'users 2');
 
   const items = 905;
   const customStyles = {
@@ -79,7 +84,11 @@ function AdminEmployees() {
       <div className="admin__employees__search">
         <label htmlFor="admin-employees-search" className="admin__employees__search__label">
           <div className="admin__employees__search__label__box">
-            <img alt="img" src={adminEmployeesSearchIcon} className="admin__employees__search__label__box__img" />
+            <img
+              alt="img"
+              src={adminEmployeesSearchIcon}
+              className="admin__employees__search__label__box__img"
+            />
           </div>
           <input
             id="admin-employees-search"
@@ -163,4 +172,4 @@ function AdminEmployees() {
   );
 }
 
-export default AdminEmployees;
+export default AdminEmployers;
