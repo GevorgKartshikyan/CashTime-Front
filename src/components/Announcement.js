@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import idea from '../assets/images/Idea.svg';
+import { activateJobAdmin, deleteJobAdmin } from '../store/actions/jobsRequest';
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -8,12 +10,28 @@ function Announcement(props) {
     description,
     jobPhoto,
     name,
+    id,
     lastname,
     skills,
     price,
     experience,
     title,
   } = props;
+  const dispatch = useDispatch();
+  const handleActivateJob = (jobId) => {
+    try {
+      dispatch(activateJobAdmin({ jobId }));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const handleDeleteJob = (jobId) => {
+    try {
+      dispatch(deleteJobAdmin({ jobId }));
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <div className="announcement">
       <div className="announcement__logo">
@@ -42,8 +60,8 @@ function Announcement(props) {
           )}
           {experience ? <span>{experience}</span> : <span>!!!NO EXPERIENCE</span>}
           <span>{price.method}</span>
-          <button className="announcement_accept" type="submit">Accept</button>
-          <button className="announcement_delete" type="submit">Delete</button>
+          <button className="announcement_accept" type="submit" onClick={() => handleActivateJob(id)}>Accept</button>
+          <button className="announcement_delete" type="submit" onClick={() => handleDeleteJob(id)}>Delete</button>
         </div>
       </div>
       <div className="announcement__user">

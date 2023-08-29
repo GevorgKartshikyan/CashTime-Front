@@ -7,8 +7,16 @@ const api = axios.create({
 });
 
 class Api {
+  static deleteJob(jobId) {
+    return api.post('/jobs/job-delete', jobId);
+  }
+
   static listFromAdmin(page, limit) {
     return api.get(`/jobs/list-admin?page=${page}&limit=${limit}`);
+  }
+
+  static activateJob(jobId) {
+    return api.post('/jobs/job-activate', jobId);
   }
 
   static createJob(data) {
