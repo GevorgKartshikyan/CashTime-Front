@@ -11,7 +11,9 @@ function CreateCvFinally(props) {
   const dataFromChild5 = useSelector((state) => state.createCvForm.dataFromChild5);
   const dataFromChild6 = useSelector((state) => state.createCvForm.dataFromChild6);
   const dataFromChild7 = useSelector((state) => state.createCvForm.dataFromChild7);
-  console.log('data1', dataFromChild1, 'data2', dataFromChild2, 'data3', dataFromChild3, 'data5', dataFromChild5, 'data6', dataFromChild6, 'data7', dataFromChild7);
+  // console.log('data1', dataFromChild1,
+  // 'data2', dataFromChild2, 'data3', dataFromChild3,
+  // 'data5', dataFromChild5, 'data6', dataFromChild6, 'data7', dataFromChild7);
   const { file, editCount } = props;
   const [dataForRequest, setDataForRequest] = useState({});
   const dataForUpdate = useSelector((state) => state.createCvForm);
