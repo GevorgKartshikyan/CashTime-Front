@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  listRequest, registerRequest, loginRequest, getProfile, getSingleUser,
+  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate,
 } from '../actions/users';
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
   profile: {},
   usersData: {},
   registerRequestStatus: '',
-  token: '',
+  token: window.localStorage.getItem('token') ?? '',
 };
 
 export default createReducer(initialState, (builder) => {
@@ -19,6 +19,7 @@ export default createReducer(initialState, (builder) => {
       const { user } = action.payload;
       return { ...state, user, registerRequestStatus: 'fulfilled' };
     })
+    .addCase(registerRequest.rejected, (state) => ({ ...state, registerRequestStatus: 'error' }))
     .addCase(loginRequest.fulfilled, (state, action) => {
       const { token, users } = action.payload;
       localStorage.setItem('token', token);
@@ -34,6 +35,11 @@ export default createReducer(initialState, (builder) => {
       state.users = users;
       const { usersData } = action.payload;
       return { ...state, usersData };
+    })
+    .addCase(activate.fulfilled, (state, action) => {
+      const { token } = action.payload;
+      localStorage.setItem('token', token);
+      return { ...state, token };
     })
     .addCase(getSingleUser.fulfilled, (state, action) => {
       const { user } = action.payload;

@@ -38,6 +38,11 @@ function InputVerify(props) {
           }}
           type="text"
           maxLength={1}
+          onKeyPress={(e) => {
+            if (!/^\d$/.test(e.key)) {
+              e.preventDefault();
+            }
+          }}
           onChange={(e) => handleInputChange(index, e)}
           onKeyDown={(e) => handleKeyDown(index, e)}
         />

@@ -6,13 +6,13 @@ import 'react-phone-input-2/lib/style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Autocomplete from 'react-google-autocomplete';
+import { toast, ToastContainer } from 'react-toastify';
 import PasswordIcon from '../assets/images/singup_password.svg';
-import GoogleIcon from '../assets/images/Signup_google_icon.svg';
-import FacebookIcon from '../assets/images/Signup_facebook_icon.svg';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
 import { registerRequest } from '../store/actions/users';
+import LoginGoogle from '../components/LoginGoogle';
 
 function SignUp() {
   const [passwordFlag, setPasswordFlag] = useState(false);
@@ -32,6 +32,7 @@ function SignUp() {
     confirmPassword: '',
     phone,
     role: 'employer',
+    type: '',
   });
   const [selectedPhoto, setSelectedPhoto] = useState({
     fileSrc: '',
@@ -74,15 +75,19 @@ function SignUp() {
 
   const handleRegister = useCallback(async (ev) => {
     ev.preventDefault();
+    console.log(statusRequest);
     try {
       const { payload } = await dispatch(registerRequest({
         ...formData,
         address,
         avatar: selectedPhoto.file,
       }));
-      console.log(payload);
-      if (payload.status === 'ok') {
+      if (payload.status === 'ok' || payload.status === 'fulfilled') {
         navigate('/verify');
+      }
+      if (payload.status === 'error') {
+        toast.error(`${payload?.message}`);
+        console.log(`${payload?.message}`);
       }
     } catch (error) {
       console.log(error);
@@ -118,6 +123,18 @@ function SignUp() {
   return (
     <>
       <Header />
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <section className="signup__start">
         <h3 className="signup__start__title">Sign Up</h3>
         <div className="signup__start__top__block">
@@ -250,14 +267,7 @@ function SignUp() {
             <h3 className="signup__start__signup__with__info">Or Sign up With</h3>
             <span className="signup__start__signup__with__right" />
           </div>
-          <div className="signup__start__icon">
-            <div className="signup__start__icon__boxes">
-              <img src={GoogleIcon} alt="IMG" />
-            </div>
-            <div className="signup__start__icon__boxes">
-              <img src={FacebookIcon} alt="IMG" />
-            </div>
-          </div>
+          <LoginGoogle />
           <button type="submit" className="btn color-blue" disabled={statusRequest === 'pending'}>Create my Account</button>
           <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
         </form>

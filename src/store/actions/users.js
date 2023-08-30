@@ -21,7 +21,6 @@ export const loginRequest = createAsyncThunk('users/loginRequest', async (payloa
 });
 export const listRequest = createAsyncThunk('/users/listRequest', async (payload, thunkAPI) => {
   try {
-    // console.log(payload);
     const {
       page,
       limit,
@@ -33,7 +32,10 @@ export const listRequest = createAsyncThunk('/users/listRequest', async (payload
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
-//  default registerRequest;
+export const activate = createAsyncThunk('users/activate', async (payload) => {
+  const { data } = await Api.activate(payload);
+  return data;
+});
 export const getSingleUser = createAsyncThunk('users/getSingleUser', async (payload) => {
   const { data } = await Api.getUser(payload);
   return data;
