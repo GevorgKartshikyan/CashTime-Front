@@ -1,9 +1,6 @@
-import React, {
-  useCallback, useEffect, useRef, useState,
-} from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import UserImage from '../assets/images/default-avatar-icon.jpg';
@@ -15,8 +12,6 @@ import educationSvg from '../assets/images/education.svg';
 import globeSvg from '../assets/images/globe.svg';
 import upLoad from '../assets/images/upload.svg';
 import imgUpload from '../assets/images/img_upload_svg.svg';
-// import EditSvg from '../assets/images/edit.svg';
-import { getSingleUser } from '../store/actions/users';
 
 const mapKey = process.env.REACT_APP_MAP_SECRET;
 function Profile() {
@@ -110,13 +105,6 @@ function Profile() {
       console.error(e);
     }
   };
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.users.singleUser);
-  console.log(user);
-  useEffect(() => {
-    dispatch(getSingleUser(7));
-  }, []);
-
   return (
     <>
       <Header />
@@ -211,7 +199,7 @@ function Profile() {
               <h2 className="profile__modal__edit__box__container__text">Phone Number</h2>
               <div>
                 <PhoneInput
-                // onlyCountries={onlyCountries}
+                  // onlyCountries={onlyCountries}
                   onChange={handleEditInfo('phoneNumber')}
                   country="am"
                   value={userInfo.phoneNumber}
@@ -252,6 +240,7 @@ function Profile() {
             </form>
           </div>
         ) : null}
+
       </div>
       <Footer />
     </>
