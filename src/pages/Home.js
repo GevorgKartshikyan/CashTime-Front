@@ -13,9 +13,13 @@ import JobHiring from '../layouts/Job_hiring';
 import HomeProPage from '../components/HomeProPage';
 
 // messages-i, offers-i vra click eneluc error destroy is not a function
-
 function Home() {
+  // const dispatch = useDispatch();
   const { t } = useTranslation();
+  // useEffect(async () => {
+  //   const { payload } = await dispatch(listRequest({ page: 2, limit: 2 }));
+  //   console.log(payload);
+  // }, []);
   return (
     <Wrapper>
       <section className="join">

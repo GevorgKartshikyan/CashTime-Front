@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
-import TestMap from './pages/TestMap';
 import Home from './pages/Home';
+import TestMap from './pages/TestMap';
 import CreateJob from './pages/Create-job';
 import WriteReview from './pages/Write-Review';
 import UserRating from './pages/User-Rating';
@@ -18,7 +18,6 @@ import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
-import MapProfile from './components/MapProfile';
 import Profile from './pages/Profile';
 
 function App() {
@@ -48,7 +47,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<TestMap />} />
-        <Route path="/mprofile" element={<MapProfile />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
