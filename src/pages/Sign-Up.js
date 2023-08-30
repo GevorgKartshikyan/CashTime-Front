@@ -14,6 +14,7 @@ import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
 import { registerRequest } from '../store/actions/users';
 
+const mapKey = process.env.REACT_APP_MAP_SECRET;
 function SignUp() {
   const [passwordFlag, setPasswordFlag] = useState(false);
   const [confirmFlag, setConfirmFlag] = useState(false);
@@ -196,7 +197,7 @@ function SignUp() {
           <Autocomplete
             placeholder="Location"
             className="signup__start__form__input"
-            apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
+            apiKey={mapKey}
             onPlaceSelected={handlePlaceSelect}
             language="en"
             options={{
