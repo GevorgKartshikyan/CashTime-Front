@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { listRequest, registerRequest } from '../actions/users';
 
 const initialState = {
+  // test
   user: {},
   users: [],
   registerRequestStatus: '',
