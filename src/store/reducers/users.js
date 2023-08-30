@@ -6,6 +6,7 @@ const initialState = {
   // qwdqwd
   user: {},
   users: [],
+
   registerRequestStatus: '',
 };
 
