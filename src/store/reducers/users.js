@@ -5,6 +5,8 @@ import {
 
 const initialState = {
   user: {},
+  users: [],
+
   singleUser: {},
   profile: {},
   usersData: {},
@@ -43,5 +45,4 @@ export default createReducer(initialState, (builder) => {
       const { user } = action.payload;
       return { ...state, profile: user };
     });
-  // .addCase(loginRequest.rejected, (state, action) => (state));
 });
