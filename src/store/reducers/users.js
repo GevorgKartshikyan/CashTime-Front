@@ -34,8 +34,6 @@ export default createReducer(initialState, (builder) => {
     .addCase(listRequest.fulfilled, (state, action) => {
       const { users } = action.payload;
       state.users = users;
-      const { usersData } = action.payload;
-      return { ...state, usersData };
     })
     .addCase(getSingleUser.fulfilled, (state, action) => {
       const { user } = action.payload;
