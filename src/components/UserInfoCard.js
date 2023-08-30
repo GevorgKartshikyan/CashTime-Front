@@ -28,6 +28,7 @@ function UserInfoCard(props) {
           <h3 className="admin__employees__info__titles__name__text">
             {firstName}
             {' '}
+            <br />
             {lastName}
           </h3>
         </div>
@@ -66,7 +67,7 @@ function UserInfoCard(props) {
         </div>
         <div className="admin__employees__info__titles__action">
           <button onClick={() => setDeleteFlag(!deleteFlag)} className="admin__employees__info__titles__action__btn" type="button">
-            <img src={dotsIcon} alt="img" />
+            <img className="img__action__admin__one" src={dotsIcon} alt="img" />
           </button>
           {
           deleteFlag ? <button type="button" className="admin__employees__info__titles__action__delete">Delete</button> : null

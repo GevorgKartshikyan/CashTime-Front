@@ -5,6 +5,8 @@ import {
 
 const initialState = {
   user: {},
+  users: [],
+
   singleUser: {},
   profile: {},
   usersData: {},
@@ -33,8 +35,6 @@ export default createReducer(initialState, (builder) => {
     .addCase(listRequest.fulfilled, (state, action) => {
       const { users } = action.payload;
       state.users = users;
-      const { usersData } = action.payload;
-      return { ...state, usersData };
     })
     .addCase(activate.fulfilled, (state, action) => {
       const { token } = action.payload;
@@ -49,5 +49,4 @@ export default createReducer(initialState, (builder) => {
       const { user } = action.payload;
       return { ...state, profile: user };
     });
-  // .addCase(loginRequest.rejected, (state, action) => (state));
 });

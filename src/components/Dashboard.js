@@ -23,6 +23,9 @@ function Dashboard() {
   useEffect(() => {
     dispatch(jobListRequestFromAdmin({ page, limit }));
   }, [page]);
+  useEffect(() => {
+    setSearchParams({ page, limit });
+  }, []);
   const handlePageChange = (event) => {
     const selectedPage = event.selected + 1;
     setSearchParams({ page: selectedPage, limit });
@@ -77,8 +80,9 @@ function Dashboard() {
           {jobsAdmin.map(((e) => (
             <Announcement
               key={e.id}
+              id={e.id}
               name={e?.['creator.firstName']}
-              lastname={e?.['creator?.lastName']}
+              lastname={e?.['creator.lastName']}
               jobPhoto={e?.jobPhoto}
               skills={e.skills}
               description={e?.description}
@@ -87,6 +91,7 @@ function Dashboard() {
               title={e.title}
             />
           )))}
+          {jobsAdmin?.length > 0 && (
           <ReactPaginate
             activeClassName="item active-page"
             breakClassName="item break-me"
@@ -102,6 +107,7 @@ function Dashboard() {
             forcePage={currentPageAdmin - 1}
             previousClassName="item previous"
           />
+          )}
         </div>
       </div>
     </div>

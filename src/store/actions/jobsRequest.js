@@ -19,3 +19,19 @@ export const jobListRequestFromAdmin = createAsyncThunk('/jobsRequest/jobListReq
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const activateJobAdmin = createAsyncThunk('/jobsRequest/activateJobAdmin', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.activateJob(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+export const deleteJobAdmin = createAsyncThunk('/jobsRequest/deleteJobAdmin', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.deleteJob(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
