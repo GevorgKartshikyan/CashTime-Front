@@ -74,6 +74,8 @@ function AdminEmployees() {
       label: 'Newest',
     }];
 
+  console.log(users);
+
   return (
     <div className="admin__employees">
       <div className="admin__employees__search">
