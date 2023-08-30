@@ -3,6 +3,7 @@ import { listRequest, registerRequest } from '../actions/users';
 
 const initialState = {
   // test
+  // qwdqwd
   user: {},
   users: [],
   registerRequestStatus: '',
