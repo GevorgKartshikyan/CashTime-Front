@@ -1,18 +1,34 @@
 import axios from 'axios';
 
-// const { REACT_APP_API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 
 const api = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: REACT_APP_API_URL,
 });
 
 class Api {
+  static deleteJob(jobId) {
+    return api.post('/jobs/job-delete', jobId);
+  }
+
+  static listFromAdmin(page, limit) {
+    return api.get(`/jobs/list-admin?page=${page}&limit=${limit}`);
+  }
+
+  static activateJob(jobId) {
+    return api.post('/jobs/job-activate', jobId);
+  }
+
   static createJob(data) {
-    return api.post('/jobs/create-job', data, {
+    return api.post('/jobs/job-create', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
+  }
+
+  static login(email, password) {
+    return api.post('/users/login', { email, password });
   }
 
   static register(data) {
@@ -28,6 +44,7 @@ class Api {
   }
 
   static getUser(id) {
+    console.log(id);
     return api.get(`/users/single/${id}`);
   }
 

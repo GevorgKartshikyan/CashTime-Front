@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { io } from 'socket.io-client';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import ringtone from '../../assets/audio/message.mp3';

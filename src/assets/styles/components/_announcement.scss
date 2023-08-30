@@ -25,7 +25,7 @@
         }
         &> .announcement__info__text{
           display: flex;
-          & > p{
+          & > span{
             color: #000;
             font-feature-settings: 'clig' off, 'liga' off;
             font-family: "lato", sans-serif;
@@ -33,7 +33,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 20px;
-            margin-right: 40px;
+            margin-right: 9px;
           }
           & > button{
             border-radius: 22px;
