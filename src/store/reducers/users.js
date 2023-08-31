@@ -6,12 +6,13 @@ import {
 const initialState = {
   user: {},
   users: [],
-
   singleUser: {},
   profile: {},
   usersData: {},
   registerRequestStatus: '',
   token: '',
+  currentPage: 0,
+  totalPages: 0,
 };
 
 export default createReducer(initialState, (builder) => {
@@ -32,8 +33,13 @@ export default createReducer(initialState, (builder) => {
       };
     })
     .addCase(listRequest.fulfilled, (state, action) => {
-      const { users } = action.payload;
+      const {
+        users, currentPage, totalPages, search,
+      } = action.payload;
       state.users = users;
+      state.currentPage = currentPage;
+      state.totalPages = totalPages;
+      state.search = search;
     })
     .addCase(getSingleUser.fulfilled, (state, action) => {
       const { user } = action.payload;

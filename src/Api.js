@@ -3,7 +3,7 @@ import axios from 'axios';
 const { REACT_APP_API_URL } = process.env;
 
 const api = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: REACT_APP_API_URL,
 });
 
 class Api {
@@ -39,8 +39,8 @@ class Api {
     });
   }
 
-  static list(page, limit, role) {
-    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}`);
+  static list(page, limit, role, search) {
+    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}`);
   }
 
   static getUser(id) {
