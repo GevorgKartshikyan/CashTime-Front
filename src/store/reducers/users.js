@@ -10,13 +10,9 @@ const initialState = {
   profile: {},
   usersData: {},
   registerRequestStatus: '',
-<<<<<<< HEAD
-  token: '',
   currentPage: 0,
   totalPages: 0,
-=======
   token: window.localStorage.getItem('token') ?? '',
->>>>>>> 0af7806dd1e197ef133abdcb0d5e5af4bc2c6349
 };
 
 export default createReducer(initialState, (builder) => {
