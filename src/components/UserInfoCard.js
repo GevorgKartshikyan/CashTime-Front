@@ -84,7 +84,7 @@ UserInfoCard.defaultProps = {
 UserInfoCard.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.number.isRequired,
   profession: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   img: PropTypes.string,

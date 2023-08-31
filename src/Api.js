@@ -43,8 +43,8 @@ class Api {
     });
   }
 
-  static list(page, limit, role) {
-    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}`);
+  static list(page, limit, role, search) {
+    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}`);
   }
 
   static getUser(id) {

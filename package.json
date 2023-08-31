@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-google-maps/api": "^2.19.0",
+    "@react-oauth/google": "^0.11.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@szhsin/react-accordion": "^1.2.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -17,6 +18,7 @@
     "i18next": "^23.2.11",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.1",
+    "jwt-decode": "^3.1.2",
     "libphonenumber-js": "^1.10.39",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
