@@ -1,49 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import {
-  GoogleMap, useLoadScript, Marker,
-} from '@react-google-maps/api';
-import LoadingFile from '../layouts/LoadingFile';
-import mapDefaultThem from '../utils/mapDefaultThem';
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import markHome from '../assets/images/home-map.svg';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
-import markHome from '../assets/images/home-map.svg';
+import mapDefaultThem from '../utils/mapDefaultThem';
 
-const key = process.env.REACT_APP_MAP_SECRET;
-const libraries = ['places'];
-export default function TestMap() {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: key,
-    libraries,
-    language: 'en',
-  });
-  if (!isLoaded) return <LoadingFile />;
-
-  return <Map />;
-}
-
-function Map() {
+function MapMarks({ markers }) {
   const [coordinates, setCoordinates] = useState({
     lat: 40.791235,
     lng: 43.848753,
   });
   const containerStyle = {
     width: '100vw',
-    height: '95vh',
+    height: '100vh',
     textAlign: 'center',
   };
-
-  // const center = useMemo(() => ({ lat: coordinates.lat, lng: coordinates.lng }), []);
-  // console.log(center);
-  const markers = [
-    { lat: 40.791235, lng: 43.848753 },
-    { lat: 40.791722, lng: 43.848015 },
-    { lat: 40.789123, lng: 43.846731 },
-    { lat: 40.788452, lng: 43.846037 },
-    { lat: 40.788871, lng: 43.848614 },
-    { lat: 40.788990, lng: 43.847409 },
-    { lat: 40.7855952, lng: 43.843743 },
-  ];
-
   const mapOptions = {
     zoomControlOptions: {
       position: window.google.maps.ControlPosition.RIGHT_CENTER,
@@ -71,16 +42,13 @@ function Map() {
       console.error('Geolocation is not supported by this browser.');
     }
   };
+
   useEffect(() => {
     trackUserLocation();
   }, []);
-  console.log(8);
+  // console.log(markers);
   return (
-    <div style={{
-      maxHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
-    }}
-    >
-
+    <>
       <GoogleMap
         zoom={15}
         center={coordinates}
@@ -93,11 +61,11 @@ function Map() {
             url: markHome,
           }}
         />
-        {markers.map((marker, index) => (
+        {markers.map((marker) => (
           <Marker
             onClick={() => console.log('a')}
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
+        // eslint-disable-next-line react/no-array-index-key
+            key={marker.lng + marker.lat}
             icon={{
               url: markerSvg,
             }}
@@ -108,7 +76,8 @@ function Map() {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
-      {/* <MapProfile /> */}
-    </div>
+    </>
   );
 }
+
+export default MapMarks;

@@ -7,6 +7,10 @@ const api = axios.create({
 });
 
 class Api {
+  static jobListFromUsers() {
+    return api.get('/jobs/jobs-list');
+  }
+
   static deleteJob(jobId) {
     return api.post('/jobs/job-delete', jobId);
   }
