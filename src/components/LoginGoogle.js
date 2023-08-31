@@ -1,8 +1,9 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import jwtDecode from 'jwt-decode';
 import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 import { registerRequest } from '../store/actions/users';
 
@@ -11,12 +12,13 @@ function LoginGoogle() {
   const navigate = useNavigate();
 
   const responseGoogle = async (response) => {
-    console.log(response.wt.rV, response.wt.uT, response.wt.cu);
+    const user = jwtDecode(response.credential);
+    console.log(user);
     try {
       const { payload } = await dispatch(registerRequest({
-        email: response.wt.cu,
-        lastName: response.wt.uT,
-        firstName: response.wt.rV,
+        email: user.email,
+        lastName: user.family_name,
+        firstName: user.given_name,
         type: 'google',
       }));
 
@@ -35,7 +37,6 @@ function LoginGoogle() {
   return (
     <div className="googleLogin">
       <GoogleLogin
-        clientId="586055279200-pj30j1k8tjhurugs3kla43sq6pkghegk.apps.googleusercontent.com"
         render={(renderProps) => (
           <button
             type="button"
@@ -51,8 +52,8 @@ function LoginGoogle() {
         )}
         buttonText="Login"
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy="single_host_origin"
+        onError={responseGoogle}
+        useOneTap
       />
     </div>
   );
