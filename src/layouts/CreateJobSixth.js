@@ -74,6 +74,7 @@ function CreateJobSixth(props) {
     fullAddress: '',
     location: '',
   });
+  console.log(address);
   const [phoneNumber, setPhoneNumber] = useState(sixtyFormObj.phoneNumber ?? '');
   useEffect(() => {
     onData({

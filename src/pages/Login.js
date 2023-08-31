@@ -1,11 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { gapi } from 'gapi-script';
 import { loginRequest } from '../store/actions/users';
 import Header from '../layouts/Header';
 import Img from '../assets/images/login_img.svg';
+import LoginGoogle from '../components/LoginGoogle';
 
 function Login() {
   const dispatch = useDispatch();
@@ -27,6 +29,19 @@ function Login() {
       }
     }
   }, [formData]);
+
+  const clientId = '586055279200-pj30j1k8tjhurugs3kla43sq6pkghegk.apps.googleusercontent.com';
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId,
+        scope: '',
+      });
+    }
+
+    gapi.load('client:auth2', start);
+  }, []);
 
   return (
     <>
@@ -72,6 +87,7 @@ function Login() {
             <button type="submit">
               Continue with Email
             </button>
+            <LoginGoogle />
 
           </form>
         </div>

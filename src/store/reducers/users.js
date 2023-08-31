@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  listRequest, registerRequest, loginRequest, getProfile, getSingleUser,
+  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate,
 } from '../actions/users';
 
 const initialState = {
@@ -10,9 +10,13 @@ const initialState = {
   profile: {},
   usersData: {},
   registerRequestStatus: '',
+<<<<<<< HEAD
   token: '',
   currentPage: 0,
   totalPages: 0,
+=======
+  token: window.localStorage.getItem('token') ?? '',
+>>>>>>> 0af7806dd1e197ef133abdcb0d5e5af4bc2c6349
 };
 
 export default createReducer(initialState, (builder) => {
@@ -22,6 +26,7 @@ export default createReducer(initialState, (builder) => {
       const { user } = action.payload;
       return { ...state, user, registerRequestStatus: 'fulfilled' };
     })
+    .addCase(registerRequest.rejected, (state) => ({ ...state, registerRequestStatus: 'error' }))
     .addCase(loginRequest.fulfilled, (state, action) => {
       const { token, users } = action.payload;
       localStorage.setItem('token', token);
@@ -40,6 +45,11 @@ export default createReducer(initialState, (builder) => {
       state.currentPage = currentPage;
       state.totalPages = totalPages;
       state.search = search;
+    })
+    .addCase(activate.fulfilled, (state, action) => {
+      const { token } = action.payload;
+      localStorage.setItem('token', token);
+      return { ...state, token };
     })
     .addCase(getSingleUser.fulfilled, (state, action) => {
       const { user } = action.payload;
