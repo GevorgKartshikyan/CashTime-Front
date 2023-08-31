@@ -31,10 +31,21 @@
   margin-left: -20px !important;
   border-radius: 10px !important;
 }
+.fixed{
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
 
-
+//.autocomplete-container{
+//  width: 680px;
+//}
 .gmnoprint > div{
   background-color: transparent !important;
   box-shadow: none !important;
   }
 
+.autocomplete-container{
+  display: flex;
+  flex-direction: column;
+}

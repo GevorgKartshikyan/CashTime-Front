@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
-import chevronDown from './ChevronDown.svg';
+import chevronDown from '../assets/images/ChevronDown.svg';
 
 function AccordionItem({
   header,
