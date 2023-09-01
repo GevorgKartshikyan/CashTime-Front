@@ -145,23 +145,6 @@ function Offer({ isLoaded }) {
       fontSize: 14,
     }),
   };
-  // const [address, setAddress] = useState({
-  //   latitude: '',
-  //   longitude: '',
-  // });
-  // console.log(address);
-  // const handlePlaceSelect = (place) => {
-  //   try {
-  //     const { lat, lng } = place.geometry.location;
-  //     setAddress({
-  //       latitude: lat(),
-  //       longitude: lng(),
-  //     });
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-  // console.log(selectedExperience);
   return (
     <>
       <Header />
@@ -679,8 +662,6 @@ function Offer({ isLoaded }) {
                   <label className="labeltest" htmlFor="offer-search">
                     <SearchIcon className="offer__top__search__icon" />
                     <TestInput isLoaded={isLoaded} classInput="offer__top__search__input" />
-                    {/* <input type="text" placeholder="Gyumri,Armenia"
-                  id="offer-search" className="offer__top__search__input" /> */}
                   </label>
                 </div>
                 <div className="offer__top__block offer-top-block">

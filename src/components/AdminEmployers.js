@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import adminEmployeesSearchIcon from '../assets/images/admin_employees_search.svg';
 import AdminDropdownTop from './AdminDropdownTop';
 import UserInfoCard from './UserInfoCard';
@@ -9,23 +10,31 @@ import PaginationNext from './PaginationNextLabel';
 import PaginationPreviousLabel from './PaginationPreviousLabel';
 import { listRequest } from '../store/actions/users';
 
-// import { ReactComponent as paginationNext } from '../assets/images/paginate_next.svg';
-
 function AdminEmployers() {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = useSelector((state) => state.users.currentPage);
+  const totalPages = useSelector((state) => state.users.totalPages);
+  const page = parseInt(searchParams.get('page') || 1, 10);
+  const limit = parseInt(searchParams.get('limit') || 5, 10);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     dispatch(listRequest({
-      page: 1,
-      limit: 5,
-      role: 'employer',
+      page, limit: 5, role: 'employer', search: searchResults,
     }));
+  }, [page, searchResults]);
+  useEffect(() => {
+    setSearchParams({ page, limit });
   }, []);
+  const handlePageChange = (event) => {
+    const selectedPage = event.selected + 1;
+    setSearchParams({ page: selectedPage, limit });
+  };
 
   console.log(users, 'users 2');
 
-  const items = 905;
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -92,9 +101,10 @@ function AdminEmployers() {
           </div>
           <input
             id="admin-employees-search"
-            type="text"
+            type="search"
             className="admin__employees__search__label__input"
             placeholder="Search here..."
+            onChange={(e) => setSearchResults(e.target.value)}
           />
         </label>
         <Select
@@ -140,6 +150,7 @@ function AdminEmployers() {
       </div>
       {users.users.map((user) => (
         <UserInfoCard
+          key={user.id}
           img={user.avatar}
           firstName={user.firstName}
           lastName={user.lastName}
@@ -163,9 +174,10 @@ function AdminEmployers() {
           nextClassName="admin-item admin-next"
           nextLabel={<PaginationNext />}
           previousLabel={<PaginationPreviousLabel />}
-          onPageChange={() => null}
-          pageCount={items}
+          onPageChange={handlePageChange}
+          pageCount={totalPages}
           pageRangeDisplayed={3}
+          forcePage={currentPage - 1}
         />
       </div>
     </div>

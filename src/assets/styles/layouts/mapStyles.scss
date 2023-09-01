@@ -1,4 +1,4 @@
-.user__location__button{
+.user__location__button {
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -31,7 +31,8 @@
   margin-left: -20px !important;
   border-radius: 10px !important;
 }
-.fixed{
+
+.fixed {
   height: 75px;
   display: flex;
   align-items: center;
@@ -40,12 +41,42 @@
 //.autocomplete-container{
 //  width: 680px;
 //}
-.gmnoprint > div{
+.gmnoprint > div {
   background-color: transparent !important;
   box-shadow: none !important;
-  }
+}
 
-.autocomplete-container{
+.autocomplete-container {
   display: flex;
   flex-direction: column;
+}
+
+.map-address-list {
+  background-color: #fff;
+  list-style-type: none;
+  width: 400px;
+  overflow-x: hidden;
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-radius: 25px;
+  transition: all 0.4s;
+  position: absolute;
+  z-index: 1;
+  top: 54px;
+  box-shadow: 4px 10px 45px -2px rgba(0,0,0,0.31);
+  -webkit-box-shadow: 4px 10px 45px -2px rgba(0,0,0,0.31);
+  -moz-box-shadow: 4px 10px 45px -2px rgba(0,0,0,0.31);
+  & > li {
+    margin-top: 5px;
+    cursor: pointer;
+    padding: 10px;
+    color: #E17A01;
+    transition: all 0.8s;
+    &:hover {
+      border-radius: 10px;
+      color:  #fff;
+      transform: scale(1.1);
+      background-color: #4A62B6;
+    };
+  }
 }

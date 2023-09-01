@@ -1961,7 +1961,11 @@
 
 "@react-oauth/google@^0.11.1":
   version "0.11.1"
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.1.tgz#f937c8d02bd37e3a6be7713b8212e9b9b9b3f914"
+=======
+  resolved "https://registry.npmjs.org/@react-oauth/google/-/google-0.11.1.tgz"
+>>>>>>> d8dac365a85055a43d721cfefda9c2c0b4c5b4c1
   integrity sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg==
 
 "@reduxjs/toolkit@^1.9.5":
@@ -6842,7 +6846,11 @@ jstransform@^11.0.3:
 
 jwt-decode@^3.1.2:
   version "3.1.2"
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
+=======
+  resolved "https://registry.npmjs.org/jwt-decode/-/jwt-decode-3.1.2.tgz"
+>>>>>>> d8dac365a85055a43d721cfefda9c2c0b4c5b4c1
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
 kdbush@^4.0.2:

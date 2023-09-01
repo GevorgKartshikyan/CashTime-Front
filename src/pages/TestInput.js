@@ -16,6 +16,10 @@ function TestInput({ isLoaded, classInput }) {
   } = usePlacesAutocomplete({
     debounce: 300,
     initOnMount: false,
+    requestOptions: {
+      language: 'en',
+      componentRestrictions: { country: 'AM' },
+    },
   });
   const ref = useOnclickOutside(() => {
     clearSuggestions();
@@ -66,7 +70,7 @@ function TestInput({ isLoaded, classInput }) {
         placeholder="Gyumri , Armenia"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+      {status === 'OK' && <ul className="map-address-list">{renderSuggestions()}</ul>}
     </div>
   );
 }
