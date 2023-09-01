@@ -1,16 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { gapi } from 'gapi-script';
+import jwtDecode from 'jwt-decode';
+import { GoogleLogin } from '@react-oauth/google';
 import { loginRequest } from '../store/actions/users';
 import Header from '../layouts/Header';
 import Img from '../assets/images/login_img.svg';
-import LoginGoogle from '../components/LoginGoogle';
+import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -42,6 +45,27 @@ function Login() {
 
     gapi.load('client:auth2', start);
   }, []);
+
+  const responseGoogle = async (response) => {
+    const user = jwtDecode(response.credential);
+    console.log(user);
+    try {
+      const { payload } = await dispatch(loginRequest({
+        email: user.email,
+        type: 'google',
+      }));
+
+      if (payload.status === 'ok' || payload.status === 'fulfilled') {
+        navigate('/');
+      }
+
+      if (payload.status === 'error') {
+        toast.error(`${payload?.message}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -87,7 +111,27 @@ function Login() {
             <button type="submit">
               Continue with Email
             </button>
-            <LoginGoogle />
+            <div className="googleLogin">
+              <GoogleLogin
+                render={(renderProps) => (
+                  <button
+                    type="button"
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    <div className="signup__start__icon">
+                      <div className="signup__start__icon__boxes">
+                        <img src={GoogleIcon} alt="IMG" />
+                      </div>
+                    </div>
+                  </button>
+                )}
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onError={responseGoogle}
+                useOneTap
+              />
+            </div>
 
           </form>
         </div>
