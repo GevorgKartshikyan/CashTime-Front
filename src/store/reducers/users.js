@@ -6,7 +6,6 @@ import {
 const initialState = {
   user: {},
   users: [],
-
   singleUser: {},
   profile: {},
   usersData: {},
