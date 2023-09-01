@@ -9,7 +9,7 @@ function Verified() {
   useEffect(() => {
     setTimeout(() => {
       navigate('/');
-    }, 2000);
+    }, 1500);
   }, []);
   return (
     <Wrapper>

@@ -103,10 +103,12 @@
       }
     }
     &__contact{
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
       display: flex;
       margin-top: auto;
       &__phone{
-        margin-right: 150px;
         & > p{
           color: #A098AE;
           font-family: "Lato", sans-serif;

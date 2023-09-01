@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { ReactComponent as Logo } from '../assets/images/header_logo.svg';
 import Globe from '../assets/images/globe.svg';
 import Avatar from '../assets/images/face.png';
@@ -18,6 +19,7 @@ function Header() {
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isActiveLanguage, setIsActiveLanguage] = useState(false);
   const [isActiveManu, setIsActiveManu] = useState(false);
+  const token = useSelector((state) => state.users.token);
   const ref = useRef(null);
   const languages = useRef(null);
   const manu = useRef(null);
@@ -101,12 +103,14 @@ function Header() {
             </Link>
           </div>
           <div className="header__menu">
-            <div className="header__menu__list">
-              <ul>
-                <li><NavLink to="/messages">{t('manu_message')}</NavLink></li>
-                <li><NavLink to="/worker-offers">{t('manu_offer')}</NavLink></li>
-              </ul>
-            </div>
+            {token ? (
+              <div className="header__menu__list">
+                <ul>
+                  <li><NavLink to="/messages">{t('manu_message')}</NavLink></li>
+                  <li><NavLink to="/worker-offers">{t('manu_offer')}</NavLink></li>
+                </ul>
+              </div>
+            ) : null}
             <div className="header__menu__block header-block">
               <button className="header__menu__block__globe" type="button" onClick={handleLanguage}>
                 <img className="header__menu__block__globe__svg" src={Globe} alt="" id="dropdown-language-button" />
@@ -114,20 +118,28 @@ function Header() {
                   {isActiveLanguage ? <Languages isShow={isActiveLanguage} /> : null}
                 </div>
               </button>
-              <button className="header__menu__block__avatar" type="button" onClick={handleManu}>
-                <img className="header__menu__block__avatar__img" src={Avatar} alt="" id="dropdown-manu-button" />
-                <div ref={manu} className="settings__menu__modal-manu">
-                  {isActiveManu ? <ManuModal /> : null}
-                </div>
-              </button>
-              <button className="header__menu__block__avatar" type="button" onClick={(e) => handleModal(e)}>
-                <img src={Notification} alt="" id="dropdown-button" />
-                <div ref={ref} className="header__menu__list__bg">
-                  {isActiveModal ? <ChatBox /> : null}
-                </div>
-              </button>
-              <button className="header__menu__block-register" type="button">{t('manu_signUp')}</button>
-              <button className="header__menu__block-login" type="button">{t('manu_login')}</button>
+              {token ? (
+                <button className="header__menu__block__avatar" type="button" onClick={handleManu}>
+                  <img className="header__menu__block__avatar__img" src={Avatar} alt="" id="dropdown-manu-button" />
+                  <div ref={manu} className="settings__menu__modal-manu">
+                    {isActiveManu ? <ManuModal /> : null}
+                  </div>
+                </button>
+              ) : null}
+              {token ? (
+                <button className="header__menu__block__avatar" type="button" onClick={(e) => handleModal(e)}>
+                  <img src={Notification} alt="" id="dropdown-button" />
+                  <div ref={ref} className="header__menu__list__bg">
+                    {isActiveModal ? <ChatBox /> : null}
+                  </div>
+                </button>
+              ) : null}
+              {!token ? (
+                <NavLink to="/sign-up" className="header__menu__block-register" type="button">{t('manu_signUp')}</NavLink>
+              ) : null}
+              {!token ? (
+                <NavLink to="/login" className="header__menu__block-login" type="button">{t('manu_login')}</NavLink>
+              ) : null}
             </div>
           </div>
         </div>
