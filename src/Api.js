@@ -31,8 +31,8 @@ class Api {
     });
   }
 
-  static login(email, password) {
-    return api.post('/users/login', { email, password });
+  static login(email, password, type) {
+    return api.post('/users/login', { email, password, type });
   }
 
   static register(data) {
