@@ -17,4 +17,5 @@ ReviewPhoto.propTypes = {
   jobImgSrc: PropTypes.string.isRequired,
   setShowImg: PropTypes.func.isRequired,
 };
+
 export default ReviewPhoto;
