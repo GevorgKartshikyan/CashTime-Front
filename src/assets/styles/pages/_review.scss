@@ -23,14 +23,13 @@
   align-items: center;
   position: relative;
   &__modal{
-       position: fixed;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(182, 182, 182, 0.71);
-
   }
   &__carouselBox{
     top: 30px;
@@ -58,7 +57,7 @@
   }
 }
   &__box{
-    margin-top: 100px;
+    margin-top: 70px;
     display: flex;
     align-items: center;
     &__img{
@@ -216,17 +215,17 @@
   }
   &__job{
     position: relative;
-    width: 420px;
-    //height: 220px;
-    margin-left: 20px;
+    width: 320px;
+    height: 220px;
+    margin-left: 30px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     &__imgBox{
       position: relative;
-      width: 30%;
-      height: 100px;
-      margin-bottom: 10px;
+      width: 320px;
+      height: 220px;
+      margin-left: 15px;
+      margin-bottom: 30px;
       overflow: hidden;
       &__img{
         width: 100%;

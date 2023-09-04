@@ -1,6 +1,38 @@
-.profile {
-  padding: 70px 25%;
+.global-review-modal{
+  width: 100%;
+  height: 100%;
+}
+
+.profile-review-box{
+  display: flex;
+  justify-content: center;
+  //padding-right: 70px;
   position: relative;
+  &__modal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(119, 119, 119, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+.profile-text-box{
+  //width: 300px;
+  padding-right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.profile {
+  padding: 70px;
+  position: relative;
+  width: 600px;
+  overflow: hidden;
   &__row {
     display: flex;
     align-items: center;
@@ -85,7 +117,7 @@
       }
     }
     &__editBtn{
-      margin-left: auto;
+      //margin-left: auto;
       padding: 10px 15px;
       display: flex;
       align-items: center;
@@ -101,10 +133,13 @@
       line-height: normal;
     }
   }
+
   &__list{
     display: flex;
     flex-direction: column;
+
     &__text{
+      //margin-right: 10px;
       margin-bottom: 20px;
       color: #031054;
       font-family: "Lato",sans-serif;
@@ -112,6 +147,38 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+      &__skills{
+        margin-bottom: 15px;
+        //margin-left: 5px;
+        padding: 0 10px;
+        flex-shrink: 0;
+        //border-radius: 22px;
+        border-right: 1px solid rgba(161, 161, 161, 0.31);
+        //border-left: 1px solid rgba(161, 161, 161, 0.49);
+        //background: #FFF;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #031054;
+        font-family: "Lato", sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        //margin: 5px 5px 15px 5px;
+      }
+    }
+    &__btn{
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      //background: rgba(255, 0, 0, 0.16);
+      background-color: #A098AE;
     }
     .text-small{
       position: absolute;
@@ -155,8 +222,8 @@
     z-index: 2;
     &__edit{
       //background-color: rgba(3, 16, 84, 0.79);
-      background-color: rgba(0, 0, 0, 0.58);
-      width: 40%;
+      background-color: #E17A01;
+      width: 550px;
       max-height: 95%;
       overflow-y: auto;
       display: flex;
@@ -167,9 +234,9 @@
       border-radius: 30px;
       border: 2px solid #E17A01;
       z-index: 9111;
-      -webkit-box-shadow: -3px 3px 36px 34px rgba(0, 0, 0, 0.58);
-      -moz-box-shadow: -3px 3px 36px 34px rgba(0, 0, 0, 0.58);
-      box-shadow: -3px 3px 36px 34px rgba(0, 0, 0, 0.58);
+      //-webkit-box-shadow: -3px 3px 36px 34px rgba(0, 0, 0, 0.58);
+      //-moz-box-shadow: -3px 3px 36px 34px rgba(0, 0, 0, 0.58);
+      //box-shadow: -3px 3px 36px 34px rgba(0, 0, 0, 0.58);
 
       &__btn{
         padding: 5px 15px;
@@ -178,8 +245,8 @@
         align-items: center;
         justify-content: center;
         border-radius: 100px;
-        background: #E17A01;
-        color: #FFF;
+        background: #fff;
+        color: #E17A01;
         text-align: center;
         font-family: "Lato",sans-serif;
         font-size: 14px;
@@ -193,13 +260,22 @@
         justify-content: space-between;
         width: 415px;
         &__container{
+          position: relative;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-
+        &__skillBtn{
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 36px;
+          height: 36px;
+          font-size: 24px;
+          border-radius: 8px;
+        }
           &__text{
-            color: #E17A01;
+            color: #fff;
             text-align: center;
             font-family: "Lato",sans-serif;
             font-size: 13px;
@@ -211,7 +287,7 @@
           &__input{
             padding-left: 10px;
             width: 200px;
-            height: 36.048px;
+            height: 36px;
             border-radius: 8px;
             background: #ffffff;
             outline: none;
