@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { gapi } from 'gapi-script';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { gapi } from 'gapi-script';
 import jwtDecode from 'jwt-decode';
 import { GoogleLogin } from '@react-oauth/google';
 import { loginRequest } from '../store/actions/users';
