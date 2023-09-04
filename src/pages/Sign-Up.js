@@ -7,12 +7,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Autocomplete from 'react-google-autocomplete';
 import { toast, ToastContainer } from 'react-toastify';
+import jwtDecode from 'jwt-decode';
+import { GoogleLogin } from '@react-oauth/google';
 import PasswordIcon from '../assets/images/singup_password.svg';
 import Header from '../layouts/Header';
 import imgUpload from '../assets/images/img_upload_svg.svg';
 import upLoad from '../assets/images/upload.svg';
 import { registerRequest } from '../store/actions/users';
-import LoginGoogle from '../components/LoginGoogle';
+import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 
 const mapKey = process.env.REACT_APP_MAP_SECRET;
 function SignUp() {
@@ -119,6 +121,29 @@ function SignUp() {
       });
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const responseGoogle = async (response) => {
+    const user = jwtDecode(response.credential);
+    console.log(user);
+    try {
+      const { payload } = await dispatch(registerRequest({
+        email: user.email,
+        lastName: user.family_name,
+        firstName: user.given_name,
+        type: 'google',
+      }));
+
+      if (payload.status === 'ok' || payload.status === 'fulfilled') {
+        navigate('/verified');
+      }
+
+      if (payload.status === 'error') {
+        toast.error(`${payload?.message}`);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -268,7 +293,27 @@ function SignUp() {
             <h3 className="signup__start__signup__with__info">Or Sign up With</h3>
             <span className="signup__start__signup__with__right" />
           </div>
-          <LoginGoogle />
+          <div className="googleLogin">
+            <GoogleLogin
+              render={(renderProps) => (
+                <button
+                  type="button"
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <div className="signup__start__icon">
+                    <div className="signup__start__icon__boxes">
+                      <img src={GoogleIcon} alt="IMG" />
+                    </div>
+                  </div>
+                </button>
+              )}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onError={responseGoogle}
+              useOneTap
+            />
+          </div>
           <button type="submit" className="btn color-blue" disabled={statusRequest === 'pending'}>Create my Account</button>
           <Link className="signup__start__link__login" to="/">Already hae an Account? Log in</Link>
         </form>

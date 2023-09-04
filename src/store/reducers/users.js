@@ -10,6 +10,8 @@ const initialState = {
   profile: {},
   usersData: {},
   registerRequestStatus: '',
+  currentPage: 0,
+  totalPages: 0,
   token: window.localStorage.getItem('token') ?? '',
 };
 
@@ -32,8 +34,13 @@ export default createReducer(initialState, (builder) => {
       };
     })
     .addCase(listRequest.fulfilled, (state, action) => {
-      const { users } = action.payload;
+      const {
+        users, currentPage, totalPages, search,
+      } = action.payload;
       state.users = users;
+      state.currentPage = currentPage;
+      state.totalPages = totalPages;
+      state.search = search;
     })
     .addCase(activate.fulfilled, (state, action) => {
       const { token } = action.payload;

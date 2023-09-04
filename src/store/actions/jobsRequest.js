@@ -35,3 +35,12 @@ export const deleteJobAdmin = createAsyncThunk('/jobsRequest/deleteJobAdmin', as
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+
+export const jobListFromUsers = createAsyncThunk('/jobsRequest/jobListFromUsers', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.jobListFromUsers();
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
