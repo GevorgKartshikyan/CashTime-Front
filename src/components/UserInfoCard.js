@@ -6,6 +6,7 @@ import emailIcon from '../assets/images/Email.svg';
 import dotsIcon from '../assets/images/Dots.svg';
 
 function UserInfoCard(props) {
+  const { REACT_APP_API_URL } = process.env;
   const {
     img, firstName, lastName, userId, date, profession, city,
   } = props;
@@ -23,7 +24,7 @@ function UserInfoCard(props) {
         </div>
         <div className="admin__employees__info__titles__name">
           <div className="admin__employees__info__titles__name__box">
-            <img className="admin__employees__info__titles__name__box__img" src={img} alt="img" />
+            <img className="admin__employees__info__titles__name__box__img" src={REACT_APP_API_URL + img} alt="img" />
           </div>
           <h3 className="admin__employees__info__titles__name__text">
             {firstName}

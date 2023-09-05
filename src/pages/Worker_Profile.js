@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import WorkerProfileRow from '../components/Worke_profile_row';
 import UserImage from '../assets/images/face.png';
 import EditSvg from '../assets/images/edit.svg';
@@ -11,6 +12,11 @@ import Education from '../assets/images/education.svg';
 import LanguageSvg from '../assets/images/globe.svg';
 
 function WorkerProfile() {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   const [available, setAvailable] = useState(false);
   return (
     <div className="profile">

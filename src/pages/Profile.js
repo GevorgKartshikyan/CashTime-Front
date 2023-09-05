@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
+import { useSelector } from 'react-redux';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import UserImage from '../assets/images/default-avatar-icon.jpg';
@@ -15,6 +16,11 @@ import imgUpload from '../assets/images/img_upload_svg.svg';
 
 const mapKey = process.env.REACT_APP_MAP_SECRET;
 function Profile() {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   const [showModal, setShowModal] = useState(false);
   const modalBg = useRef();
 

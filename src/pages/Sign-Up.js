@@ -18,6 +18,11 @@ import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 
 const mapKey = process.env.REACT_APP_MAP_SECRET;
 function SignUp() {
+  const token = useSelector((state) => state.users.token);
+  if (token) {
+    window.location.href = '/';
+    return null;
+  }
   const [passwordFlag, setPasswordFlag] = useState(false);
   const [confirmFlag, setConfirmFlag] = useState(false);
   const [address, setAddress] = useState({

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Header from '../layouts/Header';
 import searchIcon from '../assets/images/search_messages.svg';
 import userAvatar from '../assets/images/message_user_avatar.svg';
@@ -6,6 +7,11 @@ import sendMessage from '../assets/images/send_message.svg';
 import UserMessageBlock from '../components/User-message-block';
 
 function Messages() {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   return (
     <>
       <Header />

@@ -7,6 +7,11 @@ import MapProfile from '../components/MapProfile';
 // import TestInput from './TestInput';
 
 export default function GlobalMap({ isLoaded }) {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   if (!isLoaded) return <LoadingFile />;
 
   return <Map isLoaded={isLoaded} />;

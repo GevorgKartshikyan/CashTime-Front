@@ -11,7 +11,7 @@ import PaginationPreviousLabel from './PaginationPreviousLabel';
 import { listRequest } from '../store/actions/users';
 
 function AdminEmployers() {
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = useSelector((state) => state.users.currentPage);
@@ -148,7 +148,7 @@ function AdminEmployers() {
           </div>
         </div>
       </div>
-      {users.users.map((user) => (
+      {users.map((user) => (
         <UserInfoCard
           key={user.id}
           img={user.avatar}

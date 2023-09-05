@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { gapi } from 'gapi-script';
@@ -12,6 +12,11 @@ import Img from '../assets/images/login_img.svg';
 import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 
 function Login() {
+  const token = useSelector((state) => state.users.token);
+  if (token) {
+    window.location.href = '/';
+    return null;
+  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
