@@ -5,6 +5,7 @@ import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 // import { defaultStyles } from 'react-select/dist/declarations/src/styles';
 // import Autocomplete from 'react-google-autocomplete';
+import { useSelector } from 'react-redux';
 import { ReactComponent as SearchIcon } from '../assets/images/offer_filter_search.svg';
 import DownIcon from '../assets/images/offer_select_down_arrow_icon 2.svg';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
@@ -15,6 +16,11 @@ import TestInput from './TestInput';
 import Header from '../layouts/Header';
 
 function Offer({ isLoaded }) {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   const [activeButton, setActiveButton] = useState(false);
   const [categoryShow, setCategoryShow] = useState(false);
   const [experienceShow, setExperienceShow] = useState(false);

@@ -2,6 +2,7 @@
   width: 100%;
   &__row{
     display: flex;
+    min-height: 100vh;
     &__menu{
       width: 20%;
       background: #4A62B6;
