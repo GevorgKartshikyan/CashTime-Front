@@ -32,6 +32,15 @@ class Api {
       },
     });
   }
+
+  static createCv(data) {
+    // console.log(data);
+    return api.post('/cvs/create-cv', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 }
 
 export default Api;

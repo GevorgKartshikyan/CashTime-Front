@@ -1,30 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast, ToastContainer } from 'react-toastify';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import EditSvg from '../assets/images/edit.svg';
+import { createCvRequest } from '../store/actions/createCvForm';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CreateCvFinally(props) {
+  const dispatch = useDispatch();
+  const dataSignUpFirstStep = useSelector((state) => state.createCvForm.dataSignUpFirstStep);
   const dataFromChild1 = useSelector((state) => state.createCvForm.dataFromChild1);
   const dataFromChild2 = useSelector((state) => state.createCvForm.dataFromChild2);
   const dataFromChild3 = useSelector((state) => state.createCvForm.dataFromChild3);
   const dataFromChild5 = useSelector((state) => state.createCvForm.dataFromChild5);
   const dataFromChild6 = useSelector((state) => state.createCvForm.dataFromChild6);
   const dataFromChild7 = useSelector((state) => state.createCvForm.dataFromChild7);
-  // console.log('data1', dataFromChild1,
-  // 'data2', dataFromChild2, 'data3', dataFromChild3,
-  // 'data5', dataFromChild5, 'data6', dataFromChild6, 'data7', dataFromChild7);
+  const errorText = !dataFromChild5?.cvBio || !dataFromChild7.phoneNumber ? 'Bio and Phone number are required' : null;
   const { file, editCount } = props;
   const [dataForRequest, setDataForRequest] = useState({});
   const dataForUpdate = useSelector((state) => state.createCvForm);
+  const fileSrc = useSelector((state) => state.createCvForm.dataFromChild7.selectedPhoto);
+  const backendData = {
+    experience: dataSignUpFirstStep?.isFreelancer || '',
+    goal: dataSignUpFirstStep?.yourGoal || '',
+    profRole: dataFromChild1?.professionValue || '',
+    language: dataFromChild1?.languages || [],
+    school: dataFromChild2?.educationHistory.school || '',
+    degree: dataFromChild2?.educationHistory.degree || '',
+    datesAttended: `${dataFromChild2?.educationHistory?.dateAttended}-${dataFromChild2?.educationHistory?.dataExpected}` || '',
+    services: dataFromChild6?.sixthData?.category || '',
+    hourlyRate: dataFromChild6?.sixthData?.rateSum || '',
+    skills: dataFromChild3 || [],
+    bio: dataFromChild5?.cvBio,
+    country: dataFromChild7?.address?.country || '',
+    fullAddress: dataFromChild7?.address?.fullAddress || '',
+    city: dataFromChild7?.address?.city || '',
+    geometry: {
+      latitude: dataFromChild7?.address?.latitude || '',
+      longitude: dataFromChild7?.address?.longitude || '',
+    },
+    phoneNumber: dataFromChild7?.phoneNumber,
+    avatar: file || '',
+  };
   useEffect(() => {
     setDataForRequest({ ...dataForUpdate, file });
   }, [dataForUpdate, file]);
-  console.log(dataForRequest);
-  const fileSrc = useSelector((state) => state.createCvForm.dataFromChild7.selectedPhoto);
-
+  console.log(backendData, dataForRequest);
   return (
     <div className="job-finally-all-box">
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="job__display__row big__row">
         {fileSrc ? <img src={fileSrc} alt="job desc" className="job-image" /> : (
           <div className="selected-image finally-small">
@@ -135,14 +171,11 @@ function CreateCvFinally(props) {
           <p className="job-finally-skill-level">{dataFromChild7.phoneNumber}</p>
         </div>
       </div>
-      {/* <div className="job-finally-buttons-box"> */}
-      {/*   <div> */}
-      {/*     <Button className="btn color-blue" title="Save as a Draft" /> */}
-      {/*   </div> */}
-      {/*   <div> */}
-      {/*     <Button className="btn color-blue" title="Post This Job" /> */}
-      {/*   </div> */}
-      {/* </div> */}
+      <div className="job-finally-buttons-box">
+        <div>
+          <button type="submit" onClick={() => (!errorText ? dispatch(createCvRequest({ data: backendData })) : toast.error(errorText))} className="btn color-blue">Save CV</button>
+        </div>
+      </div>
     </div>
   );
 }
