@@ -7,8 +7,12 @@ const api = axios.create({
 });
 
 class Api {
-  static jobListFromUsers() {
-    return api.get('/jobs/jobs-list');
+  static jobListFromUsersFilter({ filter, limit, page }) {
+    return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}`, filter);
+  }
+
+  static jobListFromUsersMap(city) {
+    return api.get(`/jobs/jobs-list-map?city=${city}`);
   }
 
   static deleteJob(jobId) {
@@ -48,7 +52,6 @@ class Api {
   }
 
   static getUser(id) {
-    console.log(id);
     return api.get(`/users/single/${id}`);
   }
 

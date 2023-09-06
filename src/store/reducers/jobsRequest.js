@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
   activateJobAdmin,
-  createJobRequestFromPending, deleteJobAdmin, jobListFromUsers,
+  createJobRequestFromPending, deleteJobAdmin, jobListFromUsersFilter, jobListFromUsersMap,
   jobListRequestFromAdmin,
 } from '../actions/jobsRequest';
 
@@ -38,8 +38,11 @@ export default createReducer(initialState, (builder) => {
       const { job: id } = action.payload;
       state.jobListAdmin = state.jobListAdmin.filter((job) => job.id !== id.id);
     })
-    .addCase(jobListFromUsers.fulfilled, (state, action) => {
+    .addCase(jobListFromUsersMap.fulfilled, (state, action) => {
       const { jobs } = action.payload;
       state.jobListFromUsers = jobs;
+    })
+    .addCase(jobListFromUsersFilter.fulfilled, (state, action) => {
+      console.log(action.payload);
     });
 });

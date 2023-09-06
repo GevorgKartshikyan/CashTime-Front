@@ -5,8 +5,8 @@ import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
 import mapDefaultThem from '../utils/mapDefaultThem';
 
-function MapMarks({ markers }) {
-  const [coordinates, setCoordinates] = useState({
+function MapMarks({ coordinates, setCoordinates, jobs }) {
+  const [home, setHome] = useState({
     lat: 40.791235,
     lng: 43.848753,
   });
@@ -28,8 +28,12 @@ function MapMarks({ markers }) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(position);
+          // console.log(position);
           setCoordinates({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+          setHome({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
@@ -46,30 +50,30 @@ function MapMarks({ markers }) {
   useEffect(() => {
     trackUserLocation();
   }, []);
-  // console.log(markers);
+  console.log(jobs);
   return (
     <>
       <GoogleMap
-        zoom={15}
+        zoom={14}
         center={coordinates}
         mapContainerStyle={containerStyle}
         options={mapOptions}
       >
         <Marker
-          position={coordinates}
+          position={home}
           icon={{
             url: markHome,
           }}
         />
-        {markers.map((marker) => (
+        {jobs.map((job) => (
           <Marker
             onClick={() => console.log('a')}
         // eslint-disable-next-line react/no-array-index-key
-            key={marker.lng + marker.lat}
+            key={job.id}
             icon={{
               url: markerSvg,
             }}
-            position={{ lat: marker.lat, lng: marker.lng }}
+            position={{ lat: job.geometry.coordinates[1], lng: job.geometry.coordinates[0] }}
           />
         ))}
       </GoogleMap>
