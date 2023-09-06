@@ -36,9 +36,18 @@ export const deleteJobAdmin = createAsyncThunk('/jobsRequest/deleteJobAdmin', as
   }
 });
 
-export const jobListFromUsers = createAsyncThunk('/jobsRequest/jobListFromUsers', async (payload, thunkAPI) => {
+export const jobListFromUsersMap = createAsyncThunk('/jobsRequest/jobListFromUsersMap', async (payload, thunkAPI) => {
   try {
-    const { data } = await Api.jobListFromUsers();
+    const { city } = payload;
+    const { data } = await Api.jobListFromUsersMap(city);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+export const jobListFromUsersFilter = createAsyncThunk('/jobsRequest/jobListFromUsersFilter', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.jobListFromUsersFilter(payload);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

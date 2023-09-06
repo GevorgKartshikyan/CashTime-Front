@@ -4,8 +4,11 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
+import { useParams } from 'react-router-dom';
 
-function TestInput({ isLoaded, classInput }) {
+function TestInput({
+  isLoaded, classInput, changeCity, setCoordinates, setCity,
+}) {
   const {
     ready,
     value,
@@ -19,6 +22,7 @@ function TestInput({ isLoaded, classInput }) {
     requestOptions: {
       language: 'en',
       componentRestrictions: { country: 'AM' },
+      // types: ['cities'],
     },
   });
   const ref = useOnclickOutside(() => {
@@ -28,14 +32,33 @@ function TestInput({ isLoaded, classInput }) {
   const handleInput = (e) => {
     setValue(e.target.value);
   };
+  const { page } = useParams();
 
-  const handleSelect = ({ description }) => () => {
-    setValue(description, false);
+  const handleSelect = (suggestion) => () => {
+    setValue(suggestion.description, false);
     clearSuggestions();
 
-    getGeocode({ address: description }).then((results) => {
+    getGeocode({ address: suggestion.description }).then((results) => {
       const { lat, lng } = getLatLng(results[0]);
       console.log('📍 Coordinates: ', { lat, lng });
+      if (page === 'map') {
+        setCoordinates({ lat, lng });
+      }
+      const addressComponents = results[0].address_components;
+      let city = '';
+
+      const localityComponent = addressComponents.find((component) => component.types.includes('locality'));
+
+      if (localityComponent) {
+        city = localityComponent.long_name;
+      }
+      if (page === 'list') {
+        setCity(city);
+      }
+      if (page === 'map') {
+        changeCity({ city });
+      }
+      console.log('🏙 City: ', city);
     });
   };
 
@@ -45,9 +68,7 @@ function TestInput({ isLoaded, classInput }) {
       structured_formatting: { main_text, secondary_text },
     } = suggestion;
     return (
-      // eslint-disable-next-line max-len
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-      <li className="testli" key={place_id} onClick={handleSelect(suggestion)}>
+      <li role="presentation" className="testli" key={place_id} onClick={handleSelect(suggestion)}>
         <strong>{main_text}</strong>
         {' '}
         <small>{secondary_text}</small>
