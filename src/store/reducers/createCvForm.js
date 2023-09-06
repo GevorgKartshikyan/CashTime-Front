@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import setCvFormData from '../actions/createCvForm';
+import { setCvFormData } from '../actions/createCvForm';
 
 const initialState = {
   dataSignUpFirstStep: {
@@ -10,12 +10,7 @@ const initialState = {
     languages: null,
     professionValue: '',
   },
-  dataFromChild2: {
-    school: '',
-    degree: '',
-    dateAttended: '',
-    dataExpected: '',
-  },
+  dataFromChild2: {},
   dataFromChild3: [],
   dataFromChild5: {
     cvBio: '',

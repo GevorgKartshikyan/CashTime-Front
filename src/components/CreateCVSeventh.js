@@ -114,6 +114,7 @@ function CreateCvSeventh(props) {
   };
   const handleFileSelect = useCallback(async (ev) => {
     if (ev.target.files[0]) {
+      console.log(ev.target.files);
       const newFile = URL.createObjectURL(ev.target.files[0]);
       setSelectedPhoto({ fileSrc: newFile, file: ev.target.files[0] });
     }

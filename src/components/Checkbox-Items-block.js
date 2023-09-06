@@ -8,7 +8,7 @@ function CheckboxItemsBlock(props) {
   const {
     levels, data, setData, type,
   } = props;
-  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState(type === 'isFreelancer' ? level.isFreelancer : level.yourGoal);
   const handleLevelChange = (event) => {
     setSelectedLevel(event.target.value);
     if (type === 'isFreelancer') {
@@ -39,7 +39,7 @@ function CheckboxItemsBlock(props) {
           />
           <div className="check-container">
             <span className="check-squad">
-              {(level.yourGoal === e) || (level.isFreelancer === e) || selectedLevel === e ? (
+              {selectedLevel === e ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
