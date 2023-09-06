@@ -10,7 +10,7 @@ import CreateCVFifth from '../components/CreateCVFifth';
 import CreateCVSixth from '../components/CreateCVSixth';
 import CreateCVSeventh from '../components/CreateCVSeventh';
 import CreateCVFinally from '../components/CreateCVFinally';
-import createCvFormData from '../store/actions/createCvForm';
+import { setCvFormData } from '../store/actions/createCvForm';
 import SignUpStepsFirst from './Sign-Up-Steps-First';
 
 function CreateCv() {
@@ -40,7 +40,7 @@ function CreateCv() {
         }
         return newCount;
       });
-      dispatch(createCvFormData({ data: localData }));
+      dispatch(setCvFormData({ data: localData }));
     } else if (operator === '-' && count !== 1) {
       setCount((prevState) => {
         const newCount = prevState - 1;

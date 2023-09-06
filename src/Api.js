@@ -62,6 +62,15 @@ class Api {
   static activate(data) {
     return api.post('/users/activate', data);
   }
+
+  static createCv(data) {
+    // console.log(data);
+    return api.post('/cvs/create-cv', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 }
 
 export default Api;
