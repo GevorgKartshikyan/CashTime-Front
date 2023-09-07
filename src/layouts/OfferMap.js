@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import TestInput from '../pages/TestInput';
+import TestInput from '../components/TestInput';
 import GlobalMap from '../pages/GlobalMap';
 import { ReactComponent as SearchIcon } from '../assets/images/offer_filter_search.svg';
 import { jobListFromUsersMap } from '../store/actions/jobsRequest';

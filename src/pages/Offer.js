@@ -7,6 +7,8 @@ import Header from '../layouts/Header';
 import OfferMap from '../layouts/OfferMap';
 import OfferJobsFilter from '../layouts/OfferJobsFillter';
 
+const libraries = ['places'];
+
 function Offer() {
   const token = useSelector((state) => state.users.token);
   if (!token) {
@@ -14,7 +16,6 @@ function Offer() {
     return null;
   }
   const keyMap = process.env.REACT_APP_MAP_SECRET;
-  const libraries = ['places'];
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: keyMap,

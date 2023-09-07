@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import TestInput from '../pages/TestInput';
+import TestInput from '../components/TestInput';
 import DownIcon from '../assets/images/offer_select_down_arrow_icon 2.svg';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
 import OfferJobsList from '../components/OfferJobsList';
@@ -26,7 +26,6 @@ function OfferJobsFilter({ isLoaded }) {
       hourly: '',
       hour_min: '',
       hour_max: '',
-      monthly: '',
       fixed: '',
       salary_min: '',
       salary_max: '',
@@ -42,24 +41,13 @@ function OfferJobsFilter({ isLoaded }) {
   const handeFilterSelects = useCallback((key) => (e) => {
     if (key.includes('.')) {
       const [parentKey, childKey] = key.split('.');
-      setFilter((prevState) => {
-        if (prevState[parentKey][childKey]) {
-          return {
-            ...filter,
-            [parentKey]: {
-              ...filter[parentKey],
-              [childKey]: '',
-            },
-          };
-        }
-        return {
-          ...filter,
-          [parentKey]: {
-            ...filter[parentKey],
-            [childKey]: e.target.value,
-          },
-        };
-      });
+      setFilter(() => ({
+        ...filter,
+        [parentKey]: {
+          ...filter[parentKey],
+          [childKey]: e.target.value,
+        },
+      }));
     } else {
       setFilter({
         ...filter,
@@ -67,6 +55,7 @@ function OfferJobsFilter({ isLoaded }) {
       });
     }
   }, [filter, searchParams]);
+  console.log(filter);
   // console.log(category);
   const handleDateChange = (date) => {
     setFilter({
@@ -85,12 +74,12 @@ function OfferJobsFilter({ isLoaded }) {
     const timer = setTimeout(() => {
       console.log(99999);
       dispatch(jobListFromUsersFilter({ filter, page: 1, limit: 5 }));
-    }, 500);
+    }, 800);
     return () => {
       clearTimeout(timer);
     };
   }, [filter]);
-  console.log(filter);
+  // console.log(filter);
   return (
     <div className="container">
       <div className="offer__top">
@@ -188,8 +177,8 @@ function OfferJobsFilter({ isLoaded }) {
               <div className="offer__container__left__experience__options">
                 <label htmlFor="experience-checkbox1" className="label">
                   <input
-                    checked={filter.experience_level.entryLevel === 'Entry Level'}
-                    value="Entry Level"
+                    checked={filter.experience_level.entryLevel === 'Entry'}
+                    value="Entry"
                     onChange={handeFilterSelects('experience_level.entryLevel')}
                     style={{ display: 'none' }}
                     type="checkbox"
@@ -199,7 +188,7 @@ function OfferJobsFilter({ isLoaded }) {
                   />
                   <div className="check-container small-check">
                     <span className="check-squad small-check__squad">
-                      {filter.experience_level.entryLevel === 'Entry Level' && (
+                      {filter.experience_level.entryLevel === 'Entry' && (
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                           <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                         </svg>
@@ -214,9 +203,9 @@ function OfferJobsFilter({ isLoaded }) {
                 </label>
                 <label htmlFor="experience-checkbox2" className="label">
                   <input
-                    checked={filter.experience_level.intermediate === 'intermediate'}
+                    checked={filter.experience_level.intermediate === 'Intermediate'}
                     style={{ display: 'none' }}
-                    value="intermediate"
+                    value="Intermediate"
                     onChange={handeFilterSelects('experience_level.intermediate')}
                     name="experience-checkbox"
                     type="checkbox"
@@ -225,7 +214,7 @@ function OfferJobsFilter({ isLoaded }) {
                   />
                   <div className="check-container small-check">
                     <span className="check-squad small-check__squad">
-                      {filter.experience_level.intermediate === 'intermediate' && (
+                      {filter.experience_level.intermediate === 'Intermediate' && (
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                           <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                         </svg>
@@ -270,9 +259,9 @@ function OfferJobsFilter({ isLoaded }) {
                 <div className="offer__container__left__experience__job__options">
                   <label htmlFor="job-checkbox1" className="label">
                     <input
-                      checked={filter.job_type.hourly === 'hourly'}
+                      checked={filter.job_type.hourly === 'Hourly Rate'}
                       style={{ display: 'none' }}
-                      value="hourly"
+                      value="Hourly Rate"
                       onChange={handeFilterSelects('job_type.hourly')}
                       name="job-checkbox"
                       type="checkbox"
@@ -281,7 +270,7 @@ function OfferJobsFilter({ isLoaded }) {
                     />
                     <div className="check-container small-check">
                       <span className="check-squad small-check__squad">
-                        {filter.job_type.hourly === 'hourly' && (
+                        {filter.job_type.hourly === 'Hourly Rate' && (
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
                             <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                           </svg>
@@ -294,33 +283,6 @@ function OfferJobsFilter({ isLoaded }) {
                       Hourly
                     </span>
                   </label>
-                  <label htmlFor="job-checkbox2" className="label">
-                    <input
-                      checked={filter.job_type.monthly === 'monthly'}
-                      style={{ display: 'none' }}
-                      value="monthly"
-                      onChange={handeFilterSelects('job_type.monthly')}
-                      name="job-checkbox"
-                      type="checkbox"
-                      id="job-checkbox2"
-                      className="offer__container__left__experience__options__checkbox"
-                    />
-                    <div className="check-container small-check">
-                      <span className="check-squad small-check__squad">
-                        {filter.job_type.monthly === 'monthly' && (
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
-                            <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
-                          </svg>
-                        )}
-                      </span>
-                    </div>
-                    <span
-                      className="offer__container__left__experience__options__label"
-                    >
-                      Monthly
-                    </span>
-                  </label>
-
                 </div>
                 <div className="offer__container__left__experience__job__options__time">
                   {/* chekboxy haninq */}
@@ -343,7 +305,6 @@ function OfferJobsFilter({ isLoaded }) {
                     <input
                       onChange={handeFilterSelects('job_type.hour_max')}
                       type="number"
-                      value={filter.job_type.hour_max}
                       id="job-checkbox4"
                       placeholder="max"
                       className="offer__container__left__experience__job__options__time__input"
@@ -359,9 +320,9 @@ function OfferJobsFilter({ isLoaded }) {
                 <div className="offer__container__left__experience__job__options">
                   <label htmlFor="job-checkbox7" className="label">
                     <input
-                      checked={filter.job_type.fixed === 'fixed'}
+                      checked={filter.job_type.fixed === 'Project Budget'}
                       style={{ display: 'none' }}
-                      value="fixed"
+                      value="Project Budget"
                       onChange={handeFilterSelects('job_type.fixed')}
                       name="job-checkbox-salary"
                       type="checkbox"
@@ -370,7 +331,7 @@ function OfferJobsFilter({ isLoaded }) {
                     />
                     <div className="check-container small-check">
                       <span className="check-squad small-check__squad">
-                        {filter.job_type.fixed === 'fixed' && (
+                        {filter.job_type.fixed === 'Project Budget' && (
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
                             <path d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z" fill="white" />
                           </svg>
@@ -395,7 +356,6 @@ function OfferJobsFilter({ isLoaded }) {
                       <input
                         onChange={handeFilterSelects('job_type.salary_min')}
                         type="number"
-                        value={filter.job_type.salary_min}
                         id="job-checkbox4"
                         placeholder="min$"
                         className="offer__container__left__experience__job__options__salary__lastBox__input"
@@ -406,7 +366,6 @@ function OfferJobsFilter({ isLoaded }) {
                       <input
                         onChange={handeFilterSelects('job_type.salary_max')}
                         type="number"
-                        value={filter.job_type.salary_max}
                         id="job-checkbox4"
                         placeholder="max$"
                         className="offer__container__left__experience__job__options__salary__lastBox__input"

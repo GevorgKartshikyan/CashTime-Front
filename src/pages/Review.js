@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Progress } from 'react-sweet-progress';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Avatar from '../assets/images/avatar.svg';
 import 'react-sweet-progress/lib/style.css';
@@ -137,7 +136,4 @@ function Review(props) {
     </div>
   );
 }
-Review.propTypes = {
-  setShowImg: PropTypes.func.isRequired,
-};
 export default Review;
