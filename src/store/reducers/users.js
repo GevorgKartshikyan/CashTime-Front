@@ -19,8 +19,13 @@ export default createReducer(initialState, (builder) => {
   builder
     .addCase(registerRequest.pending, (state) => ({ ...state, registerRequestStatus: 'pending' }))
     .addCase(registerRequest.fulfilled, (state, action) => {
-      const { user } = action.payload;
-      return { ...state, user, registerRequestStatus: 'fulfilled' };
+      const { user, token } = action.payload;
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+      return {
+        ...state, user, token, registerRequestStatus: 'fulfilled',
+      };
     })
     .addCase(registerRequest.rejected, (state) => ({ ...state, registerRequestStatus: 'error' }))
     .addCase(loginRequest.fulfilled, (state, action) => {

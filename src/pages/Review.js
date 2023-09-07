@@ -12,10 +12,6 @@ import imageAssets from '../components/assetList';
 function Review(props) {
   const { setShowImg } = props;
   const token = useSelector((state) => state.users.token);
-  if (!token) {
-    window.location.href = '/login';
-    return null;
-  }
   const [selectedStars, setSelectedStars] = useState(0);
   // const [selectedPhoto, setSelectedPhoto] = useState('');
   // const [showModal, setShowModal] = useState(false);
@@ -40,6 +36,11 @@ function Review(props) {
       background: 'rgba(3, 16, 84, 0.30)',
     },
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <div className="review-info">

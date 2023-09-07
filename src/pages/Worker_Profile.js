@@ -13,11 +13,11 @@ import LanguageSvg from '../assets/images/globe.svg';
 
 function WorkerProfile() {
   const token = useSelector((state) => state.users.token);
+  const [available, setAvailable] = useState(false);
   if (!token) {
     window.location.href = '/login';
     return null;
   }
-  const [available, setAvailable] = useState(false);
   return (
     <div className="profile">
       <div className="profile__row">

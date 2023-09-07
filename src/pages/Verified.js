@@ -6,17 +6,16 @@ import VerifiedImg from '../assets/images/verified.svg';
 
 function Verified() {
   const token = useSelector((state) => state.users.token);
-  if (token) {
-    window.location.href = '/';
-    return null;
-  }
   const navigate = useNavigate();
-
   useEffect(() => {
     setTimeout(() => {
       navigate('/');
     }, 1500);
   }, []);
+  if (token) {
+    window.location.href = '/';
+    return null;
+  }
   return (
     <Wrapper>
       <div className="verified">

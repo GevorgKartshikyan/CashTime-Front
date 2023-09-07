@@ -37,30 +37,20 @@ function Footer() {
             <div id="footer__links__col_one" className="footer__links__col">
               <Link className="footer_link" to="/">Menu</Link>
               <Link className="footer_link" to="/">Home</Link>
-              <Link className="footer_link" to="/">About</Link>
+              <Link className="footer_link" to="/">Offers</Link>
               <Link className="footer_link" to="/">Register</Link>
-              <Link className="footer_link" to="/">Contacts</Link>
             </div>
             <div id="footer__links__col_two" className="footer__links__col">
-              <Link className="footer_link" to="/">Menu</Link>
-              <Link className="footer_link" to="/">Home</Link>
-              <Link className="footer_link" to="/">About</Link>
-              <Link className="footer_link" to="/">Register</Link>
+              <Link className="footer_link" to="/">About Us</Link>
+              <Link className="footer_link" to="/">For Employees</Link>
+              <Link className="footer_link" to="/">For Employers</Link>
+              <Link className="footer_link" to="/">Join Us</Link>
               <Link className="footer_link" to="/">Contacts</Link>
             </div>
             <div id="footer__links__col_three" className="footer__links__col">
-              <Link className="footer_link" to="/">Menu</Link>
-              <Link className="footer_link" to="/">Home</Link>
-              <Link className="footer_link" to="/">About</Link>
-              <Link className="footer_link" to="/">Register</Link>
-              <Link className="footer_link" to="/">Contacts</Link>
-            </div>
-            <div id="footer__links__col_four" className="footer__links__col">
-              <Link className="footer_link" to="/">Menu</Link>
-              <Link className="footer_link" to="/">Home</Link>
-              <Link className="footer_link" to="/">About</Link>
-              <Link className="footer_link" to="/">Register</Link>
-              <Link className="footer_link" to="/">Contacts</Link>
+              <Link className="footer_link" to="/">Our Company</Link>
+              <Link className="footer_link" to="/">Contact Us</Link>
+              <Link className="footer_link" to="/">Directions</Link>
             </div>
           </div>
           <div className="footer__copyright">
