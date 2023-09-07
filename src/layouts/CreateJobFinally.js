@@ -43,11 +43,13 @@ function CreateJobFinally(props) {
       data: JSON.stringify(dataForRequest),
       jobImage: file,
     }));
+    console.log(payload);
     // validate
     if (payload?.status === 'ok') {
       navigate('/');
     }
   }, [dataForRequest, file]);
+  console.log(dataForRequest);
   return (
     <div>
       {jobStatus === 'pending' ? <LoadingFile /> : (

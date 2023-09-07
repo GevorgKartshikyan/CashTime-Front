@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom'; import Header from '../layouts/Hea
 import OfferMap from '../layouts/OfferMap'; import OfferJobsFilter from '../layouts/OfferJobsFillter';
 
 const libraries = ['places'];
+const keyMap = process.env.REACT_APP_MAP_SECRET;
+
 function Offer() {
   const token = useSelector((state) => state.users.token);
-  const keyMap = process.env.REACT_APP_MAP_SECRET;
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: keyMap,
     libraries,
@@ -19,10 +21,8 @@ function Offer() {
   return (
     <>
       <Header />
-      {' '}
       <div>
         {!page && <OfferMap isLoaded={isLoaded} />}
-        {' '}
         {page === 'list' && <OfferJobsFilter isLoaded={isLoaded} />}
         {page === 'map' && <OfferMap isLoaded={isLoaded} />}
       </div>
