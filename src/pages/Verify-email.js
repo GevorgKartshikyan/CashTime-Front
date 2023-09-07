@@ -8,10 +8,6 @@ import { activate } from '../store/actions/users';
 
 function VerifyEmail() {
   const token = useSelector((state) => state.users.token);
-  if (token) {
-    window.location.href = '/';
-    return null;
-  }
   const [code, setCode] = useState('');
   const [isCodeCorrect, setIsCodeCorrect] = useState(true);
   const validationCode = useSelector((state) => state.users.user.validationCode);
@@ -29,6 +25,10 @@ function VerifyEmail() {
       setIsCodeCorrect(false);
     }
   };
+  if (token) {
+    window.location.href = '/';
+    return null;
+  }
   return (
     <Wrapper>
       <div className="verify__email">

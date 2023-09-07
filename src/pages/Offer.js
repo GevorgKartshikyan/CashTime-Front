@@ -17,10 +17,6 @@ import Header from '../layouts/Header';
 
 function Offer({ isLoaded }) {
   const token = useSelector((state) => state.users.token);
-  if (!token) {
-    window.location.href = '/login';
-    return null;
-  }
   const [activeButton, setActiveButton] = useState(false);
   const [categoryShow, setCategoryShow] = useState(false);
   const [experienceShow, setExperienceShow] = useState(false);
@@ -151,6 +147,10 @@ function Offer({ isLoaded }) {
       fontSize: 14,
     }),
   };
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   return (
     <>
       <Header />

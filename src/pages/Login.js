@@ -13,10 +13,6 @@ import GoogleIcon from '../assets/images/Signup_google_icon.svg';
 
 function Login() {
   const token = useSelector((state) => state.users.token);
-  if (token) {
-    window.location.href = '/';
-    return null;
-  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -72,6 +68,10 @@ function Login() {
     }
   };
 
+  if (token) {
+    window.location.href = '/';
+    return null;
+  }
   return (
     <>
       <Header />

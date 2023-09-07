@@ -14,10 +14,6 @@ import setJobFormData from '../store/actions/createJobForm';
 
 function CreateJob() {
   const token = useSelector((state) => state.users.token);
-  if (!token) {
-    window.location.href = '/login';
-    return null;
-  }
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [localData, setLocalData] = useState({});
@@ -66,6 +62,11 @@ function CreateJob() {
     ease: 'easeInOut',
     duration: 0.7,
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <>

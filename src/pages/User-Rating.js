@@ -7,15 +7,16 @@ import ratingsData from '../data/reviews';
 
 function UserRating() {
   const token = useSelector((state) => state.users.token);
-  if (!token) {
-    window.location.href = '/login';
-    return null;
-  }
   const navigate = useNavigate();
 
   const handleWriteReview = () => {
     navigate('/writereview');
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <Wrapper>

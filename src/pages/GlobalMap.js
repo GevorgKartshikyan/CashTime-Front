@@ -7,11 +7,6 @@ import MapProfile from '../components/MapProfile';
 // import TestInput from './TestInput';
 
 export default function GlobalMap({ isLoaded }) {
-  const token = useSelector((state) => state.users.token);
-  if (!token) {
-    window.location.href = '/login';
-    return null;
-  }
   if (!isLoaded) return <LoadingFile />;
 
   return <Map isLoaded={isLoaded} />;
@@ -33,6 +28,11 @@ function Map() {
     { lat: 40.788990, lng: 43.847409 },
     { lat: 40.7855952, lng: 43.843743 },
   ];
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   return (
     <div style={{
       maxHeight: '100vh',
