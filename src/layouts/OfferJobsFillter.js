@@ -36,27 +36,36 @@ function OfferJobsFilter({ isLoaded }) {
     },
     tags: '',
   });
-  const [city, setCity] = useState('');
-  console.log(city);
+  const city = searchParams.get('city') || '';
   const handeFilterSelects = useCallback((key) => (e) => {
     if (key.includes('.')) {
       const [parentKey, childKey] = key.split('.');
-      setFilter(() => ({
-        ...filter,
-        [parentKey]: {
-          ...filter[parentKey],
-          [childKey]: e.target.value,
-        },
-      }));
+      setFilter((prevState) => {
+        if (prevState[parentKey][childKey] === 'Hourly Rate' || prevState[parentKey][childKey] === 'Project Budget') {
+          return {
+            ...filter,
+            [parentKey]: {
+              ...filter[parentKey],
+              [childKey]: '',
+            },
+          };
+        }
+        return {
+          ...filter,
+          [parentKey]: {
+            ...filter[parentKey],
+            [childKey]: e.target.value,
+          },
+        };
+      });
     } else {
       setFilter({
         ...filter,
         [key]: e.target.value,
       });
     }
-  }, [filter, searchParams]);
-  console.log(filter);
-  // console.log(category);
+  }, [filter]);
+
   const handleDateChange = (date) => {
     setFilter({
       ...filter,
@@ -72,13 +81,15 @@ function OfferJobsFilter({ isLoaded }) {
   const dispatch = useDispatch();
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log(99999);
-      dispatch(jobListFromUsersFilter({ filter, page: 1, limit: 5 }));
+      dispatch(jobListFromUsersFilter({
+        filter, page: 1, limit: 5, city,
+      }));
     }, 800);
     return () => {
       clearTimeout(timer);
     };
-  }, [filter]);
+  }, [filter, searchParams]);
+  console.log(city);
   // console.log(filter);
   return (
     <div className="container">
@@ -87,7 +98,7 @@ function OfferJobsFilter({ isLoaded }) {
         <div className="offer__top__search">
           <label className="labeltest" htmlFor="offer-search">
             <SearchIcon className="offer__top__search__icon" />
-            <TestInput setCity={setCity} changeCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
+            <TestInput setCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
           </label>
           <div className="offer__top__block">
 
@@ -284,6 +295,7 @@ function OfferJobsFilter({ isLoaded }) {
                     </span>
                   </label>
                 </div>
+                {filter.job_type.hourly === 'Hourly Rate' && (
                 <div className="offer__container__left__experience__job__options__time">
                   {/* chekboxy haninq */}
                   <label htmlFor="job-checkbox4">
@@ -305,6 +317,7 @@ function OfferJobsFilter({ isLoaded }) {
                     <input
                       onChange={handeFilterSelects('job_type.hour_max')}
                       type="number"
+                      value={filter.job_type.hour_max}
                       id="job-checkbox4"
                       placeholder="max"
                       className="offer__container__left__experience__job__options__time__input"
@@ -317,6 +330,7 @@ function OfferJobsFilter({ isLoaded }) {
                   </span>
 
                 </div>
+                )}
                 <div className="offer__container__left__experience__job__options">
                   <label htmlFor="job-checkbox7" className="label">
                     <input
@@ -346,6 +360,7 @@ function OfferJobsFilter({ isLoaded }) {
                   </label>
 
                 </div>
+                {filter.job_type.fixed === 'Project Budget' && (
                 <div className="offer__container__left__experience__job__options__salary">
 
                   <div
@@ -356,6 +371,7 @@ function OfferJobsFilter({ isLoaded }) {
                       <input
                         onChange={handeFilterSelects('job_type.salary_min')}
                         type="number"
+                        value={filter.job_type.salary_min}
                         id="job-checkbox4"
                         placeholder="min$"
                         className="offer__container__left__experience__job__options__salary__lastBox__input"
@@ -367,6 +383,7 @@ function OfferJobsFilter({ isLoaded }) {
                         onChange={handeFilterSelects('job_type.salary_max')}
                         type="number"
                         id="job-checkbox4"
+                        value={filter.job_type.salary_max}
                         placeholder="max$"
                         className="offer__container__left__experience__job__options__salary__lastBox__input"
                       />
@@ -374,6 +391,7 @@ function OfferJobsFilter({ isLoaded }) {
 
                   </div>
                 </div>
+                )}
               </div>
             </div>
             <div />

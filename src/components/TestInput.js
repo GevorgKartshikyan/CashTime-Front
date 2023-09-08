@@ -53,7 +53,7 @@ function TestInput({
         city = localityComponent.long_name;
       }
       if (page === 'list') {
-        setCity(city);
+        setCity({ city });
       }
       if (page === 'map') {
         changeCity({ city });

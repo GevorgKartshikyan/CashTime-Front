@@ -7,8 +7,10 @@ const api = axios.create({
 });
 
 class Api {
-  static jobListFromUsersFilter({ filter, limit, page }) {
-    return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}`, filter);
+  static jobListFromUsersFilter({
+    filter, limit, page, city,
+  }) {
+    return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}&city=${city}`, filter);
   }
 
   static jobListFromUsersMap(city) {
