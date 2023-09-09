@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TestInput from '../components/TestInput';
 import DownIcon from '../assets/images/offer_select_down_arrow_icon 2.svg';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
@@ -36,7 +36,6 @@ function OfferJobsFilter({ isLoaded }) {
     },
     tags: '',
   });
-  const city = searchParams.get('city') || '';
   const handeFilterSelects = useCallback((key) => (e) => {
     if (key.includes('.')) {
       const [parentKey, childKey] = key.split('.');
@@ -79,10 +78,21 @@ function OfferJobsFilter({ isLoaded }) {
   };
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const city = searchParams.get('city') || '';
+  const page = parseInt(searchParams.get('page') || 1, 10);
+  const limit = parseInt(searchParams.get('limit') || 5, 10);
+  const handlePageChange = (event) => {
+    const selectedPage = event.selected + 1;
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('page', selectedPage);
+    newSearchParams.set('limit', limit);
+    setSearchParams(newSearchParams);
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(jobListFromUsersFilter({
-        filter, page: 1, limit: 5, city,
+        filter, page, limit, city,
       }));
     }, 800);
     return () => {
@@ -90,6 +100,9 @@ function OfferJobsFilter({ isLoaded }) {
     };
   }, [filter, searchParams]);
   console.log(city);
+  const jobsFilter = useSelector((state) => state.jobsRequest.jobsFromUsersFilter);
+  const currentPage = useSelector((state) => state.jobsRequest.currentPageUsers);
+  const totalPage = useSelector((state) => state.jobsRequest.totalPagesUsers);
   // console.log(filter);
   return (
     <div className="container">
@@ -98,7 +111,7 @@ function OfferJobsFilter({ isLoaded }) {
         <div className="offer__top__search">
           <label className="labeltest" htmlFor="offer-search">
             <SearchIcon className="offer__top__search__icon" />
-            <TestInput setCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
+            <TestInput searchParams={searchParams} setCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
           </label>
           <div className="offer__top__block">
 
@@ -452,7 +465,12 @@ function OfferJobsFilter({ isLoaded }) {
         {/* !!!!!!!!!!!!!!!!!!!!!! */}
         {/* Offer container right */}
         {/* !!!!!!!!!!!!!!!!!!!!!! */}
-        <OfferJobsList />
+        <OfferJobsList
+          totalPages={totalPage}
+          currentPage={currentPage}
+          jobsFilter={jobsFilter}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   );

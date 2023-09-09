@@ -12,6 +12,9 @@ const initialState = {
   currentPageAdmin: 0,
   totalPagesAdmin: 0,
   jobListFromUsers: [],
+  jobsFromUsersFilter: [],
+  currentPageUsers: 0,
+  totalPagesUsers: 0,
 };
 
 export default createReducer(initialState, (builder) => {
@@ -43,6 +46,9 @@ export default createReducer(initialState, (builder) => {
       state.jobListFromUsers = jobs;
     })
     .addCase(jobListFromUsersFilter.fulfilled, (state, action) => {
-      console.log(action.payload);
+      const { jobs, currentPage, totalPages } = action.payload;
+      state.jobsFromUsersFilter = jobs;
+      state.currentPageUsers = currentPage;
+      state.totalPagesUsers = totalPages;
     });
 });

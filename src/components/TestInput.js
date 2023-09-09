@@ -7,7 +7,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import { useParams } from 'react-router-dom';
 
 function TestInput({
-  isLoaded, classInput, changeCity, setCoordinates, setCity,
+  isLoaded, classInput, changeCity, setCoordinates, setCity, searchParams,
 }) {
   const {
     ready,
@@ -53,8 +53,11 @@ function TestInput({
         city = localityComponent.long_name;
       }
       if (page === 'list') {
-        setCity({ city });
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('city', 'Yerevan');
+        setCity(newSearchParams);
       }
+
       if (page === 'map') {
         changeCity({ city });
       }

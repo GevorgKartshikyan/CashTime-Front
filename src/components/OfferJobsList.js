@@ -5,9 +5,11 @@ import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zo
 import IndicatorsArrowsSecond from './indicatorsArrowsSecond';
 import InfoCard from './offer-info-card';
 
-function OfferJobsList() {
+function OfferJobsList({
+  totalPages, currentPage, jobsFilter, handlePageChange,
+}) {
+  console.log(totalPages, currentPage, jobsFilter);
   const [toggleBtn, setToggleBtn] = useState(true);
-  const items = 905;
   const options = [
     {
       value: 'test1',
@@ -17,10 +19,7 @@ function OfferJobsList() {
       value: 'test2',
       label: 'Test2',
     },
-    {
-      value: 'Newest',
-      label: 'Newest',
-    }];
+  ];
 
   const customStyles = {
     control: (provided, state) => ({
@@ -138,14 +137,13 @@ function OfferJobsList() {
           activeClassName="item active-page"
           breakClassName="item break-me"
           breakLabel=""
-          // maxPageCount={5}
           containerClassName="pagination"
           disabledClassName="disabled-page"
           marginPagesDisplayed={0}
           nextClassName="item next "
-          // nextLabel={<ArrowForwardIosIcon style={{ fontSize: 18, width: 150 }} />}
-          onPageChange={() => null}
-          pageCount={items}
+          onPageChange={handlePageChange}
+          pageCount={totalPages} // total
+          forcePage={currentPage - 1} // current
           pageClassName="item pagination-page "
           pageRangeDisplayed={5}
           previousClassName="item previous"
