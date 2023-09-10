@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import TestInput from '../components/TestInput';
+import MapInputAutocomplete from '../components/MapInputAutocomplete';
 import DownIcon from '../assets/images/offer_select_down_arrow_icon 2.svg';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
 import OfferJobsList from '../components/OfferJobsList';
@@ -40,7 +40,7 @@ function OfferJobsFilter({ isLoaded }) {
     if (key.includes('.')) {
       const [parentKey, childKey] = key.split('.');
       setFilter((prevState) => {
-        if (prevState[parentKey][childKey] === 'Hourly Rate' || prevState[parentKey][childKey] === 'Project Budget') {
+        if (prevState[parentKey][childKey] === 'Intermediate' || prevState[parentKey][childKey] === 'Expert' || prevState[parentKey][childKey] === 'Entry' || prevState[parentKey][childKey] === 'Hourly Rate' || prevState[parentKey][childKey] === 'Project Budget') {
           return {
             ...filter,
             [parentKey]: {
@@ -112,7 +112,7 @@ function OfferJobsFilter({ isLoaded }) {
         <div className="offer__top__search">
           <label className="labeltest" htmlFor="offer-search">
             <SearchIcon className="offer__top__search__icon" />
-            <TestInput searchParams={searchParams} setCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
+            <MapInputAutocomplete searchParams={searchParams} setCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
           </label>
           <div className="offer__top__block">
 
@@ -467,6 +467,7 @@ function OfferJobsFilter({ isLoaded }) {
         {/* Offer container right */}
         {/* !!!!!!!!!!!!!!!!!!!!!! */}
         <OfferJobsList
+          setFilter={setFilter}
           searchParams={searchParams}
           setOrder={setSearchParams}
           totalPages={totalPage}

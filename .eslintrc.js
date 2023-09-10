@@ -39,5 +39,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/prop-types': 'off',
     camelcase: 'off',
+    'no-nested-ternary': 'off',
   },
 };

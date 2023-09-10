@@ -6,7 +6,7 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useParams } from 'react-router-dom';
 
-function TestInput({
+function MapInputAutocomplete({
   isLoaded, classInput, changeCity, setCoordinates, setCity, searchParams,
 }) {
   const {
@@ -99,4 +99,4 @@ function TestInput({
   );
 }
 
-export default TestInput;
+export default MapInputAutocomplete;

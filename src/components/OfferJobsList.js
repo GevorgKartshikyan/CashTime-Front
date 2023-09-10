@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
+import { useSelector } from 'react-redux';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
 import IndicatorsArrowsSecond from './indicatorsArrowsSecond';
 import InfoCard from './offer-info-card';
+import cryingEmoji from '../assets/images/crying.svg';
+import LoadingFileFromList from './LoadingFileFromList';
 
 function OfferJobsList({
-  totalPages, currentPage, jobsFilter, handlePageChange, searchParams, setOrder,
+  totalPages, currentPage, jobsFilter, handlePageChange, searchParams, setOrder, setFilter,
 }) {
   const [toggleBtn, setToggleBtn] = useState(true);
   const options = [
@@ -58,16 +61,37 @@ function OfferJobsList({
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const handleChange = (selected) => {
     setSelectedOption(selected);
-    // const newSearchParams = new URLSearchParams(searchParams);
-    // console.log(selectedOption.value, 'aaaaa');
-    // newSearchParams.set('order-by', selectedOption.value);
-    // setOrder(newSearchParams);
   };
   useEffect(() => {
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('order-by', selectedOption.value);
     setOrder(newSearchParams);
   }, [selectedOption]);
+  console.log(jobsFilter);
+  const status = useSelector((state) => state.jobsRequest.jobsListStatus);
+  const handleResetSearch = () => {
+    setFilter({
+      title: '',
+      experience_level: {
+        entryLevel: '',
+        intermediate: '',
+        expert: '',
+      },
+      job_type: {
+        hourly: '',
+        hour_min: '',
+        hour_max: '',
+        fixed: '',
+        salary_min: '',
+        salary_max: '',
+      },
+      date: {
+        from: '',
+        to: '',
+      },
+      tags: '',
+    });
+  };
   return (
     <div className="offer__container__right">
       <div className="offer__container__right__toggle">
@@ -96,43 +120,62 @@ function OfferJobsList({
           }}
         />
       </div>
-      {/* {toggleBtn ? ( */}
       <div>
-        {jobsFilter.map((job) => (
-          <InfoCard
-            id={job.id}
-            creator={job.userId}
-            key={job.id}
-            title={job.title}
-            priceMethod={job.priceMethod}
-            priceMaxHourly={job.priceMaxHourly}
-            priceMinHourly={job.priceMinHourly}
-            experience={job.experience}
-            createdAt={job.createdAt}
-            country={job.country}
-            city={job.city}
-            priceFixed={job.priceFixed}
-            description={job.description}
-          />
-        ))}
+        {status === 'ok' ? (
+          jobsFilter.length > 0 && jobsFilter ? jobsFilter.map((job) => (
+            <InfoCard
+              id={job.id}
+              creator={job.userId}
+              key={job.id}
+              title={job.title}
+              priceMethod={job.priceMethod}
+              priceMaxHourly={job.priceMaxHourly}
+              priceMinHourly={job.priceMinHourly}
+              experience={job.experience}
+              createdAt={job.createdAt}
+              country={job.country}
+              city={job.city}
+              priceFixed={job.priceFixed}
+              description={job.description}
+            />
+          )) : (
+            <>
+              <div className="bad-query-offer-container">
+                <img src={cryingEmoji} alt="bad query" />
+                <p className="bad-query-offer">
+                  Nothing was found for your query
+                </p>
+              </div>
+              <div className="reset-query">
+                <button onClick={handleResetSearch} type="button">Reset Search</button>
+              </div>
+            </>
+          )
+        ) : (
+          <div className="offer-loading-container">
+            <LoadingFileFromList />
+          </div>
+        )}
       </div>
       {/* ) : null } */}
       <div className="offer__container__right__paginate">
-        <ReactPaginate
-          activeClassName="item active-page"
-          breakClassName="item break-me"
-          breakLabel=""
-          containerClassName="pagination"
-          disabledClassName="disabled-page"
-          marginPagesDisplayed={0}
-          nextClassName="item next "
-          onPageChange={handlePageChange}
-          pageCount={totalPages} // total
-          forcePage={currentPage - 1} // current
-          pageClassName="item pagination-page "
-          pageRangeDisplayed={5}
-          previousClassName="item previous"
-        />
+        {jobsFilter.length > 0 ? (
+          <ReactPaginate
+            activeClassName="item active-page"
+            breakClassName="item break-me"
+            breakLabel=""
+            containerClassName="pagination"
+            disabledClassName="disabled-page"
+            marginPagesDisplayed={0}
+            nextClassName="item next "
+            onPageChange={handlePageChange}
+            pageCount={totalPages} // total
+            forcePage={currentPage - 1} // current
+            pageClassName="item pagination-page "
+            pageRangeDisplayed={5}
+            previousClassName="item previous"
+          />
+        ) : null}
       </div>
     </div>
 

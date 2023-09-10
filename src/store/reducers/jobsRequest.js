@@ -15,6 +15,7 @@ const initialState = {
   jobsFromUsersFilter: [],
   currentPageUsers: 0,
   totalPagesUsers: 0,
+  jobsListStatus: '',
 };
 
 export default createReducer(initialState, (builder) => {
@@ -50,5 +51,9 @@ export default createReducer(initialState, (builder) => {
       state.jobsFromUsersFilter = jobs;
       state.currentPageUsers = currentPage;
       state.totalPagesUsers = totalPages;
+      state.jobsListStatus = 'ok';
+    })
+    .addCase(jobListFromUsersFilter.pending, (state) => {
+      state.jobsListStatus = 'pending';
     });
 });

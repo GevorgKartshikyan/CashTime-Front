@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import TestInput from '../components/TestInput';
+import MapInputAutocomplete from '../components/MapInputAutocomplete';
 import GlobalMap from '../pages/GlobalMap';
 import { ReactComponent as SearchIcon } from '../assets/images/offer_filter_search.svg';
 import { jobListFromUsersMap } from '../store/actions/jobsRequest';
@@ -27,7 +27,7 @@ function OfferMap({ isLoaded }) {
           <div className="offer__top__search">
             <label className="labeltest" htmlFor="offer-search">
               <SearchIcon className="offer__top__search__icon" />
-              <TestInput setCoordinates={setCoordinates} changeCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
+              <MapInputAutocomplete setCoordinates={setCoordinates} changeCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
             </label>
           </div>
           <div className="offer__top__block offer-top-block">
