@@ -33,7 +33,7 @@ function MapInputAutocomplete({
     setValue(e.target.value);
   };
   const { page } = useParams();
-
+  console.log(page);
   const handleSelect = (suggestion) => () => {
     setValue(suggestion.description, false);
     clearSuggestions();
@@ -41,7 +41,7 @@ function MapInputAutocomplete({
     getGeocode({ address: suggestion.description }).then((results) => {
       const { lat, lng } = getLatLng(results[0]);
       console.log('📍 Coordinates: ', { lat, lng });
-      if (page === 'map') {
+      if (page === 'map' || !page) {
         setCoordinates({ lat, lng });
       }
       const addressComponents = results[0].address_components;
@@ -58,7 +58,7 @@ function MapInputAutocomplete({
         setCity(newSearchParams);
       }
 
-      if (page === 'map') {
+      if (page === 'map' || !page) {
         changeCity({ city });
       }
       console.log('🏙 City: ', city);
