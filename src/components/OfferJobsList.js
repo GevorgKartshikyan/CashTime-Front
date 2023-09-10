@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
@@ -6,18 +6,17 @@ import IndicatorsArrowsSecond from './indicatorsArrowsSecond';
 import InfoCard from './offer-info-card';
 
 function OfferJobsList({
-  totalPages, currentPage, jobsFilter, handlePageChange,
+  totalPages, currentPage, jobsFilter, handlePageChange, searchParams, setOrder,
 }) {
-  console.log(totalPages, currentPage, jobsFilter);
   const [toggleBtn, setToggleBtn] = useState(true);
   const options = [
     {
-      value: 'test1',
-      label: 'Test1',
+      value: 'Newest',
+      label: 'Newest',
     },
     {
-      value: 'test2',
-      label: 'Test2',
+      value: 'Latest',
+      label: 'Latest',
     },
   ];
 
@@ -56,6 +55,19 @@ function OfferJobsList({
       fontSize: 14,
     }),
   };
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const handleChange = (selected) => {
+    setSelectedOption(selected);
+    // const newSearchParams = new URLSearchParams(searchParams);
+    // console.log(selectedOption.value, 'aaaaa');
+    // newSearchParams.set('order-by', selectedOption.value);
+    // setOrder(newSearchParams);
+  };
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('order-by', selectedOption.value);
+    setOrder(newSearchParams);
+  }, [selectedOption]);
   return (
     <div className="offer__container__right">
       <div className="offer__container__right__toggle">
@@ -76,8 +88,9 @@ function OfferJobsList({
         <Select
           placeholder="Newest"
           options={options}
+          value={selectedOption}
+          onChange={handleChange}
           styles={customStyles}
-          // onChange={handeChangeSelects('service')}
           components={{
             IndicatorsContainer: IndicatorsArrowsSecond,
           }}
@@ -85,51 +98,23 @@ function OfferJobsList({
       </div>
       {/* {toggleBtn ? ( */}
       <div>
-        <InfoCard
-          title="Rework And Improve My Figma Designs"
-          detail="Hourly:12-15 USD,12-15 USD,Available, Expert"
-          postTime="Posed Yesterday"
-          description="Im working on a new business idea/concept.
-                Im not the best designer in the world so Id
-                like someone to help take my very basic designs in figma and improve them .
-                Ive got a basic colour scheme and design structure but thats about it."
-        />
-        <InfoCard
-          title="Rework And Improve My Figma Designs"
-          detail="Hourly:12-15 USD,12-15 USD,Available, Expert"
-          postTime="Posed Yesterday"
-          description="Im working on a new business idea/concept.
-                Im not the best designer in the world so Id
-                like someone to help take my very basic designs in figma and improve them .
-                Ive got a basic colour scheme and design structure but thats about it."
-        />
-        <InfoCard
-          title="Rework And Improve My Figma Designs"
-          detail="Hourly:12-15 USD,12-15 USD,Available, Expert"
-          postTime="Posed Yesterday"
-          description="Im working on a new business idea/concept.
-                Im not the best designer in the world so Id
-                like someone to help take my very basic designs in figma and improve them .
-                Ive got a basic colour scheme and design structure but thats about it."
-        />
-        <InfoCard
-          title="Rework And Improve My Figma Designs"
-          detail="Hourly:12-15 USD,12-15 USD,Available, Expert"
-          postTime="Posed Yesterday"
-          description="Im working on a new business idea/concept.
-                Im not the best designer in the world so Id
-                like someone to help take my very basic designs in figma and improve them .
-                Ive got a basic colour scheme and design structure but thats about it."
-        />
-        <InfoCard
-          title="Rework And Improve My Figma Designs"
-          detail="Hourly:12-15 USD,12-15 USD,Available, Expert"
-          postTime="Posed Yesterday"
-          description="Im working on a new business idea/concept.
-                Im not the best designer in the world so Id
-                like someone to help take my very basic designs in figma and improve them .
-                Ive got a basic colour scheme and design structure but thats about it."
-        />
+        {jobsFilter.map((job) => (
+          <InfoCard
+            id={job.id}
+            creator={job.userId}
+            key={job.id}
+            title={job.title}
+            priceMethod={job.priceMethod}
+            priceMaxHourly={job.priceMaxHourly}
+            priceMinHourly={job.priceMinHourly}
+            experience={job.experience}
+            createdAt={job.createdAt}
+            country={job.country}
+            city={job.city}
+            priceFixed={job.priceFixed}
+            description={job.description}
+          />
+        ))}
       </div>
       {/* ) : null } */}
       <div className="offer__container__right__paginate">

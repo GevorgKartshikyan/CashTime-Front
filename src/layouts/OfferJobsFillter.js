@@ -81,6 +81,8 @@ function OfferJobsFilter({ isLoaded }) {
   const city = searchParams.get('city') || '';
   const page = parseInt(searchParams.get('page') || 1, 10);
   const limit = parseInt(searchParams.get('limit') || 5, 10);
+  const order = searchParams.get('order-by') || '';
+  console.log(order);
   const handlePageChange = (event) => {
     const selectedPage = event.selected + 1;
     const newSearchParams = new URLSearchParams(searchParams);
@@ -92,14 +94,13 @@ function OfferJobsFilter({ isLoaded }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(jobListFromUsersFilter({
-        filter, page, limit, city,
+        filter, page, limit, city, order,
       }));
     }, 800);
     return () => {
       clearTimeout(timer);
     };
   }, [filter, searchParams]);
-  console.log(city);
   const jobsFilter = useSelector((state) => state.jobsRequest.jobsFromUsersFilter);
   const currentPage = useSelector((state) => state.jobsRequest.currentPageUsers);
   const totalPage = useSelector((state) => state.jobsRequest.totalPagesUsers);
@@ -466,6 +467,8 @@ function OfferJobsFilter({ isLoaded }) {
         {/* Offer container right */}
         {/* !!!!!!!!!!!!!!!!!!!!!! */}
         <OfferJobsList
+          searchParams={searchParams}
+          setOrder={setSearchParams}
           totalPages={totalPage}
           currentPage={currentPage}
           jobsFilter={jobsFilter}

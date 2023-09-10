@@ -589,10 +589,10 @@
       display: flex;
       justify-content: space-between;
 
-      &__right, &__left {
-        display: flex;
-        flex-direction: column;
-      }
+      //&__right, &__left {
+      //  display: flex;
+      //  flex-direction: column;
+      //}
 
       &__right {
         &__title {
@@ -611,6 +611,7 @@
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
+          margin-right: 10px;
           line-height: normal;
         }
       }

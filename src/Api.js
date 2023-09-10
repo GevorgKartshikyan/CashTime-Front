@@ -8,9 +8,9 @@ const api = axios.create({
 
 class Api {
   static jobListFromUsersFilter({
-    filter, limit, page, city,
+    filter, limit, page, city, order,
   }) {
-    return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}&city=${city}`, filter);
+    return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}&city=${city}&order=${order}`, filter);
   }
 
   static jobListFromUsersMap(city) {
