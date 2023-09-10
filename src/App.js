@@ -19,6 +19,7 @@ import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
 import Profile from './pages/Profile';
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<GlobalMap />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
