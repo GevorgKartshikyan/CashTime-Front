@@ -68,6 +68,11 @@ class Api {
       },
     });
   }
+
+  static singleCv(id) {
+    // console.log(id);
+    return api.get(`/cvs/singleCv/${id}`);
+  }
 }
 
 export default Api;
