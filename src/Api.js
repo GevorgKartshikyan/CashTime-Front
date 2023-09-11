@@ -5,6 +5,13 @@ const { REACT_APP_API_URL } = process.env;
 const api = axios.create({
   baseURL: REACT_APP_API_URL,
 });
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = token;
+  }
+  return config;
+}, (error) => Promise.reject(error));
 
 class Api {
   static jobListFromUsersFilter({

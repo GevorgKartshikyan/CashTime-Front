@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
+import { useDispatch } from 'react-redux';
 import Home from './pages/Home';
 import GlobalMap from './pages/GlobalMap';
 import CreateJob from './pages/Create-job';
@@ -20,11 +21,17 @@ import Admin from './pages/Admin';
 import Review from './pages/Review';
 import Profile from './pages/Profile';
 import NotFoundPage from './components/NotFoundPage';
+import { getProfile } from './store/actions/users';
 
 function App() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     i18n.changeLanguage(window.localStorage.getItem('language'));
   }, [window.localStorage.getItem('language')]);
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -49,7 +56,6 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<GlobalMap />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
