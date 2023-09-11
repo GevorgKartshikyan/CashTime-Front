@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
 import { useLoadScript } from '@react-google-maps/api';
+import { useDispatch } from 'react-redux';
 import Home from './pages/Home';
 import GlobalMap from './pages/GlobalMap';
 import CreateJob from './pages/Create-job';
@@ -20,10 +21,12 @@ import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
 import Profile from './pages/Profile';
+import { getProfile } from './store/actions/users';
 
 const key = process.env.REACT_APP_MAP_SECRET;
 const libraries = ['places'];
 function App() {
+  const dispatch = useDispatch();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: key,
     libraries,
@@ -32,6 +35,9 @@ function App() {
   useEffect(() => {
     i18n.changeLanguage(window.localStorage.getItem('language'));
   }, [window.localStorage.getItem('language')]);
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
