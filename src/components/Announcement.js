@@ -13,7 +13,7 @@ function Announcement(props) {
     id,
     lastname,
     skills,
-    price,
+    priceMethod,
     experience,
     title,
   } = props;
@@ -59,7 +59,7 @@ function Announcement(props) {
             <span>!!!NO SKILLS!!!</span>
           )}
           {experience ? <span>{experience}</span> : <span>!!!NO EXPERIENCE</span>}
-          <span>{price.method}</span>
+          <span>{priceMethod}</span>
           <button className="announcement_accept" type="submit" onClick={() => handleActivateJob(id)}>Accept</button>
           <button className="announcement_delete" type="submit" onClick={() => handleDeleteJob(id)}>Delete</button>
         </div>

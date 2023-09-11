@@ -30,6 +30,7 @@ function Dashboard() {
     const selectedPage = event.selected + 1;
     setSearchParams({ page: selectedPage, limit });
   };
+  console.log(jobsAdmin);
   return (
     <div className="admin__row__dashboard">
       <div className="admin__row__dashboard__title">
@@ -86,7 +87,7 @@ function Dashboard() {
               jobPhoto={e?.jobPhoto}
               skills={e.skills}
               description={e?.description}
-              price={e?.price}
+              priceMethod={e?.priceMethod}
               experience={e.experience}
               title={e.title}
             />

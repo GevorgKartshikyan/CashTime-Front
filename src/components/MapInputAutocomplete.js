@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -64,8 +64,8 @@ function MapInputAutocomplete({
       console.log('🏙 City: ', city);
     });
   };
-  const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
-  const renderSuggestions = () => data.map((suggestion, index) => {
+  // const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const renderSuggestions = () => data.map((suggestion) => {
     const {
       place_id,
       structured_formatting: { main_text, secondary_text },
@@ -75,7 +75,7 @@ function MapInputAutocomplete({
         role="presentation"
         key={place_id}
         onClick={handleSelect(suggestion)}
-        className={index === selectedItemIndex ? 'selected-dress' : ''}
+        // className={index === selectedItemIndex ? 'selected-dress' : ''}
       >
         <strong>{main_text}</strong>
         {' '}
@@ -89,20 +89,20 @@ function MapInputAutocomplete({
       init();
     }
   }, [isLoaded, init]);
-  const handleKeyDown = (event) => {
-    if (event.key === 'ArrowDown') {
-      setSelectedItemIndex((prevIndex) => (prevIndex < renderSuggestions().length
-        - 1 ? prevIndex + 1 : 0));
-    } else if (event.key === 'ArrowUp') {
-      setSelectedItemIndex((prevIndex) => (prevIndex > 0 ? prevIndex
-          - 1 : renderSuggestions().length - 1));
-    } else if (event.key === 'Enter') {
-      if (selectedItemIndex >= 0) {
-        event.preventDefault();
-        handleSelect(data[selectedItemIndex]);
-      }
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   if (event.key === 'ArrowDown') {
+  //     setSelectedItemIndex((prevIndex) => (prevIndex < renderSuggestions().length
+  //       - 1 ? prevIndex + 1 : 0));
+  //   } else if (event.key === 'ArrowUp') {
+  //     setSelectedItemIndex((prevIndex) => (prevIndex > 0 ? prevIndex
+  //         - 1 : renderSuggestions().length - 1));
+  //   } else if (event.key === 'Enter') {
+  //     if (selectedItemIndex >= 0) {
+  //       event.preventDefault();
+  //       handleSelect(data[selectedItemIndex]);
+  //     }
+  //   }
+  // };
   return (
     <div ref={ref} className="autocomplete-container">
       <input
@@ -111,10 +111,9 @@ function MapInputAutocomplete({
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        onKeyDown={handleKeyDown}
+        // onKeyDown={handleKeyDown}
         placeholder="Gyumri , Armenia"
       />
-      {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === 'OK' && <ul className="map-address-list">{renderSuggestions()}</ul>}
     </div>
   );
