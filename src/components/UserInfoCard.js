@@ -1,3 +1,5 @@
+// overlay
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -100,6 +102,9 @@ function UserInfoCard(props) {
               <img className="img__action__admin__one" src={dotsIcon} alt="img" />
             </button>
             {deleteFlag ? <button type="button" className="admin__employees__info__titles__action__delete">Delete</button> : null}
+            {
+              deleteFlag ? <button type="button" className="admin__employees__info__titles__action__delete">Delete</button> : null
+            }
           </div>
         </div>
       </div>
