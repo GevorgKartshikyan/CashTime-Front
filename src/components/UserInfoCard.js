@@ -44,7 +44,7 @@ function UserInfoCard(props) {
       await handleChangeStatus(userId);
     }
   };
-
+  console.log(img);
   return (
     <>
       <div className="admin__employees__info">
