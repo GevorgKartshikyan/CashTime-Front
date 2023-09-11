@@ -9,7 +9,7 @@ import cryingEmoji from '../assets/images/crying.svg';
 import LoadingFileFromList from './LoadingFileFromList';
 
 function OfferJobsList({
-  totalPages, currentPage, jobsFilter, handlePageChange, searchParams, setOrder, setFilter,
+  handlePageChange, searchParams, setOrder, setFilter,
 }) {
   const [toggleBtn, setToggleBtn] = useState(true);
   const options = [
@@ -22,7 +22,9 @@ function OfferJobsList({
       label: 'Latest',
     },
   ];
-
+  const jobsFilter = useSelector((state) => state.jobsRequest.jobsFromUsersFilter);
+  const currentPage = useSelector((state) => state.jobsRequest.currentPageUsers);
+  const totalPages = useSelector((state) => state.jobsRequest.totalPagesUsers);
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -92,6 +94,7 @@ function OfferJobsList({
       tags: '',
     });
   };
+  console.log(status);
   return (
     <div className="offer__container__right">
       <div className="offer__container__right__toggle">
@@ -147,17 +150,21 @@ function OfferJobsList({
                 </p>
               </div>
               <div className="reset-query">
-                <button onClick={handleResetSearch} type="button">Reset Search</button>
+                <button className="button-error-handler-reset" onClick={handleResetSearch} type="button">Reset Search</button>
               </div>
             </>
           )
-        ) : (
+        ) : status === 'pending' ? (
           <div className="offer-loading-container">
             <LoadingFileFromList />
           </div>
+        ) : (
+          <div className="something-error-container">
+            <h3>Something went wrong :(  </h3>
+            <button onClick={() => window.location.reload()} className="button-error-handler-reset" type="button">Refresh Page</button>
+          </div>
         )}
       </div>
-      {/* ) : null } */}
       <div className="offer__container__right__paginate">
         {jobsFilter.length > 0 ? (
           <ReactPaginate

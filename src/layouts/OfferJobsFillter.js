@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import MapInputAutocomplete from '../components/MapInputAutocomplete';
 import DownIcon from '../assets/images/offer_select_down_arrow_icon 2.svg';
 import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
@@ -101,9 +101,7 @@ function OfferJobsFilter({ isLoaded }) {
       clearTimeout(timer);
     };
   }, [filter, searchParams]);
-  const jobsFilter = useSelector((state) => state.jobsRequest.jobsFromUsersFilter);
-  const currentPage = useSelector((state) => state.jobsRequest.currentPageUsers);
-  const totalPage = useSelector((state) => state.jobsRequest.totalPagesUsers);
+
   // console.log(filter);
   return (
     <div className="container">
@@ -470,9 +468,6 @@ function OfferJobsFilter({ isLoaded }) {
           setFilter={setFilter}
           searchParams={searchParams}
           setOrder={setSearchParams}
-          totalPages={totalPage}
-          currentPage={currentPage}
-          jobsFilter={jobsFilter}
           handlePageChange={handlePageChange}
         />
       </div>
