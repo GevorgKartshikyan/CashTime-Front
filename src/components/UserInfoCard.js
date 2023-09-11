@@ -11,34 +11,19 @@ import ReportModal from './ReportModal';
 import { status as changeStatus } from '../store/actions/users';
 
 function UserInfoCard(props) {
-  const { REACT_APP_API_URL } = process.env;
   const {
-    img,
-    firstName,
-    lastName,
-    userId,
-    date,
-    profession,
-    city,
-    status,
+    img, firstName, lastName, userId, date, profession, city, status,
   } = props;
-
   const [deleteFlag, setDeleteFlag] = useState(false);
   const [checkboxFlag, setCheckboxFlag] = useState(true);
   const [modalFlag, setModalFlag] = useState(false);
   const dispatch = useDispatch();
   const [newStatus, setNewStatus] = useState(status);
-
   const handleChangeStatus = async (id) => {
-    try {
-      const { payload } = await dispatch(changeStatus(id));
-      setNewStatus(payload.user.status);
-      console.log(payload);
-    } catch (error) {
-      console.error(error);
-    }
+    const { payload } = await dispatch(changeStatus(id));
+    setNewStatus(payload.user.status);
+    console.log(payload);
   };
-
   const handleOpenModal = async (checkModal) => {
     if (checkModal === 'active') {
       setModalFlag(true);
@@ -46,9 +31,18 @@ function UserInfoCard(props) {
       await handleChangeStatus(userId);
     }
   };
-  console.log(img);
+
   return (
     <>
+      {modalFlag === true
+        ? (
+          <ReportModal
+            onChangeStatus={handleChangeStatus}
+            modalFlag={setModalFlag}
+            userId={userId}
+          />
+        )
+        : null}
       <div className="admin__employees__info">
         <div className={checkboxFlag ? 'admin__employees__info__titles' : 'admin__employees__info__titles cheaked'}>
           <div className="admin__employees__info__titles__checkbox">
@@ -56,7 +50,7 @@ function UserInfoCard(props) {
           </div>
           <div className="admin__employees__info__titles__name">
             <div className="admin__employees__info__titles__name__box">
-              <img className="admin__employees__info__titles__name__box__img" src={REACT_APP_API_URL + img} alt="img" />
+              <img className="admin__employees__info__titles__name__box__img" src={img} alt="img" />
             </div>
             <h3 className="admin__employees__info__titles__name__text">
               {firstName}
@@ -91,38 +85,32 @@ function UserInfoCard(props) {
             <button
               onClick={() => handleOpenModal(newStatus)}
               type="button"
-              style={newStatus === 'active' ? { backgroundColor: '#78C96B' } : { backgroundColor: '#E31515' }}
+              style={newStatus === 'active' ? { backgroundColor: '#78C96B' }
+                : { backgroundColor: '#E31515' }}
               className="admin__employees__info__titles__status__btn"
             >
               {newStatus}
+
             </button>
           </div>
           <div className="admin__employees__info__titles__action">
             <button onClick={() => setDeleteFlag(!deleteFlag)} className="admin__employees__info__titles__action__btn" type="button">
               <img className="img__action__admin__one" src={dotsIcon} alt="img" />
             </button>
-            {deleteFlag ? <button type="button" className="admin__employees__info__titles__action__delete">Delete</button> : null}
             {
               deleteFlag ? <button type="button" className="admin__employees__info__titles__action__delete">Delete</button> : null
             }
+
           </div>
         </div>
       </div>
-      {modalFlag === true ? (
-        <ReportModal
-          onChangeStatus={handleChangeStatus}
-          modalFlag={setModalFlag}
-          userId={userId}
-        />
-      ) : null}
+      {modalFlag === true ? <div role="presentation" className="report-overlay" onClick={() => setModalFlag(false)} /> : null}
     </>
   );
 }
-
 UserInfoCard.defaultProps = {
   img: avatar,
 };
-
 UserInfoCard.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
