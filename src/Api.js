@@ -8,7 +8,11 @@ const api = axios.create({
 
 class Api {
   static jobListFromUsersFilter({
-    filter, limit, page, city, order,
+    filter,
+    limit,
+    page,
+    city,
+    order,
   }) {
     return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}&city=${city}&order=${order}`, filter);
   }
@@ -38,7 +42,11 @@ class Api {
   }
 
   static login(email, password, type) {
-    return api.post('/users/login', { email, password, type });
+    return api.post('/users/login', {
+      email,
+      password,
+      type,
+    });
   }
 
   static register(data) {
@@ -72,6 +80,14 @@ class Api {
         'Content-Type': 'multipart/form-data',
       },
     });
+  }
+
+  static status(id) {
+    return api.put('/users/status', { id });
+  }
+
+  static report(data) {
+    return api.post('/reports/report-message', { data });
   }
 }
 
