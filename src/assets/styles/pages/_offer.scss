@@ -7,6 +7,7 @@
   //margin-top: 15px;
   width: 100%;
   display: flex;
+  padding-top: 15px;
   justify-content: flex-end;
   //align-items: center;
   margin-bottom: 50px;
@@ -48,18 +49,22 @@
     font-weight: 400;
     line-height: normal;
     margin-right: 50px;
-  }::placeholder{
-       color: #FFF;
-       font-family: "Lato", sans-serif;
-       font-size: 18px;
-       font-style: normal;
-       font-weight: 400;
-       line-height: normal;
-     }
+  }
+
+  ::placeholder {
+    color: #FFF;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }
-.offer-top-block{
+
+.offer-top-block {
   margin-top: 17px;
 }
+
 .offer__top__block {
   position: relative;
   overflow: hidden;
@@ -271,7 +276,7 @@
     &__time {
       display: flex;
       align-items: center;
-      margin: 15px 0 15px 35px;
+      margin: 15px 0 15px 17px;
 
 
       &__text {
@@ -320,7 +325,7 @@
       display: flex;
       flex-direction: column;
       padding-top: 15px;
-      padding-left: 35px;
+      padding-left: 19px;
       width: 200px;
 
       &__checkbox {
@@ -588,10 +593,10 @@
       display: flex;
       justify-content: space-between;
 
-      &__right, &__left {
-        display: flex;
-        flex-direction: column;
-      }
+      //&__right, &__left {
+      //  display: flex;
+      //  flex-direction: column;
+      //}
 
       &__right {
         &__title {
@@ -610,19 +615,20 @@
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
+          margin-right: 10px;
           line-height: normal;
         }
       }
 
       &__left {
         &__opinions {
-          &__btn{
+          &__btn {
             display: flex;
             justify-content: center;
             padding: 8px 20px;
             align-items: center;
             background: #E17A01;
-            font-family: "Lato",sans-serif;
+            font-family: "Lato", sans-serif;
             font-size: 14px;
             //font-style: normal;
             //font-weight: 500;
@@ -630,7 +636,8 @@
             border-radius: 100px;
             transition: all 0.5s;
             border: 1px solid transparent;
-            &:hover{
+
+            &:hover {
               background: transparent;
               color: #E17A01;
               border: 1px solid #E17A01;
@@ -672,7 +679,50 @@
   }
 }
 
+.bad-query-offer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  p{
+    color: #031054;
+    text-align: center;
+    font-family: Lato , sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal
+  }
+  img{
+    width: 40px;
+    height: 40px;
+  }
+}
+.reset-query{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
 
+}
+.button-error-handler-reset{
+  width: 149px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background:#E17A01;
+  color:#031054;
+  text-align: center;
+  font-family: Lato , sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  &:hover {
+    background-color: #031054;
+    color: #E17A01;
+  }
+}
 //pagination
 
 ///* .item must be first */
@@ -738,24 +788,26 @@
 //  font-weight: 700;
 //}
 //
-.previous,.next{
+.previous, .next {
   color: rgba(0, 0, 0, 0.50);
   text-align: center;
-  font-family: "Poly",sans-serif;
+  font-family: "Poly", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
 }
+
 //.break-me{
 //  display: none;
 //}
 
-.map-box-offer{
+.map-box-offer {
 
- position: relative;
+  position: relative;
   padding-top: 15px;
-  &__map{
+
+  &__map {
     min-height: 100vh;
     position: absolute;
     z-index: -1;
@@ -763,13 +815,31 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    &__container{
+
+    &__container {
 
     }
   }
 }
 
-.offer__top-map{
+.offer__top-map {
   background: transparent;
   z-index: 99999999;
+}
+.something-error-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  h3{
+    color: #031054;
+    text-align: center;
+    font-family: Lato , sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal
+  }
 }

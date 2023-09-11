@@ -1,8 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import WorkerOfferTicket from '../components/Worker_Offer_Ticket';
 import Header from '../layouts/Header';
 
 function WorkerOffers() {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
   return (
     <div>
       <Header />

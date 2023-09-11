@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate,
+  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate, status,
 } from '../actions/users';
 
 const initialState = {
@@ -19,8 +19,13 @@ export default createReducer(initialState, (builder) => {
   builder
     .addCase(registerRequest.pending, (state) => ({ ...state, registerRequestStatus: 'pending' }))
     .addCase(registerRequest.fulfilled, (state, action) => {
-      const { user } = action.payload;
-      return { ...state, user, registerRequestStatus: 'fulfilled' };
+      const { user, token } = action.payload;
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+      return {
+        ...state, user, token, registerRequestStatus: 'fulfilled',
+      };
     })
     .addCase(registerRequest.rejected, (state) => ({ ...state, registerRequestStatus: 'error' }))
     .addCase(loginRequest.fulfilled, (state, action) => {
@@ -41,6 +46,12 @@ export default createReducer(initialState, (builder) => {
       state.currentPage = currentPage;
       state.totalPages = totalPages;
       state.search = search;
+    })
+    .addCase(status.fulfilled, (state, action) => {
+      const {
+        id,
+      } = action.payload;
+      state.ud = id;
     })
     .addCase(activate.fulfilled, (state, action) => {
       const { token } = action.payload;

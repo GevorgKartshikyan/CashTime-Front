@@ -5,6 +5,7 @@ import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
 import Carousel from 'nuka-carousel';
 import _ from 'lodash';
+import { useSelector } from 'react-redux';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import UserImage from '../assets/images/default-avatar-icon.jpg';
@@ -21,6 +22,7 @@ import imageAssets from '../components/assetList';
 
 const mapKey = process.env.REACT_APP_MAP_SECRET;
 function Profile() {
+  const token = useSelector((state) => state.users.token);
   const [showModal, setShowModal] = useState(false);
   const [addSkill, setAddSkill] = useState('');
   const [showImgModal, setShowImgModal] = useState(false);
@@ -141,6 +143,11 @@ function Profile() {
   const handleDeleteSkill = useCallback((e) => {
     setSkills(skills.filter((item) => item.id !== e));
   }, [skills]);
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <div>

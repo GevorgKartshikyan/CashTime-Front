@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Progress } from 'react-sweet-progress';
-// import Carousel from 'nuka-carousel';
-// import _ from 'lodash';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Avatar from '../assets/images/avatar.svg';
 import 'react-sweet-progress/lib/style.css';
 import ReviewUserCard from '../components/ReviewUserCard';
@@ -10,11 +8,9 @@ import Button from '../components/Button';
 // import ReviewPhoto from '../components/ReviewPhoto';
 import imageAssets from '../components/assetList';
 
-// import ReviewPhoto from '../components/ReviewPhoto';
-
 function Review(props) {
   const { setShowImg } = props;
-
+  const token = useSelector((state) => state.users.token);
   const [selectedStars, setSelectedStars] = useState(0);
   // const [selectedPhoto, setSelectedPhoto] = useState('');
   // const [showModal, setShowModal] = useState(false);
@@ -39,6 +35,11 @@ function Review(props) {
       background: 'rgba(3, 16, 84, 0.30)',
     },
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <div className="review-info">
@@ -136,7 +137,4 @@ function Review(props) {
     </div>
   );
 }
-Review.propTypes = {
-  setShowImg: PropTypes.func.isRequired,
-};
 export default Review;

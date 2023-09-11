@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import RemoveImg from '../assets/images/delete.svg';
 
 function WriteReview() {
+  const token = useSelector((state) => state.users.token);
   const [selectedStars, setSelectedStars] = useState(0);
   const [uploadedImages, setUploadedImages] = useState([]);
 
@@ -33,6 +35,11 @@ function WriteReview() {
       }
     }
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <Wrapper>

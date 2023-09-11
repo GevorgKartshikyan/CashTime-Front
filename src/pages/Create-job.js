@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CreateJobFirst from '../layouts/CreateJobFirst';
 import CreateJobSecond from '../layouts/CreateJobSecond';
 import StepIndicator from '../layouts/StepIndicator';
@@ -13,7 +13,7 @@ import Header from '../layouts/Header';
 import setJobFormData from '../store/actions/createJobForm';
 
 function CreateJob() {
-  // const phoneError = useSelector((state) => state.phoneErrorHandler);
+  const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [localData, setLocalData] = useState({});
@@ -62,6 +62,11 @@ function CreateJob() {
     ease: 'easeInOut',
     duration: 0.7,
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <>

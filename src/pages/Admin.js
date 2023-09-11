@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import notifications from '../assets/images/notifications.svg';
 import settings from '../assets/images/settings.svg';
 import adminImg from '../assets/images/adminImg.svg';
@@ -10,6 +11,11 @@ import AdminEmployers from '../components/AdminEmployers';
 import Dispute from '../components/Dispute';
 
 function Admin() {
+  const token = useSelector((state) => state.users.token);
+  if (!token) {
+    window.location.href = '/';
+    return null;
+  }
   const elements = ['Dashboard', 'Employees', 'Employers', 'Report', 'User'];
   const { page = elements[0].toLowerCase() } = useParams();
   return (
