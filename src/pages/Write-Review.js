@@ -5,10 +5,6 @@ import RemoveImg from '../assets/images/delete.svg';
 
 function WriteReview() {
   const token = useSelector((state) => state.users.token);
-  if (!token) {
-    window.location.href = '/login';
-    return null;
-  }
   const [selectedStars, setSelectedStars] = useState(0);
   const [uploadedImages, setUploadedImages] = useState([]);
 
@@ -39,6 +35,11 @@ function WriteReview() {
       }
     }
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <Wrapper>

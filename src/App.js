@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
-import { useLoadScript } from '@react-google-maps/api';
 import Home from './pages/Home';
 import GlobalMap from './pages/GlobalMap';
 import CreateJob from './pages/Create-job';
@@ -20,15 +19,9 @@ import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
 import Profile from './pages/Profile';
+import NotFoundPage from './components/NotFoundPage';
 
-const key = process.env.REACT_APP_MAP_SECRET;
-const libraries = ['places'];
 function App() {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: key,
-    libraries,
-    language: 'en',
-  });
   useEffect(() => {
     i18n.changeLanguage(window.localStorage.getItem('language'));
   }, [window.localStorage.getItem('language')]);
@@ -49,13 +42,15 @@ function App() {
         <Route path="/create-job" element={<CreateJob />} />
         <Route path="/worker-offers" element={<WorkerOffers />} />
         <Route path="/messages" element={<Messages />} />
-        <Route path="/offer" element={<Offer isLoaded={isLoaded} />} />
+        <Route path="/offer/:page" element={<Offer />} />
+        <Route path="/offer" element={<Offer />} />
         <Route path="/create-cv" element={<CreateCV />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<GlobalMap />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

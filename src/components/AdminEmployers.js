@@ -28,12 +28,11 @@ function AdminEmployers() {
   useEffect(() => {
     setSearchParams({ page, limit });
   }, []);
+
   const handlePageChange = (event) => {
     const selectedPage = event.selected + 1;
     setSearchParams({ page: selectedPage, limit });
   };
-
-  console.log(users, 'users 2');
 
   const customStyles = {
     control: (provided, state) => ({
@@ -150,6 +149,7 @@ function AdminEmployers() {
       </div>
       {users.map((user) => (
         <UserInfoCard
+          status={user.status}
           key={user.id}
           img={user.avatar}
           firstName={user.firstName}
