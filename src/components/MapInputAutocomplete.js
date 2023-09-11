@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -37,7 +37,7 @@ function MapInputAutocomplete({
   const handleSelect = (suggestion) => () => {
     setValue(suggestion.description, false);
     clearSuggestions();
-
+    console.log(suggestion);
     getGeocode({ address: suggestion.description }).then((results) => {
       const { lat, lng } = getLatLng(results[0]);
       console.log('📍 Coordinates: ', { lat, lng });
@@ -64,25 +64,45 @@ function MapInputAutocomplete({
       console.log('🏙 City: ', city);
     });
   };
-
-  const renderSuggestions = () => data.map((suggestion) => {
+  const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const renderSuggestions = () => data.map((suggestion, index) => {
     const {
       place_id,
       structured_formatting: { main_text, secondary_text },
     } = suggestion;
     return (
-      <li role="presentation" className="testli" key={place_id} onClick={handleSelect(suggestion)}>
+      <li
+        role="presentation"
+        key={place_id}
+        onClick={handleSelect(suggestion)}
+        className={index === selectedItemIndex ? 'selected-dress' : ''}
+      >
         <strong>{main_text}</strong>
         {' '}
         <small>{secondary_text}</small>
       </li>
     );
   });
+
   useEffect(() => {
     if (isLoaded) {
       init();
     }
   }, [isLoaded, init]);
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowDown') {
+      setSelectedItemIndex((prevIndex) => (prevIndex < renderSuggestions().length
+        - 1 ? prevIndex + 1 : 0));
+    } else if (event.key === 'ArrowUp') {
+      setSelectedItemIndex((prevIndex) => (prevIndex > 0 ? prevIndex
+          - 1 : renderSuggestions().length - 1));
+    } else if (event.key === 'Enter') {
+      if (selectedItemIndex >= 0) {
+        event.preventDefault();
+        handleSelect(data[selectedItemIndex]);
+      }
+    }
+  };
   return (
     <div ref={ref} className="autocomplete-container">
       <input
@@ -91,6 +111,7 @@ function MapInputAutocomplete({
         value={value}
         onChange={handleInput}
         disabled={!ready}
+        onKeyDown={handleKeyDown}
         placeholder="Gyumri , Armenia"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
