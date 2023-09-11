@@ -1,15 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import ratingStars from '../assets/images/stars4-5.svg';
 import ratingsData from '../data/reviews';
 
 function UserRating() {
+  const token = useSelector((state) => state.users.token);
   const navigate = useNavigate();
 
   const handleWriteReview = () => {
     navigate('/writereview');
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <Wrapper>

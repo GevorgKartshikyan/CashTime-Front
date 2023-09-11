@@ -14,8 +14,18 @@ api.interceptors.request.use((config) => {
 }, (error) => Promise.reject(error));
 
 class Api {
-  static jobListFromUsers() {
-    return api.get('/jobs/jobs-list');
+  static jobListFromUsersFilter({
+    filter,
+    limit,
+    page,
+    city,
+    order,
+  }) {
+    return api.post(`/jobs/jobs-list-filter?page=${page}&limit=${limit}&city=${city}&order=${order}`, filter);
+  }
+
+  static jobListFromUsersMap(city) {
+    return api.get(`/jobs/jobs-list-map?city=${city}`);
   }
 
   static deleteJob(jobId) {
@@ -39,7 +49,11 @@ class Api {
   }
 
   static login(email, password, type) {
-    return api.post('/users/login', { email, password, type });
+    return api.post('/users/login', {
+      email,
+      password,
+      type,
+    });
   }
 
   static register(data) {
@@ -64,6 +78,23 @@ class Api {
 
   static activate(data) {
     return api.post('/users/activate', data);
+  }
+
+  static createCv(data) {
+    // console.log(data);
+    return api.post('/cvs/create-cv', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
+
+  static status(id) {
+    return api.put('/users/status', { id });
+  }
+
+  static report(data) {
+    return api.post('/reports/report-message', { data });
   }
 }
 

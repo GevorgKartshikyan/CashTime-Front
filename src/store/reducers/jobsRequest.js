@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
   activateJobAdmin,
-  createJobRequestFromPending, deleteJobAdmin, jobListFromUsers,
+  createJobRequestFromPending, deleteJobAdmin, jobListFromUsersFilter, jobListFromUsersMap,
   jobListRequestFromAdmin,
 } from '../actions/jobsRequest';
 
@@ -12,6 +12,10 @@ const initialState = {
   currentPageAdmin: 0,
   totalPagesAdmin: 0,
   jobListFromUsers: [],
+  jobsFromUsersFilter: [],
+  currentPageUsers: 0,
+  totalPagesUsers: 0,
+  jobsListStatus: 'pending',
 };
 
 export default createReducer(initialState, (builder) => {
@@ -38,8 +42,21 @@ export default createReducer(initialState, (builder) => {
       const { job: id } = action.payload;
       state.jobListAdmin = state.jobListAdmin.filter((job) => job.id !== id.id);
     })
-    .addCase(jobListFromUsers.fulfilled, (state, action) => {
+    .addCase(jobListFromUsersMap.fulfilled, (state, action) => {
       const { jobs } = action.payload;
       state.jobListFromUsers = jobs;
+    })
+    .addCase(jobListFromUsersFilter.fulfilled, (state, action) => {
+      const { jobs, currentPage, totalPages } = action.payload;
+      state.jobsFromUsersFilter = jobs;
+      state.currentPageUsers = currentPage;
+      state.totalPagesUsers = totalPages;
+      state.jobsListStatus = 'ok';
+    })
+    .addCase(jobListFromUsersFilter.pending, (state) => {
+      state.jobsListStatus = 'pending';
+    })
+    .addCase(jobListFromUsersFilter.rejected, (state) => {
+      state.jobsListStatus = 'rejected';
     });
 });

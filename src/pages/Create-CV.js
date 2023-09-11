@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../layouts/Header';
 import CreateCvFirst from '../components/CreateCVFirst';
 import StepIndicator from '../layouts/StepIndicator';
@@ -10,10 +10,11 @@ import CreateCVFifth from '../components/CreateCVFifth';
 import CreateCVSixth from '../components/CreateCVSixth';
 import CreateCVSeventh from '../components/CreateCVSeventh';
 import CreateCVFinally from '../components/CreateCVFinally';
-import createCvFormData from '../store/actions/createCvForm';
+import { setCvFormData } from '../store/actions/createCvForm';
 import SignUpStepsFirst from './Sign-Up-Steps-First';
 
 function CreateCv() {
+  const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [localData, setLocalData] = useState({});
@@ -35,7 +36,7 @@ function CreateCv() {
         }
         return newCount;
       });
-      dispatch(createCvFormData({ data: localData }));
+      dispatch(setCvFormData({ data: localData }));
     } else if (operator === '-' && count !== 1) {
       setCount((prevState) => {
         const newCount = prevState - 1;
@@ -61,6 +62,11 @@ function CreateCv() {
     ease: 'easeInOut',
     duration: 0.7,
   };
+
+  if (!token) {
+    window.location.href = '/login';
+    return null;
+  }
 
   return (
     <>
