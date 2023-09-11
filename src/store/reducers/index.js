@@ -4,6 +4,7 @@ import phoneErrorHandler from './phoneErrorHandler';
 import messages from './messages';
 import jobsRequest from './jobsRequest';
 import users from './users';
+import reports from './reports';
 
 export default {
   messages,
@@ -12,4 +13,5 @@ export default {
   phoneErrorHandler,
   users,
   jobsRequest,
+  reports,
 };

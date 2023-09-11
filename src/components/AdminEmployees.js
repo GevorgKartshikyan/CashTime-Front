@@ -18,13 +18,14 @@ function AdminEmployees() {
   const totalPages = useSelector((state) => state.users.totalPages);
   const page = parseInt(searchParams.get('page') || 1, 10);
   const limit = parseInt(searchParams.get('limit') || 5, 10);
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState('');
+  const [uid, setUId] = useState('');
 
   useEffect(() => {
     dispatch(listRequest({
-      page, limit: 5, role: 'employee', search: searchResults,
+      page, limit: 5, role: 'employee', search: searchResults, id: uid,
     }));
-  }, []);
+  }, [uid]);
   useEffect(() => {
     setSearchParams({ page, limit });
   }, []);
@@ -149,12 +150,14 @@ function AdminEmployees() {
       </div>
       {users.users.map((user) => (
         <UserInfoCard
+          setUId={setUId}
           key={user.id}
           img={user.avatar}
           firstName={user.firstName}
           lastName={user.lastName}
           userId={user.id}
           date={user.createdAt}
+          status={user.status}
           profession={user.role}
           city={`${user.country}, ${user.city}`}
         />

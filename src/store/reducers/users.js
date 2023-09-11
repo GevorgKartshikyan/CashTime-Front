@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate,
+  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate, status,
 } from '../actions/users';
 
 const initialState = {
@@ -41,6 +41,12 @@ export default createReducer(initialState, (builder) => {
       state.currentPage = currentPage;
       state.totalPages = totalPages;
       state.search = search;
+    })
+    .addCase(status.fulfilled, (state, action) => {
+      const {
+        id,
+      } = action.payload;
+      state.ud = id;
     })
     .addCase(activate.fulfilled, (state, action) => {
       const { token } = action.payload;

@@ -1,0 +1,81 @@
+.report-modal{
+  width: 541px;
+  height: 444px;
+  position: absolute;
+  background: #ffffff;
+  -webkit-box-shadow: 2px -1px 97px 19px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 2px -1px 97px 19px rgba(34, 60, 80, 0.2);
+  box-shadow: 2px -1px 97px 19px rgba(34, 60, 80, 0.2);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  z-index: 5;
+  padding: 20px 10px;
+  border-radius: 27px;
+  & > form{
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    & > textarea{
+      width: 100%;
+      height: 210px;
+      resize: none;
+      padding: 20px 10px;
+      color: #000;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    & > button{
+      width: 114px;
+      height: 36px;
+      border-radius: 100px;
+      background: var(--dark-blue, #031054);
+      color: #fff;
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      flex-direction: column;
+    }
+  }
+  & > p{
+    color:#031054;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 22px;
+  }
+}
+.report-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #01010130;
+  z-index: 3;
+}
+.report-text-count{
+  display: flex;
+  justify-content: end;
+  color: #031054;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

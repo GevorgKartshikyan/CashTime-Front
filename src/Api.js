@@ -59,6 +59,15 @@ class Api {
   static activate(data) {
     return api.post('/users/activate', data);
   }
+
+  static status(id) {
+    console.log(id, 'api');
+    return api.put('/users/status', { id });
+  }
+
+  static report(data) {
+    return api.post('/reports/report-message', { data });
+  }
 }
 
 export default Api;

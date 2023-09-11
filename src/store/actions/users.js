@@ -26,8 +26,11 @@ export const listRequest = createAsyncThunk('/users/listRequest', async (payload
       limit,
       role,
       search,
+      id,
     } = payload;
-    const { data } = await Api.list(page, limit, role, search);
+    console.log(payload);
+    // console.log(id);
+    const { data } = await Api.list(page, limit, role, search, id);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);
@@ -44,4 +47,14 @@ export const getSingleUser = createAsyncThunk('users/getSingleUser', async (payl
 export const getProfile = createAsyncThunk('users/getProfile', async (payload) => {
   const { data } = await Api.getProfile(payload);
   return data;
+});
+export const status = createAsyncThunk('/users/status', async (payload, thunkAPI) => {
+  try {
+    console.log(6666);
+    const { data } = await Api.status(payload);
+    console.log(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
 });
