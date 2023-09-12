@@ -101,6 +101,10 @@ class Api {
   static report(data) {
     return api.post('/reports/report-message', { data });
   }
+
+  static singleUserFromAdmin(id) {
+    return api.get(`/users/singleUserFromAdmin?id=${id}`);
+  }
 }
 
 export default Api;
