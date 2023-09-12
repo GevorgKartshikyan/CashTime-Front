@@ -4,6 +4,7 @@ import markHome from '../assets/images/home-map.svg';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
 import mapDefaultThem from '../utils/mapDefaultThem';
+// import MapProfile from './MapProfile';
 
 function MapMarks({ coordinates, setCoordinates, jobs }) {
   const [home, setHome] = useState({
@@ -17,7 +18,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
   };
   const mapOptions = {
     zoomControlOptions: {
-      position: window.google.maps.ControlPosition.RIGHT_CENTER,
+      position: window.google?.maps?.ControlPosition?.RIGHT_CENTER,
     },
     styles: mapDefaultThem,
     mapTypeControl: false,
@@ -50,7 +51,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
   useEffect(() => {
     trackUserLocation();
   }, []);
-  console.log(jobs);
+
   return (
     <>
       <GoogleMap
@@ -67,8 +68,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
         />
         {jobs.map((job) => (
           <Marker
-            onClick={() => console.log('a')}
-        // eslint-disable-next-line react/no-array-index-key
+            onClick={() => console.log(job.id)}
             key={job.id}
             icon={{
               url: markerSvg,
@@ -80,6 +80,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
+      {/* <MapProfile /> */}
     </>
   );
 }

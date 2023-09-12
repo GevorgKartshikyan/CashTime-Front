@@ -7,12 +7,20 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import { useParams } from 'react-router-dom';
 
 function MapInputAutocomplete({
-  isLoaded, classInput, changeCity, setCoordinates, setCity, searchParams,
+  isLoaded,
+  classInput,
+  changeCity,
+  setCoordinates,
+  setCity,
+  searchParams,
 }) {
   const {
     ready,
     value,
-    suggestions: { status, data },
+    suggestions: {
+      status,
+      data,
+    },
     setValue,
     init,
     clearSuggestions,
@@ -33,42 +41,54 @@ function MapInputAutocomplete({
     setValue(e.target.value);
   };
   const { page } = useParams();
-  console.log(page);
   const handleSelect = (suggestion) => () => {
     setValue(suggestion.description, false);
     clearSuggestions();
     console.log(suggestion);
-    getGeocode({ address: suggestion.description }).then((results) => {
-      const { lat, lng } = getLatLng(results[0]);
-      console.log('📍 Coordinates: ', { lat, lng });
-      if (page === 'map' || !page) {
-        setCoordinates({ lat, lng });
-      }
-      const addressComponents = results[0].address_components;
-      let city = '';
+    getGeocode({ address: suggestion.description })
+      .then((results) => {
+        const {
+          lat,
+          lng,
+        } = getLatLng(results[0]);
+        console.log('📍 Coordinates: ', {
+          lat,
+          lng,
+        });
+        if (page === 'map' || !page) {
+          setCoordinates({
+            lat,
+            lng,
+          });
+        }
+        const addressComponents = results[0].address_components;
+        let city = '';
 
-      const localityComponent = addressComponents.find((component) => component.types.includes('locality'));
+        const localityComponent = addressComponents.find((component) => component.types.includes('locality'));
 
-      if (localityComponent) {
-        city = localityComponent.long_name;
-      }
-      if (page === 'list') {
-        const newSearchParams = new URLSearchParams(searchParams);
-        newSearchParams.set('city', 'Yerevan');
-        setCity(newSearchParams);
-      }
+        if (localityComponent) {
+          city = localityComponent.long_name;
+        }
+        if (page === 'list') {
+          const newSearchParams = new URLSearchParams(searchParams);
+          newSearchParams.set('city', 'Yerevan');
+          setCity(newSearchParams);
+        }
 
-      if (page === 'map' || !page) {
-        changeCity({ city });
-      }
-      console.log('🏙 City: ', city);
-    });
+        if (page === 'map' || !page) {
+          changeCity({ city });
+        }
+        console.log('🏙 City: ', city);
+      });
   };
   // const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
   const renderSuggestions = () => data.map((suggestion) => {
     const {
       place_id,
-      structured_formatting: { main_text, secondary_text },
+      structured_formatting: {
+        main_text,
+        secondary_text,
+      },
     } = suggestion;
     return (
       <li
@@ -89,6 +109,8 @@ function MapInputAutocomplete({
       init();
     }
   }, [isLoaded, init]);
+
+  // !!!!!!!!!!!!!!dont delete!!!!!!!!!!!!!!!!!!!!!!1
   // const handleKeyDown = (event) => {
   //   if (event.key === 'ArrowDown') {
   //     setSelectedItemIndex((prevIndex) => (prevIndex < renderSuggestions().length
@@ -112,7 +134,7 @@ function MapInputAutocomplete({
         onChange={handleInput}
         disabled={!ready}
         // onKeyDown={handleKeyDown}
-        placeholder="Gyumri , Armenia"
+        placeholder="Where are you looking for a job?"
       />
       {status === 'OK' && <ul className="map-address-list">{renderSuggestions()}</ul>}
     </div>
