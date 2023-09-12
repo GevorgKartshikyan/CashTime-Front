@@ -1,6 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  listRequest, registerRequest, loginRequest, getProfile, getSingleUser, activate, status,
+  listRequest,
+  registerRequest,
+  loginRequest,
+  getProfile,
+  getSingleUser,
+  activate,
+  status,
+  singleUserFromAdmin,
 } from '../actions/users';
 
 const initialState = {
@@ -13,6 +20,7 @@ const initialState = {
   currentPage: 0,
   totalPages: 0,
   token: window.localStorage.getItem('token') ?? '',
+  singleFromAdmin: {},
 };
 
 export default createReducer(initialState, (builder) => {
@@ -65,5 +73,10 @@ export default createReducer(initialState, (builder) => {
     .addCase(getProfile.fulfilled, (state, action) => {
       const { user } = action.payload;
       return { ...state, profile: user };
+    })
+    .addCase(singleUserFromAdmin.fulfilled, (state, action) => {
+      const { singleFromAdmin } = action.payload;
+      state.singleUserFromAdmin = singleFromAdmin;
+      console.log(singleFromAdmin);
     });
 });

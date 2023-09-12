@@ -58,3 +58,7 @@ export const status = createAsyncThunk('/users/status', async (payload, thunkAPI
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const singleUserFromAdmin = createAsyncThunk('users/singleUserFromAdmin', async (payload) => {
+  const { data } = await Api.singleUserFromAdmin(payload);
+  return data;
+});

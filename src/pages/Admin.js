@@ -8,7 +8,7 @@ import Dashboard from '../components/Dashboard';
 import UserDashboard from '../components/User-dashboard';
 import AdminEmployees from '../components/AdminEmployees';
 import AdminEmployers from '../components/AdminEmployers';
-import Dispute from '../components/Dispute';
+import Reports from '../components/Reports';
 
 function Admin() {
   const token = useSelector((state) => state.users.token);
@@ -43,7 +43,7 @@ function Admin() {
         {page === 'employees' && <AdminEmployees /> }
         {page === 'employers' && <AdminEmployers /> }
         {page === 'user' && <UserDashboard /> }
-        {page === 'report' && <Dispute />}
+        {page === 'report' && <Reports />}
         <div className="admin__row__user">
           <div className="admin__row__user__w">
             <div className="admin__row__user__w-notification">

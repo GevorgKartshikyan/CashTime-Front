@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.svg';
 import callIcon from '../assets/images/Call.svg';
 import emailIcon from '../assets/images/Email.svg';
@@ -20,6 +21,7 @@ function UserInfoCard(props) {
   const [modalFlag, setModalFlag] = useState(false);
   const dispatch = useDispatch();
   const [newStatus, setNewStatus] = useState(status);
+  const navigate = useNavigate();
   const handleChangeStatus = async (id) => {
     const { payload } = await dispatch(changeStatus(id));
     setNewStatus(payload.user.status);
@@ -32,7 +34,9 @@ function UserInfoCard(props) {
       await handleChangeStatus(userId);
     }
   };
-
+  const handleGetSingleUser = () => {
+    navigate(`/admin/user?id=${userId}`);
+  };
   return (
     <>
       {modalFlag === true
@@ -49,7 +53,7 @@ function UserInfoCard(props) {
           <div className="admin__employees__info__titles__checkbox">
             <input type="checkbox" onChange={() => setCheckboxFlag(!checkboxFlag)} />
           </div>
-          <div className="admin__employees__info__titles__name">
+          <div role="presentation" onClick={handleGetSingleUser} className="admin__employees__info__titles__name">
             <div className="admin__employees__info__titles__name__box">
               <img className="admin__employees__info__titles__name__box__img" src={REACT_APP_API_URL + img} alt="img" />
             </div>
