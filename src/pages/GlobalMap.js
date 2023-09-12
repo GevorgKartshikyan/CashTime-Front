@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import LoadingFile from '../layouts/LoadingFile';
 import MapMarks from '../components/MapMarks';
-// import MapProfile from '../components/MapProfile';
 
 export default function GlobalMap({
   isLoaded, coordinates, setCoordinates, jobs,
@@ -24,6 +23,7 @@ export default function GlobalMap({
 }
 
 function Map({ coordinates, setCoordinates, jobs }) {
+  console.log(jobs);
   return (
     <div style={{
       maxHeight: '100vh',
@@ -35,7 +35,6 @@ function Map({ coordinates, setCoordinates, jobs }) {
     }}
     >
       <MapMarks jobs={jobs} coordinates={coordinates} setCoordinates={setCoordinates} />
-      {/* <MapProfile /> */}
     </div>
   );
 }
