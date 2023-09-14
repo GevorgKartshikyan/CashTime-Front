@@ -105,6 +105,10 @@ class Api {
   static singleUserFromAdmin(id) {
     return api.get(`/users/singleUserFromAdmin?id=${id}`);
   }
+
+  static singleJobInfo(id) {
+    return api.get(`/jobs/job-singe-info?id=${id}`);
+  }
 }
 
 export default Api;

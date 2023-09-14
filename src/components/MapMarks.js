@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
+import { useDispatch, useSelector } from 'react-redux';
 import markHome from '../assets/images/home-map.svg';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
-import mapDefaultThem from '../utils/mapDefaultThem';
+// import mapDefaultThem from '../utils/mapDefaultThem';
 // import MapProfile from './MapProfile';
+import InfoCard from './offer-info-card';
+import { singleJobInfo } from '../store/actions/jobsRequest';
 
 function MapMarks({ coordinates, setCoordinates, jobs }) {
+  const singleJob = useSelector((state) => state.jobsRequest.singleJob);
+  console.log(singleJob);
   const [home, setHome] = useState({
     lat: 40.791235,
     lng: 43.848753,
@@ -20,7 +25,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
     zoomControlOptions: {
       position: window.google?.maps?.ControlPosition?.RIGHT_CENTER,
     },
-    styles: mapDefaultThem,
+    // styles: mapDefaultThem,
     mapTypeControl: false,
     fullscreenControl: false,
     streetViewControl: false,
@@ -51,7 +56,10 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
   useEffect(() => {
     trackUserLocation();
   }, []);
-
+  const dispatch = useDispatch();
+  const handleSeenSingleJob = (id) => {
+    dispatch(singleJobInfo(id));
+  };
   return (
     <>
       <GoogleMap
@@ -68,7 +76,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
         />
         {jobs.map((job) => (
           <Marker
-            onClick={() => console.log(job.id)}
+            onClick={() => handleSeenSingleJob(job.id)}
             key={job.id}
             icon={{
               url: markerSvg,
@@ -80,6 +88,23 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
+      {Object.keys(singleJob).length !== 0 && (
+      <InfoCard
+        classMapSeen="on-map-seen"
+        id={singleJob.id}
+        creator={singleJob.userId}
+        title={singleJob.title}
+        priceMethod={singleJob.priceMethod}
+        priceMaxHourly={singleJob.priceMaxHourly}
+        priceMinHourly={singleJob.priceMinHourly}
+        experience={singleJob.experience}
+        createdAt={singleJob.createdAt}
+        country={singleJob.country}
+        city={singleJob.city}
+        priceFixed={singleJob.priceFixed}
+        description={singleJob.description}
+      />
+      )}
       {/* <MapProfile /> */}
     </>
   );

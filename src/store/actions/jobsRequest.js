@@ -53,3 +53,11 @@ export const jobListFromUsersFilter = createAsyncThunk('/jobsRequest/jobListFrom
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const singleJobInfo = createAsyncThunk('/jobsRequest/singleJobInfo', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.singleJobInfo(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});

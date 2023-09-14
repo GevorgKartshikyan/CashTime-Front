@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   activateJobAdmin,
   createJobRequestFromPending, deleteJobAdmin, jobListFromUsersFilter, jobListFromUsersMap,
-  jobListRequestFromAdmin,
+  jobListRequestFromAdmin, singleJobInfo,
 } from '../actions/jobsRequest';
 
 const initialState = {
@@ -16,6 +16,7 @@ const initialState = {
   currentPageUsers: 0,
   totalPagesUsers: 0,
   jobsListStatus: 'pending',
+  singleJob: {},
 };
 
 export default createReducer(initialState, (builder) => {
@@ -58,5 +59,8 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(jobListFromUsersFilter.rejected, (state) => {
       state.jobsListStatus = 'rejected';
+    })
+    .addCase(singleJobInfo.fulfilled, (state, action) => {
+      state.singleJob = action.payload.singleJob;
     });
 });

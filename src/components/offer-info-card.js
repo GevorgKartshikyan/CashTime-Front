@@ -4,11 +4,11 @@ import moment from 'moment';
 function offerInfoCard(props) {
   const {
     title, description,
-    priceMethod, priceMaxHourly, priceMinHourly, experience, createdAt, priceFixed, country, city,
+    priceMethod, priceMaxHourly, priceMinHourly,
+    experience, createdAt, priceFixed, country, city, classMapSeen = '',
   } = props;
-
   return (
-    <div className="offer__container__right__job">
+    <div className={classMapSeen ? 'offer__container__right__job on-map-seen on-map-seen' : 'offer__container__right__job'}>
       <div className="offer__container__right__job__info">
         <div className="offer__container__right__job__info__right" style={{ marginTop: 'auto' }}>
           <h2 className="offer__container__right__job__info__right__title">{title}</h2>
