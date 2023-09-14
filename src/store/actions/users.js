@@ -58,3 +58,7 @@ export const status = createAsyncThunk('/users/status', async (payload, thunkAPI
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const changeRole = createAsyncThunk('users/changeRole', async (payload) => {
+  const { data } = await Api.changeRole(payload);
+  return data;
+});

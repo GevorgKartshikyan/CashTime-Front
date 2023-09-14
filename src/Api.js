@@ -101,6 +101,10 @@ class Api {
   static report(data) {
     return api.post('/reports/report-message', { data });
   }
+
+  static changeRole() {
+    return api.get('/users/change-role');
+  }
 }
 
 export default Api;
