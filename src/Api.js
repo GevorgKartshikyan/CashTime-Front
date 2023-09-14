@@ -109,6 +109,10 @@ class Api {
   static singleJobInfo(id) {
     return api.get(`/jobs/job-singe-info?id=${id}`);
   }
+
+  static changeRole() {
+    return api.get('/users/change-role');
+  }
 }
 
 export default Api;

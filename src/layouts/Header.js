@@ -122,7 +122,11 @@ function Header() {
                 <button className="header__menu__block__avatar" type="button" onClick={handleManu}>
                   <img className="header__menu__block__avatar__img" src={Avatar} alt="" id="dropdown-manu-button" />
                   <div ref={manu} className="settings__menu__modal-manu">
-                    {isActiveManu ? <ManuModal /> : null}
+                    {isActiveManu ? (
+                      <ManuModal
+                        setIsActiveManu={setIsActiveManu}
+                      />
+                    ) : null}
                   </div>
                 </button>
               ) : null}

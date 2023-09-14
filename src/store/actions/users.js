@@ -62,3 +62,7 @@ export const singleUserFromAdmin = createAsyncThunk('users/singleUserFromAdmin',
   const { data } = await Api.singleUserFromAdmin(payload);
   return data;
 });
+export const changeRole = createAsyncThunk('users/changeRole', async (payload) => {
+  const { data } = await Api.changeRole(payload);
+  return data;
+});
