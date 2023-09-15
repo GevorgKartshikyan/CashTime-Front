@@ -289,7 +289,7 @@ const mapDefaultThem = [
     elementType: 'geometry.fill',
     stylers: [
       {
-        color: '#E17A01',
+        color: '#8cb2d2',
       },
       {
         lightness: 17,
@@ -340,7 +340,7 @@ const mapDefaultThem = [
     elementType: 'geometry',
     stylers: [
       {
-        color: '#000',
+        color: '#b9d5f1',
       },
       {
         lightness: 19,

@@ -5,6 +5,7 @@ import messages from './messages';
 import jobsRequest from './jobsRequest';
 import users from './users';
 import reports from './reports';
+import utils from './utils';
 
 export default {
   messages,
@@ -14,4 +15,5 @@ export default {
   users,
   jobsRequest,
   reports,
+  utils,
 };

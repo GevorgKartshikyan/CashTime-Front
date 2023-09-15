@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Select from 'react-select';
 import Autocomplete from 'react-google-autocomplete';
 import PhoneInput from 'react-phone-input-2';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import IndicatorsArrows from './IndicatorsArrows';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
-import countyList from '../utils/countyList';
+import { getCountries } from '../store/actions/utils';
 
 function CreateCvSeventh(props) {
   const sixtyFormObj = useSelector((state) => state.createCvForm.dataFromChild7) ?? {};
@@ -54,13 +54,14 @@ function CreateCvSeventh(props) {
       zIndex: 999999999999999,
     }),
   };
+  const dispatch = useDispatch();
   const { onData } = props;
   // fileSrc for render file for request
   const [selectedPhoto, setSelectedPhoto] = useState({
     fileSrc: sixtyFormObj.selectedPhoto || '',
     file: null,
   });
-  const [countries, setCountries] = useState([]);
+  const countries = useSelector((state) => state.utils.countries) || [];
   const [selectCountry, setSelectCountry] = useState(sixtyFormObj.selectCountry || '');
   const [address, setAddress] = useState({
     latitude: '',
@@ -80,11 +81,7 @@ function CreateCvSeventh(props) {
     }, selectedPhoto.file);
   }, [selectCountry, address, selectedPhoto, phoneNumber]);
   useEffect(() => {
-    const getCountries = async () => {
-      const countriesData = await countyList();
-      setCountries(countriesData);
-    };
-    getCountries();
+    dispatch(getCountries());
   }, []);
   const handlePlaceSelect = (place) => {
     try {

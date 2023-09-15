@@ -113,6 +113,10 @@ class Api {
   static changeRole() {
     return api.get('/users/change-role');
   }
+
+  static getCountries() {
+    return api.get('utils/get-countries');
+  }
 }
 
 export default Api;

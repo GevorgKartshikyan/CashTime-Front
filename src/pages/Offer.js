@@ -9,7 +9,7 @@ const keyMap = process.env.REACT_APP_MAP_SECRET;
 
 function Offer() {
   const token = useSelector((state) => state.users.token);
-
+  const { role } = useSelector((state) => state.users.profile);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: keyMap,
     libraries,
@@ -26,9 +26,9 @@ function Offer() {
     <>
       <Header />
       <div>
-        {!page && <OfferMap isLoaded={isLoaded} />}
-        {page === 'list' && <OfferJobsFilter isLoaded={isLoaded} />}
-        {page === 'map' && <OfferMap isLoaded={isLoaded} />}
+        {!page && <OfferMap isLoaded={isLoaded} userRole={role} />}
+        {page === 'list' && <OfferJobsFilter isLoaded={isLoaded} userRole={role} />}
+        {page === 'map' && <OfferMap isLoaded={isLoaded} userRole={role} />}
       </div>
     </>
   );
