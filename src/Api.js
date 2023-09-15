@@ -109,6 +109,10 @@ class Api {
   static singleJobInfo(id) {
     return api.get(`/jobs/job-singe-info?id=${id}`);
   }
+
+  static getCountries() {
+    return api.get('utils/get-countries');
+  }
 }
 
 export default Api;

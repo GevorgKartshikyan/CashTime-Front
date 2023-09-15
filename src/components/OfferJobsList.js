@@ -33,7 +33,7 @@ function OfferJobsList({
       paddingLeft: 12,
       paddingRight: 15,
       color: 'black',
-      width: 110,
+      width: 120,
       height: 35,
       border: state.isFocused ? 0 : 0,
       borderRadius: 20,

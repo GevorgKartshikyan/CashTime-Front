@@ -6,8 +6,8 @@ import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import IndicatorsArrows from '../components/IndicatorsArrows';
-import countyList from '../utils/countyList';
 import phoneErrorHandler from '../store/actions/phoneErrorHandler';
+import { getCountries } from '../store/actions/utils';
 
 const key = process.env.REACT_APP_MAP_SECRET;
 
@@ -66,7 +66,7 @@ function CreateJobSixth(props) {
     fileSrc: sixtyFormObj.selectedPhoto || '',
     file: null,
   });
-  const [countries, setCountries] = useState([]);
+  const countries = useSelector((state) => state.utils.countries) || [];
   const [selectCountry, setSelectCountry] = useState(sixtyFormObj.selectCountry || '');
   const [address, setAddress] = useState({
     latitude: '',
@@ -87,12 +87,9 @@ function CreateJobSixth(props) {
     }, selectedPhoto.file);
   }, [selectCountry, address, selectedPhoto, phoneNumber]);
   useEffect(() => {
-    const getCountries = async () => {
-      const countriesData = await countyList();
-      setCountries(countriesData);
-    };
-    getCountries();
+    dispatch(getCountries());
   }, []);
+  console.log(countries);
   useEffect(() => {
     if (phoneNumber.length !== phoneFormatLength && phoneNumber) {
       dispatch(phoneErrorHandler('Wrong phone number format'));

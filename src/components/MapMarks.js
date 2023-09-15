@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import markHome from '../assets/images/home-map.svg';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
-// import mapDefaultThem from '../utils/mapDefaultThem';
+import mapDefaultThem from '../utils/mapDefaultThem';
 // import MapProfile from './MapProfile';
 import InfoCard from './offer-info-card';
 import { singleJobInfo } from '../store/actions/jobsRequest';
@@ -25,7 +25,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
     zoomControlOptions: {
       position: window.google?.maps?.ControlPosition?.RIGHT_CENTER,
     },
-    // styles: mapDefaultThem,
+    styles: mapDefaultThem,
     mapTypeControl: false,
     fullscreenControl: false,
     streetViewControl: false,
