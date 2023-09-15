@@ -115,7 +115,7 @@ class Api {
   }
 
   static getCountries() {
-    return api.get('utils/get-countries');
+    return api.get('/app/get-countries');
   }
 }
 
