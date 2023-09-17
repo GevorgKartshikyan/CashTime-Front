@@ -117,6 +117,10 @@ class Api {
   static getCountries() {
     return api.get('/app/get-countries');
   }
+
+  static getSkills(q = '') {
+    return api.get(`/app/get-skills?q=${q}`);
+  }
 }
 
 export default Api;

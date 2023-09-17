@@ -4,17 +4,14 @@ import React, {
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSkills } from '../store/actions/app';
 
 function CreateCvThird(props) {
   const { onData } = props;
+  const dispatch = useDispatch();
   const thirdFormArray = useSelector((state) => state.createCvForm.dataFromChild3) ?? [];
-  const skills = [
-    { id: 1, defaultSkills: 'User Experience' },
-    { id: 2, defaultSkills: 'Figma' },
-    { id: 3, defaultSkills: 'Photoshop' },
-    { id: 4, defaultSkills: 'test' },
-  ];
+  const skills = useSelector((state) => state.app.skills);
   const [selectedSkills, setSelectedSkills] = useState(thirdFormArray ?? []);
   const [inputValue, setInputValue] = useState('');
 
@@ -27,7 +24,14 @@ function CreateCvThird(props) {
       setInputValue('');
     }
   }, [selectedSkills, setSelectedSkills, inputValue]);
-
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(getSkills(inputValue));
+    }, 400);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [inputValue]);
   useEffect(() => {
     onData({ dataFromChild3: selectedSkills });
   }, [selectedSkills]);
@@ -99,9 +103,9 @@ function CreateCvThird(props) {
               type="button"
               key={e.id}
               className="skills__title"
-              onClick={() => handleSkill(e.defaultSkills)}
+              onClick={() => handleSkill(e.skill)}
             >
-              {`+ ${e.defaultSkills}`}
+              {`+ ${e.skill}`}
             </button>
           ))}
         </div>

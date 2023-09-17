@@ -4,16 +4,14 @@ import React, {
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSkills } from '../store/actions/app';
 
 function CreateJobSecond(props) {
   const { onData } = props;
+  const dispatch = useDispatch();
   const secondFormArray = useSelector((state) => state.createJobForm.dataFromChild2) ?? [];
-  const skills = [
-    { id: 1, defaultSkills: 'User Experience' },
-    { id: 2, defaultSkills: 'Figma' },
-    { id: 3, defaultSkills: 'Photoshop' },
-  ];
+  const skills = useSelector((state) => state.app.skills);
   const [selectedSkills, setSelectedSkills] = useState(secondFormArray ?? []);
   const [inputValue, setInputValue] = useState('');
 
@@ -30,6 +28,14 @@ function CreateJobSecond(props) {
   useEffect(() => {
     onData({ dataFromChild2: selectedSkills });
   }, [selectedSkills]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(getSkills(inputValue));
+    }, 400);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [inputValue]);
   const handleChange = useCallback((e) => {
     setInputValue(e.target.value);
   }, [inputValue]);
@@ -98,9 +104,9 @@ function CreateJobSecond(props) {
               type="button"
               key={e.id}
               className="skills__title"
-              onClick={() => handleSkill(e.defaultSkills)}
+              onClick={() => handleSkill(e.skill)}
             >
-              {`+ ${e.defaultSkills}`}
+              {`+ ${e.skill}`}
             </button>
           ))}
         </div>
