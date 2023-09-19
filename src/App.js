@@ -22,6 +22,7 @@ import Review from './pages/Review';
 import Profile from './pages/Profile';
 import NotFoundPage from './components/NotFoundPage';
 import { getProfile } from './store/actions/users';
+import AddService from './components/AddService';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:page" element={<Admin />} />
         <Route path="/test-map" element={<GlobalMap />} />
+        <Route path="/add-services" element={<AddService />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

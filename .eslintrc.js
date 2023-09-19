@@ -40,5 +40,6 @@ module.exports = {
     'react/prop-types': 'off',
     camelcase: 'off',
     'no-nested-ternary': 'off',
+    'react/jsx-no-useless-fragment': 'off',
   },
 };

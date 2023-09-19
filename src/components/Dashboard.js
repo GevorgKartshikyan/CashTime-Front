@@ -9,6 +9,8 @@ import services from '../assets/images/services.svg';
 import Announcement from './Announcement';
 import { jobListRequestFromAdmin } from '../store/actions/jobsRequest';
 import charDataObj from '../utils/charDataObj';
+import PaginationNext from './PaginationNextLabel';
+import PaginationPreviousLabel from './PaginationPreviousLabel';
 
 function Dashboard() {
   const [chartData] = useState(charDataObj);
@@ -93,21 +95,23 @@ function Dashboard() {
             />
           )))}
           {jobsAdmin?.length > 0 && (
-          <ReactPaginate
-            activeClassName="item active-page"
-            breakClassName="item break-me"
-            breakLabel=""
-            containerClassName="pagination adminPaginate"
-            disabledClassName="disabled-page"
-            marginPagesDisplayed={0}
-            nextClassName="item next"
-            onPageChange={handlePageChange}
-            pageCount={totalPagesAdmin}
-            pageClassName="item pagination-page "
-            pageRangeDisplayed={5}
-            forcePage={currentPageAdmin - 1}
-            previousClassName="item previous"
-          />
+            <ReactPaginate
+              activeClassName="admin-item admin-active-page"
+              breakClassName="admin-item admin-break-me"
+              pageClassName="admin-item admin-pagination-page add-skill-item"
+              previousClassName="admin-item admin-previous"
+              breakLabel=""
+              containerClassName="pagination"
+              disabledClassName="disabled-page"
+              marginPagesDisplayed={0}
+              nextClassName="admin-item admin-next"
+              nextLabel={<PaginationNext />}
+              onPageChange={handlePageChange}
+              previousLabel={<PaginationPreviousLabel />}
+              pageCount={totalPagesAdmin}
+              pageRangeDisplayed={3}
+              forcePage={currentPageAdmin - 1}
+            />
           )}
         </div>
       </div>

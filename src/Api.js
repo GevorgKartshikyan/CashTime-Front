@@ -121,6 +121,18 @@ class Api {
   static getSkills(q = '') {
     return api.get(`/app/get-skills?q=${q}`);
   }
+
+  static getSkillsForAdmin({ page = '', limit = '', q = '' }) {
+    return api.put(`/app/get-skills-admin?q=${q}&page=${page}&limit=${limit}`);
+  }
+
+  static addSkillForAdmin(skill) {
+    return api.post('/app/add-skill', { skill });
+  }
+
+  static deleteSkillForAdmin(id) {
+    return api.post('/app/delete-skill', { id });
+  }
 }
 
 export default Api;
