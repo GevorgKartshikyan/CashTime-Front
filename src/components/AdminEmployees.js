@@ -94,6 +94,7 @@ function AdminEmployees() {
 
   return (
     <div className="admin__employees">
+      <div className="admin__row__dashboard__title"><h3>Employees</h3></div>
       <div className="admin__employees__search">
         <label htmlFor="admin-employees-search" className="admin__employees__search__label">
           <div className="admin__employees__search__label__box">

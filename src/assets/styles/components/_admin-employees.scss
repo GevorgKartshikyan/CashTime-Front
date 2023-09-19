@@ -73,6 +73,7 @@
       &__name {
         width: 30%;
         overflow: hidden;
+        cursor: pointer;
         &__text{
           color: var(--dark-blue, #031054);
           font-family: "Poppins",sans-serif;

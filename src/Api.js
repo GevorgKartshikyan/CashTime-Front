@@ -105,6 +105,10 @@ class Api {
   static singleUserFromAdmin(id) {
     return api.get(`/users/singleUserFromAdmin?id=${id}`);
   }
+
+  static blockedUsers() {
+    return api.get('/users/blockedUsers');
+  }
 }
 
 export default Api;

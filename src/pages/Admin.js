@@ -8,7 +8,8 @@ import Dashboard from '../components/Dashboard';
 import UserDashboard from '../components/User-dashboard';
 import AdminEmployees from '../components/AdminEmployees';
 import AdminEmployers from '../components/AdminEmployers';
-import Reports from '../components/Reports';
+import BlockedUsers from '../components/BlockedUsers';
+import NotFoundPage from '../components/NotFoundPage';
 
 function Admin() {
   const token = useSelector((state) => state.users.token);
@@ -16,8 +17,12 @@ function Admin() {
     window.location.href = '/';
     return null;
   }
-  const elements = ['Dashboard', 'Employees', 'Employers', 'Report', 'User'];
+  const elements = ['Dashboard', 'Employees', 'Employers', 'Blocked-Users', 'User'];
   const { page = elements[0].toLowerCase() } = useParams();
+  console.log(page);
+  if (page !== 'dashboard' && page !== 'employees' && page !== 'employers' && page !== 'blocked-users' && page !== 'user') {
+    return <NotFoundPage />;
+  }
   return (
     <div className="admin">
       <div className="admin__row">
@@ -43,7 +48,7 @@ function Admin() {
         {page === 'employees' && <AdminEmployees /> }
         {page === 'employers' && <AdminEmployers /> }
         {page === 'user' && <UserDashboard /> }
-        {page === 'report' && <Reports />}
+        {page === 'blocked-users' && <BlockedUsers />}
         <div className="admin__row__user">
           <div className="admin__row__user__w">
             <div className="admin__row__user__w-notification">

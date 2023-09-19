@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.svg';
 import callIcon from '../assets/images/Call.svg';
 import emailIcon from '../assets/images/Email.svg';
-import dotsIcon from '../assets/images/Dots.svg';
 import ReportModal from './ReportModal';
 import { status as changeStatus } from '../store/actions/users';
 
@@ -16,7 +15,7 @@ function UserInfoCard(props) {
   const {
     img, firstName, lastName, userId, date, profession, city, status,
   } = props;
-  const [deleteFlag, setDeleteFlag] = useState(false);
+  // const [deleteFlag, setDeleteFlag] = useState(false);
   const [checkboxFlag, setCheckboxFlag] = useState(true);
   const [modalFlag, setModalFlag] = useState(false);
   const dispatch = useDispatch();
@@ -97,15 +96,6 @@ function UserInfoCard(props) {
               {newStatus}
 
             </button>
-          </div>
-          <div className="admin__employees__info__titles__action">
-            <button onClick={() => setDeleteFlag(!deleteFlag)} className="admin__employees__info__titles__action__btn" type="button">
-              <img className="img__action__admin__one" src={dotsIcon} alt="img" />
-            </button>
-            {
-              deleteFlag ? <button type="button" className="admin__employees__info__titles__action__delete">Delete</button> : null
-            }
-
           </div>
         </div>
       </div>
