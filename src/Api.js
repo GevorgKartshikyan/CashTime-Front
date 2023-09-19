@@ -133,6 +133,10 @@ class Api {
   static deleteSkillForAdmin(id) {
     return api.post('/app/delete-skill', { id });
   }
+
+  static allCountsForAdmin() {
+    return api.get('/app/all-counts');
+  }
 }
 
 export default Api;

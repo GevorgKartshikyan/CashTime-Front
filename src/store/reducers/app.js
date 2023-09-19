@@ -1,5 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addSkillForAdmin, getSkills, getSkillsForAdmin } from '../actions/app';
+import {
+  addSkillForAdmin, allCountsForAdmin, getSkills, getSkillsForAdmin,
+} from '../actions/app';
 
 const initialState = {
   status: '',
@@ -8,6 +10,9 @@ const initialState = {
   totalPagesSkills: 0,
   currentPageSkills: 0,
   addedSkill: '',
+  allEmployers: 0,
+  allEmployees: 0,
+  allJobs: 0,
 };
 
 export default createReducer(initialState, (builder) => {
@@ -28,5 +33,10 @@ export default createReducer(initialState, (builder) => {
     .addCase(addSkillForAdmin.fulfilled, (state, action) => {
       const { addedSkill } = action.payload;
       state.addedSkill = addedSkill;
+    }).addCase(allCountsForAdmin.fulfilled, (state, action) => {
+      const { allEmployers, allEmployees, allJobs } = action.payload;
+      state.allEmployers = allEmployers;
+      state.allEmployees = allEmployees;
+      state.allJobs = allJobs;
     });
 });

@@ -35,3 +35,11 @@ export const deleteSkillForAdmin = createAsyncThunk('app/deleteSkillForAdmin', a
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const allCountsForAdmin = createAsyncThunk('app/allCountsForAdmin', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.allCountsForAdmin();
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
