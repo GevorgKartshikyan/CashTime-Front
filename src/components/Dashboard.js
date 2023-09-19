@@ -11,6 +11,7 @@ import { jobListRequestFromAdmin } from '../store/actions/jobsRequest';
 import charDataObj from '../utils/charDataObj';
 import PaginationNext from './PaginationNextLabel';
 import PaginationPreviousLabel from './PaginationPreviousLabel';
+import { allCountsForAdmin } from '../store/actions/app';
 
 function Dashboard() {
   const [chartData] = useState(charDataObj);
@@ -21,12 +22,15 @@ function Dashboard() {
   const totalPagesAdmin = useSelector((state) => state.jobsRequest.totalPagesAdmin);
   const page = parseInt(searchParams.get('page') || 1, 10);
   const limit = parseInt(searchParams.get('limit') || 5, 10);
-
+  const allEmployers = useSelector((state) => state.app.allEmployers);
+  const allEmployees = useSelector((state) => state.app.allEmployees);
+  const allJobs = useSelector((state) => state.app.allJobs);
   useEffect(() => {
     dispatch(jobListRequestFromAdmin({ page, limit }));
   }, [page]);
   useEffect(() => {
     setSearchParams({ page, limit });
+    dispatch(allCountsForAdmin());
   }, []);
   const handlePageChange = (event) => {
     const selectedPage = event.selected + 1;
@@ -45,7 +49,7 @@ function Dashboard() {
           </div>
           <div className="text">
             <p>Employers</p>
-            <h3>932</h3>
+            <h3>{allEmployers}</h3>
           </div>
         </div>
         <div className="admin__row__dashboard__info-employees">
@@ -54,7 +58,7 @@ function Dashboard() {
           </div>
           <div className="text">
             <p>Employees</p>
-            <h3>1200</h3>
+            <h3>{allEmployees}</h3>
           </div>
         </div>
         <div className="admin__row__dashboard__info-services">
@@ -63,7 +67,7 @@ function Dashboard() {
           </div>
           <div className="text">
             <p>Services</p>
-            <h3>40</h3>
+            <h3>{allJobs}</h3>
           </div>
         </div>
       </div>

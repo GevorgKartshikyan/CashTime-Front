@@ -137,6 +137,10 @@ class Api {
   static blockedUsers() {
     return api.get('/users/blockedUsers');
   }
+
+  static allCountsForAdmin() {
+    return api.get('/app/all-counts');
+  }
 }
 
 export default Api;
