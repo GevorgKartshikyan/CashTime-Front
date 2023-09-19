@@ -8,7 +8,7 @@
     margin-bottom: 25px;
     &__text{
       & > h3{
-        color: #303972;
+        color:#4A62B6;
         font-family: "Roboto", sans-serif;
         font-size: 36px;
         font-style: normal;
@@ -36,7 +36,6 @@
   &__profile{
     display: flex;
     width: 100%;
-    height: 367px;
     border-radius: 20px;
     background: #FFFFFF;
     padding: 30px 45px;
@@ -180,4 +179,8 @@
       }
     }
   }
+}
+.user__not__selected{
+  text-align: center;
+  margin-top: 50px;
 }

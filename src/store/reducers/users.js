@@ -7,7 +7,7 @@ import {
   getSingleUser,
   activate,
   status,
-  singleUserFromAdmin,
+  singleUserFromAdmin, blockedUsers,
 } from '../actions/users';
 
 const initialState = {
@@ -21,6 +21,7 @@ const initialState = {
   totalPages: 0,
   token: window.localStorage.getItem('token') ?? '',
   singleFromAdmin: {},
+  blocked: [],
 };
 
 export default createReducer(initialState, (builder) => {
@@ -77,6 +78,9 @@ export default createReducer(initialState, (builder) => {
     .addCase(singleUserFromAdmin.fulfilled, (state, action) => {
       const { singleFromAdmin } = action.payload;
       state.singleUserFromAdmin = singleFromAdmin;
-      console.log(singleFromAdmin);
+    })
+    .addCase(blockedUsers.fulfilled, (state, action) => {
+      const { blocked } = action.payload;
+      state.blocked = blocked;
     });
 });

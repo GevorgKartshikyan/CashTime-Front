@@ -26,8 +26,7 @@ function ReportModal({ onChangeStatus, userId, modalFlag }) {
   return (
     <div className="report-modal">
       <p>
-        You can write about your years of experience, industry, or skills.
-        People also talk about their achievements or previous job experiences.
+        The reason why you block this user.
       </p>
       <form onSubmit={handleSubmit}>
         <textarea name="reportText" onChange={handleTextChange} maxLength={2600} />

@@ -133,6 +133,10 @@ class Api {
   static deleteSkillForAdmin(id) {
     return api.post('/app/delete-skill', { id });
   }
+
+  static blockedUsers() {
+    return api.get('/users/blockedUsers');
+  }
 }
 
 export default Api;
