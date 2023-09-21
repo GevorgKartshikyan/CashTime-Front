@@ -28,7 +28,9 @@
   "sign_up_input_two": "Անուն",
   "sign_up_input_three": "Ազգանուն",
   "sign_up_pass": "Գաղտնաբառ",
+  "sign_up_pass_confirm": "Հաստատել Գաղտնաբառը",
   "sign_up_location": "Գտնվելու վայրը",
+  "sign_up_avatar": "Վերբեռնեք լուսանկար",
   "sign_up_with_google_or_fb": "Կամ գրանցվեք",
   "sign_up_create_btn": "Ստեղծել իմ հաշիվը",
   "sign_up_already_have_an_account": "Արդեն ունեք անձնական էջ ? Մուտք",
@@ -37,5 +39,10 @@
   "login_input_two": "Գաղտնաբառ",
   "login_with_google_or_fb": "Կամ գրանցվեք",
   "login_continue_btn": "Շարունակել էլ. Հասցեով",
-  "login_dont_have_an_account": "Չունեք հաշիվ ? Գրանցվել"
+  "login_dont_have_an_account": "Չունեք հաշիվ ? Գրանցվել",
+  "verify_email": "Հաստատեք ձեր էլ.փոստը",
+  "verify_email_text_two": "Խնդրում ենք մուտքագրել 4 նիշանոց կոդը, որն ուղարկվել է Ձեր էլ.փոստին",
+  "verify_email_resend": "Կրկին ուղարկել կոդը",
+  "verify_email_submit": "Հաստատել",
+  "verified": "Հաստատված է!"
 }

@@ -28,7 +28,9 @@
   "sign_up_input_two": "Name",
   "sign_up_input_three": "Surname",
   "sign_up_pass": "Password",
+  "sign_up_pass_confirm": "Confirm Password",
   "sign_up_location": "Location",
+  "sign_up_avatar": "Upload an avatar",
   "sign_up_with_google_or_fb": "Or Sign up With",
   "sign_up_create_btn": "Create my Account",
   "sign_up_already_have_an_account": "Already have an Account? Log in",
@@ -37,5 +39,10 @@
   "login_input_two": "Password",
   "login_with_google_or_fb": "Or Sign up With",
   "login_continue_btn": "Continue With Email",
-  "login_dont_have_an_account": "Don’t Have an Account? Sign Up"
+  "login_dont_have_an_account": "Don’t Have an Account? Sign Up",
+  "verify_email": "Verify Your Email",
+  "verify_email_text_two": "Please enter the 4 digit Code Sent to Your Email",
+  "verify_email_resend": "Resend Code",
+  "verify_email_submit": "Submit",
+  "verified": "Verified!"
 }

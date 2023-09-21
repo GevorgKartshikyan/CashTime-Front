@@ -28,7 +28,9 @@
   "sign_up_input_two": "Имя",
   "sign_up_input_three": "Фамилия",
   "sign_up_pass": "Пароль",
+  "sign_up_pass_confirm": "Подтвердите Пароль",
   "sign_up_location": "Расположение",
+  "sign_up_avatar": "Загрузите аватар",
   "sign_up_with_google_or_fb": "Или зарегистрируйтесь через",
   "sign_up_create_btn": "Создать мой аккаунт",
   "sign_up_already_have_an_account": "У вас уже есть учетная запись? войти",
@@ -37,5 +39,10 @@
   "login_input_two": "Пароль",
   "login_with_google_or_fb": "Или зарегистрируйтесь через",
   "login_continue_btn": "Продолжить с электронной почтой",
-  "login_dont_have_an_account": "У вас нет учетной записи? Зарегистрироваться"
+  "login_dont_have_an_account": "У вас нет учетной записи? Зарегистрироваться",
+  "verify_email": "Подтвердите Ваш Электронный Aдрес",
+  "verify_email_text_two": "Пожалуйста, введите 4-значный код, отправленный на вашу электронную почту",
+  "verify_email_resend": "Отправить код еще раз",
+  "verify_email_submit": "Подтверждать",
+  "verified": "Проверено!"
 }
