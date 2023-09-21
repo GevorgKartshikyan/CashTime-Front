@@ -22,5 +22,20 @@
   "home_job_second_text_button": "See jobs",
   "home_job_third_text_first": "Create a Profile For a Better Experience",
   "home_job_third_text_second": "Your profile is your application. Apply to jobs instantly.",
-  "pro_title": "Upgrade Your Plan For a Better Experience"
+  "pro_title": "Upgrade Your Plan For a Better Experience",
+  "sign_up": "Sign Up",
+  "sign_up_input_one": "Email",
+  "sign_up_input_two": "Name",
+  "sign_up_input_three": "Surname",
+  "sign_up_pass": "Password",
+  "sign_up_location": "Location",
+  "sign_up_with_google_or_fb": "Or Sign up With",
+  "sign_up_create_btn": "Create my Account",
+  "sign_up_already_have_an_account": "Already have an Account? Log in",
+  "login": "Log In To CashApp",
+  "login_input_one": "Email",
+  "login_input_two": "Password",
+  "login_with_google_or_fb": "Or Sign up With",
+  "login_continue_btn": "Continue With Email",
+  "login_dont_have_an_account": "Don’t Have an Account? Sign Up"
 }
