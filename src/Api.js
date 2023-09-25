@@ -96,6 +96,20 @@ class Api {
   static report(data) {
     return api.post('/reports/report-message', { data });
   }
+
+  static editProfile(data) {
+    console.log(data);
+    return api.put('users/edit-employee', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
+
+  static editUserAbout(data) {
+    console.log(data);
+    return api.put('users/edit-employee-about', { data });
+  }
 }
 
 export default Api;

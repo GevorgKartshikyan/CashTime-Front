@@ -58,3 +58,21 @@ export const status = createAsyncThunk('/users/status', async (payload, thunkAPI
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+
+export const editProfile = createAsyncThunk('users/edit-employee', async (payload, thunkAPI) => {
+  try {
+    const { data } = Api.editProfile(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+export const editUserAbout = createAsyncThunk('users/edit-employee', async (payload, thunkAPI) => {
+  try {
+    const { data } = Api.editUserAbout(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});

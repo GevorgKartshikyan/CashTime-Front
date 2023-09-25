@@ -1,0 +1,38 @@
+<svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="23" height="20" fill="#1E1E1E"/>
+<g id="Edit General">
+<rect width="1600" height="962" transform="translate(-766 -421)" fill="#EDEDED"/>
+<g id="Group 1000004372" filter="url(#filter0_d_2124_11476)">
+<rect id="Rectangle 6509" x="-195" y="-290" width="459" height="652" rx="27" fill="white"/>
+<g id="Frame 1000004366">
+<g id="Group 102">
+<g id="Group 1000004367">
+<g id="Group 100">
+<g id="Name">
+<g id="Group 60">
+<rect id="Rectangle 10" x="-176" y="-9" width="202" height="37" rx="8" fill="#D9D9D9"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="Group 1000004369">
+<rect id="Rectangle 6511" width="23" height="19.4118" rx="6" fill="#EDECEC"/>
+<path id="Vector" d="M5.12688 8.0297L5.20562 8.11725L11.1556 14.6415C11.3569 14.8624 11.6587 15 11.9956 15C12.3325 15 12.6344 14.8583 12.8356 14.6415L18.7812 8.12976L18.8819 8.02137C18.9562 7.91714 19 7.79208 19 7.65868C19 7.29599 18.6762 7 18.2737 7H5.72625C5.32375 7 5 7.29599 5 7.65868C5 7.79625 5.04813 7.92548 5.12688 8.0297Z" fill="#031054"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_2124_11476" x="-237" y="-336" width="541" height="734" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-1" dy="-5"/>
+<feGaussianBlur stdDeviation="20.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.3925 0 0 0 0 0.381052 0 0 0 0 0.381052 0 0 0 0.46 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2124_11476"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2124_11476" result="shape"/>
+</filter>
+</defs>
+</svg>
