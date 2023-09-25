@@ -9,6 +9,7 @@ export const getMessagesList = createAsyncThunk('messages/getMessagesList', asyn
     const { data } = await Api.getMessagesList({
       friendId, limit, page, userId,
     });
+    console.log(data);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);
@@ -18,6 +19,7 @@ export const getMessagesList = createAsyncThunk('messages/getMessagesList', asyn
 export const sendMessages = createAsyncThunk('messages/sendMessages', async (payload, thunkAPI) => {
   try {
     const { data } = await Api.sendMessage(payload);
+    console.log(data);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);
@@ -31,6 +33,15 @@ export const openMessage = createAsyncThunk('messages/openMessage', async (paylo
 export const editMessage = createAsyncThunk('messages/editMessage', async (payload, thunkAPI) => {
   try {
     const { data } = await Api.editMessage(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+export const newMessages = createAsyncThunk('messages/newMessages', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.newMessages();
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

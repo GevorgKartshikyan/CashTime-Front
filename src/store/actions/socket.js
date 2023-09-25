@@ -2,6 +2,8 @@
 import { io } from 'socket.io-client';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import ringtone from '../../assets/audio/message.mp3';
+import { newMessages } from './messages';
+import { listRequest } from './users';
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -19,7 +21,7 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
   }
   socket = io(REACT_APP_API_URL, {
     extraHeaders: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
   });
   socket.on('connect', () => {
@@ -35,22 +37,44 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
     dispatch(socketOpenMessage(data));
   });
   socket.on('new_message', (data) => {
-    const friendId = getState().users.user.id;
-    const current = +friendId === +data.from;
+    const friendId = getState().users.singleUser.id;
+    // const current = +friendId === +data.from;
     dispatch(socketNewMessage({
       message: data,
       current: +friendId === +data.from,
     }));
 
-    if (!current) {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.play();
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        console.log('ok');
+      })
+        .catch((error) => {
+          console.error('error', error);
+        });
+    } catch (e) {
+      console.log(e);
     }
+    dispatch(newMessages());
+    dispatch(listRequest({
+      page: 1, limit: 100, role: 'employer', search: '',
+    }));
+
+    // if (!current) {
+    //   try {
+    //     audio.pause();
+    //     audio.currentTime = 0;
+    //     audio.play().then(() => {
+    //       console.log('ok');
+    //     })
+    //       .catch((error) => {
+    //         console.error('error', error);
+    //       });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // }
   });
   socket.on('edit_message', (data) => {
     dispatch(socketEditMessage(data));

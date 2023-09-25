@@ -13,6 +13,14 @@ api.interceptors.request.use((config) => {
   return config;
 }, (error) => Promise.reject(error));
 
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `${token}`;
+  }
+  return config;
+}, (error) => Promise.reject(error));
+
 class Api {
   static jobListFromUsersFilter({
     filter,
@@ -81,7 +89,6 @@ class Api {
   }
 
   static createCv(data) {
-    // console.log(data);
     return api.post('/cvs/create-cv', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -140,6 +147,26 @@ class Api {
 
   static allCountsForAdmin() {
     return api.get('/app/all-counts');
+  }
+
+  static sendMessage(data) {
+    return api.post('/messages/send', data);
+  }
+
+  static getMessagesList(params) {
+    return api.get('/messages/list', {
+      params,
+    });
+  }
+
+  static openMessage(id) {
+    return api.put('/messages/open', {
+      id,
+    });
+  }
+
+  static newMessages() {
+    return api.get('messages/newMessages');
   }
 }
 

@@ -9,10 +9,12 @@ import {
   status,
   singleUserFromAdmin, blockedUsers,
 } from '../actions/users';
+import { socketOffline, socketOnline } from '../actions/socket';
 
 const initialState = {
   user: {},
   users: [],
+  usersForMessages: [],
   singleUser: {},
   profile: {},
   usersData: {},
@@ -49,9 +51,10 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(listRequest.fulfilled, (state, action) => {
       const {
-        users, currentPage, totalPages, search,
+        users, currentPage, totalPages, search, usersForMessages,
       } = action.payload;
       state.users = users;
+      state.usersForMessages = usersForMessages;
       state.currentPage = currentPage;
       state.totalPages = totalPages;
       state.search = search;
@@ -82,5 +85,24 @@ export default createReducer(initialState, (builder) => {
     .addCase(blockedUsers.fulfilled, (state, action) => {
       const { blocked } = action.payload;
       state.blocked = blocked;
+    })
+    .addCase(socketOnline, (state, action) => {
+      const { userId } = action.payload;
+      state.usersForMessages = state.usersForMessages.map((u) => {
+        if (+u.id === +userId) {
+          u.isOnline = true;
+        }
+        return u;
+      });
+    })
+    .addCase(socketOffline, (state, action) => {
+      const { userId } = action.payload;
+      state.usersForMessages = state.usersForMessages.map((u) => {
+        if (+u.id === +userId) {
+          u.isOnline = false;
+          u.lastVisit = new Date();
+        }
+        return u;
+      });
     });
 });
