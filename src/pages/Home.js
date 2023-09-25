@@ -1,25 +1,55 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import Autocomplete from 'react-google-autocomplete';
 import Wrapper from '../layouts/Wrapper';
 import HomeJob from '../components/Home-job';
 import JoinImg from '../assets/images/homejoin.svg';
 import seeJobs from '../assets/images/seeJobs.svg';
 import jobFind from '../assets/images/jobFind.svg';
 import createProfile from '../assets/images/createProfile.svg';
-import Button from '../components/Button';
+// import Button from '../components/Button';
 import JobLocationIcon from '../assets/images/home_location_icon.svg';
 import SearchIcon from '../assets/images/Search_Icon.svg';
 import JobHiring from '../layouts/Job_hiring';
-import HomeProPage from '../components/HomeProPage';
 
-// messages-i, offers-i vra click eneluc error destroy is not a function
 function Home() {
-  // const dispatch = useDispatch();
+  const mapKey = process.env.REACT_APP_MAP_SECRET;
   const { t } = useTranslation();
-  // useEffect(async () => {
-  //   const { payload } = await dispatch(listRequest({ page: 2, limit: 2 }));
-  //   console.log(payload);
-  // }, []);
+  const navigate = useNavigate();
+  const [searchJobAddress, setSearchJobAddress] = useState({
+    city: '',
+    country: '',
+  });
+  const [searchJobTitle, setSearchJobTitle] = useState('');
+
+  const handleSubmit = useCallback((ev) => {
+    ev.preventDefault();
+    navigate(`/offer/map?country=${searchJobAddress.country}&city=${searchJobAddress.city}&title=${searchJobTitle}`);
+  }, [searchJobAddress, searchJobTitle]);
+
+  const handlePlaceSelect = (place) => {
+    try {
+      const addressComponents = place.address_components;
+      let country = '';
+      let city = '';
+      for (let i = 0; i < addressComponents.length; i += 1) {
+        const component = addressComponents[i];
+        const componentType = component.types[0];
+        if (componentType === 'country') {
+          country = component.long_name;
+        } else if (componentType === 'locality') {
+          city = component.long_name;
+        }
+      }
+      setSearchJobAddress({
+        country,
+        city,
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <Wrapper>
       <section className="join">
@@ -33,14 +63,14 @@ function Home() {
                 <p className="join__left__text">
                   {t('join_left_text')}
                 </p>
-                <div className="join__left__block join-block">
-                  <Button className="join-block__btn1" title={t('join_block_btn1')} />
-                  <Button
-                    className="join-block__btn2"
-                    title={t('join_block_btn2'
-                    + '')}
-                  />
-                </div>
+                {/* <div className="join__left__block join-block"> */}
+                {/*   <Button className="join-block__btn1" title={t('join_block_btn1')} /> */}
+                {/*   <Button */}
+                {/*     className="join-block__btn2" */}
+                {/*     title={t('join_block_btn2' */}
+                {/*     + '')} */}
+                {/*   /> */}
+                {/* </div> */}
               </div>
               <div className="join__right">
                 <img className="join__right__img" src={JoinImg} alt="" />
@@ -48,14 +78,24 @@ function Home() {
             </div>
             <div className="join__bottom">
               <h3 className="join__bottom__title">{t('join_bottom_title')}</h3>
-              <form className="join__bottom__form">
+              <form className="join__bottom__form" onSubmit={(ev) => handleSubmit(ev)}>
                 <label htmlFor="input-job" className="join__bottom__form__label">
-                  <input type="text" maxLength="15" className="join__bottom__form__job" id="input-job" placeholder={t('job_title_text')} />
+                  <input type="text" value={searchJobTitle} maxLength="35" className="join__bottom__form__job" id="input-job" placeholder={t('job_title_text')} onChange={(ev) => setSearchJobTitle(ev.target.value)} />
                 </label>
                 <span className="join__bottom__form__line" />
                 <label htmlFor="input-city" className="join__bottom__form__label">
                   <img className="join__bottom__form__icon" src={JobLocationIcon} alt="" />
-                  <input type="text" maxLength="15" className="join__bottom__form__city" id="input-city" placeholder={t('city_name_text')} />
+                  <Autocomplete
+                    placeholder="Location"
+                    className="join__bottom__form__city"
+                    apiKey={mapKey}
+                    onPlaceSelected={handlePlaceSelect}
+                    language="en"
+                    options={{
+                      componentRestrictions: { country: 'am' },
+                      types: ['geocode', 'establishment'],
+                    }}
+                  />
                 </label>
                 <button type="submit" className="join__bottom__form__button">
                   <img className="join__bottom__form__button__icon" src={SearchIcon} alt="" />
@@ -71,7 +111,6 @@ function Home() {
         <HomeJob rowReverse="row" firstText={t('home_job_second_text_first')} secondText={t('home_job_second_text_second')} buttonTxt={t('home_job_second_text_button')} img={seeJobs} />
         <HomeJob rowReverse="" firstText={t('home_job_third_text_first')} secondText={t('home_job_third_text_second')} buttonTxt={t('home_job_second_text_button')} img={createProfile} />
       </section>
-      <HomeProPage />
     </Wrapper>
   );
 }

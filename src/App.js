@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18n from 'i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import Home from './pages/Home';
 import GlobalMap from './pages/GlobalMap';
 import CreateJob from './pages/Create-job';
@@ -19,11 +20,25 @@ import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
 import Profile from './pages/Profile';
+import { socketInit } from './store/actions/socket';
+import { getProfile } from './store/actions/users';
+import { newMessages } from './store/actions/messages';
 
 function App() {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.users.token);
   useEffect(() => {
     i18n.changeLanguage(window.localStorage.getItem('language'));
   }, [window.localStorage.getItem('language')]);
+  useEffect(() => {
+    if (token) {
+      dispatch(socketInit(token));
+    }
+  }, [token]);
+  useEffect(() => {
+    dispatch(getProfile());
+    dispatch(newMessages());
+  });
   return (
     <BrowserRouter>
       <Routes>
@@ -40,6 +55,7 @@ function App() {
         <Route path="/connect-card" element={<ConnectCard />} />
         <Route path="/create-job" element={<CreateJob />} />
         <Route path="/worker-offers" element={<WorkerOffers />} />
+        <Route path="/messages/:friendId" element={<Messages />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/offer/:page" element={<Offer />} />
         <Route path="/offer" element={<Offer />} />

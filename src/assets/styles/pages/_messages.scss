@@ -76,12 +76,13 @@
         display: flex;
       }
       &__avatar > img{
+        width: 47px;
         height: 47px;
+        border-radius: 50%;
         cursor: pointer;
       }
       &__name{
-        width: 138.289px;
-        height: 22.167px;
+        margin-left: 20px;
         & > h3{
           color: #000000;
           text-align: center;
@@ -140,13 +141,18 @@
         display: flex;
         width: 100%;
         margin-bottom: 30px;
-        align-items: center;
+        align-items: flex-end;
+        position: relative;
         & > img {
+          width: 40px;
           height: 40px;
-          margin-right: 30px;
+          border-radius: 50%;
+          margin-right: 10px;
           cursor: pointer;
         }
         & > p {
+          max-width: 500px;
+          overflow-wrap: break-word;
           color: var(--dark-blue, #031054);
           font-family: "Lato", sans-serif;
           font-size: 14px;
@@ -155,12 +161,24 @@
           line-height: normal;
           padding: 10px;
           border-radius: 11px;
+          position: relative;
+          background-color: rgba(255, 255, 255, 0.53);
+          & > img {
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            bottom: 0;
+            left: -15px;
+          }
         }
       }
       &_left{
         flex-direction: row-reverse;
         & > img{
-          margin: 0 0 0 30px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin: 0 0 0 10px;
         }
         & > p{
           background: #ADC4DE;
@@ -173,19 +191,29 @@
   width: 335px;
   height: 83px;
   border-radius: 22px;
-  background: #E17A01;
+  background: #D9D9D9;
   display: flex;
   align-items: center;
   padding: 0 11px;
   justify-content: space-between;
   margin-bottom: 12px;
   cursor: pointer;
+  overflow: hidden;
+  &__active {
+    background: #DFA662;
+  }
+  &.active {
+    background-color: #b7b6b6;
+  }
   &__w{
     display: flex;
     align-items: center;
     & > .user__block__img{
-      width: 58px;
+      width: 50px;
+      height: 50px;
       margin-right: 7px;
+      border-radius: 50%;
+      overflow: hidden;
       & > img{
         width: 100%;
         cursor: pointer;
@@ -193,7 +221,7 @@
     }
     & > .user__block__information{
       & > h3{
-        color: var(--white, #FFF);
+        color: #031054;
         font-family: "Lato", sans-serif;
         font-size: 20px;
         font-style: normal;
@@ -201,8 +229,10 @@
         line-height: normal;
       }
       & > p{
-        color: var(--white, #FFF);
-        text-align: center;
+        max-width: 260px;
+        white-space: nowrap;
+        overflow: hidden;
+        color: #031054;
         font-family: "Lato", sans-serif;
         font-size: 14px;
         font-style: normal;
@@ -212,14 +242,23 @@
     }
   }
   &__date{
+    align-self: flex-start;
+    margin-top: 20px;
     & > p{
-      color: var(--white, #FFF);
+      color: #031054;
       text-align: center;
       font-family: "Lato", sans-serif;
       font-size: 10px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
+    }
+    &-span {
+      display: flex;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #031054;
     }
   }
 }

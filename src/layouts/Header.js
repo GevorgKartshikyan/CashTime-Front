@@ -6,23 +6,32 @@ import React, {
 } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Logo } from '../assets/images/header_logo.svg';
 import Globe from '../assets/images/globe.svg';
-import Avatar from '../assets/images/face.png';
+import MessageIcon from '../assets/images/message-icon.svg';
 import ChatBox from '../components/ChatBox';
 import Languages from '../components/Languages';
 import Notification from '../assets/images/notification.svg';
 import ManuModal from '../components/ManuModal';
+import { newMessages } from '../store/actions/messages';
 
 function Header() {
+  const { REACT_APP_API_URL } = process.env;
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isActiveLanguage, setIsActiveLanguage] = useState(false);
   const [isActiveManu, setIsActiveManu] = useState(false);
+  const profile = useSelector((state) => state.users.profile);
   const token = useSelector((state) => state.users.token);
+  const newMessagesCount = useSelector((state) => state.messages.newMessagesCount);
+  const dispatch = useDispatch();
   const ref = useRef(null);
   const languages = useRef(null);
   const manu = useRef(null);
+  const activeLanguage = window.localStorage.getItem('language');
+  useEffect(() => {
+    dispatch(newMessages());
+  }, [newMessagesCount]);
   useEffect(() => {
     const handleOut = (event) => {
       if (languages.current && !languages.current.contains(event.target) && event.target.id !== 'dropdown-language-button') {
@@ -106,8 +115,26 @@ function Header() {
             {token ? (
               <div className="header__menu__list">
                 <ul>
-                  <li><NavLink to="/messages">{t('manu_message')}</NavLink></li>
-                  <li><NavLink to="/worker-offers">{t('manu_offer')}</NavLink></li>
+                  <li>
+                    <NavLink to="/worker-offers">
+                      {t('manu_offer')}
+                    </NavLink>
+                  </li>
+                  {profile?.role === 'employee' ? (
+                    <li>
+                      <NavLink to="/create-job" className="header__menu__list-offer">
+                        <strong>+</strong>
+                        New Project
+                      </NavLink>
+                    </li>
+                  ) : null}
+                  <li>
+                    <NavLink to="/messages" className="header__menu__list-message">
+                      <img src={MessageIcon} alt="" />
+                    </NavLink>
+                    {newMessagesCount >= 99 ? <span className="header__menu__list-message-text">{newMessagesCount}</span> : null}
+                    {newMessagesCount !== 0 && newMessagesCount < 99 ? <span className="header__menu__list-message-text">{newMessagesCount}</span> : null}
+                  </li>
                 </ul>
               </div>
             ) : null}
@@ -117,20 +144,24 @@ function Header() {
                 <div ref={languages} className="languages__menu__list__bg">
                   {isActiveLanguage ? <Languages isShow={isActiveLanguage} /> : null}
                 </div>
+                <p className="header__menu__block__globe-lang-text">
+                  {activeLanguage ?? 'en'}
+                </p>
               </button>
-              {token ? (
-                <button className="header__menu__block__avatar" type="button" onClick={handleManu}>
-                  <img className="header__menu__block__avatar__img" src={Avatar} alt="" id="dropdown-manu-button" />
-                  <div ref={manu} className="settings__menu__modal-manu">
-                    {isActiveManu ? <ManuModal /> : null}
-                  </div>
-                </button>
-              ) : null}
               {token ? (
                 <button className="header__menu__block__avatar" type="button" onClick={(e) => handleModal(e)}>
                   <img src={Notification} alt="" id="dropdown-button" />
                   <div ref={ref} className="header__menu__list__bg">
                     {isActiveModal ? <ChatBox /> : null}
+                  </div>
+                </button>
+              ) : null}
+              {token ? (
+                <button className="header__menu__block__avatar" type="button" onClick={handleManu}>
+                  {/* eslint-disable-next-line no-unsafe-optional-chaining */}
+                  <img className="header__menu__block__avatar__img" src={REACT_APP_API_URL + profile?.avatar} alt="" id="dropdown-manu-button" />
+                  <div ref={manu} className="settings__menu__modal-manu">
+                    {isActiveManu ? <ManuModal /> : null}
                   </div>
                 </button>
               ) : null}

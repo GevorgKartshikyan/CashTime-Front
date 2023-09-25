@@ -1,12 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import {
-  editMessage, getMessagesList, openMessage, sendMessages,
+  editMessage, getMessagesList, newMessages, openMessage, sendMessages,
 } from '../actions/messages';
 import { socketEditMessage, socketNewMessage, socketOpenMessage } from '../actions/socket';
 
 const initialState = {
   messages: [],
+  newMessagesCount: 0,
 };
 export default createReducer(initialState, (builder) => {
   builder
@@ -82,5 +83,9 @@ export default createReducer(initialState, (builder) => {
         }
         return m;
       });
+    })
+    .addCase(newMessages.fulfilled, (state, action) => {
+      const data = action.payload;
+      state.newMessagesCount = data.newMessages;
     });
 });
