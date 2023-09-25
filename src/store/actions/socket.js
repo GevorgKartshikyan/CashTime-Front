@@ -13,6 +13,7 @@ export const socketOffline = createAction('socket/socketOffline');
 export const socketNewMessage = createAction('socket/socketNewMessage');
 export const socketOpenMessage = createAction('socket/socketOpenMessage');
 export const socketEditMessage = createAction('socket/socketEditMessage');
+
 export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispatch, getState }) => {
   if (socket) {
     return;
