@@ -168,6 +168,20 @@ class Api {
   static newMessages() {
     return api.get('messages/newMessages');
   }
+
+  static editProfile(data) {
+    console.log(data);
+    return api.put('users/edit-employee', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
+
+  static editUserAbout(data) {
+    console.log(data);
+    return api.put('users/edit-employee-about', { data });
+  }
 }
 
 export default Api;

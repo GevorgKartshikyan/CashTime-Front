@@ -20,10 +20,10 @@ import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Review from './pages/Review';
 import Profile from './pages/Profile';
-import NotFoundPage from './components/NotFoundPage';
 import { getProfile } from './store/actions/users';
 import { socketInit } from './store/actions/socket';
 import { newMessages } from './store/actions/messages';
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   const dispatch = useDispatch();
