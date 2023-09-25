@@ -124,11 +124,11 @@ function CreateJobFinally(props) {
               <span className="job-finally-skill-level">{address.fullAddress}</span>
             </div>
           </div>
-          <div className="job__display__row">
+          <div style={{ flexDirection: 'column' }} className="job__display__row">
             <div>
               <span className="job-finally-skill-title">Bio</span>
             </div>
-            <div>
+            <div style={{ position: 'relative', width: '100%' }}>
               <p className="job-finally-skill-level">{dataFromChild5}</p>
             </div>
           </div>

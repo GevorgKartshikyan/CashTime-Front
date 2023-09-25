@@ -74,7 +74,6 @@ function CreateJobSixth(props) {
     fullAddress: '',
     location: '',
   });
-  console.log(address);
   const [phoneNumber, setPhoneNumber] = useState(sixtyFormObj.phoneNumber ?? '');
   useEffect(() => {
     onData({
@@ -89,7 +88,6 @@ function CreateJobSixth(props) {
   useEffect(() => {
     dispatch(getCountries());
   }, []);
-  console.log(countries);
   useEffect(() => {
     if (phoneNumber.length !== phoneFormatLength && phoneNumber) {
       dispatch(phoneErrorHandler('Wrong phone number format'));

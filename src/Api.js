@@ -22,6 +22,22 @@ api.interceptors.request.use((config) => {
 }, (error) => Promise.reject(error));
 
 class Api {
+  static sendNotice(data) {
+    return api.post('/notice/send', { data });
+  }
+
+  static deleteNotice(data) {
+    return api.post('/notice/delete', { data });
+  }
+
+  static confirmNotice(data) {
+    return api.post('/notice/confirm', { data });
+  }
+
+  static noticeList({ page, limit }) {
+    return api.get(`/notice/list?page=${page}&limit=${limit}`);
+  }
+
   static jobListFromUsersFilter({
     filter,
     limit,

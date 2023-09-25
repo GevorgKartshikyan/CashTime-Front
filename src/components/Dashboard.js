@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReactApexChart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import employers from '../assets/images/employers.svg';
 import employees from '../assets/images/employees.svg';
 import services from '../assets/images/services.svg';
@@ -15,6 +15,7 @@ import { allCountsForAdmin } from '../store/actions/app';
 
 function Dashboard() {
   const [chartData] = useState(charDataObj);
+  const ref = useRef();
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const jobsAdmin = useSelector((state) => state.jobsRequest.jobListAdmin);
@@ -43,7 +44,7 @@ function Dashboard() {
         <h3>Dashboard</h3>
       </div>
       <div className="admin__row__dashboard__info">
-        <div className="admin__row__dashboard__info-employers">
+        <NavLink to="/admin/employers" className="admin__row__dashboard__info-employers">
           <div className="admin__row__dashboard__info-employers-img">
             <img src={employers} alt="" className="col-blue-employers" />
           </div>
@@ -51,8 +52,8 @@ function Dashboard() {
             <p>Employers</p>
             <h3>{allEmployers}</h3>
           </div>
-        </div>
-        <div className="admin__row__dashboard__info-employees">
+        </NavLink>
+        <NavLink to="/admin/employees" className="admin__row__dashboard__info-employees">
           <div className="admin__row__dashboard__info-employees-img">
             <img src={employees} alt="" className="col-orange-employees" />
           </div>
@@ -60,8 +61,8 @@ function Dashboard() {
             <p>Employees</p>
             <h3>{allEmployees}</h3>
           </div>
-        </div>
-        <div className="admin__row__dashboard__info-services">
+        </NavLink>
+        <div role="presentation" onClick={() => ref.current.scrollIntoView({ behavior: 'smooth' })} className="admin__row__dashboard__info-services">
           <div className="admin__row__dashboard__info-services-img">
             <img src={services} alt="" className="col-yellow-services" />
           </div>
@@ -79,7 +80,7 @@ function Dashboard() {
           height={350}
         />
       </div>
-      <div className="announcements">
+      <div ref={ref} className="announcements">
         <div className="announcements__title">
           <h3>New Announcements</h3>
         </div>

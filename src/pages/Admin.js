@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import notifications from '../assets/images/notifications.svg';
-import settings from '../assets/images/settings.svg';
 import adminImg from '../assets/images/adminImg.svg';
 import Dashboard from '../components/Dashboard';
 import UserDashboard from '../components/User-dashboard';
@@ -53,12 +51,6 @@ function Admin() {
         {page === 'blocked-users' && <BlockedUsers />}
         <div className="admin__row__user">
           <div className="admin__row__user__w">
-            <div className="admin__row__user__w-notification">
-              <img src={notifications} alt="" />
-            </div>
-            <div className="admin__row__user__w-settings">
-              <img src={settings} alt="" />
-            </div>
             <div className="admin__row__user__w-info">
               <div className="admin__row__user__w-info__text">
                 <h3>Amalia M.</h3>
