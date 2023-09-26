@@ -260,6 +260,7 @@
 
   &__options {
     display: flex;
+    flex-direction: column;
     width: 120px;
     margin-left: 15px;
 
@@ -325,7 +326,7 @@
       display: flex;
       flex-direction: column;
       padding-top: 15px;
-      padding-left: 19px;
+      padding-left: 6px;
       width: 200px;
 
       &__checkbox {

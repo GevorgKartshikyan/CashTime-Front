@@ -7,6 +7,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import { useParams } from 'react-router-dom';
 
 function MapInputAutocomplete({
+  pageType,
   isLoaded,
   classInput,
   changeCity,
@@ -74,7 +75,9 @@ function MapInputAutocomplete({
           newSearchParams.set('city', 'Yerevan');
           setCity(newSearchParams);
         }
-
+        if (page === 'list' && pageType === 'CV') {
+          setCity(city);
+        }
         if (page === 'map' || !page) {
           changeCity({ city });
         }
