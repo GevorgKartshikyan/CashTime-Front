@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { sendNotice } from '../store/actions/notice';
 
 function offerInfoCard(props) {
   const {
-    title, description,
+    title, description, creator, id,
     priceMethod, priceMaxHourly, priceMinHourly,
     experience, createdAt, priceFixed, country, city, classMapSeen = '',
   } = props;
+  const dispatch = useDispatch();
+  const handleSendNotice = useCallback(() => {
+    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: id }));
+  }, [creator, id]);
   return (
     <div className={classMapSeen ? 'offer__container__right__job on-map-seen on-map-seen' : 'offer__container__right__job'}>
       <div className="offer__container__right__job__info">
@@ -21,7 +27,7 @@ function offerInfoCard(props) {
         </div>
         <div className="offer__container__right__job__info__left">
           <div className="offer__container__right__job__info__left__opinions">
-            <button type="button" className="offer__container__right__job__info__left__opinions__btn">Apply</button>
+            <button onClick={handleSendNotice} type="button" className="offer__container__right__job__info__left__opinions__btn">Apply</button>
           </div>
           <p className="offer__container__right__job__info__left__post-time">{`Posed ${moment(createdAt).fromNow()}`}</p>
         </div>

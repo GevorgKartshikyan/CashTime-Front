@@ -15,7 +15,7 @@ export const socketOffline = createAction('socket/socketOffline');
 export const socketNewMessage = createAction('socket/socketNewMessage');
 export const socketOpenMessage = createAction('socket/socketOpenMessage');
 export const socketEditMessage = createAction('socket/socketEditMessage');
-
+export const sockedNewNotice = createAction('socket/sockedNewNotice');
 export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispatch, getState }) => {
   if (socket) {
     return;
@@ -79,5 +79,8 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
   });
   socket.on('edit_message', (data) => {
     dispatch(socketEditMessage(data));
+  });
+  socket.on('new_notice', (data) => {
+    dispatch(sockedNewNotice(data));
   });
 });

@@ -32,6 +32,7 @@
     "react-dom": "^18.2.0",
     "react-google-autocomplete": "^2.7.3",
     "react-google-maps": "^2.2.0",
+    "react-helmet": "^6.1.0",
     "react-i18next": "^13.0.2",
     "react-modal": "^3.16.1",
     "react-paginate": "^8.2.0",

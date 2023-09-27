@@ -21,6 +21,8 @@ const initialState = {
   registerRequestStatus: '',
   currentPage: 0,
   totalPages: 0,
+  currentBlockedPage: 0,
+  totalBlockedPages: 0,
   token: window.localStorage.getItem('token') ?? '',
   singleFromAdmin: {},
   blocked: [],
@@ -83,8 +85,11 @@ export default createReducer(initialState, (builder) => {
       state.singleUserFromAdmin = singleFromAdmin;
     })
     .addCase(blockedUsers.fulfilled, (state, action) => {
-      const { blocked } = action.payload;
+      const { blocked, currentPage, totalBlockedPages } = action.payload;
       state.blocked = blocked;
+      state.currentBlockedPage = currentPage;
+      state.totalBlockedPages = totalBlockedPages;
+      console.log(action.payload);
     })
     .addCase(socketOnline, (state, action) => {
       const { userId } = action.payload;

@@ -82,7 +82,6 @@ function OfferJobsFilter({ isLoaded }) {
   const page = parseInt(searchParams.get('page') || 1, 10);
   const limit = parseInt(searchParams.get('limit') || 5, 10);
   const order = searchParams.get('order-by') || '';
-  console.log(order);
   const handlePageChange = (event) => {
     const selectedPage = event.selected + 1;
     const newSearchParams = new URLSearchParams(searchParams);
@@ -102,7 +101,6 @@ function OfferJobsFilter({ isLoaded }) {
     };
   }, [filter, searchParams]);
 
-  // console.log(filter);
   return (
     <div className="container">
       <div className="offer__top">

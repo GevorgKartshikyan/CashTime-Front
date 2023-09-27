@@ -15,6 +15,7 @@ import Languages from '../components/Languages';
 import Notification from '../assets/images/notification.svg';
 import ManuModal from '../components/ManuModal';
 import { newMessages } from '../store/actions/messages';
+import { noticeList } from '../store/actions/notice';
 
 function Header() {
   const { REACT_APP_API_URL } = process.env;
@@ -29,6 +30,10 @@ function Header() {
   const languages = useRef(null);
   const manu = useRef(null);
   const activeLanguage = window.localStorage.getItem('language');
+  useEffect(() => {
+    dispatch(noticeList({ page: 1, limit: 10 }));
+  }, []);
+  const count = useSelector((state) => state.notices.count);
   useEffect(() => {
     dispatch(newMessages());
   }, [newMessagesCount]);
@@ -73,7 +78,6 @@ function Header() {
       } else if (prevState === true) {
         newFlag = false;
       }
-
       return newFlag;
     });
   }, [isActiveLanguage]);
@@ -89,8 +93,7 @@ function Header() {
       return newFlag;
     });
   }, [isActiveManu]);
-  const handleModal = useCallback((e) => {
-    console.log(e.target);
+  const handleModal = useCallback(() => {
     setIsActiveModal((prevState) => {
       let newFlag = false;
       if (prevState === false) {
@@ -150,9 +153,11 @@ function Header() {
               </button>
               {token ? (
                 <button className="header__menu__block__avatar" type="button" onClick={(e) => handleModal(e)}>
+                  {count >= 99 ? <span className="header__menu__block__notice__count">{count}</span> : null}
+                  {count !== 0 && count < 99 ? <span className="header__menu__block__notice__count">{count}</span> : null}
                   <img src={Notification} alt="" id="dropdown-button" />
                   <div ref={ref} className="header__menu__list__bg">
-                    {isActiveModal ? <ChatBox /> : null}
+                    {isActiveModal ? <ChatBox setIsActive={setIsActiveModal} /> : null}
                   </div>
                 </button>
               ) : null}
