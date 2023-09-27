@@ -24,7 +24,7 @@ function BlockedUsers() {
             <div className="blocked__user__info">
               <div className="blocked__user__info__img" role="presentation" onClick={() => handleGetSingleUser(user.id)}>
                 <img src={REACT_APP_API_URL + user.avatar} alt="" />
-              g</div>
+              </div>
               <div className="blocked__user__info__text">
                 <div role="presentation" onClick={() => handleGetSingleUser(user.id)} className="blocked__user__info__text__name">
                   <p>{user.firstName}</p>
