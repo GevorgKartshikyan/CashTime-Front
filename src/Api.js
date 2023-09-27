@@ -22,6 +22,10 @@ api.interceptors.request.use((config) => {
 }, (error) => Promise.reject(error));
 
 class Api {
+  static getJobsTitles() {
+    return api.get('/jobs/jobs-title');
+  }
+
   static sendNotice(data) {
     return api.post('/notice/send', data);
   }
