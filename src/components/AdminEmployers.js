@@ -21,9 +21,10 @@ function AdminEmployers() {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
+    console.log('a');
     dispatch(listRequest({
       page, limit: 5, role: 'employer', search: searchResults,
-    }));
+    }), []);
   }, [page, searchResults]);
   useEffect(() => {
     setSearchParams({ page, limit });

@@ -18,7 +18,7 @@ function Messages() {
   const { REACT_APP_API_URL } = process.env;
   const token = useSelector((state) => state.users.token);
   const messages = useSelector((state) => state.messages.messages);
-  const usersForMessages = useSelector((state) => state.users.usersForMessages);
+  const usersForMessages = useSelector((state) => state.users.usersForMessages || []);
   const singleUser = useSelector((state) => state.users.singleUser);
   const profile = useSelector((state) => state.users.profile);
   const { friendId } = useParams();

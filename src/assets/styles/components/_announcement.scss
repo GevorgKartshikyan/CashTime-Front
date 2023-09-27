@@ -2,7 +2,7 @@
   &__list{
     & > .announcement {
       display: flex;
-      align-items: center;
+      flex-direction: column-reverse;
       width: 100%;
       background-color: #0000ff1a;
       padding: 10px;
@@ -14,7 +14,7 @@
       }
       & > .announcement__info{
         & > .announcement__info__title{
-          & > p{
+          & > span{
             color: #000;
             font-family: "lato", sans-serif;
             font-size: 17px;
@@ -24,7 +24,21 @@
           }
         }
         &> .announcement__info__text{
-          display: flex;
+          & > .announcement__info__text-span-block{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            & > span{
+              margin-right: 10px;
+              background-color: rgba(0, 0, 255, 0.1019607843);
+              padding: 5px;
+              border-radius: 10px;
+            }
+          }
+          & > p{
+            width: 100%;
+            word-break: break-all;
+          }
           & > span{
             color: #000;
             font-feature-settings: 'clig' off, 'liga' off;
@@ -35,48 +49,52 @@
             line-height: 20px;
             margin-right: 9px;
           }
-          & > button{
-            border-radius: 22px;
-            background: #EBF9F1;
-            margin-right: 6px;
+          & > .announcement__info__text__buttons{
             display: flex;
-            width: 81px;
-            height: 24px;
-            padding: 8px 12px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-          }
-          & > .announcement_accept{
-            color: #1BB618;
-            font-family: "lato", sans-serif;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-          }
-          & > .announcement_delete{
-            color: #EF0000;
-            font-family: "lato", sans-serif;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
+            margin-top: 10px;
+            & > button{
+              border-radius: 22px;
+              background: #EBF9F1;
+              margin-right: 6px;
+              display: flex;
+              width: 81px;
+              height: 24px;
+              padding: 8px 12px;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              flex-shrink: 0;
+            }
+            & > .announcement_accept{
+              color: #1BB618;
+              font-family: "lato", sans-serif;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+            }
+            & > .announcement_delete{
+              color: #EF0000;
+              font-family: "lato", sans-serif;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+            }
           }
         }
       }
       & > .announcement__user{
         display: flex;
-        margin-left: auto;
         align-items: center;
         cursor: pointer;
         & > .announcement__user__img{
           width: 48px;
           height: 48px;
+          display: flex;
+          align-items: center;
           & > img{
             width: 100%;
-            border-radius: 50%;
           }
         }
         & > .announcement__user__name{

@@ -157,8 +157,8 @@ class Api {
     return api.post('/app/delete-skill', { id });
   }
 
-  static blockedUsers() {
-    return api.get('/users/blockedUsers');
+  static blockedUsers(page = '', limit = '') {
+    return api.get(`/users/blocked-users?page=${page}&limit=${limit}`);
   }
 
   static allCountsForAdmin() {
