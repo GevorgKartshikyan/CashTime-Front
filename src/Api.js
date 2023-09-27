@@ -23,7 +23,7 @@ api.interceptors.request.use((config) => {
 
 class Api {
   static sendNotice(data) {
-    return api.post('/notice/send', { data });
+    return api.post('/notice/send', data);
   }
 
   static deleteNotice(data) {
@@ -34,7 +34,7 @@ class Api {
     return api.post('/notice/confirm', { data });
   }
 
-  static noticeList({ page, limit }) {
+  static noticeList(page, limit) {
     return api.get(`/notice/list?page=${page}&limit=${limit}`);
   }
 
@@ -186,7 +186,6 @@ class Api {
   }
 
   static editProfile(data) {
-    console.log(data);
     return api.put('users/edit-employee', data, {
       headers: {
         'Content-Type': 'multipart/form-data',

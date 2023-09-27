@@ -4,6 +4,7 @@ import {
   createJobRequestFromPending, deleteJobAdmin, jobListFromUsersFilter, jobListFromUsersMap,
   jobListRequestFromAdmin, singleJobInfo,
 } from '../actions/jobsRequest';
+import { sendNotice } from '../actions/notice';
 
 const initialState = {
   createdJob: {},
@@ -62,5 +63,13 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(singleJobInfo.fulfilled, (state, action) => {
       state.singleJob = action.payload.singleJob;
+    })
+    .addCase(sendNotice.fulfilled, (state, action) => {
+      const { notice } = action.payload;
+      state.jobsFromUsersFilter = state.jobsFromUsersFilter
+        .filter((e) => e.id !== notice.noticeJobTo);
+      state.jobListFromUsers = state.jobListFromUsers
+        .filter((e) => e.id !== notice.noticeJobTo);
+      state.singleJob = {};
     });
 });

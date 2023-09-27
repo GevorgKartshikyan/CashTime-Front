@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import i18n from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import Home from './pages/Home';
@@ -43,6 +44,10 @@ function App() {
   });
   return (
     <BrowserRouter>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Cash-Time</title>
+      </Helmet>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />

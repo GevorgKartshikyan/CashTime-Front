@@ -69,7 +69,6 @@ function OfferJobsList({
     newSearchParams.set('order-by', selectedOption.value);
     setOrder(newSearchParams);
   }, [selectedOption]);
-  console.log(jobsFilter);
   const status = useSelector((state) => state.jobsRequest.jobsListStatus);
   const handleResetSearch = () => {
     setFilter({
@@ -94,7 +93,6 @@ function OfferJobsList({
       tags: '',
     });
   };
-  console.log(status);
   return (
     <div className="offer__container__right">
       <div className="offer__container__right__toggle">

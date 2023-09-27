@@ -23,7 +23,6 @@ export default function GlobalMap({
 }
 
 function Map({ coordinates, setCoordinates, jobs }) {
-  console.log(jobs);
   return (
     <div style={{
       maxHeight: '100vh',

@@ -50,7 +50,7 @@ function Messages() {
   useEffect(() => {
     dispatch(getMessagesList({ friendId }));
     dispatch(listRequest({
-      page: 1, limit: 150, role: 'employer', search: searchText,
+      page: 1, limit: 150, role: '', search: searchText,
     }));
   }, [friendId, searchText]);
 
@@ -74,11 +74,7 @@ function Messages() {
       dispatch(openMessage(message.id));
     }
   }, []);
-
-  usersForMessages.map((el) => (
-    console.log(el)
-  ));
-
+  console.log(usersForMessages);
   if (!token) {
     window.location.href = '/login';
     return null;
@@ -103,6 +99,7 @@ function Messages() {
                 user.id !== profile.id ? (
                   <UserMessageBlock
                     id={user.id}
+                    key={user.id}
                     name={user.firstName}
                     message={user?.lastMessage || null}
                     date={user.lastVisit}
