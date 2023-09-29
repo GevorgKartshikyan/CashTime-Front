@@ -72,6 +72,14 @@ class Api {
     });
   }
 
+  static resetPassword() {
+    return api.get('/users/resetPassword');
+  }
+
+  static resetPasswordConfirm() {
+    return api.post('/users/resetPasswordConfirm');
+  }
+
   static list(page, limit, role, search) {
     return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}`);
   }
@@ -97,7 +105,6 @@ class Api {
   }
 
   static singleCv(id) {
-    // console.log(id);
     return api.get(`/cvs/singleCv/${id}`);
   }
 
