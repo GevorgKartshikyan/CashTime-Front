@@ -19,8 +19,6 @@ function CreateCvFirst(props) {
     state.createCvForm.dataFromChild1.professionValue
   ));
 
-  console.log(languagesData, proffesionValueData);
-
   const customStyles = {
     control: (provided, state) => ({
       ...provided,

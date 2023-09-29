@@ -5,7 +5,6 @@ import ChatBoxCard from './ChatBox-card';
 
 function ChatBox({ setIsActive }) {
   const noticesList = useSelector((state) => state.notices.notices) || [];
-  console.log(noticesList);
   return (
     <div onClick={(e) => e.stopPropagation()} role="presentation" className="chatbox">
       {noticesList.map((e) => (

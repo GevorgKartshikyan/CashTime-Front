@@ -74,3 +74,13 @@ export const jobsTitles = createAsyncThunk('/jobsRequest/jobsTitles', async (pay
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+
+export const userJobInfo = createAsyncThunk('/jobsRequest/userJobInfo', async (payload, thunkAPI) => {
+  try {
+    const { id } = payload;
+    const { data } = await Api.userJobInfo(id);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
