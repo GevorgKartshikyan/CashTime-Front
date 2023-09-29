@@ -26,8 +26,6 @@ function CreateJob() {
     }));
     setFile(x);
   };
-  // console.log(phoneError);
-  // console.log(count);
   const handleNext = (operator, editCount) => {
     if (operator === '+') {
       setCount((prevState) => {

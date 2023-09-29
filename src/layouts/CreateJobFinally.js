@@ -37,7 +37,6 @@ function CreateJobFinally(props) {
     }
     return '';
   };
-  // console.log(jobStatus);
   const navigate = useNavigate();
   const handlePostJob = useCallback(async () => {
     const { payload } = await dispatch(createJobRequestFromPending({

@@ -22,6 +22,10 @@ api.interceptors.request.use((config) => {
 }, (error) => Promise.reject(error));
 
 class Api {
+  static friendTyping(data) {
+    return api.put('/messages/typing', data);
+  }
+
   static getJobsTitles() {
     return api.get('/jobs/jobs-title');
   }
@@ -40,6 +44,10 @@ class Api {
 
   static noticeList(page, limit) {
     return api.get(`/notice/list?page=${page}&limit=${limit}`);
+  }
+
+  static noticeListSingleJob(page, limit, jobId) {
+    return api.get(`/notice/single-job-list?page=${page}&limit=${limit}&jobId=${jobId}`);
   }
 
   static jobListFromUsersFilter({
@@ -117,7 +125,6 @@ class Api {
   }
 
   static singleCv(id) {
-    // console.log(id);
     return api.get(`/cvs/singleCv/${id}`);
   }
 
@@ -135,6 +142,10 @@ class Api {
 
   static singleJobInfo(id) {
     return api.get(`/jobs/job-singe-info?id=${id}`);
+  }
+
+  static userJobInfo(id) {
+    return api.get(`/jobs/user-job-info?id=${id}`);
   }
 
   static changeRole() {
@@ -198,7 +209,6 @@ class Api {
   }
 
   static editUserAbout(data) {
-    console.log(data);
     return api.put('users/edit-employee-about', { data });
   }
 }

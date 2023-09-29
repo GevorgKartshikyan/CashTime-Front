@@ -6,6 +6,15 @@
   justify-content: space-between;
   padding-top: 88px;
   align-items: flex-start;
+  .show-job-details{
+    border: 0.5px solid #000;
+    padding: 0 10px;
+    margin-top: 5px;
+    border-radius: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
   &-desc {
     position: relative;
     display: flex;
@@ -19,7 +28,7 @@
     }
   }
   &-offers{
-    width: 70%;
+    width: 100%;
     padding-bottom: 54px;
     display: flex;
     flex-direction: row;

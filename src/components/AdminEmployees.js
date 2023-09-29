@@ -34,8 +34,6 @@ function AdminEmployees() {
     setSearchParams({ page: selectedPage, limit });
   };
 
-  console.log(users, 'users 1');
-
   // const items = 905;
   const customStyles = {
     control: (provided, state) => ({
@@ -89,8 +87,6 @@ function AdminEmployees() {
       value: 'Newest',
       label: 'Newest',
     }];
-
-  console.log(users);
 
   return (
     <div className="admin__employees">

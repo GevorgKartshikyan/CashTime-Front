@@ -89,7 +89,6 @@ export default createReducer(initialState, (builder) => {
       state.blocked = blocked;
       state.currentBlockedPage = currentPage;
       state.totalBlockedPages = totalBlockedPages;
-      console.log(action.payload);
     })
     .addCase(socketOnline, (state, action) => {
       const { userId } = action.payload;

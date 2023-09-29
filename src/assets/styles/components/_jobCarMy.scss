@@ -1,0 +1,71 @@
+.mhy-job-card{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  .card {
+    flex-basis: 50%;
+    margin: 20px;
+    padding: 25px;
+    max-width: 400px;
+    background-color: white;
+    box-shadow: 0 0 30px -7px #525d6b;
+  }
+  .card .work-rate{
+    display:flex;
+    justify-content:space-between;
+  }
+  .card-1 .work-rate p{
+    color:#eee;
+    background-color:#A569BD;
+    padding:5px 10px;
+    border-radius:20px;
+  }
+  .card-2 .work-rate p{
+    color:white;
+    background-color:#58D68D;
+    padding:5px 10px;
+    border-radius:20px;
+  }
+  .card .pos-nd-loc{
+    align-self:center;
+  }
+  .pos-nd-loc p:first-child{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+  }
+  .pos-nd-loc p:last-child{
+    color:#3498DB;
+    text-align:center;
+  }
+  .tags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .tags p{
+    background-color:white;
+    border:0.5px solid #3498DB;
+    padding:0 10px;
+    margin-top: 5px;
+    border-radius:20px;
+    margin-right: 5px;
+  }
+  .tags p:last-child{
+    color:white;
+    background-color:#3498DB;
+  }
+  .card .job-desc{
+    padding: 2px 20px;
+    line-height:1.3;
+  }
+  .job-single-image{
+    width: 100%;
+    object-fit: cover;
+    height: 200px;
+  }
+ }

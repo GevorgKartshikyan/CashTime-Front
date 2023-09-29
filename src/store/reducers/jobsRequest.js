@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   activateJobAdmin,
   createJobRequestFromPending, deleteJobAdmin, jobListFromUsersFilter, jobListFromUsersMap,
-  jobListRequestFromAdmin, jobsTitles, singleJobInfo,
+  jobListRequestFromAdmin, jobsTitles, singleJobInfo, userJobInfo,
 } from '../actions/jobsRequest';
 import { sendNotice } from '../actions/notice';
 
@@ -19,6 +19,7 @@ const initialState = {
   jobsListStatus: 'pending',
   singleJob: {},
   jobsTitlesArray: [],
+  userJob: {},
 };
 
 export default createReducer(initialState, (builder) => {
@@ -78,5 +79,9 @@ export default createReducer(initialState, (builder) => {
     .addCase(jobsTitles.fulfilled, (state, action) => {
       const { jobsTitlesArray } = action.payload;
       state.jobsTitlesArray = jobsTitlesArray;
+    })
+    .addCase(userJobInfo.fulfilled, (state, action) => {
+      const { userJob } = action.payload;
+      state.userJob = userJob;
     });
 });

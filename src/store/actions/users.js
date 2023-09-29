@@ -28,8 +28,6 @@ export const listRequest = createAsyncThunk('/users/listRequest', async (payload
       search,
       id,
     } = payload;
-    console.log(payload);
-    // console.log(id);
     const { data } = await Api.list(page, limit, role, search, id);
     return data;
   } catch (e) {

@@ -3,11 +3,17 @@ import _ from 'lodash';
 import {
   editMessage, getMessagesList, newMessages, openMessage, sendMessages,
 } from '../actions/messages';
-import { socketEditMessage, socketNewMessage, socketOpenMessage } from '../actions/socket';
+import {
+  socketEditMessage,
+  socketFriendTyping,
+  socketNewMessage,
+  socketOpenMessage,
+} from '../actions/socket';
 
 const initialState = {
   messages: [],
   newMessagesCount: 0,
+  isTyping: false,
 };
 export default createReducer(initialState, (builder) => {
   builder
@@ -87,5 +93,8 @@ export default createReducer(initialState, (builder) => {
     .addCase(newMessages.fulfilled, (state, action) => {
       const data = action.payload;
       state.newMessagesCount = data.newMessages;
+    })
+    .addCase(socketFriendTyping, (state, action) => {
+      state.isTyping = action.payload;
     });
 });
