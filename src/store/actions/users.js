@@ -73,18 +73,18 @@ export const blockedUsers = createAsyncThunk('users/blockedUsers', async (thunkA
   }
 });
 
-export const editProfile = createAsyncThunk('users/edit-employee', async (payload, thunkAPI) => {
+export const editProfile = createAsyncThunk('users/editProfile', async (payload, thunkAPI) => {
   try {
-    const { data } = Api.editProfile(payload);
+    const { data } = await Api.editProfile(payload);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
 
-export const editUserAbout = createAsyncThunk('users/edit-employee', async (payload, thunkAPI) => {
+export const editUserAbout = createAsyncThunk('users/editUserAbout', async (payload, thunkAPI) => {
   try {
-    const { data } = Api.editUserAbout(payload);
+    const { data } = await Api.editUserAbout(payload);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

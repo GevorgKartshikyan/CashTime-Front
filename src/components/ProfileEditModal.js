@@ -21,7 +21,7 @@ function ProfileEditModal({
   const [userName, setUserName] = useState('' || profile.firstName);
   const [surname, setSurname] = useState('' || profile.lastName);
   const [skills, setSkills] = useState('');
-  const [addSkill, setAddSkill] = useState([...profileSkills]);
+  const [addSkill, setAddSkill] = useState(profileSkills || []);
   const [education, setEducation] = useState('' || profileCV.school);
   const [subject, setSubject] = useState('' || profileCV.degree);
   const [address, setAddress] = useState({
@@ -122,8 +122,10 @@ function ProfileEditModal({
       console.error(e);
     }
   };
-  const handleSendNewInfo = async (ev) => {
+
+  const handleSendNewInfo = useCallback(async (ev) => {
     ev.preventDefault();
+    console.log(selectedPhoto.file);
     const { payload } = await dispatch(editProfile({
       userName,
       surname,
@@ -133,15 +135,26 @@ function ProfileEditModal({
       address,
       addLanguages,
       phoneNumber,
-      profession: selectedOptionProfession,
+      profession: selectedOptionProfession || { label: '' },
       avatar: selectedPhoto.file,
     }));
-      // if (payload.status === 'error') {
-      //   toast.error(`${payload?.message}`);
-      //   console.log(`${payload?.message}`);
-      // }
     console.log(payload);
-  };
+    // if (payload.status === 'ok') {
+    //   window.location.reload();
+    // }
+  }, [
+    userName,
+    surname,
+    addSkill,
+    education,
+    subject,
+    address,
+    addLanguages,
+    phoneNumber,
+    selectedOptionProfession,
+    selectedPhoto.file,
+  ]);
+
   const handleChange = (selected) => {
     setSelectedOption(selected.value);
   };
@@ -149,17 +162,6 @@ function ProfileEditModal({
   const handleChangeProfession = (selected) => {
     setSelectedOptionProfession(selected);
   };
-  console.log(
-    // userName,
-    // surname,
-    // addSkill,
-    // education,
-    // subject,
-    // address,
-    addLanguages,
-    // selectedOptionProfession,
-    // phoneNumber,
-  );
 
   const customStylesProfession = {
     control: (provided, state) => ({
