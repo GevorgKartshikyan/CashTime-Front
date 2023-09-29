@@ -28,7 +28,7 @@ function Messages() {
   const conversation = useRef();
 
   const handleSendMessage = useCallback(() => {
-    if (text) {
+    if (text && friendId) {
       dispatch(sendMessages({
         text,
         friendId,
