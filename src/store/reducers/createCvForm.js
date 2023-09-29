@@ -24,29 +24,30 @@ const initialState = {
   },
 };
 export default createReducer(initialState, (builder) => {
-  builder.addCase(setCvFormData, (state, action) => ({
-    ...state,
-    dataSignUpFirstStep: {
-      ...state.dataSignUpFirstStep,
-      ...action.payload.data.dataSignUpFirstStep,
-    },
-    dataFromChild1: {
-      ...state.dataFromChild1,
-      ...action.payload.data.dataFromChild1,
-    },
-    dataFromChild2: {
-      ...state.dataFromChild2,
-      ...action.payload.data.dataFromChild2,
-    },
-    dataFromChild3: action.payload.data.dataFromChild3,
-    dataFromChild5: {
-      ...state.dataFromChild5,
-      ...action.payload.data.dataFromChild5,
-    },
-    dataFromChild6: action.payload.data.dataFromChild6,
-    dataFromChild7: {
-      ...state.dataFromChild7,
-      ...action.payload.data.dataFromChild7,
-    },
-  }));
+  builder
+    .addCase(setCvFormData, (state, action) => ({
+      ...state,
+      dataSignUpFirstStep: {
+        ...state.dataSignUpFirstStep,
+        ...action.payload.data.dataSignUpFirstStep,
+      },
+      dataFromChild1: {
+        ...state.dataFromChild1,
+        ...action.payload.data.dataFromChild1,
+      },
+      dataFromChild2: {
+        ...state.dataFromChild2,
+        ...action.payload.data.dataFromChild2,
+      },
+      dataFromChild3: action.payload.data.dataFromChild3,
+      dataFromChild5: {
+        ...state.dataFromChild5,
+        ...action.payload.data.dataFromChild5,
+      },
+      dataFromChild6: action.payload.data.dataFromChild6,
+      dataFromChild7: {
+        ...state.dataFromChild7,
+        ...action.payload.data.dataFromChild7,
+      },
+    }));
 });
