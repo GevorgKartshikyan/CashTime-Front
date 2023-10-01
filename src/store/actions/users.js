@@ -28,8 +28,6 @@ export const listRequest = createAsyncThunk('/users/listRequest', async (payload
       search,
       id,
     } = payload;
-    console.log(payload);
-    // console.log(id);
     const { data } = await Api.list(page, limit, role, search, id);
     return data;
   } catch (e) {
@@ -74,18 +72,18 @@ export const blockedUsers = createAsyncThunk('users/blockedUsers', async (payloa
   }
 });
 
-export const editProfile = createAsyncThunk('users/edit-employee', async (payload, thunkAPI) => {
+export const editProfile = createAsyncThunk('users/editProfile', async (payload, thunkAPI) => {
   try {
-    const { data } = Api.editProfile(payload);
+    const { data } = await Api.editProfile(payload);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
 
-export const editUserAbout = createAsyncThunk('users/edit-employee', async (payload, thunkAPI) => {
+export const editUserAbout = createAsyncThunk('users/editUserAbout', async (payload, thunkAPI) => {
   try {
-    const { data } = Api.editUserAbout(payload);
+    const { data } = await Api.editUserAbout(payload);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

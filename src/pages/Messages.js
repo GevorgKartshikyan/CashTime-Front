@@ -9,10 +9,12 @@ import searchIcon from '../assets/images/search_messages.svg';
 import sendMessage from '../assets/images/send_message.svg';
 import UserMessageBlock from '../components/User-message-block';
 import {
+  friendTyping,
   getMessagesList, newMessages, openMessage, sendMessages,
 } from '../store/actions/messages';
 import { getProfile, getSingleUser, listRequest } from '../store/actions/users';
 import CheckIcon from '../assets/images/message_seen_icon.jpg';
+import MessageTyping from '../components/MessageTyping';
 
 function Messages() {
   const { REACT_APP_API_URL } = process.env;
@@ -26,9 +28,9 @@ function Messages() {
   const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
   const conversation = useRef();
-
+  const [isTyping, setIsTyping] = useState(false);
   const handleSendMessage = useCallback(() => {
-    if (text) {
+    if (text && friendId) {
       dispatch(sendMessages({
         text,
         friendId,
@@ -40,7 +42,6 @@ function Messages() {
       }));
     }
   }, [text]);
-
   const handleEnterKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSendMessage();
@@ -74,7 +75,20 @@ function Messages() {
       dispatch(openMessage(message.id));
     }
   }, []);
-  console.log(usersForMessages);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsTyping(false);
+    }, 800);
+    return () => {
+      setIsTyping(true);
+      clearTimeout(timer);
+    };
+  }, [text]);
+  useEffect(() => {
+    dispatch(friendTyping({ friendId, isTyping }));
+  }, [isTyping, friendId]);
+  const friendIsTyping = useSelector((state) => state.messages.isTyping);
   if (!token) {
     window.location.href = '/login';
     return null;
@@ -144,11 +158,23 @@ function Messages() {
                     </VisibilitySensor>
                   )
               )) : null}
+              {friendIsTyping ? (
+                <MessageTyping
+                  img={REACT_APP_API_URL + singleUser.avatar}
+                />
+              ) : null}
             </div>
           </div>
           <div className="messages__right__send">
             <label htmlFor="send_message_input">
-              <input type="text" value={text} placeholder="type a message" id="send_message_input" onKeyDown={(ev) => handleEnterKeyPress(ev)} onInput={(ev) => setText(ev.target.value)} />
+              <input
+                type="text"
+                value={text}
+                placeholder="type a message"
+                id="send_message_input"
+                onKeyDown={(ev) => handleEnterKeyPress(ev)}
+                onInput={(ev) => setText(ev.target.value)}
+              />
               <img src={sendMessage} alt="" role="presentation" onClick={() => handleSendMessage()} />
             </label>
           </div>

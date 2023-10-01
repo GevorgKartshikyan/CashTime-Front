@@ -3,6 +3,8 @@ import Api from '../../Api';
 
 export const createJobRequestFromPending = createAsyncThunk('/jobsRequest/createJobRequestFromPending', async (payload, thunkAPI) => {
   try {
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     const { data } = await Api.createJob(payload);
     return data;
   } catch (e) {
@@ -12,7 +14,10 @@ export const createJobRequestFromPending = createAsyncThunk('/jobsRequest/create
 
 export const jobListRequestFromAdmin = createAsyncThunk('/jobsRequest/jobListRequestFromAdmin', async (payload, thunkAPI) => {
   try {
-    const { page, limit } = payload;
+    const {
+      page,
+      limit,
+    } = payload;
     const { data } = await Api.listFromAdmin(page, limit);
     return data;
   } catch (e) {
@@ -56,6 +61,24 @@ export const jobListFromUsersFilter = createAsyncThunk('/jobsRequest/jobListFrom
 export const singleJobInfo = createAsyncThunk('/jobsRequest/singleJobInfo', async (payload, thunkAPI) => {
   try {
     const { data } = await Api.singleJobInfo(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+export const jobsTitles = createAsyncThunk('/jobsRequest/jobsTitles', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.getJobsTitles();
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+export const userJobInfo = createAsyncThunk('/jobsRequest/userJobInfo', async (payload, thunkAPI) => {
+  try {
+    const { id } = payload;
+    const { data } = await Api.userJobInfo(id);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

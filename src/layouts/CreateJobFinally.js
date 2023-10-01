@@ -11,6 +11,7 @@ import LoadingFile from './LoadingFile';
 function CreateJobFinally(props) {
   const { file, editCount } = props;
   const dispatch = useDispatch();
+  const [error, setError] = useState('');
   const [dataForRequest, setDataForRequest] = useState({});
   const dataForUpdate = useSelector((state) => state.createJobForm);
   useEffect(() => {
@@ -36,7 +37,6 @@ function CreateJobFinally(props) {
     }
     return '';
   };
-  // console.log(jobStatus);
   const navigate = useNavigate();
   const handlePostJob = useCallback(async () => {
     const { payload } = await dispatch(createJobRequestFromPending({
@@ -44,19 +44,26 @@ function CreateJobFinally(props) {
       jobImage: file,
     }));
     console.log(payload);
-    // validate
     if (payload?.status === 'ok') {
-      navigate('/');
+      navigate('/success-message/job');
+    }
+    if (payload?.status === 'error') {
+      setError(payload.message);
     }
   }, [dataForRequest, file]);
   if (jobStatus === 'pending') {
     return <LoadingFile />;
   }
-  console.log(dataForRequest);
   return (
     <div>
       <div className="job-finally-all-box">
         <div className="job__display__row big__row">
+          {error && (
+          <p style={{ color: 'red', fontSize: 18 }}>
+            {error}
+            !
+          </p>
+          )}
           {fileSrc ? <img src={fileSrc} alt="job desc" className="job-image" /> : (
             <div className="selected-image finally-small">
               <img src={jobDefaultImg} alt="Selected" />

@@ -17,8 +17,11 @@ function ManuModal(props) {
     localStorage.removeItem('token');
     window.location.href = '/login';
   }, []);
-  const handleSwitch = useCallback(() => {
-    dispatch(changeRole());
+  const handleSwitch = useCallback(async () => {
+    const { payload } = await dispatch(changeRole());
+    if (payload.status === 'ok') {
+      window.location.reload();
+    }
     setIsActiveManu(false);
   }, []);
   return (

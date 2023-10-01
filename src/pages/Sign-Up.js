@@ -218,6 +218,7 @@ function SignUp() {
               type={passwordFlag ? 'text' : 'password'}
               className="signup__start__form__password"
               placeholder="Password"
+              maxLength="32"
             />
             <button
               className="signup__start__form__box__button"

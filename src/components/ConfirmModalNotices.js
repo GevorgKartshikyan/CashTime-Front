@@ -31,7 +31,6 @@ function ConfirmModalNotices({
       navigate(`/messages/${friendId}`);
     }
   }, [id, noticeJobTo, friendId, messageText]);
-  console.log(noticeJobTo, id, friendId);
   return (
     <div id="confirm-modal-notice">
       <div className="modal">

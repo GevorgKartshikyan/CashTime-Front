@@ -16,6 +16,7 @@ export const socketNewMessage = createAction('socket/socketNewMessage');
 export const socketOpenMessage = createAction('socket/socketOpenMessage');
 export const socketEditMessage = createAction('socket/socketEditMessage');
 export const sockedNewNotice = createAction('socket/sockedNewNotice');
+export const socketFriendTyping = createAction('socket/socketFriendTyping');
 export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispatch, getState }) => {
   if (socket) {
     return;
@@ -49,13 +50,12 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
       audio.pause();
       audio.currentTime = 0;
       audio.play().then(() => {
-        console.log('ok');
       })
         .catch((error) => {
           console.error('error', error);
         });
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
     dispatch(newMessages());
     dispatch(listRequest({
@@ -67,13 +67,12 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
     //     audio.pause();
     //     audio.currentTime = 0;
     //     audio.play().then(() => {
-    //       console.log('ok');
     //     })
     //       .catch((error) => {
     //         console.error('error', error);
     //       });
     //   } catch (e) {
-    //     console.log(e);
+    //     console.error(e);
     //   }
     // }
   });
@@ -82,5 +81,8 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
   });
   socket.on('new_notice', (data) => {
     dispatch(sockedNewNotice(data));
+  });
+  socket.on('typing', (data) => {
+    dispatch(socketFriendTyping(data));
   });
 });

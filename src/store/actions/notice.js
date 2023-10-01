@@ -34,3 +34,13 @@ export const noticeList = createAsyncThunk('notice/noticeList', async (payload, 
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+
+export const noticeListSingleJobs = createAsyncThunk('notice/noticeListSingleJobs', async (payload, thunkAPI) => {
+  try {
+    const { page, limit, jobId } = payload;
+    const { data } = await Api.noticeListSingleJob(page, limit, jobId);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});

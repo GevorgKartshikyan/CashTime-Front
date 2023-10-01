@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 function CheckboxItemsBlock(props) {
   const level = useSelector((state) => state.createCvForm.dataSignUpFirstStep);
-  console.log(level, 111);
   const {
     levels, data, setData, type,
   } = props;

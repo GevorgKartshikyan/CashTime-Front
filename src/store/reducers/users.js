@@ -7,7 +7,7 @@ import {
   getSingleUser,
   activate,
   status,
-  singleUserFromAdmin, blockedUsers,
+  singleUserFromAdmin, blockedUsers, editProfile, editUserAbout,
 } from '../actions/users';
 import { socketOffline, socketOnline } from '../actions/socket';
 
@@ -30,6 +30,26 @@ const initialState = {
 
 export default createReducer(initialState, (builder) => {
   builder
+    .addCase(editProfile.fulfilled, (state, action) => {
+      const {
+        user,
+        cv,
+      } = action.payload;
+      // state.profile = user;
+      state.profile = { ...user, createdCvs: cv };
+    })
+    .addCase(editUserAbout.fulfilled, (state, action) => {
+      const {
+        updatedCv,
+      } = action.payload;
+      state.profile = {
+        ...state.profile,
+        createdCvs: { ...state.profile.createdCvs, bio: updatedCv.bio },
+      };
+      // state.profile = {...state.profile, createdCvs.bio:updatedCv.bio}
+      // state.profile.bio = updatedCv.bio;
+      console.log(updatedCv);
+    })
     .addCase(registerRequest.pending, (state) => ({ ...state, registerRequestStatus: 'pending' }))
     .addCase(registerRequest.fulfilled, (state, action) => {
       const { user, token } = action.payload;
@@ -89,7 +109,6 @@ export default createReducer(initialState, (builder) => {
       state.blocked = blocked;
       state.currentBlockedPage = currentPage;
       state.totalBlockedPages = totalBlockedPages;
-      console.log(action.payload);
     })
     .addCase(socketOnline, (state, action) => {
       const { userId } = action.payload;
