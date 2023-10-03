@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editUserAbout } from '../store/actions/users';
 
-function ProfileAboutEditModal({ cvBio }) {
+function ProfileAboutEditModal({ cvBio, modalFlag }) {
   const [bio, setBio] = useState('' || cvBio);
   const dispatch = useDispatch();
   const handleSendNewInfo = (ev) => {
@@ -10,6 +10,8 @@ function ProfileAboutEditModal({ cvBio }) {
     dispatch(editUserAbout({
       bio,
     }));
+    modalFlag(false);
+    document.body.style.overflowY = 'auto';
   };
   return (
     <div className="modal-editInfo  small-modal-profile">

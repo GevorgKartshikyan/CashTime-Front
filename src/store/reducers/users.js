@@ -7,7 +7,11 @@ import {
   getSingleUser,
   activate,
   status,
-  singleUserFromAdmin, blockedUsers, editProfile, editUserAbout,
+  singleUserFromAdmin,
+  blockedUsers,
+  editProfile,
+  editUserAbout,
+  resetPassword,
 } from '../actions/users';
 import { socketOffline, socketOnline } from '../actions/socket';
 
@@ -26,6 +30,7 @@ const initialState = {
   token: window.localStorage.getItem('token') ?? '',
   singleFromAdmin: {},
   blocked: [],
+  resetPasswordValidationCode: 0,
 };
 
 export default createReducer(initialState, (builder) => {
@@ -35,7 +40,6 @@ export default createReducer(initialState, (builder) => {
         user,
         cv,
       } = action.payload;
-      // state.profile = user;
       state.profile = { ...user, createdCvs: cv };
     })
     .addCase(editUserAbout.fulfilled, (state, action) => {
@@ -92,6 +96,13 @@ export default createReducer(initialState, (builder) => {
       localStorage.setItem('token', token);
       return { ...state, token };
     })
+
+    .addCase(resetPassword.fulfilled, (state, action) => {
+      const data = action.payload;
+      console.log(data);
+      return { ...state, resetPasswordValidationCode: data.validationCode };
+    })
+
     .addCase(getSingleUser.fulfilled, (state, action) => {
       const { user } = action.payload;
       return { ...state, singleUser: user };

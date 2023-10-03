@@ -594,6 +594,38 @@
       color: white;
       margin-top: 20px;
     }
+    &__errorBox{
+      position: relative;
+     width: 100%;
+      height: 5px;
+      text-align: center;
+      &__error{
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: red;
+        font-family: "Lato",sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: normal;
+
+      }
+    }
+    &__imgBox{
+      width: 200px;
+      height: 200px;
+      margin: 20px 0;
+      &__img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &__savedPassword{
+      color: #E17A01;
+      font-size: 18px;
+    }
     &__text{
       margin-top: 20px;
       color: #031054;

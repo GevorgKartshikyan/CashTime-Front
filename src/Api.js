@@ -93,11 +93,11 @@ class Api {
   }
 
   static resetPassword() {
-    return api.get('/users/resetPassword');
+    return api.post('/users/resetPassword');
   }
 
-  static resetPasswordConfirm() {
-    return api.post('/users/resetPasswordConfirm');
+  static resetPasswordConfirm(data) {
+    return api.post('/users/resetPasswordConfirm', data);
   }
 
   static list(page, limit, role, search) {
@@ -207,6 +207,10 @@ class Api {
   static editUserAbout(data) {
     console.log(data);
     return api.put('users/edit-employee-about', { data });
+  }
+
+  static deleteProfile(password) {
+    return api.post('users/deleteProfile', { password });
   }
 }
 

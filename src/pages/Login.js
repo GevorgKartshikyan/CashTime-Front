@@ -139,6 +139,11 @@ function Login() {
             </div>
 
           </form>
+          <div className="forgetPassword">
+            <span className="login__account__span" />
+            <button className="forgetPassword__btn" type="button">Forget your password?</button>
+            <span className="login__account__span" />
+          </div>
         </div>
         <div className="login__account">
           <span className="login__account__span" />

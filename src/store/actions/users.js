@@ -36,9 +36,41 @@ export const listRequest = createAsyncThunk('/users/listRequest', async (payload
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
-export const activate = createAsyncThunk('users/activate', async (payload) => {
-  const { data } = await Api.activate(payload);
-  return data;
+export const activate = createAsyncThunk('users/activate', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.activate(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+export const resetPassword = createAsyncThunk('users/resetPassword', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.resetPassword(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+export const resetPasswordConfirm = createAsyncThunk('users/resetPasswordConfirm', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.resetPasswordConfirm(payload);
+    console.log(payload);
+    console.log(data);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+export const deleteProfile = createAsyncThunk('users/deleteProfile', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.deleteProfile(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
 });
 export const getSingleUser = createAsyncThunk('users/getSingleUser', async (payload) => {
   const { data } = await Api.getUser(payload);
