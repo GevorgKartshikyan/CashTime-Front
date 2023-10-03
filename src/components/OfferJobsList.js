@@ -123,7 +123,7 @@ function OfferJobsList({
       </div>
       <div>
         {status === 'ok' ? (
-          jobsFilter.length > 0 && jobsFilter ? jobsFilter.map((job) => (
+          jobsFilter?.length > 0 && jobsFilter ? jobsFilter.map((job) => (
             <InfoCard
               id={job.id}
               creator={job.userId}
@@ -164,7 +164,7 @@ function OfferJobsList({
         )}
       </div>
       <div className="offer__container__right__paginate">
-        {jobsFilter.length > 0 ? (
+        {jobsFilter?.length > 0 ? (
           <ReactPaginate
             activeClassName="item active-page"
             breakClassName="item break-me"

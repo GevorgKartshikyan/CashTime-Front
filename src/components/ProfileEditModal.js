@@ -84,13 +84,13 @@ function ProfileEditModal({
   }, [selectedPhoto]);
 
   const handleAddSkill = useCallback(() => {
-    if (skills.split(' ').join('').length !== 0) {
+    if (skills.split(' ').join('')?.length !== 0) {
       setAddSkill([...addSkill, { skill: skills, id: uuidv4() }]);
     }
     setSkills('');
   }, [addSkill, skills]);
   const handleAddLanguage = useCallback(() => {
-    if (languages.split(' ').join('').length !== 0) {
+    if (languages.split(' ').join('')?.length !== 0) {
       setAddLanguages([...addLanguages,
         { language: languages, level: selectedOption, id: uuidv4() }]);
     }
@@ -102,7 +102,7 @@ function ProfileEditModal({
       const addressComponents = place.address_components;
       let country = '';
       let city = '';
-      for (let i = 0; i < addressComponents.length; i += 1) {
+      for (let i = 0; i < addressComponents?.length; i += 1) {
         const component = addressComponents[i];
         const componentType = component.types[0];
         if (componentType === 'country') {

@@ -49,10 +49,11 @@ function MyJobCard({ job }) {
               {job.skills.slice(0, 4).map((e) => (
                 <p key={e.id}>{e.skill}</p>
               ))}
-              {job.skills.length > 4 && (
+              {job.skills?.length > 4 && (
                 <p>
                   +
-                  {job.skills.length - 4}
+                  {/* eslint-disable-next-line no-unsafe-optional-chaining */}
+                  {job?.skills?.length - 4}
                   {' '}
                   more
                 </p>

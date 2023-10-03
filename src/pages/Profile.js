@@ -163,7 +163,7 @@ function Profile() {
                       </span>
                     </div>
                   ) : null}
-                {skills.length !== 0 && <span className="profile__info__job__box__skills">Skills</span> }
+                {skills?.length !== 0 && <span className="profile__info__job__box__skills">Skills</span> }
                 <ul>
                   {
                     skills !== null ? skills.map((e) => (

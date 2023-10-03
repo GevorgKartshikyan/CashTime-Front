@@ -7,7 +7,11 @@ import {
   getSingleUser,
   activate,
   status,
-  singleUserFromAdmin, blockedUsers, editProfile, editUserAbout,
+  singleUserFromAdmin,
+  blockedUsers,
+  editProfile,
+  editUserAbout,
+  getFilterUser,
 } from '../actions/users';
 import { socketOffline, socketOnline } from '../actions/socket';
 
@@ -15,6 +19,7 @@ const initialState = {
   user: {},
   users: [],
   usersForMessages: [],
+  filteredUsers: [],
   singleUser: {},
   profile: {},
   usersData: {},
@@ -26,6 +31,7 @@ const initialState = {
   token: window.localStorage.getItem('token') ?? '',
   singleFromAdmin: {},
   blocked: [],
+  filterUserTotalPages: 0,
 };
 
 export default createReducer(initialState, (builder) => {
@@ -128,5 +134,15 @@ export default createReducer(initialState, (builder) => {
         }
         return u;
       });
+    })
+    .addCase(getFilterUser.rejected, (state) => ({ ...state, registerRequestStatus: 'error' }))
+    .addCase(getFilterUser.fulfilled, (state, action) => {
+      const { users, totalPages } = action.payload;
+      console.log(action.payload, 565656);
+      return {
+        ...state,
+        filteredUsers: users,
+        filterUserTotalPages: totalPages,
+      };
     });
 });

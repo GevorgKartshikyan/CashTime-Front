@@ -63,7 +63,7 @@ function CreateCvThird(props) {
             </motion.button>
           )}
           <AnimatePresence>
-            {selectedSkills.length > 0 && (
+            {selectedSkills?.length > 0 && (
               <>
                 <p>Selected Skills</p>
                 <motion.div

@@ -59,6 +59,10 @@
     flex-direction: row;
     justify-content: space-between;
 
+    &.forFilter-first-line{
+      word-wrap: break-word;
+    }
+
     &__title{
       color: #031054;
       font-family:"Lato", sans-serif;
@@ -66,12 +70,21 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+
+      &.forFilter-title{
+        width: 48%;
+      }
     }
 
     &__block{
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      &.forFilter-block{
+        align-items: end;
+        width: 48%;
+      }
     }
 
     &__img{
@@ -86,9 +99,16 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
+
+      &.forFilter-name{
+        text-align: end;
+      }
     }
 
     &__left{
+      &.forFilter-left{
+        width: 48%;
+      }
       &__text{
         color: #031054;
         font-family:"Lato", sans-serif;
@@ -114,6 +134,11 @@
     margin-bottom: 40px;
     margin-top: 10px;
 
+    &.forFilter-second-line{
+      width: 48%;
+      word-wrap: break-word;
+    }
+
     &__price{
       color: #031054;
       font-family:"Lato", sans-serif;
@@ -121,6 +146,10 @@
       font-style: normal;
       font-weight: 600;
       line-height: normal;
+
+      &.forFilter-price{
+        width: 100%;
+      }
     }
   }
   &__button {
@@ -148,4 +177,12 @@
       border-color: #031054;
     }
   }
+}
+
+.parent-block-for-filter {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

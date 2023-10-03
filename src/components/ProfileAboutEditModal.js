@@ -22,7 +22,7 @@ function ProfileAboutEditModal({ cvBio }) {
       <textarea maxLength={2600} value={bio} onChange={(e) => setBio(e.target.value)} className="small-modal-profile__text" name="" id="" cols="30" rows="10" />
       <div className="small-modal-profile__numbers">
         <span className="small-modal-profile__numbers__span">
-          {bio ? bio.length : 0}
+          {bio ? bio?.length : 0}
           /2600
         </span>
       </div>

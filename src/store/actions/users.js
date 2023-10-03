@@ -89,3 +89,9 @@ export const editUserAbout = createAsyncThunk('users/editUserAbout', async (payl
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const getFilterUser = createAsyncThunk('users/changeRole', async (payload) => {
+  console.log(payload, 9999999999);
+  const { data } = await Api.getFilterUser(payload);
+  console.log(data, 'ckul777');
+  return data;
+});

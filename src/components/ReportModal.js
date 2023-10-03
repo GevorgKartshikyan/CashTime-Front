@@ -8,12 +8,12 @@ function ReportModal({ onChangeStatus, userId, modalFlag }) {
   const dispatch = useDispatch();
   console.log(reportText);
   const handleTextChange = (e) => {
-    setTextCount(e.target.value.length);
+    setTextCount(e.target?.value?.length);
     setReportText(e.target.value);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (reportText.split(' ').join('').length > 0) {
+    if (reportText.split(' ').join('')?.length > 0) {
       await onChangeStatus(userId);
       modalFlag(false);
       dispatch(reportMessage({

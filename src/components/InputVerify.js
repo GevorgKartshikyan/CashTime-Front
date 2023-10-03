@@ -8,7 +8,7 @@ function InputVerify(props) {
 
   const handleInputChange = (index, e) => {
     const { value } = e.target;
-    if (value.length === 1 && index < inputs.current.length - 1) {
+    if (value?.length === 1 && index < inputs.current.length - 1) {
       inputs.current[index + 1].focus();
     }
     setCode((prevState) => {
@@ -22,7 +22,7 @@ function InputVerify(props) {
   }, [code]);
   const handleKeyDown = (index, e) => {
     const { value } = e.target;
-    if (e.keyCode === 8 && value.length === 0 && index > 0) {
+    if (e.keyCode === 8 && value?.length === 0 && index > 0) {
       inputs.current[index - 1].focus();
     }
   };

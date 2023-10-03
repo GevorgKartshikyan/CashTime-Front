@@ -89,7 +89,7 @@ function CreateCvSeventh(props) {
       const addressComponents = place.address_components;
       let country = '';
       let city = '';
-      for (let i = 0; i < addressComponents.length; i += 1) {
+      for (let i = 0; i < addressComponents?.length; i += 1) {
         const component = addressComponents[i];
         const componentType = component.types[0];
         if (componentType === 'country') {

@@ -88,7 +88,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
       </button>
-      {Object.keys(singleJob).length !== 0 && (
+      {Object.keys(singleJob)?.length !== 0 && (
       <InfoCard
         classMapSeen="on-map-seen"
         id={singleJob.id}

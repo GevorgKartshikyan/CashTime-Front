@@ -219,6 +219,12 @@ class Api {
   static editUserAbout(data) {
     return api.put('users/edit-employee-about', { data });
   }
+
+  static getFilterUser(filteredData) {
+    const { data, page, limit } = filteredData;
+    console.log(page, data, limit, 77777777777);
+    return api.post(`/cvs/usersData?page=${page}&limit=${limit}`, { data });
+  }
 }
 
 export default Api;

@@ -89,7 +89,7 @@ function CreateJobSixth(props) {
     dispatch(getCountries());
   }, []);
   useEffect(() => {
-    if (phoneNumber.length !== phoneFormatLength && phoneNumber) {
+    if (phoneNumber?.length !== phoneFormatLength && phoneNumber) {
       dispatch(phoneErrorHandler('Wrong phone number format'));
       setPhoneNumberError('Wrong phone format');
     } else {
@@ -99,7 +99,7 @@ function CreateJobSixth(props) {
   }, [phoneNumber, phoneFormatLength]);
   const handleChangePhone = useCallback((value, countryData) => {
     setPhoneNumber(value);
-    setPhoneFormatLength(countryData.format.replace(/[^\w.]/g, '').length);
+    setPhoneFormatLength(countryData.format.replace(/[^\w.]/g, '')?.length);
   }, [phoneNumber, phoneFormatLength]);
   useEffect(() => {
     if (!phoneNumber) {
@@ -114,7 +114,7 @@ function CreateJobSixth(props) {
       const addressComponents = place.address_components;
       let country = '';
       let city = '';
-      for (let i = 0; i < addressComponents.length; i += 1) {
+      for (let i = 0; i < addressComponents?.length; i += 1) {
         const component = addressComponents[i];
         const componentType = component.types[0];
         if (componentType === 'country') {

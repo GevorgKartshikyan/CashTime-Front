@@ -22,7 +22,7 @@ function WriteReview() {
     const { files } = event.target;
     const imagesArray = [...uploadedImages]; // Make a copy of the existing images
 
-    for (let i = 0; i < files.length; i += 1) {
+    for (let i = 0; i < files?.length; i += 1) {
       if (imagesArray.length < 4) {
         const reader = new FileReader();
 
@@ -112,7 +112,7 @@ function WriteReview() {
                     ))}
                   </div>
                 </div>
-                <label htmlFor="image-upload" className={`upload__img__review ${uploadedImages.length >= 4 ? 'disabled__img__up' : 'not__disabled'}`}>
+                <label htmlFor="image-upload" className={`upload__img__review ${uploadedImages?.length >= 4 ? 'disabled__img__up' : 'not__disabled'}`}>
                   Upload Images
                 </label>
                 <input

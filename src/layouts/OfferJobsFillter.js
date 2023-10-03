@@ -111,7 +111,6 @@ function OfferJobsFilter({ isLoaded }) {
             <MapInputAutocomplete searchParams={searchParams} setCity={setSearchParams} isLoaded={isLoaded} classInput="offer__top__search__input" />
           </label>
           <div className="offer__top__block">
-
             <button
               onClick={() => navigate('/offer/map')}
               className="offer__top__block__map"
@@ -453,7 +452,6 @@ function OfferJobsFilter({ isLoaded }) {
                   placeholder="Search For Tags"
                   id="category-search"
                 />
-
               </label>
             </div>
           </div>

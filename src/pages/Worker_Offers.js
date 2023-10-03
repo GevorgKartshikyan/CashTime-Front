@@ -15,7 +15,7 @@ function WorkerOffers() {
     dispatch(jobsTitles());
   }, []);
   const titles = useSelector((state) => state.jobsRequest.jobsTitlesArray);
-  const [selectedId, setSelectedId] = useState(titles.length > 0 ? titles[0].id : null);
+  const [selectedId, setSelectedId] = useState(titles?.length > 0 ? titles[0].id : null);
   useEffect(() => {
     if (titles.length > 0) {
       setSelectedId(titles[0].id);
