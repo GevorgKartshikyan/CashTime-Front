@@ -101,11 +101,11 @@ class Api {
   }
 
   static resetPassword() {
-    return api.get('/users/resetPassword');
+    return api.post('/users/resetPassword');
   }
 
-  static resetPasswordConfirm() {
-    return api.post('/users/resetPasswordConfirm');
+  static resetPasswordConfirm(data) {
+    return api.post('/users/resetPasswordConfirm', data);
   }
 
   static list(page, limit, role, search) {
@@ -221,9 +221,16 @@ class Api {
   }
 
   static getFilterUser(filteredData) {
-    const { data, page, limit } = filteredData;
-    console.log(page, data, limit, 77777777777);
+    const {
+      data,
+      page,
+      limit,
+    } = filteredData;
     return api.post(`/cvs/usersData?page=${page}&limit=${limit}`, { data });
+  }
+
+  static deleteProfile(password) {
+    return api.post('users/deleteProfile', { password });
   }
 }
 

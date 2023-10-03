@@ -12,7 +12,7 @@ import ProfileSelectVector from './ProfileSelectVector';
 const mapKey = process.env.REACT_APP_MAP_SECRET;
 
 function ProfileEditModal({
-  skills: profileSkills, language: profilelanguage, profile, profileCV,
+  skills: profileSkills, language: profilelanguage, profile, profileCV, modalFlag,
 }) {
   const [selectedPhoto, setSelectedPhoto] = useState({
     fileSrc: '',
@@ -30,7 +30,6 @@ function ProfileEditModal({
     fullAddress: '',
     location: '',
   });
-  console.log(profileCV.phoneNumber);
   const [languages, setLanguages] = useState('');
   const [addLanguages, setAddLanguages] = useState(profilelanguage ? [...profilelanguage] : []);
   const [phoneNumber, setPhoneNumber] = useState('' || profile.phone || profileCV.phoneNumber);
@@ -41,7 +40,6 @@ function ProfileEditModal({
     { value: 'advanced', label: 'Advanced(Level C1)' },
     { value: 'mastery', label: 'Mastery(Level C2)' },
   ];
-  console.log(profile);
   const optionsProfession = [
     {
       value: 'House Cleaner',
@@ -68,7 +66,6 @@ function ProfileEditModal({
   const [selectedOptionProfession, setSelectedOptionProfession] = useState(
     optionsProfession.filter((e) => e.value === profileCV.experience)[0],
   );
-  console.log(selectedOptionProfession);
   const dispatch = useDispatch();
   const handleFileSelect = useCallback((ev) => {
     if (!ev.target.files[0]) {
@@ -92,7 +89,7 @@ function ProfileEditModal({
   const handleAddLanguage = useCallback(() => {
     if (languages.split(' ').join('')?.length !== 0) {
       setAddLanguages([...addLanguages,
-        { language: languages, level: selectedOption, id: uuidv4() }]);
+        { id: uuidv4(), level: selectedOption, language: languages }]);
     }
     setLanguages('');
   }, [selectedOption, languages, addLanguages]);
@@ -123,10 +120,9 @@ function ProfileEditModal({
     }
   };
 
-  const handleSendNewInfo = useCallback(async (ev) => {
+  const handleSendNewInfo = useCallback((ev) => {
     ev.preventDefault();
-    console.log(selectedPhoto.file);
-    const { payload } = await dispatch(editProfile({
+    dispatch(editProfile({
       userName,
       surname,
       addSkill,
@@ -138,10 +134,8 @@ function ProfileEditModal({
       profession: selectedOptionProfession || { label: '' },
       avatar: selectedPhoto.file,
     }));
-    console.log(payload);
-    // if (payload.status === 'ok') {
-    //   window.location.reload();
-    // }
+    modalFlag(false);
+    document.body.style.overflowY = 'auto';
   }, [
     userName,
     surname,
@@ -308,6 +302,7 @@ function ProfileEditModal({
             className="profile-edit-select"
             options={options}
             value={options.find((e) => e.value === selectedOption)}
+            defaultValue={options[0]}
             onChange={handleChange}
             styles={customStyles}
             isSearchable={false}

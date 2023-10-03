@@ -24,8 +24,7 @@ function Profile() {
   const userInfo = useSelector((state) => state.users.profile);
   const userCvInfo = userInfo.createdCvs || {};
   const { skills = [], language = [] } = userCvInfo;
-  console.log(userCvInfo);
-  console.log(userInfo);
+  console.log(language);
   const modalBg = useRef();
   const modalSmall = useRef();
   const handleOpenModal = useCallback(() => {
@@ -179,7 +178,12 @@ function Profile() {
                 <ul>
                   {
                     language?.map((e) => (
-                      <li key={e.id} className="profile__info__job__box__language">{e.language}</li>
+                      <li key={e.id} className="profile__info__job__box__language">
+                        {e.language}
+                        (
+                        {e.level.value ?? e.level}
+                        )
+                      </li>
                     ))
                   }
                 </ul>
@@ -209,14 +213,17 @@ function Profile() {
             language={language}
             profile={userInfo}
             profileCV={userCvInfo}
+            modalFlag={setSmallModalActive}
           />
         </div>
       ) : null }
       {active ? (
         <div className="profile-edit-modal" role="presentation" ref={modalSmall} onClick={(ev) => handleCloseSmallModal(ev)}>
-          <ProfileAboutEditModal cvBio={
+          <ProfileAboutEditModal
+            cvBio={
             userCvInfo.bio
 }
+            modalFlag={setActive}
           />
         </div>
       ) : null }
