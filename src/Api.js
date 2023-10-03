@@ -113,6 +113,12 @@ class Api {
   static changeRole() {
     return api.get('/users/change-role');
   }
+
+  static getFilterUser(filteredData) {
+    const { data, page, limit } = filteredData;
+    console.log(page, data, limit, 77777777777);
+    return api.post(`/cvs/usersData?page=${page}&limit=${limit}`, { data });
+  }
 }
 
 export default Api;

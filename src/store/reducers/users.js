@@ -8,11 +8,13 @@ import {
   activate,
   status,
   singleUserFromAdmin,
+  getFilterUser,
 } from '../actions/users';
 
 const initialState = {
   user: {},
   users: [],
+  filteredUsers: [],
   singleUser: {},
   profile: {},
   usersData: {},
@@ -21,6 +23,7 @@ const initialState = {
   totalPages: 0,
   token: window.localStorage.getItem('token') ?? '',
   singleFromAdmin: {},
+  filterUserTotalPages: 0,
 };
 
 export default createReducer(initialState, (builder) => {
@@ -78,5 +81,15 @@ export default createReducer(initialState, (builder) => {
       const { singleFromAdmin } = action.payload;
       state.singleUserFromAdmin = singleFromAdmin;
       console.log(singleFromAdmin);
+    })
+    .addCase(getFilterUser.rejected, (state) => ({ ...state, registerRequestStatus: 'error' }))
+    .addCase(getFilterUser.fulfilled, (state, action) => {
+      const { users, totalPages } = action.payload;
+      console.log(action.payload, 565656);
+      return {
+        ...state,
+        filteredUsers: users,
+        filterUserTotalPages: totalPages,
+      };
     });
 });

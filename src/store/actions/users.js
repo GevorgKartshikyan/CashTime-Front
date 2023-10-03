@@ -66,3 +66,9 @@ export const changeRole = createAsyncThunk('users/changeRole', async (payload) =
   const { data } = await Api.changeRole(payload);
   return data;
 });
+export const getFilterUser = createAsyncThunk('users/changeRole', async (payload) => {
+  console.log(payload, 9999999999);
+  const { data } = await Api.getFilterUser(payload);
+  console.log(data, 'ckul777');
+  return data;
+});

@@ -13,16 +13,15 @@ function OfferJobsFilter({ isLoaded }) {
     intermediate: false,
     expert: false,
     hourly: false,
-    hour_min: 0,
-    hour_max: 100000,
-    fixed: false,
-    salary_min: 0,
-    salary_max: 100000,
-    skills: '',
+    hourMin: 0,
+    hourMax: 100000,
+    // fixed: false,
+    // salary_min: 0,
+    // salary_max: 100000,
+    profRole: '',
     location: city,
   });
   useEffect(() => {
-    // setData({ ...data, location: city });
     setData({ ...data, location: city });
   }, [city]);
   return (
@@ -207,10 +206,10 @@ function OfferJobsFilter({ isLoaded }) {
                     <input
                       type="number"
                       id="job-checkbox4"
-                      value={data.hour_min}
+                      value={data.hourMin}
                       onChange={(ev) => setData({
                         ...data,
-                        hour_min: ev.target.value,
+                        hourMin: ev.target.value,
                       })}
                       placeholder="min"
                       className="offer__container__left__experience__job__options__time__input"
@@ -225,10 +224,10 @@ function OfferJobsFilter({ isLoaded }) {
                     <input
                       type="number"
                       id="job-checkbox4"
-                      value={data.hour_max}
+                      value={data.hourMax}
                       onChange={(ev) => setData({
                         ...data,
-                        hour_max: ev.target.value,
+                        hourMax: ev.target.value,
                       })}
                       placeholder="max"
                       className="offer__container__left__experience__job__options__time__input"
@@ -242,68 +241,73 @@ function OfferJobsFilter({ isLoaded }) {
 
                 </div>
               ) : null}
-              <div className="offer__container__left__experience__job__options">
-                <label htmlFor="job-checkbox7" className="label">
-                  <div
-                    className="check-container small-check"
-                    role="presentation"
-                    onClick={() => setData({
-                      ...data,
-                      fixed: !data.fixed,
-                    })}
-                  >
-                    <span className="check-squad small-check__squad">
-                      {data.fixed ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
-                          <path
-                            d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663 7L18.063 8.4L10.063 16.4Z"
-                            fill="white"
-                          />
-                        </svg>
-                      ) : null }
-                    </span>
-                  </div>
-                  <span
-                    className="offer__container__left__experience__options__label"
-                  >
-                    Fixed
-                  </span>
-                </label>
-                {data.fixed ? (
-                  <div className="offer__container__left__experience__job__options__salary">
-                    <div
-                      className="offer__container__left__experience__job__options__salary__lastBox"
-                    >
-                      <label htmlFor="job-checkbox4">
-                        <input
-                          type="number"
-                          id="job-checkbox4"
-                          value={data.salary_min}
-                          onChange={(ev) => setData({
-                            ...data,
-                            salary_min: ev.target.value,
-                          })}
-                          placeholder="min$"
-                          className="offer__container__left__experience__job__options__salary__lastBox__input"
-                        />
-                      </label>
-                      <label htmlFor="job-checkbox5">
-                        <input
-                          type="number"
-                          id="job-checkbox4"
-                          value={data.salary_max}
-                          onChange={(ev) => setData({
-                            ...data,
-                            salary_max: ev.target.value,
-                          })}
-                          placeholder="max$"
-                          className="offer__container__left__experience__job__options__salary__lastBox__input"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                ) : null }
-              </div>
+              {/* <div className="offer__container__left__experience__job__options"> */}
+              {/*   <label htmlFor="job-checkbox7" className="label"> */}
+              {/*     <div */}
+              {/*       className="check-container small-check" */}
+              {/*       role="presentation" */}
+              {/*       onClick={() => setData({ */}
+              {/*         ...data, */}
+              {/*         fixed: !data.fixed, */}
+              {/*       })} */}
+              {/*     > */}
+              {/*       <span className="check-squad small-check__squad"> */}
+              {/*         {data.fixed ? ( */}
+              {/*           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fi
+              ll="none"> */}
+              {/*             <path */}
+              {/*               d="M10.063 16.4L6.06299 12.4L7.46299 11L10.063 13.6L16.663
+              7L18.063 8.4L10.063 16.4Z" */}
+              {/*               fill="white" */}
+              {/*             /> */}
+              {/*           </svg> */}
+              {/*         ) : null } */}
+              {/*       </span> */}
+              {/*     </div> */}
+              {/*     <span */}
+              {/*       className="offer__container__left__experience__options__label" */}
+              {/*     > */}
+              {/*       Fixed */}
+              {/*     </span> */}
+              {/*   </label> */}
+              {/*   {data.fixed ? ( */}
+              {/*     <div className="offer__container__left__experience__job__options__salary"> */}
+              {/*       <div */}
+              {/*         className="offer__container__left__experience__job__options__salary_
+              _lastBox" */}
+              {/*       > */}
+              {/*         <label htmlFor="job-checkbox4"> */}
+              {/*           <input */}
+              {/*             type="number" */}
+              {/*             id="job-checkbox4" */}
+              {/*             value={data.salary_min} */}
+              {/*             onChange={(ev) => setData({ */}
+              {/*               ...data, */}
+              {/*               salary_min: ev.target.value, */}
+              {/*             })} */}
+              {/*             placeholder="min$" */}
+              {/*             className="offer__container__left__experience__job__options__salary_
+              _lastBox__input" */}
+              {/*           /> */}
+              {/*         </label> */}
+              {/*         <label htmlFor="job-checkbox5"> */}
+              {/*           <input */}
+              {/*             type="number" */}
+              {/*             id="job-checkbox4" */}
+              {/*             value={data.salary_max} */}
+              {/*             onChange={(ev) => setData({ */}
+              {/*               ...data, */}
+              {/*               salary_max: ev.target.value, */}
+              {/*             })} */}
+              {/*             placeholder="max$" */}
+              {/*             className="offer__container__left__experience__job__options__salary__
+              lastBox__input" */}
+              {/*           /> */}
+              {/*         </label> */}
+              {/*       </div> */}
+              {/*     </div> */}
+              {/*   ) : null } */}
+              {/* </div> */}
             </div>
           </div>
           <hr className="offer-filter-line" />
@@ -311,7 +315,7 @@ function OfferJobsFilter({ isLoaded }) {
             <h3
               className="offer__container__left__category__select__options__tags__title"
             >
-              Skills
+              Profession
             </h3>
             <label htmlFor="category-search">
               <img
@@ -322,13 +326,13 @@ function OfferJobsFilter({ isLoaded }) {
               />
               <input
                 type="text"
-                value={data.skills}
+                value={data.profRole}
                 onChange={(ev) => setData({
                   ...data,
-                  skills: ev.target.value,
+                  profRole: ev.target.value,
                 })}
                 className="offer__container__left__category__select__options__tags__input"
-                placeholder="Search For skills"
+                placeholder="Search profession"
                 id="category-search"
               />
             </label>
