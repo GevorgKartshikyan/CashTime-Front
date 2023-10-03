@@ -29,6 +29,7 @@ function Messages() {
   const dispatch = useDispatch();
   const conversation = useRef();
   const [isTyping, setIsTyping] = useState(false);
+  const friendIsTyping = useSelector((state) => state.messages.isTyping);
   const handleSendMessage = useCallback(() => {
     if (text && friendId) {
       dispatch(sendMessages({
@@ -75,20 +76,17 @@ function Messages() {
       dispatch(openMessage(message.id));
     }
   }, []);
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTyping(false);
-    }, 800);
-    return () => {
+    if (text.length > 0) {
       setIsTyping(true);
-      clearTimeout(timer);
-    };
+    } else {
+      setIsTyping(false);
+    }
   }, [text]);
   useEffect(() => {
+    console.log(999);
     dispatch(friendTyping({ friendId, isTyping }));
   }, [isTyping, friendId]);
-  const friendIsTyping = useSelector((state) => state.messages.isTyping);
   if (!token) {
     window.location.href = '/login';
     return null;
