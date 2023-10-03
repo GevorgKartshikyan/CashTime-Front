@@ -2,6 +2,7 @@
 import { io } from 'socket.io-client';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import ringtone from '../../assets/audio/message.mp3';
+import typingRingtone from '../../assets/audio/typing.mp3';
 import { newMessages } from './messages';
 import { listRequest } from './users';
 
@@ -9,7 +10,7 @@ const { REACT_APP_API_URL } = process.env;
 
 let socket;
 const audio = new Audio(ringtone);
-
+const typingAudio = new Audio(typingRingtone);
 export const socketOnline = createAction('socket/socketOnline');
 export const socketOffline = createAction('socket/socketOffline');
 export const socketNewMessage = createAction('socket/socketNewMessage');
@@ -83,6 +84,19 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
     dispatch(sockedNewNotice(data));
   });
   socket.on('typing', (data) => {
+    if (data) {
+      try {
+        // typingAudio.pause();
+        // typingAudio.currentTime = 0;
+        typingAudio.play().then(() => {
+        })
+          .catch((error) => {
+            console.error('error', error);
+          });
+      } catch (e) {
+        console.error(e);
+      }
+    }
     dispatch(socketFriendTyping(data));
   });
 });

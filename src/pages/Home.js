@@ -25,7 +25,7 @@ function Home() {
 
   const handleSubmit = useCallback((ev) => {
     ev.preventDefault();
-    navigate(`/offer/map?country=${searchJobAddress.country}&city=${searchJobAddress.city}&title=${searchJobTitle}`);
+    navigate(`/offer/map?country?city=${searchJobAddress.city}`);
   }, [searchJobAddress, searchJobTitle]);
 
   const handlePlaceSelect = (place) => {
