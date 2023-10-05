@@ -252,12 +252,16 @@
 
       & > img {
         width: 100%;
+        height: 100%;
         cursor: pointer;
       }
     }
 
     & > .user__block__information {
       & > h3 {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
         color: #031054;
         font-family: "Lato", sans-serif;
         font-size: 20px;
@@ -267,7 +271,7 @@
       }
 
       & > p {
-        max-width: 260px;
+        max-width: 150px;
         white-space: nowrap;
         overflow: hidden;
         color: #031054;

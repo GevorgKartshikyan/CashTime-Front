@@ -119,11 +119,16 @@ function Header() {
               <div className="header__menu__list">
                 <ul>
                   <li>
+                    <NavLink to="/offer">
+                      {profile?.role === 'employer' ? 'Employees' : 'Jobs'}
+                    </NavLink>
+                  </li>
+                  <li>
                     <NavLink to="/worker-offers">
                       {t('manu_offer')}
                     </NavLink>
                   </li>
-                  {profile?.role === 'employee' ? (
+                  {profile?.role === 'employer' ? (
                     <li>
                       <NavLink to="/create-job" className="header__menu__list-offer">
                         <strong>+</strong>

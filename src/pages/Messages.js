@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import VisibilitySensor from 'react-visibility-sensor';
 import Header from '../layouts/Header';
 import searchIcon from '../assets/images/search_messages.svg';
@@ -124,14 +124,14 @@ function Messages() {
         </div>
         <div className="messages__right">
           {friendId ? (
-            <div className="messages__right__user">
+            <Link to={`/profile/${friendId}`} className="messages__right__user">
               <div className="messages__right__user__avatar">
                 <img src={REACT_APP_API_URL + singleUser.avatar} alt="" />
               </div>
               <div className="messages__right__user__name">
                 <h3>{singleUser.firstName}</h3>
               </div>
-            </div>
+            </Link>
           ) : null}
           <div className="messages__right__list" ref={conversation}>
             <div className="messages__right__list__scroll">

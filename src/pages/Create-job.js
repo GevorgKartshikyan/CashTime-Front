@@ -21,6 +21,7 @@ function CreateJob() {
   const [localData, setLocalData] = useState({});
   const [isRight, setIsRight] = useState(false);
   const [file, setFile] = useState({});
+  const profile = useSelector((state) => state.users.profile);
   const handleDataFromChild = (childData, x) => {
     setLocalData((prevData) => ({
       ...prevData,
@@ -66,6 +67,10 @@ function CreateJob() {
   if (!token) {
     window.location.href = '/login';
     return null;
+  }
+
+  if (profile.role === 'employee') {
+    window.location.href = '/';
   }
 
   return (

@@ -1,53 +1,47 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import ProfileEditModal from '../components/ProfileEditModal';
 import ProfileAboutEditModal from '../components/ProfileAboutEditModal';
-import ProfileDeleteModal from '../components/ProfileDeleteModal';
 import Available from '../assets/images/available.svg';
 import Star from '../assets/images/Star.svg';
 import LocationSvg from '../assets/images/vectorMapBlue.svg';
-// import CVIcon from '../assets/images/scope_icon.svg';
-import EditIcon from '../assets/images/pen_icon.svg';
+import CVIcon from '../assets/images/scope_icon.svg';
 import PhoneIcon from '../assets/images/phone_call_orange_icon.svg';
-import { editProfile } from '../store/actions/users';
-import ResetPasswordModal from '../components/resetPasswordModal';
+import { editProfile, getSingleUser } from '../store/actions/users';
 
 const { REACT_APP_API_URL } = process.env;
-function Profile() {
+function SingleProfile() {
   const [active, setActive] = useState();
   const [smallModalActive, setSmallModalActive] = useState();
-  const [deleteAccountModal, setDeleteAccountModal] = useState();
-  const [resetPasswordModal, setResetPasswordModal] = useState();
   const token = useSelector((state) => state.users.token);
-  const userInfo = useSelector((state) => state.users.profile);
+  const userInfo = useSelector((state) => state.users.singleUser);
   const userCvInfo = userInfo.createdCvs || {};
   const { skills = [], language = [] } = userCvInfo;
-  console.log(language);
+  const dispatch = useDispatch();
+  const { userId } = useParams();
   const modalBg = useRef();
   const modalSmall = useRef();
-  const handleOpenModal = useCallback(() => {
-    setActive(true);
-    document.body.style.overflowY = 'hidden';
-  }, [active]);
+  useEffect(() => {
+    dispatch(getSingleUser(userId));
+  }, [userId]);
   const handleCloseModal = useCallback((ev) => {
     if (ev.target === modalBg.current) {
       setSmallModalActive(false);
       document.body.style.overflowY = 'auto';
     }
   });
-  const handleOpenSmallModal = useCallback(() => {
-    setSmallModalActive(true);
-    document.body.style.overflowY = 'hidden';
-  }, [smallModalActive]);
   const handleCloseSmallModal = useCallback((ev) => {
     if (ev.target === modalSmall.current) {
       setActive(false);
       document.body.style.overflowY = 'auto';
     }
   }, [smallModalActive]);
-  const dispatch = useDispatch();
   const handleDeleteSkill = (id) => {
     const newSkills = skills.filter((e) => e.id !== id);
     console.log(newSkills);
@@ -73,12 +67,8 @@ function Profile() {
       <Header />
       <div className="container">
         <div className="profile">
-          <div className="profile__edit">
-            <button onClick={() => handleOpenSmallModal()} className="profile__edit__btn" type="button">
-              <img className="profile__edit__btn__img" src={EditIcon} alt="IMG" />
-            </button>
-          </div>
-          <div className="profile__user">
+          <div className="profile__edit" />
+          <div className="profile__user profile__user__single">
             <div className="profile__user__info">
               <div className="profile__user__info__img">
                 <img className="profile__user__info__img__img" src={REACT_APP_API_URL + userInfo.avatar} alt="IMG" />
@@ -113,13 +103,12 @@ function Profile() {
                     <span className="profile__user__info__global__jobs__count__text">In Progress</span>
                   </div>
                 </div>
-                {/* <div className="profile__user__info__global__cv"> */}
-                {/*   <span className="profile__user__info__global__cv__text">CV Link:</span> */}
-                {/*   <button type="button" className="profile__user__info__global__cv__link"> */}
-                {/*     <img className="profile__user__info__global__cv__link__img"
-                src={CVIcon} alt="IMG" /> */}
-                {/*   </button> */}
-                {/* </div> */}
+                <div className="profile__user__info__global__cv">
+                  <span className="profile__user__info__global__cv__text">CV Link:</span>
+                  <button type="button" className="profile__user__info__global__cv__link">
+                    <img className="profile__user__info__global__cv__link__img" src={CVIcon} alt="IMG" />
+                  </button>
+                </div>
               </div>
             </div>
             <span className="profile__user__jobPrice">
@@ -128,11 +117,7 @@ function Profile() {
           </div>
           <div className="profile__info">
             <div className="profile__info__job">
-              <div className="profile__edit">
-                <button className="profile__edit__btn" onClick={() => handleOpenModal()} type="button">
-                  <img className="profile__edit__btn__img" src={EditIcon} alt="IMG" />
-                </button>
-              </div>
+              <div className="profile__edit" />
               <div className="profile__info__job__box">
                 {userCvInfo.experience
                   ? (
@@ -144,8 +129,8 @@ function Profile() {
                   : null }
                 <p className="profile__info__job__box__about">
                   {
-                  userCvInfo.bio
-                }
+                    userCvInfo.bio
+                  }
                 </p>
                 <span className="profile__info__job__box__education">Education</span>
                 {userCvInfo.school ? (
@@ -173,7 +158,7 @@ function Profile() {
                         <button className="skills-delete-btn" onClick={() => handleDeleteSkill(e.id)} type="button">Delete</button>
                       </li>
                     )) : null
-                }
+                  }
                 </ul>
                 <span className="profile__info__job__box__languages">Languages</span>
                 <ul>
@@ -188,10 +173,6 @@ function Profile() {
                     ))
                   }
                 </ul>
-              </div>
-              <div className="profile-delete-box">
-                <button type="button" className="profile-delete-box__reset-password" onClick={() => setResetPasswordModal(true)}>Reset password</button>
-                <button type="button" className="profile-delete-box__delete-account" onClick={() => setDeleteAccountModal(true)}>Delete account</button>
               </div>
             </div>
             <div className="profile__info__contacts">
@@ -222,17 +203,15 @@ function Profile() {
         <div className="profile-edit-modal" role="presentation" ref={modalSmall} onClick={(ev) => handleCloseSmallModal(ev)}>
           <ProfileAboutEditModal
             cvBio={
-            userCvInfo.bio
-}
+              userCvInfo.bio
+            }
             modalFlag={setActive}
           />
         </div>
       ) : null }
-      {deleteAccountModal ? <ProfileDeleteModal closeModal={setDeleteAccountModal} /> : null}
-      {resetPasswordModal ? <ResetPasswordModal closeModal={setResetPasswordModal} /> : null}
       <Footer />
     </div>
   );
 }
 
-export default Profile;
+export default SingleProfile;
