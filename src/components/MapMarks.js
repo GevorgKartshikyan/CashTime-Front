@@ -11,7 +11,8 @@ import { singleJobInfo } from '../store/actions/jobsRequest';
 
 function MapMarks({ coordinates, setCoordinates, jobs }) {
   const singleJob = useSelector((state) => state.jobsRequest.singleJob);
-  console.log(singleJob);
+  const role = useSelector((state) => state.users.profile.role);
+  console.log(singleJob, role);
   const [home, setHome] = useState({
     lat: 40.791235,
     lng: 43.848753,

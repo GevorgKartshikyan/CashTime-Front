@@ -8,6 +8,8 @@ import IndicatorsArrows from './IndicatorsArrows';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import { getCountries } from '../store/actions/utils';
 
+const key = process.env.REACT_APP_MAP_SECRET;
+
 function CreateCvSeventh(props) {
   const sixtyFormObj = useSelector((state) => state.createCvForm.dataFromChild7) ?? {};
   const customStyles = {
@@ -161,7 +163,7 @@ function CreateCvSeventh(props) {
           <Autocomplete
             placeholder="Write your address"
             className="signup__start__form__input"
-            apiKey="AIzaSyDgzO2lx8X_g2p2q0U9xCB5PkpELNNnzgM"
+            apiKey={key}
             onPlaceSelected={handlePlaceSelect}
             options={{
               language: 'en',
