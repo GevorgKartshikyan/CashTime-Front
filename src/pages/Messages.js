@@ -84,7 +84,6 @@ function Messages() {
     }
   }, [text]);
   useEffect(() => {
-    console.log(999);
     dispatch(friendTyping({ friendId, isTyping }));
   }, [isTyping, friendId]);
   if (!token) {

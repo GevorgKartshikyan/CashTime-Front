@@ -3,24 +3,6 @@ import React from 'react';
 const { REACT_APP_API_URL } = process.env;
 
 function MyJobCard({ job }) {
-  console.log(job);
-  // alreadyDone:false
-  // city:null
-  // country:null
-  // createdAt: "2023-09-27T11:36:30.000Z"
-  // description:""
-  // experience:""
-  // fullAddress:""
-  // geometry:null
-  // jobPhoto:"\\images\\jobs\\default-job-image.jpg"
-  // phoneNumber:""
-  // priceFixed:null
-  // priceMaxHourly:null
-  // priceMethod:"Hourly Rate"
-  // priceMinHourly:null
-  // skill:[]
-  // title:"Enginer"
-  // updatedAt:"2023-09-27T18:56:09.000Z"
   const getPriceRange = () => {
     if (job.priceMinHourly && job.priceMaxHourly) {
       return `${job.priceMinHourly}$-${job.priceMaxHourly}$/${job.priceMethod}`;

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 function CreateJobFirst(props) {
+  const { t } = useTranslation();
   const firstFormTitle = useSelector((state) => state.createJobForm.dataFromChild1) ?? '';
   const { onData } = props;
-  const exampleTitles = ['Build responsive WordPress site with booking/payment functionality', 'Graphic designer needed to design ad creative for multiple campaigns', 'Facebook ad specialist needed for product launch'];
+  const exampleTitles = [t('create_job_page_one_four'), t('create_job_page_one_five'), t('create_job_page_one_six')];
   const [jobTitle, setJobTitle] = useState(firstFormTitle ?? '');
   useEffect(() => {
     onData({ dataFromChild1: jobTitle || null });
@@ -13,7 +15,7 @@ function CreateJobFirst(props) {
   return (
     <div className="job__form__container">
       <div className="create__first">
-        <h4 className="create__job__title">Write a title for your job post</h4>
+        <h4 className="create__job__title">{t('create_job_page_one_one')}</h4>
         <input
           type="text"
           className="examples__input"
@@ -21,11 +23,11 @@ function CreateJobFirst(props) {
           onChange={(e) => {
             setJobTitle(e.target.value);
           }}
-          placeholder="Software engineer"
+          placeholder={t('create_job_page_one_three')}
         />
       </div>
       <div className="examples">
-        <p className="examples__desc">Example titles</p>
+        <p className="examples__desc">{t('create_job_page_one_two')}</p>
         <ul className="examples__block">
           {exampleTitles.map((title) => (
             <li key={title} className="examples__list">{title}</li>

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import EditSvg from '../assets/images/edit.svg';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import Button from '../components/Button';
@@ -10,6 +11,7 @@ import LoadingFile from './LoadingFile';
 
 function CreateJobFinally(props) {
   const { file, editCount } = props;
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [error, setError] = useState('');
   const [dataForRequest, setDataForRequest] = useState({});
@@ -84,7 +86,6 @@ function CreateJobFinally(props) {
           <div>
             <p className="job__finally-price">
               {selectedMethod}
-
             </p>
           </div>
           <div>
@@ -94,7 +95,7 @@ function CreateJobFinally(props) {
           </div>
         </div>
         <div className="job__display__row">
-          <p className="job-finally-skill-title">SKILLS</p>
+          <p className="job-finally-skill-title">{t('create_job_ready_two')}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
             {
                 dataFromChild2?.map((e) => (
@@ -111,7 +112,7 @@ function CreateJobFinally(props) {
         </div>
         <div className="job__display__row">
           <div>
-            <span className="job-finally-skill-title">Scope</span>
+            <span className="job-finally-skill-title">{t('create_job_ready_three')}</span>
           </div>
           <div>
             <span className="job-finally-skill-level">{dataFromChild3}</span>
@@ -119,7 +120,7 @@ function CreateJobFinally(props) {
         </div>
         <div className="job__display__row">
           <div>
-            <span className="job-finally-skill-title">Location</span>
+            <span className="job-finally-skill-title">{t('create_job_ready_four')}</span>
           </div>
           <div>
             <span className="job-finally-skill-level">{`${address.country ?? ''} ${address.city ?? ''}`}</span>
@@ -127,7 +128,7 @@ function CreateJobFinally(props) {
         </div>
         <div className="job__display__row">
           <div>
-            <span className="job-finally-skill-title">Address</span>
+            <span className="job-finally-skill-title">{t('create_job_ready_five')}</span>
           </div>
           <div>
             <span className="job-finally-skill-level">{address.fullAddress}</span>
@@ -135,7 +136,7 @@ function CreateJobFinally(props) {
         </div>
         <div style={{ flexDirection: 'column' }} className="job__display__row">
           <div>
-            <span className="job-finally-skill-title">Bio</span>
+            <span className="job-finally-skill-title">{t('create_job_ready_six')}</span>
           </div>
           <div style={{ position: 'relative', width: '100%' }}>
             <p className="job-finally-skill-level">{dataFromChild5}</p>
@@ -143,7 +144,7 @@ function CreateJobFinally(props) {
         </div>
         <div className="job__display__row">
           <div>
-            <span className="job-finally-skill-title">Phone Number</span>
+            <span className="job-finally-skill-title">{t('create_job_ready_seven')}</span>
           </div>
           <div>
             <span className="job-finally-skill-level">{phoneNumber}</span>
@@ -151,7 +152,7 @@ function CreateJobFinally(props) {
         </div>
         <div className="job-finally-buttons-box">
           <div role="presentation" onClick={handlePostJob}>
-            <Button className="btn color-blue" title="Post This Job" />
+            <Button className="btn color-blue" title={t('create_job_ready_eight')} />
           </div>
         </div>
       </div>

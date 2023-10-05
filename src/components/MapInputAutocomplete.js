@@ -45,17 +45,12 @@ function MapInputAutocomplete({
   const handleSelect = (suggestion) => () => {
     setValue(suggestion.description, false);
     clearSuggestions();
-    console.log(suggestion);
     getGeocode({ address: suggestion.description })
       .then((results) => {
         const {
           lat,
           lng,
         } = getLatLng(results[0]);
-        console.log('📍 Coordinates: ', {
-          lat,
-          lng,
-        });
         if (page === 'map' || !page) {
           setCoordinates({
             lat,
@@ -81,7 +76,6 @@ function MapInputAutocomplete({
         if (page === 'map' || !page) {
           changeCity({ city });
         }
-        console.log('🏙 City: ', city);
       });
   };
   // const [selectedItemIndex, setSelectedItemIndex] = useState(-1);

@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Autocomplete from 'react-google-autocomplete';
+import { useDispatch } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import HomeJob from '../components/Home-job';
 import JoinImg from '../assets/images/homejoin.svg';
@@ -12,39 +13,45 @@ import createProfile from '../assets/images/createProfile.svg';
 import JobLocationIcon from '../assets/images/home_location_icon.svg';
 import SearchIcon from '../assets/images/Search_Icon.svg';
 import JobHiring from '../layouts/Job_hiring';
+import { homePageCoordinates } from '../store/actions/app';
 
 function Home() {
   const mapKey = process.env.REACT_APP_MAP_SECRET;
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchJobAddress, setSearchJobAddress] = useState({
     city: '',
-    country: '',
   });
-  const [searchJobTitle, setSearchJobTitle] = useState('');
 
+  const [address, setAddress] = useState({
+    lat: '',
+    lng: '',
+  });
   const handleSubmit = useCallback((ev) => {
     ev.preventDefault();
-    navigate(`/offer/map?country?city=${searchJobAddress.city}`);
-  }, [searchJobAddress, searchJobTitle]);
+    dispatch(homePageCoordinates(address));
+    navigate(`/offer/map?city=${searchJobAddress.city}`);
+  }, [searchJobAddress]);
 
   const handlePlaceSelect = (place) => {
     try {
+      const { lat, lng } = place.geometry.location;
       const addressComponents = place.address_components;
-      let country = '';
       let city = '';
       for (let i = 0; i < addressComponents?.length; i += 1) {
         const component = addressComponents[i];
         const componentType = component.types[0];
-        if (componentType === 'country') {
-          country = component.long_name;
-        } else if (componentType === 'locality') {
+        if (componentType === 'locality') {
           city = component.long_name;
         }
       }
       setSearchJobAddress({
-        country,
         city,
+      });
+      setAddress({
+        lat: lat(),
+        lng: lng(),
       });
     } catch (e) {
       console.error(e);
@@ -79,10 +86,6 @@ function Home() {
             <div className="join__bottom">
               <h3 className="join__bottom__title">{t('join_bottom_title')}</h3>
               <form className="join__bottom__form" onSubmit={(ev) => handleSubmit(ev)}>
-                <label htmlFor="input-job" className="join__bottom__form__label">
-                  <input type="text" value={searchJobTitle} maxLength="35" className="join__bottom__form__job" id="input-job" placeholder={t('job_title_text')} onChange={(ev) => setSearchJobTitle(ev.target.value)} />
-                </label>
-                <span className="join__bottom__form__line" />
                 <label htmlFor="input-city" className="join__bottom__form__label">
                   <img className="join__bottom__form__icon" src={JobLocationIcon} alt="" />
                   <Autocomplete

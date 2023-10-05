@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import Api from '../../Api';
 
 export const getSkills = createAsyncThunk('app/getSkills', async (payload, thunkAPI) => {
@@ -43,3 +43,4 @@ export const allCountsForAdmin = createAsyncThunk('app/allCountsForAdmin', async
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+export const homePageCoordinates = createAction('app/homePageCoordinates');
