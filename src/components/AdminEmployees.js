@@ -20,12 +20,21 @@ function AdminEmployees() {
   const limit = parseInt(searchParams.get('limit') || 5, 10);
   const [searchResults, setSearchResults] = useState('');
   const [uid, setUId] = useState('');
-
+  const options = [
+    {
+      value: 'Newest',
+      label: 'Newest',
+    },
+    {
+      value: 'Latest',
+      label: 'Latest',
+    }];
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   useEffect(() => {
     dispatch(listRequest({
-      page, limit: 5, role: 'employee', search: searchResults, id: uid,
+      page, limit: 5, role: 'employee', search: searchResults, id: uid, order: selectedOption.value,
     }));
-  }, [uid]);
+  }, [uid, selectedOption]);
   useEffect(() => {
     setSearchParams({ page, limit });
   }, []);
@@ -76,21 +85,9 @@ function AdminEmployees() {
       color: state.isSelected && state.data.value === '#4A62B6' ? '#4A62B6' : '#4A62B6',
     }),
   };
-  const options = [
-    {
-      value: 'test1',
-      label: 'Test1',
-    },
-    {
-      value: 'test2',
-      label: 'Test2',
-    },
-    {
-      value: 'Newest',
-      label: 'Newest',
-    }];
-
-  console.log(users);
+  const handleChange = (selected) => {
+    setSelectedOption(selected);
+  };
 
   return (
     <div className="admin__employees">
@@ -112,7 +109,8 @@ function AdminEmployees() {
           placeholder="Newest"
           options={options}
           styles={customStyles}
-          // onChange={handeChangeSelects('service')}
+          value={selectedOption}
+          onChange={handleChange}
           components={{
             IndicatorsContainer: AdminDropdownTop,
           }}

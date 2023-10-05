@@ -21,16 +21,7 @@ export const loginRequest = createAsyncThunk('users/loginRequest', async (payloa
 });
 export const listRequest = createAsyncThunk('/users/listRequest', async (payload, thunkAPI) => {
   try {
-    const {
-      page,
-      limit,
-      role,
-      search,
-      id,
-    } = payload;
-    console.log(payload);
-    // console.log(id);
-    const { data } = await Api.list(page, limit, role, search, id);
+    const { data } = await Api.list(payload);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

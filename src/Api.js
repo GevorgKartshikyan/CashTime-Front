@@ -88,8 +88,16 @@ class Api {
     });
   }
 
-  static list(page, limit, role, search) {
-    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}`);
+  static list(payload) {
+    const {
+      page,
+      limit,
+      role,
+      search,
+      order,
+    } = payload;
+    console.log(order);
+    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}&order=${order}`);
   }
 
   static getUser(id) {
@@ -196,6 +204,10 @@ class Api {
   static editUserAbout(data) {
     console.log(data);
     return api.put('users/edit-employee-about', { data });
+  }
+
+  static AdminLogin(data) {
+    return api.post('/admin/login', data);
   }
 }
 

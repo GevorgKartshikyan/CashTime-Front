@@ -1,5 +1,8 @@
 .blocked{
   width: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 50px;
   background: #F3F4FF;
   &__row{
