@@ -60,7 +60,7 @@ export const socketInit = createAsyncThunk('socket/socketInit', (token, { dispat
     }
     dispatch(newMessages());
     dispatch(listRequest({
-      page: 1, limit: 100, role: 'employer', search: '',
+      page: 1, limit: 100, role: '', search: '',
     }));
 
     // if (!current) {

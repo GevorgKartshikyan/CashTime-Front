@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
@@ -84,9 +84,10 @@ function AdminEmployers() {
     }),
   };
 
-  const handleChange = (selected) => {
+  const handleChange = useCallback((selected) => {
     setSelectedOption(selected);
-  };
+  }, [selectedOption]);
+
   return (
     <div className="admin__employees">
       <div className="admin__row__dashboard__title"><h3>Employers</h3></div>

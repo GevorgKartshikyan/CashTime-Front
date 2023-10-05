@@ -27,8 +27,9 @@ export const listRequest = createAsyncThunk('/users/listRequest', async (payload
       role,
       search,
       id,
+      order,
     } = payload;
-    const { data } = await Api.list(page, limit, role, search, id);
+    const { data } = await Api.list(page, limit, role, search, id, order);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.response.data);

@@ -39,7 +39,7 @@ function Messages() {
       }));
       setText('');
       dispatch(listRequest({
-        page: 1, limit: 150, role: 'employer', search: searchText,
+        page: 1, limit: 150, role: '', search: searchText,
       }));
     }
   }, [text]);

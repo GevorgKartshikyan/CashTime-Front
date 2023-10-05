@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
@@ -83,25 +83,10 @@ function AdminEmployees() {
       color: state.isSelected && state.data.value === '#4A62B6' ? '#4A62B6' : '#4A62B6',
     }),
   };
-<<<<<<< HEAD
-  const options = [
-    {
-      value: 'test1',
-      label: 'Test1',
-    },
-    {
-      value: 'test2',
-      label: 'Test2',
-    },
-    {
-      value: 'Newest',
-      label: 'Newest',
-    }];
-=======
-  const handleChange = (selected) => {
+
+  const handleChange = useCallback((selected) => {
     setSelectedOption(selected);
-  };
->>>>>>> hovhannes
+  }, [selectedOption]);
 
   return (
     <div className="admin__employees">
