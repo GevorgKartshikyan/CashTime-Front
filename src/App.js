@@ -26,6 +26,7 @@ import { socketInit } from './store/actions/socket';
 import { newMessages } from './store/actions/messages';
 import NotFoundPage from './components/NotFoundPage';
 import SuccessModal from './components/SuccessModal';
+import SingleProfile from './pages/SingleProfile';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/writereview" element={<WriteReview />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:userId" element={<SingleProfile />} />
         <Route path="/review" element={<Review />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />
