@@ -8,6 +8,7 @@ import reports from './reports';
 import utils from './utils';
 import app from './app';
 import notices from './notices';
+import admin from './admin';
 
 export default {
   messages,
@@ -20,4 +21,5 @@ export default {
   utils,
   app,
   notices,
+  admin,
 };

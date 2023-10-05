@@ -29,7 +29,7 @@ const initialState = {
   totalPages: 0,
   currentBlockedPage: 0,
   totalBlockedPages: 0,
-  token: window.localStorage.getItem('token') ?? '',
+  token: window.localStorage.getItem('token') || '',
   singleFromAdmin: {},
   blocked: [],
   filterUserTotalPages: 0,

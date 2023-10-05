@@ -108,8 +108,15 @@ class Api {
     return api.post('/users/resetPasswordConfirm', data);
   }
 
-  static list(page, limit, role, search) {
-    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}`);
+  static list(payload) {
+    const {
+      page,
+      limit,
+      role,
+      search,
+      order,
+    } = payload;
+    return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}&order=${order}`);
   }
 
   static getUser(id) {
@@ -231,6 +238,10 @@ class Api {
 
   static deleteProfile(password) {
     return api.post('users/deleteProfile', { password });
+  }
+
+  static AdminLogin(data) {
+    return api.post('/admin/login', data);
   }
 }
 

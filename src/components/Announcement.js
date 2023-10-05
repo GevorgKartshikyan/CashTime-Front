@@ -39,29 +39,27 @@ function Announcement(props) {
       {/* </div> */}
       <div className="announcement__info">
         <div className="announcement__info__title">
-          {title ? <span>{title?.toUpperCase()}</span> : <span>!!!NO TITLE!!!</span>}
+          {title ? <span>{title?.toUpperCase()}</span> : <span>No Title</span>}
         </div>
         <div className="announcement__info__text">
-          {description ? <p>{description}</p> : <p>!!!NO DESCRIPTION!!!</p>}
+          {description ? <p>{description}</p> : <p>No description.</p>}
           <div className="announcement__info__text-span-block">
             {skills?.length > 0 ? (
               skills.map((e) => (
-                e.skill ? (
-                  <span key={e.id}>
-                    {e.skill}
-                  </span>
-                ) : (
-                  <span key={e.id}>
-                    !!!NO SKILLS!!!
-                  </span>
-                )
+                <span key={e.id}>
+                  {e.skill}
+                </span>
               ))
             ) : (
-              <span>!!!NO SKILLS!!!</span>
+              <span>No Skills</span>
             )}
-            {experience ? <span>{experience}</span> : <span>!!!NO EXPERIENCE</span>}
+            {experience ? <span>{experience}</span> : <span>No Experience</span>}
           </div>
-          <span>{priceMethod}</span>
+          <span>
+            priceMethod:
+            {' '}
+            {priceMethod}
+          </span>
           <div className="announcement__info__text__buttons">
             <button className="announcement_accept" type="submit" onClick={() => handleActivateJob(id)}>Accept</button>
             <button className="announcement_delete" type="submit" onClick={() => handleDeleteJob(id)}>Delete</button>

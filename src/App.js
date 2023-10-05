@@ -26,6 +26,7 @@ import { socketInit } from './store/actions/socket';
 import { newMessages } from './store/actions/messages';
 import NotFoundPage from './components/NotFoundPage';
 import SuccessModal from './components/SuccessModal';
+import AdminLogin from './pages/AdminLogin';
 
 function App() {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ function App() {
         <Route path="/test-map" element={<GlobalMap />} />
         <Route path="/*" element={<NotFoundPage />} />
         <Route path="/success-message/:page" element={<SuccessModal />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
       </Routes>
     </BrowserRouter>
   );
