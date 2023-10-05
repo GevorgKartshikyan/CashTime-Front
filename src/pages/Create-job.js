@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import CreateJobFirst from '../layouts/CreateJobFirst';
 import CreateJobSecond from '../layouts/CreateJobSecond';
 import StepIndicator from '../layouts/StepIndicator';
@@ -13,6 +14,7 @@ import Header from '../layouts/Header';
 import setJobFormData from '../store/actions/createJobForm';
 
 function CreateJob() {
+  const { t } = useTranslation();
   const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -96,10 +98,10 @@ function CreateJob() {
               <StepIndicator step={count} count={6} editCount={handleNext} />
               <div className="job__buttons">
                 <button type="button" className="job__btn" onClick={() => handleNext('-')}>
-                  Go Back
+                  {t('create_cv_button_go_back')}
                 </button>
                 <button type="button" className="job__btn" onClick={() => handleNext('+')}>
-                  Skip Or Next
+                  {t('create_cv_button_Skip_Or_Next')}
                 </button>
               </div>
             </div>
