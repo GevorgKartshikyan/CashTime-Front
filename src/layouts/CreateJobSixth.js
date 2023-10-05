@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import PhoneInput from 'react-phone-input-2';
 import Autocomplete from 'react-google-autocomplete';
+import { useTranslation } from 'react-i18next';
 import jobDefaultImg from '../assets/images/job-image-default.svg';
 import IndicatorsArrows from '../components/IndicatorsArrows';
 import phoneErrorHandler from '../store/actions/phoneErrorHandler';
@@ -56,6 +57,7 @@ const customStyles = {
   }),
 };
 function CreateJobSixth(props) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [phoneNumberError, setPhoneNumberError] = useState('');
   const [phoneFormatLength, setPhoneFormatLength] = useState(0);
@@ -144,7 +146,7 @@ function CreateJobSixth(props) {
   return (
     <div className="job__form__container__sixth">
       <div>
-        <h4 className="create__job__title sixth-title">Describe Your Job</h4>
+        <h4 className="create__job__title sixth-title">{t('create_job_page_six_one')}</h4>
         {selectedPhoto.fileSrc ? <img src={selectedPhoto.fileSrc} alt="job desc" className="job-image" /> : (
           <div className="selected-image">
             <img src={jobDefaultImg} alt="Selected" />
@@ -155,7 +157,7 @@ function CreateJobSixth(props) {
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M15 9.75H9.75V15H8.25V9.75H3V8.25H8.25V3H9.75V8.25H15V9.75Z" fill="white" />
             </svg>
-            <span className="label-desc-sixth">Upload a Picture</span>
+            <span className="label-desc-sixth">{t('create_job_page_six_two')}</span>
           </div>
           <input type="file" id="job-id-input" onChange={handleFileSelect} className="job-image-input" />
         </label>
@@ -163,10 +165,11 @@ function CreateJobSixth(props) {
       <div className="options-row-sixth">
         <div>
           <p className="sixth-labels-desc">
-            Country*
+            {t('create_job_page_six_three')}
+            *
           </p>
           <Select
-            placeholder="Select County"
+            placeholder={t('create_job_page_six_four')}
             options={countries}
             value={countries.find((country) => country.value === selectCountry)}
             onChange={(e) => setSelectCountry(e.value)}
@@ -180,10 +183,10 @@ function CreateJobSixth(props) {
         </div>
         <div>
           <p className="sixth-labels-desc">
-            Street Address* (won’t show on profile)
+            {t('create_job_page_six_five')}
           </p>
           <Autocomplete
-            placeholder="Write your address"
+            placeholder={t('create_job_page_six_six')}
             className="signup__start__form__input"
             apiKey={key}
             onPlaceSelected={handlePlaceSelect}
@@ -193,10 +196,9 @@ function CreateJobSixth(props) {
               types: ['geocode', 'establishment'],
             }}
           />
-
         </div>
         <div>
-          <p className="sixth-labels-desc">Phone</p>
+          <p className="sixth-labels-desc">{t('create_job_page_six_seven')}</p>
           <PhoneInput
             // onlyCountries={onlyCountries}
             onChange={handleChangePhone}

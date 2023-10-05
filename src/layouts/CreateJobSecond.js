@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getSkills } from '../store/actions/app';
 
 function CreateJobSecond(props) {
+  const { t } = useTranslation();
   const { onData } = props;
   const dispatch = useDispatch();
   const secondFormArray = useSelector((state) => state.createJobForm.dataFromChild2) ?? [];
@@ -45,10 +47,10 @@ function CreateJobSecond(props) {
   return (
     <div className="job__form__container">
       <h4 className="create__job__title second">
-        What are the main skills required for your work?
+        {t('create_job_page_two_one')}
       </h4>
       <div className="job__second__block">
-        <p className="create__second__desc">Search skills or add your own</p>
+        <p className="create__second__desc">{t('create_job_page_two_two')}</p>
         <div className="input-container">
           <input value={inputValue} type="text" className="job__second__input" onChange={handleChange} />
           {inputValue && (
@@ -60,13 +62,13 @@ function CreateJobSecond(props) {
               className="job-second-btn-for-add-skill"
               onClick={() => handleSkill(inputValue)}
             >
-              + Add Skill
+              {t('create_job_page_two_five')}
             </motion.button>
           )}
           <AnimatePresence>
             {selectedSkills?.length > 0 && (
               <>
-                <p>Selected Skills</p>
+                <p>{t('create_job_page_two_four')}</p>
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
@@ -97,7 +99,7 @@ function CreateJobSecond(props) {
         </div>
       </div>
       <div className="job__second__skills_block job__second__block">
-        <p className="suggested-skills">Suggested skills</p>
+        <p className="suggested-skills">{t('create_job_page_two_three')}</p>
         <div className="skills">
           {skills.map((e) => (
             <button

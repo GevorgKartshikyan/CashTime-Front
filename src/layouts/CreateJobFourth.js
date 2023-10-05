@@ -2,16 +2,17 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 function CreateJobFourth(props) {
   const { onData } = props;
+  const { t } = useTranslation();
   const fourthFormPrice = useSelector((state) => state.createJobForm.dataFromChild4) ?? {};
-  const methods = ['Hourly Rate', 'Project Budget'];
+  const methods = [t('create_job_page_four_two'), t('create_job_page_four_three')];
   const [selectedMethod, setSelectedMethod] = useState(fourthFormPrice.method || 'Hourly Rate');
   const [priceFrom, setPriceFrom] = useState(fourthFormPrice.priceFrom || '');
   const [priceTo, setPriceTo] = useState(fourthFormPrice.priceTo || '');
   const [maxPrice, setMaxPrice] = useState(fourthFormPrice.maxPrice || '');
-  const currency = 'USD';
   const currencySign = '$';
   useEffect(() => {
     onData({
@@ -48,7 +49,7 @@ function CreateJobFourth(props) {
   return (
     <div className="job__form__container">
       <h4 className="create__job__title second">
-        Tell us about your budge
+        {t('create_job_page_four_one')}
       </h4>
       <div className="job-third-checkbox fourth">
         <div className="label-container">
@@ -68,7 +69,7 @@ function CreateJobFourth(props) {
             </label>
           ))}
         </div>
-        {selectedMethod === 'Hourly Rate' ? (
+        {selectedMethod === t('create_job_page_four_two') ? (
           <motion.div
             key="input-container"
             className="input-container-fourth"
@@ -79,17 +80,17 @@ function CreateJobFourth(props) {
           >
             <div className="price-container">
               <div>
-                <p className="price-from">From</p>
+                <p className="price-from">{t('create_job_page_four_four')}</p>
                 <input value={`${priceFrom}${currencySign}`} onChange={handleInputFromChange} type="text" className="price-from-input" />
               </div>
               <span className="hr">/hr</span>
             </div>
             <div className="price-container">
               <div style={{ marginLeft: '20px' }}>
-                <p className="price-from">To</p>
+                <p className="price-from">{t('create_job_page_four_five')}</p>
                 <input value={`${priceTo}${currencySign}`} onChange={handleInputToChange} type="text" className="price-to-input" />
               </div>
-              <span className="hr">/hr</span>
+              <span className="hr">{t('create_job_page_four_six')}</span>
             </div>
           </motion.div>
         ) : (
@@ -101,7 +102,7 @@ function CreateJobFourth(props) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: 'easeInOut' }}
           >
-            <p className="max-price">{`Maximum project budget (${currency})`}</p>
+            <p className="max-price">Maximum project budget (USD)</p>
             <input value={maxPrice} type="text" className="price-to-input project" onChange={handleProjectChange} />
           </motion.div>
         )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
 import MapInputAutocomplete from '../components/MapInputAutocomplete';
 import GlobalMap from '../pages/GlobalMap';
 import { ReactComponent as SearchIcon } from '../assets/images/offer_filter_search.svg';
@@ -8,14 +9,19 @@ import { jobListFromUsersMap } from '../store/actions/jobsRequest';
 
 function OfferMap({ isLoaded }) {
   const navigate = useNavigate();
+  const homeCoordinates = useSelector((state) => state.app.redirectCoordinates);
   const [coordinates, setCoordinates] = useState({
     lat: 40.791235,
     lng: 43.848753,
   });
+  useEffect(() => {
+    if (!_.isEmpty(homeCoordinates)) {
+      setCoordinates({ ...homeCoordinates });
+    }
+  }, [homeCoordinates]);
   const [searchParams, setSearchParams] = useSearchParams();
   const city = searchParams.get('city') || 'Gyumri';
   const dispatch = useDispatch();
-  const jobs = useSelector((state) => state.jobsRequest.jobListFromUsers);
   useEffect(() => {
     dispatch(jobListFromUsersMap({ city }));
   }, [city]);
@@ -51,7 +57,6 @@ function OfferMap({ isLoaded }) {
       <div className="map-box-offer__map ">
         <div className="map-box-offer__map__container">
           <GlobalMap
-            jobs={jobs}
             isLoaded={isLoaded}
             coordinates={coordinates}
             setCoordinates={setCoordinates}

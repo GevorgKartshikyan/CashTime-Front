@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
 import markHome from '../assets/images/home-map.svg';
 import markerSvg from '../assets/images/VectorMap.svg';
 import locationSvg from '../assets/images/locationMark.svg';
 import mapDefaultThem from '../utils/mapDefaultThem';
-// import MapProfile from './MapProfile';
 import InfoCard from './offer-info-card';
 import { singleJobInfo } from '../store/actions/jobsRequest';
 
-function MapMarks({ coordinates, setCoordinates, jobs }) {
+function MapMarks({ coordinates, setCoordinates }) {
+  const jobs = useSelector((state) => state.jobsRequest.jobListFromUsers);
+  const homeCoordinates = useSelector((state) => state.app.redirectCoordinates);
   const singleJob = useSelector((state) => state.jobsRequest.singleJob);
-  console.log(singleJob);
   const [home, setHome] = useState({
     lat: 40.791235,
     lng: 43.848753,
@@ -54,7 +55,9 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
   };
 
   useEffect(() => {
-    trackUserLocation();
+    if (_.isEmpty(homeCoordinates)) {
+      trackUserLocation();
+    }
   }, []);
   const dispatch = useDispatch();
   const handleSeenSingleJob = (id) => {
@@ -63,7 +66,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
   return (
     <>
       <GoogleMap
-        zoom={14}
+        zoom={12}
         center={coordinates}
         mapContainerStyle={containerStyle}
         options={mapOptions}

@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  addSkillForAdmin, allCountsForAdmin, getSkills, getSkillsForAdmin,
+  addSkillForAdmin, allCountsForAdmin, getSkills, getSkillsForAdmin, homePageCoordinates,
 } from '../actions/app';
 
 const initialState = {
@@ -13,6 +13,7 @@ const initialState = {
   allEmployers: 0,
   allEmployees: 0,
   allJobs: 0,
+  redirectCoordinates: {},
 };
 
 export default createReducer(initialState, (builder) => {
@@ -38,5 +39,8 @@ export default createReducer(initialState, (builder) => {
       state.allEmployers = allEmployers;
       state.allEmployees = allEmployees;
       state.allJobs = allJobs;
+    })
+    .addCase(homePageCoordinates, (state, action) => {
+      state.redirectCoordinates = action.payload;
     });
 });

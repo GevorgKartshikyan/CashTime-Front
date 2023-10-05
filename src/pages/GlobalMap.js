@@ -4,7 +4,7 @@ import LoadingFile from '../layouts/LoadingFile';
 import MapMarks from '../components/MapMarks';
 
 export default function GlobalMap({
-  isLoaded, coordinates, setCoordinates, jobs,
+  isLoaded, coordinates, setCoordinates,
 }) {
   const token = useSelector((state) => state.users.token);
   if (!token) {
@@ -17,12 +17,11 @@ export default function GlobalMap({
       isLoaded={isLoaded}
       coordinates={coordinates}
       setCoordinates={setCoordinates}
-      jobs={jobs}
     />
   );
 }
 
-function Map({ coordinates, setCoordinates, jobs }) {
+function Map({ coordinates, setCoordinates }) {
   return (
     <div style={{
       maxHeight: '100vh',
@@ -33,7 +32,7 @@ function Map({ coordinates, setCoordinates, jobs }) {
       alignItems: 'center',
     }}
     >
-      <MapMarks jobs={jobs} coordinates={coordinates} setCoordinates={setCoordinates} />
+      <MapMarks coordinates={coordinates} setCoordinates={setCoordinates} />
     </div>
   );
 }
