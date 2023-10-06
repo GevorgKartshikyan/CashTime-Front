@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { getFilterUser } from '../store/actions/users';
+import { sendNotice } from '../store/actions/notice';
 
 // nkar
 // aply
@@ -22,6 +23,9 @@ function OfferCvsList(props) {
     const page = 1;
     dispatch(getFilterUser({ data, page, limit }));
   }, [data]);
+  const handleSendNotice = useCallback((creator) => {
+    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: null }));
+  }, []);
   return (
     <div className="offer__container__right">
       <div className="offer__container__right__toggle">
@@ -54,7 +58,7 @@ function OfferCvsList(props) {
                     </span>
                   </div>
                 </div>
-                <button type="button" className="worker-offer-ticket__button">Apply</button>
+                <button onClick={() => handleSendNotice(user.id)} type="button" className="worker-offer-ticket__button">Apply</button>
               </div>
             ))}
           </div>

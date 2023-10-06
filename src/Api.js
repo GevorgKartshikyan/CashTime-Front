@@ -232,6 +232,12 @@ class Api {
   static deleteProfile(password) {
     return api.post('users/deleteProfile', { password });
   }
+
+  static getUsersListForMap(data) {
+    const { city } = data;
+    console.log(city);
+    return api.post('cvs/usersDataForMap', { city });
+  }
 }
 
 export default Api;

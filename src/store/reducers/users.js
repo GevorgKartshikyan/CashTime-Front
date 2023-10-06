@@ -13,6 +13,7 @@ import {
   editUserAbout,
   getFilterUser,
   resetPassword,
+  usersListForMap,
 } from '../actions/users';
 import { socketOffline, socketOnline } from '../actions/socket';
 
@@ -34,6 +35,7 @@ const initialState = {
   blocked: [],
   filterUserTotalPages: 0,
   resetPasswordValidationCode: 0,
+  usersListForMap: [],
 };
 
 export default createReducer(initialState, (builder) => {
@@ -151,6 +153,14 @@ export default createReducer(initialState, (builder) => {
         ...state,
         filteredUsers: users,
         filterUserTotalPages: totalPages,
+      };
+    })
+    .addCase(usersListForMap.fulfilled, (state, action) => {
+      const { users } = action.payload;
+      console.log(users, 11111);
+      return {
+        ...state,
+        usersListForMap: users,
       };
     });
 });

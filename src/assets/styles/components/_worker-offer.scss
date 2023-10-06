@@ -53,6 +53,12 @@
   padding: 14px 14px;
   margin-bottom: 67px;
 
+  &.for-map{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+    width: 15%;
+  }
 
   &__first-line{
     display: flex;

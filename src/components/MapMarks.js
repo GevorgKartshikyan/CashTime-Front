@@ -8,11 +8,16 @@ import mapDefaultThem from '../utils/mapDefaultThem';
 // import MapProfile from './MapProfile';
 import InfoCard from './offer-info-card';
 import { singleJobInfo } from '../store/actions/jobsRequest';
+import { getSingleUser } from '../store/actions/users';
+import UserCardMap from './UserCardMap';
+// import userPng from '../assets/images/img__user__test.png';
 
 function MapMarks({ coordinates, setCoordinates, jobs }) {
   const singleJob = useSelector((state) => state.jobsRequest.singleJob);
+  const users = useSelector((state) => state.users.usersListForMap);
+  const singleUser = useSelector((state) => state.users.singleUser);
   const role = useSelector((state) => state.users.profile.role);
-  console.log(singleJob, role);
+  console.log(singleJob, role, users);
   const [home, setHome] = useState({
     lat: 40.791235,
     lng: 43.848753,
@@ -59,7 +64,11 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
   }, []);
   const dispatch = useDispatch();
   const handleSeenSingleJob = (id) => {
-    dispatch(singleJobInfo(id));
+    if (role === 'employee') {
+      dispatch(singleJobInfo(id));
+    } else {
+      dispatch(getSingleUser(id));
+    }
   };
   return (
     <>
@@ -75,7 +84,7 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
             url: markHome,
           }}
         />
-        {jobs.map((job) => (
+        {role === 'employee' ? jobs.map((job) => (
           <Marker
             onClick={() => handleSeenSingleJob(job.id)}
             key={job.id}
@@ -84,7 +93,17 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
             }}
             position={{ lat: job.geometry.coordinates[1], lng: job.geometry.coordinates[0] }}
           />
-        ))}
+        ))
+          : users.map((user) => (
+            <Marker
+              onClick={() => handleSeenSingleJob(user.id)}
+              key={user.id}
+              icon={{
+                url: markerSvg,
+              }}
+              position={{ lat: user.location.coordinates[1], lng: user.location.coordinates[0] }}
+            />
+          ))}
       </GoogleMap>
       <button className="user__location__button" onClick={trackUserLocation} type="button">
         <img src={locationSvg} alt="geolocation" />
@@ -105,6 +124,9 @@ function MapMarks({ coordinates, setCoordinates, jobs }) {
         priceFixed={singleJob.priceFixed}
         description={singleJob.description}
       />
+      )}
+      {Object.keys(singleUser)?.length !== 0 && (
+      <UserCardMap user={singleUser} />
       )}
       {/* <MapProfile /> */}
     </>

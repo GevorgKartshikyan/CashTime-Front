@@ -127,3 +127,8 @@ export const getFilterUser = createAsyncThunk('users/changeRole', async (payload
   console.log(data, 'ckul777');
   return data;
 });
+export const usersListForMap = createAsyncThunk('users/usersListForMap', async (payload) => {
+  console.log(payload, 99977777779);
+  const { data } = await Api.getUsersListForMap(payload);
+  return data;
+});
