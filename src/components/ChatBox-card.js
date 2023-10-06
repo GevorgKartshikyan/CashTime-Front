@@ -6,8 +6,9 @@ import { deleteNotice } from '../store/actions/notice';
 const { REACT_APP_API_URL } = process.env;
 
 function ChatBoxCard({
-  name, avatar, id, jobId, friendId, jobTitle, lastName,
+  name, avatar, id, jobId, friendId, jobTitle, lastName, method,
 }) {
+  console.log(method);
   const dispatch = useDispatch();
   const [activate, setActivate] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -37,17 +38,19 @@ function ChatBoxCard({
             <p>
               You’ve received a request from
               <span style={{ marginLeft: 10, color: '#4A62B6' }}>{`${name} ${lastName}`}</span>
-              <p>
-                From your  published job
-                <br />
-                <span style={{ marginLeft: 5, marginRight: 5, textDecoration: 'underline' }}>
-                  <strong>
-                    {jobTitle ? `(
+              {method === 'job' ? (
+                <p>
+                  From your  published job
+                  <br />
+                  <span style={{ marginLeft: 5, marginRight: 5, textDecoration: 'underline' }}>
+                    <strong>
+                      {jobTitle ? `(
                     ${jobTitle?.toUpperCase()}
                     )` : 'No Name Job'}
-                  </strong>
-                </span>
-              </p>
+                    </strong>
+                  </span>
+                </p>
+              ) : <p>stex gre Vash</p>}
             </p>
           </div>
           <div className="chatBoxCard__info__buttons">
