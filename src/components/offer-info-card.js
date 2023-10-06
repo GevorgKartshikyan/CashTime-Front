@@ -11,7 +11,7 @@ function offerInfoCard(props) {
   } = props;
   const dispatch = useDispatch();
   const handleSendNotice = useCallback(() => {
-    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: id }));
+    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: id, method: 'job' }));
   }, [creator, id]);
   return (
     <div className={classMapSeen ? 'offer__container__right__job on-map-seen on-map-seen' : 'offer__container__right__job'}>
