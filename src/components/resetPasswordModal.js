@@ -8,6 +8,7 @@ function ResetPasswordModal({ closeModal }) {
   const [validationCodeError, setValidationCodeError] = useState('');
   const [validationCode, setValidationCode] = useState('');
   const [passwordSaved, setPasswordSaved] = useState(false);
+  const userId = useSelector((state) => state.users.profile.id);
   const dispatch = useDispatch();
   const resetPasswordValidationCode = useSelector(
     (state) => state.users.resetPasswordValidationCode,
@@ -17,7 +18,9 @@ function ResetPasswordModal({ closeModal }) {
     secondPassword: '',
   });
   useEffect(() => {
-    dispatch(resetPassword());
+    dispatch(resetPassword({
+      userId,
+    }));
   }, []);
   const checkValidationCode = useCallback(() => {
     if (validationCode === resetPasswordValidationCode.toString()) {
@@ -30,6 +33,7 @@ function ResetPasswordModal({ closeModal }) {
   const addNewPassword = useCallback(async () => {
     if (newPassword.firstPassword === newPassword.secondPassword) {
       const { payload } = await dispatch(resetPasswordConfirm({
+        userId,
         newPassword: newPassword.firstPassword,
       }));
       if (payload.status === 'ok') {

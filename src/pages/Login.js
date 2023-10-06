@@ -10,11 +10,13 @@ import { loginRequest } from '../store/actions/users';
 import Header from '../layouts/Header';
 import Img from '../assets/images/login_img.svg';
 import GoogleIcon from '../assets/images/Signup_google_icon.svg';
+import LoginPasswordModal from '../components/LoginPasswordModal';
 
 function Login() {
   const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [modalFlag, setModalFlag] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -141,7 +143,7 @@ function Login() {
           </form>
           <div className="forgetPassword">
             <span className="login__account__span" />
-            <button className="forgetPassword__btn" type="button">Forget your password?</button>
+            <button onClick={() => setModalFlag(true)} className="forgetPassword__btn" type="button">Forget your password?</button>
             <span className="login__account__span" />
           </div>
         </div>
@@ -153,6 +155,8 @@ function Login() {
         <div className="login__image">
           <img src={Img} alt="" />
         </div>
+        {modalFlag ? <LoginPasswordModal closeModal={setModalFlag} /> : null}
+
       </div>
     </>
   );
