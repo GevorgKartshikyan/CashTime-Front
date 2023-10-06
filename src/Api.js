@@ -236,6 +236,12 @@ class Api {
   static AdminLogin(data) {
     return api.post('/admin/login', data);
   }
+
+  static getUsersListForMap(data) {
+    const { city } = data;
+    console.log(city);
+    return api.post('cvs/usersDataForMap', { city });
+  }
 }
 
 export default Api;

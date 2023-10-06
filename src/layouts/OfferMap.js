@@ -6,6 +6,7 @@ import MapInputAutocomplete from '../components/MapInputAutocomplete';
 import GlobalMap from '../pages/GlobalMap';
 import { ReactComponent as SearchIcon } from '../assets/images/offer_filter_search.svg';
 import { jobListFromUsersMap } from '../store/actions/jobsRequest';
+import { usersListForMap } from '../store/actions/users';
 
 function OfferMap({ isLoaded }) {
   const navigate = useNavigate();
@@ -22,8 +23,15 @@ function OfferMap({ isLoaded }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const city = searchParams.get('city') || 'Gyumri';
   const dispatch = useDispatch();
+  const role = useSelector((state) => state.users.profile.role);
+  const users = useSelector((state) => state.users.usersListForMap);
   useEffect(() => {
-    dispatch(jobListFromUsersMap({ city }));
+    if (role === 'employee') {
+      dispatch(jobListFromUsersMap({ city }));
+    } else {
+      dispatch(usersListForMap({ city }));
+      console.log(users, 444444);
+    }
   }, [city]);
   return (
     <>
