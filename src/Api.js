@@ -100,8 +100,8 @@ class Api {
     });
   }
 
-  static resetPassword() {
-    return api.post('/users/resetPassword');
+  static resetPassword(data) {
+    return api.post('/users/resetPassword', data);
   }
 
   static resetPasswordConfirm(data) {
