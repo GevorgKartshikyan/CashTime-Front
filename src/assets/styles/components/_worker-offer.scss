@@ -18,13 +18,17 @@
   &-desc {
     position: relative;
     display: flex;
+    width: 30%;
     flex-direction: column;
     background-color: rgb(225 122 1 / 69%);
     padding: 10px 40px;
-    border-radius: 35px;
+    border-radius: 15px;
     &__title {
       margin-bottom: 20px;
       cursor: pointer;
+      word-wrap: break-word;
+      text-align: center;
+      border-bottom: 1px solid;
     }
   }
   &-offers{
@@ -32,8 +36,31 @@
     padding-bottom: 54px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
+    &-text{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & > p:hover{
+        background-color: rgba(225, 122, 1, 0.69);
+        color: #FFFFFF;
+        border: 1px solid rgba(225, 122, 1, 0.69);
+        transition: all 0.5s;
+      }
+      & > h3{
+        word-wrap: break-word;
+        width: 50%;
+        text-align: center;
+      }
+      & > p{
+        margin-left: 5px;
+        padding: 0 10px;
+        text-align: center;
+        white-space: nowrap;
+        padding: 5px 10px;
+      }
+    }
     & > h3{
       width: 100%;
       margin-bottom: 30px;
@@ -44,6 +71,11 @@
       font-weight: 700;
       line-height: normal;
     }
+  }
+  &_pagination{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
   }
 }
 
@@ -70,6 +102,8 @@
     }
 
     &__title{
+      max-width: 80%;
+      word-wrap: break-word;
       color: #031054;
       font-family:"Lato", sans-serif;
       font-size: 24px;
