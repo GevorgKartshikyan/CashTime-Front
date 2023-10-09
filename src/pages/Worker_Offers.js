@@ -58,7 +58,7 @@ function WorkerOffers() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
             <div className="worker-offers">
-              <div style={{ display: 'flex' }}>
+              <div className="worker-offers-text" style={{ display: 'flex' }}>
                 {titles.filter((e) => e.id === selectedId).map((e) => (
                   <h3 key={e.id}>{e.title}</h3>
                 ))}
@@ -92,21 +92,23 @@ function WorkerOffers() {
                 ))}
               </div>
             </div>
-            <ReactPaginate
-              activeClassName="admin-item admin-active-page"
-              breakClassName="admin-item admin-break-me"
-              pageClassName="admin-item admin-pagination-page add-skill-item"
-              previousClassName="admin-item admin-previous"
-              breakLabel=""
-              containerClassName="pagination"
-              disabledClassName="disabled-page"
-              marginPagesDisplayed={0}
-              nextClassName="admin-item admin-next"
-              onPageChange={handlePageChange}
-              pageCount={totalPagesSingleJob}
-              pageRangeDisplayed={3}
-              forcePage={currentPageSingleJob - 1}
-            />
+            <div className="worker_pagination">
+              <ReactPaginate
+                activeClassName="admin-item admin-active-page"
+                breakClassName="admin-item admin-break-me"
+                pageClassName="admin-item admin-pagination-page add-skill-item"
+                previousClassName="admin-item admin-previous"
+                breakLabel=""
+                containerClassName="pagination"
+                disabledClassName="disabled-page"
+                marginPagesDisplayed={0}
+                nextClassName="admin-item admin-next"
+                onPageChange={handlePageChange}
+                pageCount={totalPagesSingleJob}
+                pageRangeDisplayed={3}
+                forcePage={currentPageSingleJob - 1}
+              />
+            </div>
           </div>
           {showJob && <MyJobCard job={singleJobInfo} />}
           {showJob && <div role="presentation" onClick={() => setShowJob(false)} className="add-service-overlay" />}
