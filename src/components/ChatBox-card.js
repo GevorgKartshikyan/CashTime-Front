@@ -50,7 +50,7 @@ function ChatBoxCard({
                     </strong>
                   </span>
                 </p>
-              ) : <p>stex gre Vash</p>}
+              ) : null}
             </p>
           </div>
           <div className="chatBoxCard__info__buttons">
@@ -77,6 +77,7 @@ function ChatBoxCard({
         && (
           <ConfirmModalNotices
             id={id}
+            method={method}
             noticeJobTo={jobId}
             friendId={friendId}
             setShowModal={setShowModal}

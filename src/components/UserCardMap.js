@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { sendNotice } from '../store/actions/notice';
 
 const { REACT_APP_API_URL } = process.env;
 
 function UserCardMap(props) {
   const { user } = props;
+  const dispatch = useDispatch();
+  const handleSendNotice = useCallback((creator) => {
+    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: null, method: 'freelancer' }));
+  }, []);
   console.log(user, 7896);
   return (
     <div className="worker-offer-ticket for-map">
@@ -39,7 +45,7 @@ function UserCardMap(props) {
           </span>
         </div>
       </div>
-      <button type="button" className="worker-offer-ticket__button">Apply</button>
+      <button onClick={() => handleSendNotice(user.id)} type="button" className="worker-offer-ticket__button">Apply</button>
     </div>
   );
 }

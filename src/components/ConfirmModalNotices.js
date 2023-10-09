@@ -12,13 +12,19 @@ function ConfirmModalNotices({
   jobName,
   friendLastName,
   friendName,
+  method,
 }) {
+  console.log(method);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [messageText, setMessageText] = useState('');
   const userName = useSelector((state) => state.users.profile.firstName);
   useEffect(() => {
-    setMessageText(`Hello ${friendName} ${friendLastName},Thank you for applying for the position I posted. I would like to share some information about this role and the hiring process with you. If you have any questions or if you're interested in additional information, please don't hesitate to ask.Best regards,${userName}`);
+    if (method === 'job') {
+      setMessageText(`Hello ${friendName} ${friendLastName}, Thank you for applying for the position I posted. I would like to share some information about this role and the hiring process with you. If you have any questions or if you're interested in additional information, please don't hesitate to ask. Best regards,${userName}`);
+    } else {
+      setMessageText(`Hello ${friendName} ${friendLastName}, Thank you for choosing me. I would like to share some information about me and the hiring process with you. If you have any questions or if you're interested in additional information, please don't hesitate to ask. Best regards, ${userName}`);
+    }
   }, [friendId, userName, id, noticeJobTo, friendLastName, friendName]);
   const handleSendAccept = useCallback(async () => {
     const { payload } = await dispatch(confirmNotice({
@@ -72,63 +78,120 @@ function ConfirmModalNotices({
           <section className="modal-container-body rtf">
             <h2>Details and Information</h2>
             <br />
-            <p style={{ fontSize: 16 }}>
-              &quot;A freelancer
-              {' '}
-              <strong>{`${friendName} ${friendLastName}`}</strong>
-              {' '}
-              responded to the job
-              {' '}
-              <strong>{jobName ? `${jobName.toUpperCase()}` : 'No Job Name'}</strong>
-              {' '}
-              you posted. Please note
-              that we,
-              {' '}
-              <strong style={{
-                color: '#031054',
-                fontSize: 18,
-              }}
-              >
-                Cash-Time
-              </strong>
-              , provide a platform for freelance professionals and clients, but we
-              do not assume responsibility for the quality of work performed by the freelancer or
-              their professional skills.
+            {method === 'job' ? (
+              <p style={{ fontSize: 16 }}>
+                &quot;A freelancer
+                {' '}
+                <strong>{`${friendName} ${friendLastName}`}</strong>
+                {' '}
+                responded to the job
+                {' '}
+                <strong>{jobName ? `${jobName.toUpperCase()}` : 'No Job Name'}</strong>
+                {' '}
+                you posted. Please note
+                that we,
+                {' '}
+                <strong style={{
+                  color: '#031054',
+                  fontSize: 18,
+                }}
+                >
+                  Cash-Time
+                </strong>
+                , provide a platform for freelance professionals and clients, but we
+                do not assume responsibility for the quality of work performed by the freelancer or
+                their professional skills.
 
-              For any complaints, questions, or issues related to the completed work or interactions
-              with the freelancer, we are always ready to provide you with support. Our customer
-              support service is available to assist you in resolving any concerns that may arise.
-              <br />
-              <br />
-              Best regards,
-              Your
-              {' '}
-              <strong style={{
-                color: '#031054',
-                fontSize: 18,
-              }}
-              >
-                Cash-Time
-              </strong>
-              {' '}
-              Team&quot;
-              <br />
-              <br />
-            </p>
+                For any complaints, questions, or issues related to the completed work
+                or interactions
+                with the freelancer, we are always ready to provide you with support. Our customer
+                support service is available to assist you in resolving any concerns that may arise.
+                <br />
+                <br />
+                Best regards,
+                Your
+                {' '}
+                <strong style={{
+                  color: '#031054',
+                  fontSize: 18,
+                }}
+                >
+                  Cash-Time
+                </strong>
+                {' '}
+                Team&quot;
+                <br />
+                <br />
+              </p>
+            ) : (
+              <p style={{ fontSize: 16 }}>
+                &quot;
+                <strong>{`${friendName} ${friendLastName}`}</strong>
+                {' '}
+                responded to you for work.
+                {' '}
+                Please note
+                that we,
+                {' '}
+                <strong style={{
+                  color: '#031054',
+                  fontSize: 18,
+                }}
+                >
+                  Cash-Time
+                </strong>
+                , provide a platform for freelance professionals and clients, but we
+                do not assume responsibility for the quality of work performed by the freelancer or
+                their professional skills.
+
+                For any complaints, questions, or issues related to the completed
+                work or interactions
+                with the freelancer, we are always ready to provide you with support. Our customer
+                support service is available to assist you in resolving any concerns that may arise.
+                <br />
+                <br />
+                Best regards,
+                Your
+                {' '}
+                <strong style={{
+                  color: '#031054',
+                  fontSize: 18,
+                }}
+                >
+                  Cash-Time
+                </strong>
+                {' '}
+                Team&quot;
+                <br />
+                <br />
+              </p>
+            )}
 
             <h2>Application Acknowledgment</h2>
             <br />
-            <p>
-              Dear
-              {' '}
-              <strong>{userName}</strong>
-              , we warn you that a message will
-              be sent from your name to the freelancer
-              {' '}
-              <strong>{`${friendName} ${friendLastName}`}</strong>
-              {' '}
-              with the text
-            </p>
+            {method === 'job' ? (
+              <p>
+                Dear
+                {' '}
+                <strong>{userName}</strong>
+                , we warn you that a message will
+                be sent from your name to the freelancer
+                {' '}
+                <strong>{`${friendName} ${friendLastName}`}</strong>
+                {' '}
+                with the text
+              </p>
+            ) : (
+              <p>
+                Dear
+                {' '}
+                <strong>{userName}</strong>
+                , we warn you that a message will
+                be sent from your name to me
+                {' '}
+                with the text
+              </p>
+            )}
             <br />
             <p>
               <i>
@@ -137,8 +200,8 @@ function ConfirmModalNotices({
                 <strong>{`${friendName} ${friendLastName}`}</strong>
                 ,
 
-                Thank you for applying for the position I posted. I would like to share some
-                information about this role and the hiring process with you.
+                Thank you for choosing me. I would like to share some
+                information about me and the hiring process with you.
                 If you have any questions or if
                 you&apos;re interested in additional information, please
                 don&apos;t hesitate to ask

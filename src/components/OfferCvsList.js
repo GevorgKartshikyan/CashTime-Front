@@ -10,7 +10,7 @@ import { sendNotice } from '../store/actions/notice';
 function OfferCvsList(props) {
   const { REACT_APP_API_URL } = process.env;
   const { data } = props;
-  const limit = 2;
+  const limit = 5;
   const dispatch = useDispatch();
   const usersFilteredData = useSelector((state) => state.users.filteredUsers);
   const totalPages = useSelector((state) => state.users.filterUserTotalPages);
@@ -24,7 +24,7 @@ function OfferCvsList(props) {
     dispatch(getFilterUser({ data, page, limit }));
   }, [data]);
   const handleSendNotice = useCallback((creator) => {
-    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: null }));
+    dispatch(sendNotice({ noticeTo: creator, noticeJobTo: null, method: 'freelancer' }));
   }, []);
   return (
     <div className="offer__container__right">
@@ -63,22 +63,20 @@ function OfferCvsList(props) {
             ))}
           </div>
           <div className="offer__container__right__paginate">
-            {usersFilteredData?.length > 0 ? (
-              <ReactPaginate
-                activeClassName="item active-page"
-                breakClassName="item break-me"
-                breakLabel=""
-                containerClassName="pagination"
-                disabledClassName="disabled-page"
-                marginPagesDisplayed={0}
-                nextClassName="item next "
-                onPageChange={handlePageChange}
-                pageCount={totalPages} // total
-                pageClassName="item pagination-page "
-                pageRangeDisplayed={5}
-                previousClassName="item previous"
-              />
-            ) : null}
+            <ReactPaginate
+              activeClassName="item active-page"
+              breakClassName="item break-me"
+              breakLabel=""
+              containerClassName="pagination"
+              disabledClassName="disabled-page"
+              marginPagesDisplayed={0}
+              nextClassName="item next "
+              onPageChange={handlePageChange}
+              pageCount={totalPages} // total
+              pageClassName="item pagination-page "
+              pageRangeDisplayed={5}
+              previousClassName="item previous"
+            />
           </div>
         </div>
       </div>
