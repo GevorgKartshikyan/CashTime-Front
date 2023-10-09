@@ -19,9 +19,6 @@ function Dashboard() {
   const jobsCharCount = useSelector((state) => state.admin.jobsCharCount);
   const usersCharCount = useSelector((state) => state.admin.usersCharCount);
   const charDateCalendar = useSelector((state) => state.admin.charDate);
-  console.log(jobsCharCount);
-  console.log(charDateCalendar);
-  console.log(usersCharCount);
   const ref = useRef();
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();

@@ -245,6 +245,14 @@ class Api {
   static getChartForAdmin() {
     return api.get('/admin/chart');
   }
+
+  static getRandomJobs() {
+    return api.get('/jobs/random-jobs');
+  }
+
+  static getRandomUsers() {
+    return api.get('/cvs/random-cvs');
+  }
 }
 
 export default Api;

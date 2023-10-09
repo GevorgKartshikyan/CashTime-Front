@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Autocomplete from 'react-google-autocomplete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Wrapper from '../layouts/Wrapper';
 import HomeJob from '../components/Home-job';
 import JoinImg from '../assets/images/homejoin.svg';
@@ -14,11 +14,14 @@ import JobLocationIcon from '../assets/images/home_location_icon.svg';
 import SearchIcon from '../assets/images/Search_Icon.svg';
 import JobHiring from '../layouts/Job_hiring';
 import { homePageCoordinates } from '../store/actions/app';
+import { getRandomJobs, getRandomUsers } from '../store/actions/users';
 
 function Home() {
   const mapKey = process.env.REACT_APP_MAP_SECRET;
+  const [randomJobs, setRandomJobs] = useState([]);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const profile = useSelector((state) => state.users.profile);
   const dispatch = useDispatch();
   const [searchJobAddress, setSearchJobAddress] = useState({
     city: '',
@@ -57,6 +60,24 @@ function Home() {
       console.error(e);
     }
   };
+
+  useEffect(() => {
+    let fetchData;
+
+    if (profile.role === 'employee') {
+      fetchData = async () => {
+        const { payload } = await dispatch(getRandomJobs());
+        setRandomJobs(payload.randomJobs);
+      };
+    } else {
+      fetchData = async () => {
+        const { payload } = await dispatch(getRandomUsers());
+        setRandomJobs(payload.randomUsers);
+      };
+    }
+
+    fetchData();
+  }, [profile.role]);
   return (
     <Wrapper>
       <section className="join">
@@ -108,7 +129,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <JobHiring />
+      <JobHiring randomJobs={randomJobs} />
       <section className="information">
         <HomeJob rowReverse="" firstText={t('home_job_first_text_first')} secondText={t('home_job_first_text_second')} buttonTxt={t('home_job_first_text_button')} img={jobFind} />
         <HomeJob rowReverse="row" firstText={t('home_job_second_text_first')} secondText={t('home_job_second_text_second')} buttonTxt={t('home_job_second_text_button')} img={seeJobs} />

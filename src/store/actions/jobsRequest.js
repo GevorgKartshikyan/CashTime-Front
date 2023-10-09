@@ -3,8 +3,6 @@ import Api from '../../Api';
 
 export const createJobRequestFromPending = createAsyncThunk('/jobsRequest/createJobRequestFromPending', async (payload, thunkAPI) => {
   try {
-    // eslint-disable-next-line no-promise-executor-return
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     const { data } = await Api.createJob(payload);
     return data;
   } catch (e) {

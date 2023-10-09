@@ -12,7 +12,11 @@ export const registerRequest = createAsyncThunk('/users/registerRequest', async 
 });
 export const loginRequest = createAsyncThunk('users/loginRequest', async (payload, thunkAPI) => {
   try {
-    const { email, password, type } = payload;
+    const {
+      email,
+      password,
+      type,
+    } = payload;
     const { data } = await Api.login(email, password, type);
     return data;
   } catch (e) {
@@ -97,7 +101,10 @@ export const changeRole = createAsyncThunk('users/changeRole', async (payload) =
 });
 export const blockedUsers = createAsyncThunk('users/blockedUsers', async (payload, thunkAPI) => {
   try {
-    const { page, limit } = payload;
+    const {
+      page,
+      limit,
+    } = payload;
     const { data } = await Api.blockedUsers(page, limit);
     return data;
   } catch (e) {
@@ -131,5 +138,13 @@ export const getFilterUser = createAsyncThunk('users/changeRole', async (payload
 export const usersListForMap = createAsyncThunk('users/usersListForMap', async (payload) => {
   console.log(payload, 99977777779);
   const { data } = await Api.getUsersListForMap(payload);
+  return data;
+});
+export const getRandomJobs = createAsyncThunk('users/getRandomJobs', async (payload) => {
+  const { data } = await Api.getRandomJobs(payload);
+  return data;
+});
+export const getRandomUsers = createAsyncThunk('users/getRandomUsers', async (payload) => {
+  const { data } = await Api.getRandomUsers(payload);
   return data;
 });
