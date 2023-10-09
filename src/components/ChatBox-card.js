@@ -45,7 +45,7 @@ function ChatBoxCard({
                   <span style={{ marginLeft: 5, marginRight: 5, textDecoration: 'underline' }}>
                     <strong>
                       {jobTitle ? `(
-                    ${jobTitle?.toUpperCase()}
+                    ${jobTitle.length > 12 ? `${jobTitle?.slice(0, 12)?.toUpperCase()}...` : jobTitle?.toUpperCase()}
                     )` : 'No Name Job'}
                     </strong>
                   </span>

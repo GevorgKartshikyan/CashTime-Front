@@ -69,7 +69,7 @@ function WorkerOffers() {
                     dispatch(userJobInfo({ id: selectedId }));
                   }}
                   className="show-job-details"
-                  style={{ marginLeft: 5 }}
+                  style={{ marginLeft: 5, marginBottom: 30 }}
                 >
                   Show more about work
                 </p>
