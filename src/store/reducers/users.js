@@ -16,6 +16,7 @@ import {
   usersListForMap,
 } from '../actions/users';
 import { socketOffline, socketOnline } from '../actions/socket';
+import { sendNotice } from '../actions/notice';
 
 const initialState = {
   user: {},
@@ -162,5 +163,13 @@ export default createReducer(initialState, (builder) => {
         ...state,
         usersListForMap: users,
       };
+    })
+    .addCase(sendNotice.fulfilled, (state, action) => {
+      const { notice } = action.payload;
+      state.filteredUsers = state.filteredUsers
+        .filter((e) => e.id !== notice.noticeTo);
+      state.usersListForMap = state.usersListForMap
+        .filter((e) => e.id !== notice.noticeTo);
+      state.singleUser = {};
     });
 });
