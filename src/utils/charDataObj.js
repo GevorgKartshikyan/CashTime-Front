@@ -1,12 +1,12 @@
-export default {
+export const chartData = (dataUsers, dataJobs, categories) => ({
   series: [
     {
       name: 'users',
-      data: [31, 40, 28, 51, 42, 109, 100],
+      data: dataUsers,
     },
     {
       name: 'jobs',
-      data: [11, 32, 45, 32, 34, 52, 41],
+      data: dataJobs,
     },
   ],
   options: {
@@ -22,20 +22,7 @@ export default {
     },
     xaxis: {
       type: 'datetime',
-      categories: [
-        '2023-01-1',
-        '2023-02-1',
-        '2023-03-1',
-        '2023-04-1',
-        '2023-05-1',
-        '2023-06-1',
-        '2023-07-1',
-        '2023-08-1',
-        '2023-09-1',
-        '2023-10-1',
-        '2023-11-1',
-        '2023-12-1',
-      ],
+      categories,
     },
     tooltip: {
       x: {
@@ -43,4 +30,4 @@ export default {
       },
     },
   },
-};
+});

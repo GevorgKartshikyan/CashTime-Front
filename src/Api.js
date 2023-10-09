@@ -236,6 +236,10 @@ class Api {
   static AdminLogin(data) {
     return api.post('/admin/login', data);
   }
+
+  static getChartForAdmin() {
+    return api.get('/admin/chart');
+  }
 }
 
 export default Api;
