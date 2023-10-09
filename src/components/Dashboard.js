@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReactApexChart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,13 +8,20 @@ import employees from '../assets/images/employees.svg';
 import services from '../assets/images/services.svg';
 import Announcement from './Announcement';
 import { jobListRequestFromAdmin } from '../store/actions/jobsRequest';
-import charDataObj from '../utils/charDataObj';
 import PaginationNext from './PaginationNextLabel';
 import PaginationPreviousLabel from './PaginationPreviousLabel';
 import { allCountsForAdmin } from '../store/actions/app';
+// eslint-disable-next-line import/named
+import { chartData } from '../utils/charDataObj';
+import { getChartForAdmin } from '../store/actions/admin';
 
 function Dashboard() {
-  const [chartData] = useState(charDataObj);
+  const jobsCharCount = useSelector((state) => state.admin.jobsCharCount);
+  const usersCharCount = useSelector((state) => state.admin.usersCharCount);
+  const charDateCalendar = useSelector((state) => state.admin.charDate);
+  console.log(jobsCharCount);
+  console.log(charDateCalendar);
+  console.log(usersCharCount);
   const ref = useRef();
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
@@ -30,6 +37,7 @@ function Dashboard() {
     dispatch(jobListRequestFromAdmin({ page, limit }));
   }, [page]);
   useEffect(() => {
+    dispatch(getChartForAdmin());
     setSearchParams({ page, limit });
     dispatch(allCountsForAdmin());
   }, []);
@@ -37,7 +45,6 @@ function Dashboard() {
     const selectedPage = event.selected + 1;
     setSearchParams({ page: selectedPage, limit });
   };
-  console.log(jobsAdmin);
   return (
     <div className="admin__row__dashboard">
       <div className="admin__row__dashboard__title">
@@ -74,8 +81,8 @@ function Dashboard() {
       </div>
       <div id="chart">
         <ReactApexChart
-          options={chartData.options}
-          series={chartData.series}
+          options={chartData(usersCharCount, jobsCharCount, charDateCalendar).options}
+          series={chartData(usersCharCount, jobsCharCount, charDateCalendar).series}
           type="area"
           height={350}
         />

@@ -239,8 +239,11 @@ class Api {
 
   static getUsersListForMap(data) {
     const { city } = data;
-    console.log(city);
     return api.post('cvs/usersDataForMap', { city });
+  }
+
+  static getChartForAdmin() {
+    return api.get('/admin/chart');
   }
 }
 
