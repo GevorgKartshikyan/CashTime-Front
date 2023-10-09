@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import adminImg from '../assets/images/adminImg.svg';
 import Dashboard from '../components/Dashboard';
 import UserDashboard from '../components/User-dashboard';
 import AdminEmployees from '../components/AdminEmployees';
@@ -49,19 +48,19 @@ function Admin() {
         {page === 'user' && <UserDashboard /> }
         {page === 'add-service' && <AddService />}
         {page === 'blocked-users' && <BlockedUsers />}
-        <div className="admin__row__user">
-          <div className="admin__row__user__w">
-            <div className="admin__row__user__w-info">
-              <div className="admin__row__user__w-info__text">
-                <h3>Amalia M.</h3>
-                <p>Admin</p>
-              </div>
-              <div className="admin__row__user__w-info__img">
-                <img src={adminImg} alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* <div className="admin__row__user"> */}
+        {/*   <div className="admin__row__user__w"> */}
+        {/*     <div className="admin__row__user__w-info"> */}
+        {/*       <div className="admin__row__user__w-info__text"> */}
+        {/*         <h3>Amalia M.</h3> */}
+        {/*         <p>Admin</p> */}
+        {/*       </div> */}
+        {/*       <div className="admin__row__user__w-info__img"> */}
+        {/*         <img src={adminImg} alt="" /> */}
+        {/*       </div> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

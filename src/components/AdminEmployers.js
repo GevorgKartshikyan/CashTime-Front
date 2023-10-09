@@ -121,9 +121,6 @@ function AdminEmployers() {
       </div>
       <div className="admin__employees__info">
         <div className="admin__employees__info__titles admin-title">
-          <div className="admin__employees__info__titles__checkbox">
-            <input type="checkbox" />
-          </div>
           <div className="admin__employees__info__titles__name">
             <h3>Name</h3>
           </div>
@@ -139,14 +136,8 @@ function AdminEmployers() {
           <div className="admin__employees__info__titles__city">
             <h3>City</h3>
           </div>
-          <div className="admin__employees__info__titles__contact">
-            <h3>Contact</h3>
-          </div>
           <div className="admin__employees__info__titles__status">
             <h3>Status</h3>
-          </div>
-          <div className="admin__employees__info__titles__action">
-            <h3>Action</h3>
           </div>
         </div>
       </div>
