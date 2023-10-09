@@ -23,10 +23,10 @@ function BlockedUsers() {
   };
   useEffect(() => {
     dispatch(blockedUsers({ page, limit: 6 }));
-  }, []);
+  }, [page, limit]);
   useEffect(() => {
     setSearchParams({ page, limit });
-  }, []);
+  }, [page, limit]);
   const handlePageChange = (event) => {
     const selectedPage = event.selected + 1;
     setSearchParams({ page: selectedPage, limit });

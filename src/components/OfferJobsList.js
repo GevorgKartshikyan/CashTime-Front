@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import { useSelector } from 'react-redux';
-import SearchIconZoom from '../assets/images/offer_search_magnifier_mobile ui_zoom_icon.svg';
 import IndicatorsArrowsSecond from './indicatorsArrowsSecond';
 import InfoCard from './offer-info-card';
 import cryingEmoji from '../assets/images/crying.svg';
@@ -101,12 +100,6 @@ function OfferJobsList({
           <button type="button" onClick={() => setToggleBtn(false)} className={toggleBtn ? 'offer__container__right__toggle__buttons__saved' : 'offer__container__right__toggle__buttons__saved active'}>Saved Jobs</button>
         </div>
 
-      </div>
-      <div className="offer__container__right__toggle">
-        <label htmlFor="container-right-input" className="offer__container__right__label">
-          <img src={SearchIconZoom} alt="img" className="offer__container__right__label__search-img" />
-          <input type="text" id="container-right-input" className="offer__container__right__label__search-input" />
-        </label>
       </div>
       <div className="offer__container__right__sort">
         <span className="offer__container__right__sort__text">Sort:</span>

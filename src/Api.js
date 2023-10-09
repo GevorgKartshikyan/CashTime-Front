@@ -108,7 +108,7 @@ class Api {
     return api.post('/users/resetPasswordConfirm', data);
   }
 
-  static list(page, limit, role, search, order) {
+  static list(page, limit, role, search, id, order) {
     return api.get(`/users/list?page=${page}&limit=${limit}&role=${role}&search=${search}&order=${order}`);
   }
 

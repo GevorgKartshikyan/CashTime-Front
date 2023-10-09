@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.svg';
-import callIcon from '../assets/images/Call.svg';
-import emailIcon from '../assets/images/Email.svg';
 import ReportModal from './ReportModal';
 import { status as changeStatus } from '../store/actions/users';
 
@@ -15,8 +13,6 @@ function UserInfoCard(props) {
   const {
     img, firstName, lastName, userId, date, profession, city, status,
   } = props;
-  // const [deleteFlag, setDeleteFlag] = useState(false);
-  const [checkboxFlag, setCheckboxFlag] = useState(true);
   const [modalFlag, setModalFlag] = useState(false);
   const dispatch = useDispatch();
   const [newStatus, setNewStatus] = useState(status);
@@ -48,10 +44,7 @@ function UserInfoCard(props) {
         )
         : null}
       <div className="admin__employees__info">
-        <div className={checkboxFlag ? 'admin__employees__info__titles' : 'admin__employees__info__titles cheaked'}>
-          <div className="admin__employees__info__titles__checkbox">
-            <input type="checkbox" onChange={() => setCheckboxFlag(!checkboxFlag)} />
-          </div>
+        <div className="admin__employees__info__titles">
           <div role="presentation" onClick={handleGetSingleUser} className="admin__employees__info__titles__name">
             <div className="admin__employees__info__titles__name__box">
               <img className="admin__employees__info__titles__name__box__img" src={REACT_APP_API_URL + img} alt="img" />
@@ -76,14 +69,6 @@ function UserInfoCard(props) {
           </div>
           <div className="admin__employees__info__titles__city">
             <h3 className="admin__employees__info__titles__city__text">{city}</h3>
-          </div>
-          <div className="admin__employees__info__titles__contact">
-            <button type="button" className="admin__employees__info__titles__contact__btn">
-              <img src={callIcon} alt="img" />
-            </button>
-            <button type="button" className="admin__employees__info__titles__contact__btn">
-              <img src={emailIcon} alt="img" />
-            </button>
           </div>
           <div className="admin__employees__info__titles__status">
             <button
