@@ -23,7 +23,7 @@ function ChatBox({ setIsActive }) {
         />
       ))}
       <div className="chatbox__seeall">
-        <NavLink to="/" className="chatbox__text">See all</NavLink>
+        <NavLink to="/worker-offers" className="chatbox__text">See all</NavLink>
       </div>
     </div>
   );
