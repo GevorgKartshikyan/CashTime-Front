@@ -27,6 +27,7 @@ function ConfirmModalNotices({
     }
   }, [friendId, userName, id, noticeJobTo, friendLastName, friendName]);
   const handleSendAccept = useCallback(async () => {
+    document.body.style.overflowY = 'auto';
     const { payload } = await dispatch(confirmNotice({
       id,
       noticeJobTo,

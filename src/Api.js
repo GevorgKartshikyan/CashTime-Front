@@ -253,6 +253,14 @@ class Api {
   static getRandomUsers() {
     return api.get('/cvs/random-cvs');
   }
+
+  static sendReview(data) {
+    return api.post('/review/send', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 }
 
 export default Api;

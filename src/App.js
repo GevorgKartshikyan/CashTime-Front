@@ -19,7 +19,6 @@ import Offer from './pages/Offer';
 import CreateCV from './pages/Create-CV';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
-import Review from './pages/Review';
 import Profile from './pages/Profile';
 import { getProfile } from './store/actions/users';
 import { socketInit } from './store/actions/socket';
@@ -54,10 +53,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/writereview" element={<WriteReview />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/:userId" element={<SingleProfile />} />
-        <Route path="/review" element={<Review />} />
+        <Route path="/add-review" element={<WriteReview />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />

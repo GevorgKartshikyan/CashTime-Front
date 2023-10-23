@@ -57,7 +57,7 @@ function WorkerOffers() {
             ))}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
-            <div className="worker-offers">
+            <div className="worker-qoffers">
               <div className="worker-offers-text" style={{ display: 'flex' }}>
                 {titles.filter((e) => e.id === selectedId).map((e) => (
                   <h3 key={e.id}>{e.title}</h3>
@@ -77,7 +77,9 @@ function WorkerOffers() {
               <div className="worker-offers">
                 {noticesSingleJob.map((e) => (
                   <WorkerOfferTicket
+                    seen={e.seen}
                     id={e.id}
+                    done={e.done}
                     jobId={e.noticeJobTo}
                     key={e.id}
                     date={e.createdAt}
