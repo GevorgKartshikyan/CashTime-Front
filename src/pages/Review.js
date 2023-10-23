@@ -12,23 +12,13 @@ function Review(props) {
   const { setShowImg } = props;
   const token = useSelector((state) => state.users.token);
   const [selectedStars, setSelectedStars] = useState(0);
-  // const [selectedPhoto, setSelectedPhoto] = useState('');
-  // const [showModal, setShowModal] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  // const { jobImgSrc, setShowImg } = props;
   const progress = {
     excellent: 80,
   };
   const handleStarChange = (event) => {
     setSelectedStars(parseInt(event.target.value, 10));
   };
-
-  // const handlePhotoClick = (selectedImage) => {
-  //   setShowModal(true);
-  //   const selectedIndex = imageAssets.indexOf(selectedImage);
-  //   setSelectedPhoto(selectedIndex);
-  // };
   const customStyle = {
     root: {
       height: '3px',

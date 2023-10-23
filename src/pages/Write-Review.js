@@ -1,41 +1,46 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Wrapper from '../layouts/Wrapper';
 import RemoveImg from '../assets/images/delete.svg';
+import { sendReview } from '../store/actions/reviews';
 
 function WriteReview() {
   const token = useSelector((state) => state.users.token);
   const [selectedStars, setSelectedStars] = useState(0);
-  const [uploadedImages, setUploadedImages] = useState([]);
-
+  const [files, setFiles] = useState([]);
+  const [text, setText] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const friendId = searchParams.get('friendId');
+  const jobId = searchParams.get('jobId');
+  const handleSendReview = useCallback(async (e) => {
+    e.preventDefault();
+    const { payload } = await dispatch(sendReview({
+      files, text, rate: selectedStars, friendId, jobId,
+    }));
+    if (payload.status === 'ok') {
+      navigate('/');
+    }
+  }, [files, text, selectedStars, friendId, jobId]);
   const handleStarChange = (event) => {
     setSelectedStars(parseInt(event.target.value, 10));
   };
 
   const handleRemoveImage = (index) => {
-    const imagesArray = [...uploadedImages];
-    imagesArray.splice(index, 1);
-    setUploadedImages([...imagesArray]);
+    const newFiles = files.slice();
+    newFiles.splice(index, 1);
+    setFiles(newFiles);
   };
 
-  const handleImageUpload = (event) => {
-    const { files } = event.target;
-    const imagesArray = [...uploadedImages]; // Make a copy of the existing images
-
-    for (let i = 0; i < files?.length; i += 1) {
-      if (imagesArray.length < 4) {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          imagesArray.push(e.target.result);
-          setUploadedImages([...imagesArray]);
-        };
-
-        reader.readAsDataURL(files[i]);
-      }
-    }
-  };
-
+  const handleFileSelect = useCallback(async (ev) => {
+    const newFiles = [...ev.target.files].map((file) => {
+      file.uri = URL.createObjectURL(file);
+      return file;
+    });
+    setFiles([...files, ...newFiles]);
+  }, [files]);
   if (!token) {
     window.location.href = '/login';
     return null;
@@ -98,9 +103,9 @@ function WriteReview() {
               <div className="img__review">
                 <div className="images">
                   <div className="all__img__up">
-                    {uploadedImages.slice(0, 4).map((image, index) => (
-                      <div className="uploaded-image-container">
-                        <img src={image} alt={`Uploaded ${index}`} className="uploaded-image" />
+                    {files.map((e, index) => (
+                      <div key={e.uri} className="uploaded-image-container">
+                        <img src={e.uri} alt={`Uploaded ${e.name}`} className="uploaded-image" />
                         <button
                           type="submit"
                           className="remove-image-button"
@@ -112,7 +117,7 @@ function WriteReview() {
                     ))}
                   </div>
                 </div>
-                <label htmlFor="image-upload" className={`upload__img__review ${uploadedImages?.length >= 4 ? 'disabled__img__up' : 'not__disabled'}`}>
+                <label htmlFor="image-upload" className={`upload__img__review ${files?.length >= 4 ? 'disabled__img__up' : 'not__disabled'}`}>
                   Upload Images
                 </label>
                 <input
@@ -121,23 +126,24 @@ function WriteReview() {
                   type="file"
                   accept="image/*"
                   multiple
-                  disabled={uploadedImages.length >= 4}
-                  onChange={handleImageUpload}
+                  disabled={files.length >= 4}
+                  onChange={handleFileSelect}
                 />
               </div>
             </div>
-            <form action="#" className="write__review__form">
+            <div className="write__review__form">
               <p className="write__review__text__one">Write A review here</p>
               <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
                 className="write__review__text__area"
                 name="text__area__review"
                 rows="4"
                 cols="50"
                 placeholder="Write You Review Here"
               />
-              <button type="submit" className="btn write__review__button">Confirm</button>
-              <button type="submit" className="write__review__button__skip">Skip</button>
-            </form>
+              <button onClick={handleSendReview} type="button" className="btn write__review__button">Confirm</button>
+            </div>
           </div>
         </div>
       </div>
