@@ -28,6 +28,7 @@ import NotFoundPage from './components/NotFoundPage';
 import SuccessModal from './components/SuccessModal';
 import AdminLogin from './pages/AdminLogin';
 import SingleProfile from './pages/SingleProfile';
+import ConfirmReview from './components/ConfirmReview';
 
 function App() {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ function App() {
         <Route path="/*" element={<NotFoundPage />} />
         <Route path="/success-message/:page" element={<SuccessModal />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/confirm-review" element={<ConfirmReview />} />
       </Routes>
     </BrowserRouter>
   );

@@ -44,6 +44,7 @@ function WorkerOffers() {
     return null;
   }
   const singleJobInfo = useSelector((state) => state.jobsRequest.userJob);
+  console.log(noticesSingleJob);
   return (
     <div>
       <Header />
@@ -91,6 +92,7 @@ function WorkerOffers() {
                   />
                 ))}
               </div>
+              {noticesSingleJob.length === 0 ? <h4 className="worker-offers-txt">No job applications.</h4> : null}
             </div>
             <div className="worker_pagination">
               <ReactPaginate

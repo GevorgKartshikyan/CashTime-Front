@@ -27,7 +27,6 @@
       margin-bottom: 20px;
       cursor: pointer;
       word-wrap: break-word;
-      text-align: center;
       border-bottom: 1px solid;
     }
   }
@@ -226,4 +225,8 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+.worker-offers-txt{
+  width: 100%;
+  text-align: center;
 }
