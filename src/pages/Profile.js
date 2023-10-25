@@ -22,6 +22,7 @@ function Profile() {
   const [resetPasswordModal, setResetPasswordModal] = useState();
   const token = useSelector((state) => state.users.token);
   const userInfo = useSelector((state) => state.users.profile);
+  console.log(userInfo);
   const userCvInfo = userInfo.createdCvs || {};
   const { skills = [], language = [] } = userCvInfo;
   console.log(language);
@@ -190,7 +191,7 @@ function Profile() {
                 </ul>
               </div>
               <div className="profile-delete-box">
-                <button type="button" className="profile-delete-box__reset-password" onClick={() => setResetPasswordModal(true)}>Reset password</button>
+                {userInfo.type === 'ordinary' ? <button type="button" className="profile-delete-box__reset-password" onClick={() => setResetPasswordModal(true)}>Reset password</button> : null}
                 <button type="button" className="profile-delete-box__delete-account" onClick={() => setDeleteAccountModal(true)}>Delete account</button>
               </div>
             </div>

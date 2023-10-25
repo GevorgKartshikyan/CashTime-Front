@@ -189,7 +189,11 @@ class Api {
   }
 
   static sendMessage(data) {
-    return api.post('/messages/send', data);
+    return api.post('/messages/send', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   }
 
   static getMessagesList(params) {
