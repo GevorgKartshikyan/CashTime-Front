@@ -5,7 +5,6 @@ import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { editProfile } from '../store/actions/users';
-import CvIcon from '../assets/images/CV-Link.svg';
 import ProfileIcon from '../assets/images/Profile-pic-profile.svg';
 import ProfileSelectVector from './ProfileSelectVector';
 
@@ -119,7 +118,26 @@ function ProfileEditModal({
       console.error(e);
     }
   };
-
+  const handleDeleteAvatarRequest = useCallback(() => {
+    selectedPhoto.file = null;
+    console.log(selectedPhoto.file);
+    // ev.preventDefault();
+    dispatch(editProfile({
+      userName,
+      surname,
+      addSkill,
+      education,
+      subject,
+      address,
+      addLanguages,
+      phoneNumber,
+      profession: selectedOptionProfession || { label: '' },
+      avatar: selectedPhoto.file,
+    }));
+  }, [
+    selectedPhoto.file,
+  ]);
+  console.log(selectedPhoto.file);
   const handleSendNewInfo = useCallback((ev) => {
     ev.preventDefault();
     dispatch(editProfile({
@@ -353,16 +371,30 @@ function ProfileEditModal({
         </div>
       </div>
       <div className="modal-editInfo__global modal-editInfo-for-links">
-        <div className="modal-editInfo__global__info">
-          <span className="modal-editInfo__global__info__title">CV Link*</span>
-          <label htmlFor="cv-link-profile" className="modal-editInfo__global__info__label">
-            <img src={CvIcon} alt="IMG" className="modal-editInfo__global__info__label__img" />
-            <input
-              id="cv-link-profile"
-              style={{ display: 'none' }}
-              type="file"
-            />
-          </label>
+        <div className="modal-editInfo__global__info deleteAvatar">
+          <span className="modal-editInfo__global__info__title">Delete Avatar*</span>
+          <div className="modal-editInfo__global__info__deleteAvatar">
+            <button
+              type="button"
+              className="modal-editInfo__global__info__deleteAvatar__btn"
+              onClick={handleDeleteAvatarRequest}
+            >
+              Delete Photo
+            </button>
+          </div>
+          {/* <span className="modal-editInfo__global__info__title">CV Link*</span> */}
+          {/* <label htmlFor=
+          "cv-link-profile"
+           className="modal-editInfo__global__info__label"> */}
+          {/* <img src={CvIcon}
+           alt="IMG"
+           className="modal-editInfo__global__info__label__img" /> */}
+          {/* <input */}
+          {/* id="cv-link-profile" */}
+          {/* style={{ display: 'none' }} */}
+          {/* type="file" */}
+          {/* /> */}
+          {/* </label> */}
         </div>
         <div className="modal-editInfo__global__info">
           <span className="modal-editInfo__global__info__title">Profile Pic*</span>
