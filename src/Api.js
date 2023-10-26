@@ -136,6 +136,10 @@ class Api {
     return api.get(`/cvs/singleCv/${id}`);
   }
 
+  static addCvLink(cvLink) {
+    return api.put('/cvs/edit-cv-link', { cvLink });
+  }
+
   static status(id) {
     return api.put('/users/status', { id });
   }

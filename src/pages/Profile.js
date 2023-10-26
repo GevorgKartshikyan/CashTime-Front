@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import ProfileEditModal from '../components/ProfileEditModal';
@@ -8,15 +9,20 @@ import ProfileDeleteModal from '../components/ProfileDeleteModal';
 import Available from '../assets/images/available.svg';
 import Star from '../assets/images/Star.svg';
 import LocationSvg from '../assets/images/vectorMapBlue.svg';
-// import CVIcon from '../assets/images/scope_icon.svg';
 import EditIcon from '../assets/images/pen_icon.svg';
 import PhoneIcon from '../assets/images/phone_call_orange_icon.svg';
+import CloseIcon from '../assets/images/closeIcon.png';
+import CVIcon from '../assets/images/scope_icon.svg';
 import { editProfile } from '../store/actions/users';
+import { addCvLink } from '../store/actions/createCvForm';
 import ResetPasswordModal from '../components/resetPasswordModal';
 
 const { REACT_APP_API_URL } = process.env;
 function Profile() {
+  const [CvFlag, setCvFlag] = useState(false);
   const [active, setActive] = useState();
+  const [cvInfo, setCvInfo] = useState('');
+  const [cvLink, setCvLink] = useState(false);
   const [smallModalActive, setSmallModalActive] = useState();
   const [deleteAccountModal, setDeleteAccountModal] = useState();
   const [resetPasswordModal, setResetPasswordModal] = useState();
@@ -25,7 +31,7 @@ function Profile() {
   console.log(userInfo);
   const userCvInfo = userInfo.createdCvs || {};
   const { skills = [], language = [] } = userCvInfo;
-  console.log(language);
+  console.log(userCvInfo);
   const modalBg = useRef();
   const modalSmall = useRef();
   const handleOpenModal = useCallback(() => {
@@ -65,6 +71,35 @@ function Profile() {
       avatar: null,
     }));
   };
+
+  const handleAddCvLink = useCallback(() => {
+    setCvLink(cvInfo);
+    setCvFlag(false);
+    setCvInfo(false);
+    dispatch(addCvLink({
+      cvLink: cvInfo,
+    }));
+  }, [cvLink, cvInfo]);
+
+  console.log(cvInfo);
+  console.log(cvLink);
+  const handleDeleteLanguages = (id) => {
+    const newLanguages = language.filter((e) => e.id !== id);
+    console.log(newLanguages);
+    dispatch(editProfile({
+      userName: userInfo.firstName,
+      surname: userInfo.lastName,
+      addSkill: skills,
+      education: userCvInfo.school,
+      subject: userCvInfo.degree,
+      address: null,
+      addLanguages: newLanguages || [],
+      phoneNumber: userInfo.phone,
+      profession: userCvInfo.experience,
+      avatar: null,
+    }));
+  };
+
   if (!token) {
     window.location.href = '/login'; return null;
   }
@@ -96,14 +131,7 @@ function Profile() {
                   <img className="profile__user__info__global__text__starSvg" src={Star} alt="IMG" />
                   <span className="profile__user__info__global__text__specialization">{userCvInfo.experience}</span>
                 </div>
-                <div className="profile__user__info__global__location">
-                  <img className="profile__user__info__global__location__marker" src={LocationSvg} alt="IMG" />
-                  <span className="profile__user__info__global__location__info">
-                    {userInfo.city}
-                    {' '}
-                    {userInfo.country}
-                  </span>
-                </div>
+
                 <div className="profile__user__info__global__jobs">
                   <div className="profile__user__info__global__jobs__count">
                     <span className="profile__user__info__global__jobs__count__number">104</span>
@@ -114,13 +142,44 @@ function Profile() {
                     <span className="profile__user__info__global__jobs__count__text">In Progress</span>
                   </div>
                 </div>
-                {/* <div className="profile__user__info__global__cv"> */}
-                {/*   <span className="profile__user__info__global__cv__text">CV Link:</span> */}
-                {/*   <button type="button" className="profile__user__info__global__cv__link"> */}
-                {/*     <img className="profile__user__info__global__cv__link__img"
-                src={CVIcon} alt="IMG" /> */}
-                {/*   </button> */}
-                {/* </div> */}
+
+                <div className="profile__user__info__global__cv">
+                  <span className="profile__user__info__global__cv__text">CV Link:</span>
+                  {/* <button type="button" className="profile__user__info__global__cv__link"> */}
+                  {/*   <img className="profile__user__info__global__cv__link__img"
+                  src={CVIcon} alt="IMG" /> */}
+                  {/* </button> */}
+                  {userCvInfo.link
+                    ? (
+                      <Link className="cv-link-button" target="_blank" rel="stylesheet" to={userCvInfo.link}>
+                        <img className="cv-link-button__img" src={CVIcon} alt="img" />
+                      </Link>
+                    )
+                    : (
+                      <>
+                        <div className="cvLink">
+                          {
+                        CvFlag
+                          ? (
+                            <>
+                              <input className="cvLink__cvLinkInput" onChange={(event) => setCvInfo(event.target.value)} type="text" />
+                              <button onClick={() => setCvFlag(false)} type="button" className="cvLink__closeBtn">
+                                <img src={CloseIcon} alt="img" className="cvLink__closeBtn__img" />
+                              </button>
+                            </>
+                          ) : null
+                      }
+
+                        </div>
+                        {
+                    CvFlag
+                      ? <button type="button" onClick={handleAddCvLink} className="plusBtn">+</button>
+                      : <button type="button" onClick={() => setCvFlag(true)} className="plusBtn">+</button>
+                  }
+                      </>
+                    )}
+
+                </div>
               </div>
             </div>
             <span className="profile__user__jobPrice">
@@ -148,13 +207,17 @@ function Profile() {
                   userCvInfo.bio
                 }
                 </p>
-                <span className="profile__info__job__box__education">Education</span>
+
                 {userCvInfo.school ? (
-                  <span
-                    className="profile__info__job__box__educationName"
-                  >
-                    {userCvInfo.school.toUpperCase()}
-                  </span>
+                  <>
+                    <span className="profile__info__job__box__education bigTextProfile">Education</span>
+                    <span
+                      className="profile__info__job__box__educationName"
+                    >
+                      {userCvInfo.school.toUpperCase()}
+                    </span>
+                  </>
+
                 ) : null}
                 {userCvInfo.degree
                   ? (
@@ -164,7 +227,7 @@ function Profile() {
                       </span>
                     </div>
                   ) : null}
-                {skills?.length !== 0 && <span className="profile__info__job__box__skills">Skills</span> }
+                {skills?.length !== 0 && <span className="profile__info__job__box__skills bigTextProfile">Skills</span> }
                 <ul>
                   {
                     skills !== null ? skills.map((e) => (
@@ -176,19 +239,28 @@ function Profile() {
                     )) : null
                 }
                 </ul>
-                <span className="profile__info__job__box__languages">Languages</span>
-                <ul>
-                  {
-                    language?.map((e) => (
-                      <li key={e.id} className="profile__info__job__box__language">
-                        {e.language}
-                        (
-                        {e.level.value ?? e.level}
-                        )
-                      </li>
-                    ))
-                  }
-                </ul>
+
+                {language.length
+                  ? (
+                    <>
+                      <span className="profile__info__job__box__language bigTextProfile">Languages</span>
+                      { language?.map((e) => (
+                        <ul>
+                          <li key={e.id} className="profile__info__job__box__language">
+                            {e.language}
+                            (
+                            {e.level.value ?? e.level}
+                            )
+                            <button className="skills-delete-btn" onClick={() => handleDeleteLanguages(e.id)} type="button">Delete</button>
+                          </li>
+                        </ul>
+                      )) }
+                      {' '}
+
+                    </>
+                  )
+                  : null}
+
               </div>
               <div className="profile-delete-box">
                 {userInfo.type === 'ordinary' ? <button type="button" className="profile-delete-box__reset-password" onClick={() => setResetPasswordModal(true)}>Reset password</button> : null}
@@ -197,7 +269,12 @@ function Profile() {
             </div>
             <div className="profile__info__contacts">
               <h2 className="profile__info__contacts__location">Location:</h2>
-              <span className="profile__info__contacts__locationName">2199/75</span>
+              <span className="profile__info__contacts__locationName">
+                <img className="profile__user__info__global__location__marker" src={LocationSvg} alt="IMG" />
+                {userInfo.city}
+                {' '}
+                {userInfo.country}
+              </span>
               <div className="profile__info__contacts__phone">
                 <h2 className="profile__info__contacts__phone__title">Phone Number:</h2>
                 <img className="profile__info__contacts__phone__img" src={PhoneIcon} alt="IMG" />

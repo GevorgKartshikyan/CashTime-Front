@@ -22,6 +22,7 @@ const initialState = {
     selectedPhoto: '',
     phoneNumber: '',
   },
+  // data: {},
 };
 export default createReducer(initialState, (builder) => {
   builder

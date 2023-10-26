@@ -15,6 +15,7 @@ import {
   resetPassword,
   usersListForMap,
 } from '../actions/users';
+import { addCvLink } from '../actions/createCvForm';
 import { socketOffline, socketOnline } from '../actions/socket';
 import { sendNotice } from '../actions/notice';
 
@@ -41,6 +42,15 @@ const initialState = {
 
 export default createReducer(initialState, (builder) => {
   builder
+    .addCase(addCvLink.fulfilled, (state, action) => {
+      const {
+        cvLink,
+      } = action.payload;
+      state.profile = {
+        ...state.profile,
+        createdCvs: { ...state.profile.createdCvs, link: cvLink },
+      };
+    })
     .addCase(editProfile.fulfilled, (state, action) => {
       const {
         user,
