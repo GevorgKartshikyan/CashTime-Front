@@ -18,6 +18,14 @@ import { getRandomJobs, getRandomUsers } from '../store/actions/users';
 
 function Home() {
   const mapKey = process.env.REACT_APP_MAP_SECRET;
+
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    console.log(currentPath);
+    if (currentPath === '/') {
+      window.history.pushState(null, null, currentPath);
+    }
+  }, []);
   const [randomJobs, setRandomJobs] = useState([]);
   const { t } = useTranslation();
   const navigate = useNavigate();

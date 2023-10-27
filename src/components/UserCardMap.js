@@ -10,7 +10,6 @@ function UserCardMap(props) {
   const handleSendNotice = useCallback((creator) => {
     dispatch(sendNotice({ noticeTo: creator, noticeJobTo: null, method: 'freelancer' }));
   }, []);
-  console.log(user, 7896);
   return (
     <div className="worker-offer-ticket for-map">
       <div className="worker-offer-ticket__first-line forFilter-first-line">

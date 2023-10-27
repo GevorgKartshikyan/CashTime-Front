@@ -269,6 +269,22 @@ class Api {
       },
     });
   }
+
+  static getProgressReviewsList() {
+    return api.get('/review/list-in-progress');
+  }
+
+  static confirmReview(id) {
+    return api.put('/review/confirm', { id });
+  }
+
+  static deleteReview(id) {
+    return api.delete(`/review/delete/${id}`);
+  }
+
+  static reviewsList({ userTo, limit, page }) {
+    return api.get(`/review/list?userTo=${userTo || ''}&limit=${limit}&page=${page}`);
+  }
 }
 
 export default Api;

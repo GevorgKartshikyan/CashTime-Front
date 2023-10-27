@@ -52,7 +52,7 @@ function WorkerOfferTicket({
           <button
             onClick={() => {
               if (jobId) {
-                navigate(`/add-review?friendId=${friendId}&jobId=${jobId}`);
+                navigate(`/add-review/${friendId}asdasasdfasvhgv${jobId}`);
               } else {
                 navigate(`/add-review?friendId=${friendId}`);
               }

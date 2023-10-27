@@ -3,7 +3,8 @@ import React, {
   useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import ProfileEditModal from '../components/ProfileEditModal';
@@ -14,10 +15,23 @@ import LocationSvg from '../assets/images/vectorMapBlue.svg';
 import CVIcon from '../assets/images/scope_icon.svg';
 import PhoneIcon from '../assets/images/phone_call_orange_icon.svg';
 import { editProfile, getSingleUser } from '../store/actions/users';
+import { reviewList } from '../store/actions/reviews';
+import SingleReview from '../components/SingleReview';
+import PaginationNext from '../components/PaginationNextLabel';
+import PaginationPreviousLabel from '../components/PaginationPreviousLabel';
+import ReviewImageModal from '../components/ReviewImageModal';
 
 const { REACT_APP_API_URL } = process.env;
 function SingleProfile() {
   const [active, setActive] = useState();
+  const [selectedImage, setSelectedImage] = useState('');
+  console.log(selectedImage);
+  const reviews = useSelector((state) => state.review.reviewsList);
+  const totalPages = useSelector((state) => state.review.totalPages);
+  const currentPage = useSelector((state) => state.review.currentPage);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get('page') || 1, 10);
+  const limit = parseInt(searchParams.get('limit') || 4, 10);
   const [smallModalActive, setSmallModalActive] = useState();
   const token = useSelector((state) => state.users.token);
   const userInfo = useSelector((state) => state.users.singleUser);
@@ -30,6 +44,17 @@ function SingleProfile() {
   useEffect(() => {
     dispatch(getSingleUser(userId));
   }, [userId]);
+  const handlePageChange = (event) => {
+    const selectedPage = event.selected + 1;
+    setSearchParams({ page: selectedPage, limit });
+  };
+  useEffect(() => {
+    dispatch(reviewList({
+      userTo: userId,
+      limit,
+      page,
+    }));
+  }, [userId, page]);
   const handleCloseModal = useCallback((ev) => {
     if (ev.target === modalBg.current) {
       setSmallModalActive(false);
@@ -44,7 +69,6 @@ function SingleProfile() {
   }, [smallModalActive]);
   const handleDeleteSkill = (id) => {
     const newSkills = skills.filter((e) => e.id !== id);
-    console.log(newSkills);
     dispatch(editProfile({
       userName: userInfo.firstName,
       surname: userInfo.lastName,
@@ -186,6 +210,40 @@ function SingleProfile() {
 
             </div>
           </div>
+          {reviews.length > 0 ? (
+            <div className="review">
+              {reviews.map((e) => (
+                <SingleReview
+                  selectImage={setSelectedImage}
+                  key={e.id}
+                  firstName={e.reviewFrom?.firstName}
+                  lastName={e.reviewFrom?.lastName}
+                  rate={e.rate}
+                  text={e.text}
+                  date={e.formattedCreatedAt}
+                  profileImg={e.reviewFrom?.avatar}
+                  images={e.files}
+                />
+              ))}
+              <ReactPaginate
+                activeClassName="admin-item admin-active-page"
+                breakClassName="admin-item admin-break-me"
+                pageClassName="admin-item admin-pagination-page add-skill-item"
+                previousClassName="admin-item admin-previous"
+                breakLabel=""
+                containerClassName="pagination pagination-user-reviews"
+                disabledClassName="disabled-page"
+                marginPagesDisplayed={0}
+                nextClassName="admin-item admin-next"
+                nextLabel={<PaginationNext />}
+                onPageChange={handlePageChange}
+                previousLabel={<PaginationPreviousLabel />}
+                pageCount={totalPages}
+                pageRangeDisplayed={3}
+                forcePage={currentPage - 1}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
       { smallModalActive ? (
@@ -209,6 +267,8 @@ function SingleProfile() {
           />
         </div>
       ) : null }
+      {selectedImage && <ReviewImageModal selectedImgae={setSelectedImage} image={selectedImage} />}
+      {selectedImage && <div role="presentation" onClick={() => setSelectedImage('')} className="review-image-modal" />}
       <Footer />
     </div>
   );

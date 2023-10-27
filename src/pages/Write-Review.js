@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Wrapper from '../layouts/Wrapper';
 import RemoveImg from '../assets/images/delete.svg';
 import { sendReview } from '../store/actions/reviews';
@@ -12,20 +12,37 @@ function WriteReview() {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const friendId = searchParams.get('friendId');
-  const jobId = searchParams.get('jobId');
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [friendId, setFriendId] = useState(0);
+  const [jobId, setJobId] = useState(0);
+  // const [searchParams] = useSearchParams();
+  const { id } = useParams();
+  useEffect(() => {
+    const numbers = id.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      setFriendId(+numbers[0]);
+      setJobId(+numbers[1]);
+    }
+  }, []);
+  // const friendId = searchParams.get('friendId');
+  // const jobId = searchParams.get('jobId');
   const handleSendReview = useCallback(async (e) => {
     e.preventDefault();
-    const { payload } = await dispatch(sendReview({
-      files, text, rate: selectedStars, friendId, jobId,
-    }));
-    if (payload.status === 'ok') {
-      navigate('/');
+    console.log(friendId, jobId);
+    if (selectedStars && text) {
+      const { payload } = await dispatch(sendReview({
+        files, text, rate: selectedStars, friendId, jobId,
+      }));
+      if (payload.status === 'ok') {
+        navigate('/');
+      }
+    } else {
+      setErrorMessage(true);
     }
   }, [files, text, selectedStars, friendId, jobId]);
   const handleStarChange = (event) => {
     setSelectedStars(parseInt(event.target.value, 10));
+    setErrorMessage(false);
   };
 
   const handleRemoveImage = (index) => {
@@ -135,7 +152,10 @@ function WriteReview() {
               <p className="write__review__text__one">Write A review here</p>
               <textarea
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => {
+                  setText(e.target.value);
+                  setErrorMessage(false);
+                }}
                 className="write__review__text__area"
                 name="text__area__review"
                 rows="4"
@@ -144,6 +164,14 @@ function WriteReview() {
               />
               <button onClick={handleSendReview} type="button" className="btn write__review__button">Confirm</button>
             </div>
+            {errorMessage && (
+            <p className="error-message-review">
+              Please complete the required fields:
+              {' '}
+              <strong>&quot;Rating and Text&quot;</strong>
+              :)
+            </p>
+            )}
           </div>
         </div>
       </div>
