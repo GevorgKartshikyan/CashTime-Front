@@ -10,7 +10,7 @@ function JobHiring({ randomJobs }) {
         <h3 className="job-hiring__block__title">{t('job_hiring_block_title')}</h3>
         <div className="job-hiring__block__jobs">
           {randomJobs.map((job) => (
-            <UserCard title={job.title} text={`${job.city} ${job.country} ${job.priceMethod} ${job.description} ${job.priceFixed} ${job.phoneNumber} ${job.experience} `} image={job.jobPhoto} />
+            <UserCard key={job.id} title={job.title} text={`${job.city} ${job.country} ${job.priceMethod} ${job.description} ${job.priceFixed} ${job.phoneNumber} ${job.experience} `} image={job.jobPhoto} />
           ))}
         </div>
       </div>

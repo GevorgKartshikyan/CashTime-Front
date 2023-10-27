@@ -56,7 +56,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/:userId" element={<SingleProfile />} />
-        <Route path="/add-review" element={<WriteReview />} />
+        <Route path="/add-review/:id" element={<WriteReview />} />
         <Route path="/userrating" element={<UserRating />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />

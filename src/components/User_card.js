@@ -21,9 +21,13 @@ function UserCard(props) {
 }
 
 UserCard.propTypes = {
-  text: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
 };
-
+UserCard.defaultProps = {
+  title: '',
+  image: '',
+  text: '',
+};
 export default UserCard;
