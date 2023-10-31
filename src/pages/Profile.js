@@ -16,6 +16,7 @@ import CVIcon from '../assets/images/scope_icon.svg';
 import { editProfile } from '../store/actions/users';
 import { addCvLink } from '../store/actions/createCvForm';
 import ResetPasswordModal from '../components/resetPasswordModal';
+import ProfileDeleteModalGoogle from '../components/ProfileDeleteModalGoogle';
 
 const { REACT_APP_API_URL } = process.env;
 function Profile() {
@@ -28,10 +29,9 @@ function Profile() {
   const [resetPasswordModal, setResetPasswordModal] = useState();
   const token = useSelector((state) => state.users.token);
   const userInfo = useSelector((state) => state.users.profile);
-  console.log(userInfo);
+  const accountRegisterType = userInfo.type;
   const userCvInfo = userInfo.createdCvs || {};
   const { skills = [], language = [] } = userCvInfo;
-  console.log(userCvInfo);
   const modalBg = useRef();
   const modalSmall = useRef();
   const handleOpenModal = useCallback(() => {
@@ -81,8 +81,6 @@ function Profile() {
     }));
   }, [cvLink, cvInfo]);
 
-  console.log(cvInfo);
-  console.log(cvLink);
   const handleDeleteLanguages = (id) => {
     const newLanguages = language.filter((e) => e.id !== id);
     console.log(newLanguages);
@@ -230,7 +228,7 @@ function Profile() {
                 {skills?.length !== 0 && <span className="profile__info__job__box__skills bigTextProfile">Skills</span> }
                 <ul>
                   {
-                    skills !== null ? skills.map((e) => (
+                    skills !== null ? skills?.map((e) => (
                       <li key={e.id} className="profile__info__job__box__skill">
                         {e.skill}
                         {'      '}
@@ -240,7 +238,7 @@ function Profile() {
                 }
                 </ul>
 
-                {language.length
+                {language?.length
                   ? (
                     <>
                       <span className="profile__info__job__box__language bigTextProfile">Languages</span>
@@ -264,7 +262,7 @@ function Profile() {
               </div>
               <div className="profile-delete-box">
                 {userInfo.type === 'ordinary' ? <button type="button" className="profile-delete-box__reset-password" onClick={() => setResetPasswordModal(true)}>Reset password</button> : null}
-                <button type="button" className="profile-delete-box__delete-account" onClick={() => setDeleteAccountModal(true)}>Delete account</button>
+                <button type="button" className="profile-delete-box__delete-account" onClick={() => setDeleteAccountModal(accountRegisterType)}>Delete account</button>
               </div>
             </div>
             <div className="profile__info__contacts">
@@ -306,7 +304,8 @@ function Profile() {
           />
         </div>
       ) : null }
-      {deleteAccountModal ? <ProfileDeleteModal closeModal={setDeleteAccountModal} /> : null}
+      {deleteAccountModal === 'google' ? <ProfileDeleteModalGoogle closeModal={setDeleteAccountModal} /> : null}
+      {deleteAccountModal === 'ordinary' ? <ProfileDeleteModal closeModal={setDeleteAccountModal} /> : null}
       {resetPasswordModal ? <ResetPasswordModal closeModal={setResetPasswordModal} /> : null}
       <Footer />
     </div>

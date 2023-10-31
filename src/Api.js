@@ -217,6 +217,7 @@ class Api {
   }
 
   static editProfile(data) {
+    console.log(data, 777777);
     return api.put('users/edit-employee', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -260,6 +261,14 @@ class Api {
 
   static getRandomUsers() {
     return api.get('/cvs/random-cvs');
+  }
+
+  static getDeleteProfileGoogle() {
+    return api.get('users/deleteProfileGoogle');
+  }
+
+  static getDeleteProfileGoogleConfirm() {
+    return api.delete('users/deleteProfileGoogleConfirm');
   }
 
   static sendReview(data) {

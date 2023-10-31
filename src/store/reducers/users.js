@@ -13,7 +13,7 @@ import {
   editUserAbout,
   getFilterUser,
   resetPassword,
-  usersListForMap,
+  usersListForMap, getDeleteProfileGoogle,
 } from '../actions/users';
 import { addCvLink } from '../actions/createCvForm';
 import { socketOffline, socketOnline } from '../actions/socket';
@@ -37,6 +37,7 @@ const initialState = {
   blocked: [],
   filterUserTotalPages: 0,
   resetPasswordValidationCode: 0,
+  deleteProfileValidationCode: 0,
   usersListForMap: [],
 };
 
@@ -115,8 +116,13 @@ export default createReducer(initialState, (builder) => {
 
     .addCase(resetPassword.fulfilled, (state, action) => {
       const data = action.payload;
-      console.log(data);
       return { ...state, resetPasswordValidationCode: data.validationCode };
+    })
+
+    .addCase(getDeleteProfileGoogle.fulfilled, (state, action) => {
+      const data = action.payload;
+      console.log(data);
+      return { ...state, deleteProfileValidationCode: data.validationCode };
     })
 
     .addCase(getSingleUser.fulfilled, (state, action) => {

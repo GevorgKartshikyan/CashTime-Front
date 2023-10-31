@@ -28,11 +28,16 @@ function Login() {
     ev.preventDefault();
     const { payload } = await dispatch(loginRequest(formData));
     if (payload?.status === 'error') {
-      if (payload?.message === 'Invalid email or password') {
-        toast.error(`${payload?.message}`);
-      } else {
-        toast.error('An error occurred. Please try again later.');
-      }
+      console.log(payload);
+      toast.error(`${payload?.message}`);
+
+      // if (payload?.message === 'Invalid email or password') {
+      //   toast.error(`${payload?.message}`);
+      // } else if (payload?.message === 'deleted') {
+      //   toast.error(`${payload?.message}`);
+      // } else {
+      //   toast.error('An error occurred. Please try again later.');
+      // }
     }
   }, [formData]);
 
@@ -64,6 +69,9 @@ function Login() {
 
       if (payload.status === 'error') {
         toast.error(`${payload?.message}`);
+      }
+      if (payload.status === 'deleted') {
+        toast.error(`${payload?.status}`);
       }
     } catch (error) {
       console.log(error);
