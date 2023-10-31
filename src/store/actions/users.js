@@ -56,6 +56,29 @@ export const resetPassword = createAsyncThunk('users/resetPassword', async (payl
     return thunkAPI.rejectWithValue(e.response.data);
   }
 });
+
+export const getDeleteProfileGoogle = createAsyncThunk('users/getDeleteProfileGoogle', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.getDeleteProfileGoogle(payload);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+export const getDeleteProfileGoogleConfirm = createAsyncThunk('users/getDeleteProfileGoogleConfirm', async (payload, thunkAPI) => {
+  try {
+    const { data } = await Api.getDeleteProfileGoogleConfirm(payload);
+    console.log(payload);
+    console.log(data);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.response.data);
+  }
+});
+
+
+
 export const resetPasswordConfirm = createAsyncThunk('users/resetPasswordConfirm', async (payload, thunkAPI) => {
   try {
     const { data } = await Api.resetPasswordConfirm(payload);

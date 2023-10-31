@@ -74,7 +74,6 @@ function ProfileEditModal({
     setSelectedPhoto({ fileSrc, file: ev.target.files[0] });
   }, [selectedPhoto]);
   const handleDeleteAvatar = useCallback(() => {
-    // inputRef.current.value = '';
     URL.revokeObjectURL(selectedPhoto.fileSrc);
     setSelectedPhoto({ fileSrc: '', file: null });
   }, [selectedPhoto]);
@@ -123,6 +122,7 @@ function ProfileEditModal({
     console.log(selectedPhoto.file);
     // ev.preventDefault();
     dispatch(editProfile({
+      type: 'delete',
       userName,
       surname,
       addSkill,
