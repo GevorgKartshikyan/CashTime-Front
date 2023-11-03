@@ -74,13 +74,21 @@ function Home() {
 
     if (profile.role === 'employee') {
       fetchData = async () => {
-        const { payload } = await dispatch(getRandomJobs());
-        setRandomJobs(payload.randomJobs);
+        try {
+          const { payload } = await dispatch(getRandomJobs());
+          setRandomJobs(payload.randomJobs);
+        } catch (e) {
+          console.error(e);
+        }
       };
     } else {
       fetchData = async () => {
-        const { payload } = await dispatch(getRandomUsers());
-        setRandomJobs(payload.randomUsers);
+        try {
+          const { payload } = await dispatch(getRandomUsers());
+          setRandomJobs(payload.randomUsers);
+        } catch (e) {
+          console.error(e);
+        }
       };
     }
 

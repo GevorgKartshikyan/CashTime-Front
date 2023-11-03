@@ -18,6 +18,7 @@ export default createReducer(initialState, (builder) => {
     state.reviewsInProgress = reviews;
   }).addCase(confirmReview.fulfilled, (state, action) => {
     const { review } = action.payload;
+    console.log(review);
     state.reviewsInProgress = state.reviewsInProgress.filter((e) => e.id !== review.id);
   }).addCase(deleteReview.fulfilled, (state, action) => {
     const { deletedReview } = action.payload;
