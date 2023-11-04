@@ -77,8 +77,6 @@ export const getDeleteProfileGoogleConfirm = createAsyncThunk('users/getDeletePr
   }
 });
 
-
-
 export const resetPasswordConfirm = createAsyncThunk('users/resetPasswordConfirm', async (payload, thunkAPI) => {
   try {
     const { data } = await Api.resetPasswordConfirm(payload);
@@ -159,7 +157,6 @@ export const getFilterUser = createAsyncThunk('users/changeRole', async (payload
   return data;
 });
 export const usersListForMap = createAsyncThunk('users/usersListForMap', async (payload) => {
-  console.log(payload, 99977777779);
   const { data } = await Api.getUsersListForMap(payload);
   return data;
 });
