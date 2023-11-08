@@ -151,20 +151,22 @@ function Profile() {
                     {' '}
                     {userInfo.lastName}
                   </h3>
-                  <span className="profile__user__info__global__text__reviewNumber">4</span>
+                  <span className="profile__user__info__global__text__reviewNumber">{userInfo.stars}</span>
                   <img className="profile__user__info__global__text__starSvg" src={Star} alt="IMG" />
                   <span className="profile__user__info__global__text__specialization">{userCvInfo.experience}</span>
                 </div>
 
                 <div className="profile__user__info__global__jobs">
                   <div className="profile__user__info__global__jobs__count">
-                    <span className="profile__user__info__global__jobs__count__number">104</span>
+                    <span className="profile__user__info__global__jobs__count__number">{userInfo.totalJobs}</span>
                     <span className="profile__user__info__global__jobs__count__text">Total Jobs</span>
                   </div>
-                  <div className="profile__user__info__global__jobs__count">
-                    <span className="profile__user__info__global__jobs__count__number">1</span>
-                    <span className="profile__user__info__global__jobs__count__text">In Progress</span>
-                  </div>
+                  {/* <div className="profile__user__info__global__jobs__count"> */}
+                  {/*   <span className="profile__user__info__global__jobs__count__number">
+                  1</span> */}
+                  {/*   <span className="profile__user__info__global__jobs__count__text">
+                  In Progress</span> */}
+                  {/* </div> */}
                 </div>
 
                 <div className="profile__user__info__global__cv">
