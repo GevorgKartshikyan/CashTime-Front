@@ -15,7 +15,7 @@ function ConfirmReview() {
       <div className="container">
         <h2 className="confirm-review-title">Completed works</h2>
         <div className="confirm-review-row">
-          {reviews.map((e) => (
+          {reviews.length !== 0 ? reviews.map((e) => (
             <ConfirmReviewCard
               key={e.id}
               id={e.id}
@@ -24,7 +24,7 @@ function ConfirmReview() {
               jobTitle={e.jobReviews?.title}
               image={e.reviewFrom?.avatar}
             />
-          ))}
+          )) : <h3 className="confirm-review-row-text">No reviews.</h3>}
         </div>
       </div>
     </Wrapper>
