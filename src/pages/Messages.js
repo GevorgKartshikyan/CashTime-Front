@@ -26,6 +26,8 @@ function Messages() {
   const profile = useSelector((state) => state.users.profile);
   const { friendId } = useParams();
   const [text, setText] = useState('');
+  const [openImage, setOpenImage] = useState('');
+  const [openImageFlag, setOpenImageFlag] = useState(false);
   const [files, setFiles] = useState([]);
   const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
@@ -52,6 +54,17 @@ function Messages() {
       handleSendMessage();
     }
   };
+
+  const handleImageClick = useCallback((e) => {
+    setOpenImageFlag(true);
+    setOpenImage(e);
+    console.log('open');
+  }, [openImage, openImageFlag]);
+
+  const handleCloseSingleImage = useCallback(() => {
+    console.log('close');
+    setOpenImageFlag(false);
+  }, [openImageFlag]);
 
   const handleFileSelect = useCallback(async (ev) => {
     const newFiles = [...ev.target.files].map((file) => {
@@ -104,6 +117,7 @@ function Messages() {
   }
 
   console.log(messages);
+  console.log(files);
 
   return (
     <>
@@ -165,7 +179,7 @@ function Messages() {
                         m.files.length ? (
                           <div className="messages__right__list_left_img">
                             {m?.files.map((img) => (
-                              <img src={REACT_APP_API_URL + img.name} className="messages__right__list_left_img-picture" alt="" />
+                              <img src={REACT_APP_API_URL + img.name} role="presentation" onClick={() => handleImageClick(REACT_APP_API_URL + img.name)} className="messages__right__list_left_img-picture" alt="" />
                             ))}
                             {m.seen ? <img src={CheckIcon} alt="" className="messages__right__list_left_img-check" /> : null}
                           </div>
@@ -186,7 +200,7 @@ function Messages() {
                           m.files.length ? (
                             <div className="messages__right__list_right_img">
                               {m?.files.map((img) => (
-                                <img src={REACT_APP_API_URL + img.name} className="messages__right__list_right_img-picture" alt="" />
+                                <img src={REACT_APP_API_URL + img.name} role="presentation" onClick={() => handleImageClick(REACT_APP_API_URL + img.name)} className="messages__right__list_right_img-picture" alt="" />
                               ))}
                             </div>
                           ) : null
@@ -242,6 +256,13 @@ function Messages() {
           </div>
         </div>
       </div>
+      {openImageFlag === true ? (
+        <div className="single-image-modal" role="presentation" onClick={handleCloseSingleImage}>
+          <div className="single-image-modal-w">
+            <img src={openImage} alt="" />
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }
