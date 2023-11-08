@@ -8,6 +8,7 @@ import Profile from '../assets/images/icons.svg';
 // import History from '../assets/images/history.svg';
 import Switch from '../assets/images/switch.svg';
 import { changeRole } from '../store/actions/users';
+import completedWork from '../assets/images/completed-order-svgrepo-com.svg';
 
 function ManuModal(props) {
   const { setIsActiveManu } = props;
@@ -30,11 +31,10 @@ function ManuModal(props) {
         <img className="manu-modal__line__img" src={Profile} alt="" />
         <span className="manu-modal__line__text">Profile</span>
       </button>
-      {/* eslint-disable-next-line max-len */}
-      {/* <button type="button" className="manu-modal__line" onClick={() => navigate('/history')}> */}
-      {/*   <img className="manu-modal__line__img" src={History} alt="" /> */}
-      {/*   <span className="manu-modal__line__text">History</span> */}
-      {/* </button> */}
+      <button type="button" className="manu-modal__line" onClick={() => navigate('/confirm-review')}>
+        <img className="manu-modal__line__img" src={completedWork} alt="" />
+        <span className="manu-modal__line__text">Completed Works</span>
+      </button>
       <button type="button" onClick={() => handleSwitch()} className="manu-modal__line">
         <img className="manu-modal__line__img" src={Switch} alt="" />
         <span className="manu-modal__line__text">Switch Account</span>
