@@ -103,8 +103,6 @@ function Messages() {
     return null;
   }
 
-  console.log(messages);
-
   return (
     <>
       <Header />

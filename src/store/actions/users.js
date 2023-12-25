@@ -3,7 +3,6 @@ import Api from '../../Api';
 
 export const registerRequest = createAsyncThunk('/users/registerRequest', async (payload, thunkAPI) => {
   try {
-    console.log(payload);
     const { data } = await Api.register(payload);
     return data;
   } catch (e) {
