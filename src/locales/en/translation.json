@@ -189,5 +189,12 @@
   "chat_three": "Type a message",
   "error_not_found_one": "Look like you're lost",
   "error_not_found_two": "the page you are looking for not available!",
-  "error_not_found_three": "Go To Home"
+  "error_not_found_three": "Go To Home",
+  "header_jobs_button": "Jobs",
+  "header_search_input": "Location",
+  "header_user_card_button": "Apply",
+  "header_menu_profile": "Profile",
+  "header_menu_switch": "Switch Account",
+  "header_menu_sign_out": "Sign out",
+  "header_not_see_all": "See all"
 }

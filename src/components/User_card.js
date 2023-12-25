@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
 function UserCard(props) {
   const { REACT_APP_API_URL } = process.env;
@@ -13,7 +14,7 @@ function UserCard(props) {
       <p className="user-card__text">{text}</p>
       <div className="user-card__input-block">
         <button className="user-card__input-block__button" type="button">
-          Apply
+          {t('header_user_card_button')}
         </button>
       </div>
     </div>

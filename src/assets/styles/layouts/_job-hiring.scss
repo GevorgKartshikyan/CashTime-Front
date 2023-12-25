@@ -1,11 +1,11 @@
 .job-hiring{
-  margin-top: 16px;
+  margin-top: 0;
   padding-top: 28px;
-  padding-bottom: 82px;
+  padding-bottom: 150px;
   background-image: url("../../images/home_pro_bg_img.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
   &__block{
     &__jobs{
       display: flex;
@@ -20,7 +20,7 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      margin-bottom: 83px;
+      margin-bottom: 120px;
     }
   }
 }
