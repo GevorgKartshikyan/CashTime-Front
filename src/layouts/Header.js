@@ -120,7 +120,7 @@ function Header() {
                 <ul>
                   <li>
                     <NavLink to="/offer">
-                      {profile?.role === 'employer' ? 'Employees' : 'Jobs'}
+                      {profile?.role === 'employer' ? 'Employees' : t('header_jobs_button')}
                     </NavLink>
                   </li>
                   <li>

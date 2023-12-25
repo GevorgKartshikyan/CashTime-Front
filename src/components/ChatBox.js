@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { t } from 'i18next';
 import ChatBoxCard from './ChatBox-card';
 
 function ChatBox({ setIsActive }) {
@@ -23,7 +24,7 @@ function ChatBox({ setIsActive }) {
         />
       ))}
       <div className="chatbox__seeall">
-        <NavLink to="/worker-offers" className="chatbox__text">See all</NavLink>
+        <NavLink to="/worker-offers" className="chatbox__text">{t('header_not_see_all')}</NavLink>
       </div>
     </div>
   );

@@ -12,8 +12,8 @@
   "join_bottom_title": "Գտեք ձեր ընտրությամբ կես դրույքով աշխատանք, հեշտությամբ և արագ",
   "job_title_text": "Աշխատանք",
   "city_name_text": "Քաղաք",
-  "job_hiring_block_title": "Աշխատանքի վարձում հիմա",
-  "upload_pdf_text": "Վերբեռնեք ձեր պահպանված ",
+  "job_hiring_block_title": "Աշխատանքներ",
+  "upload_pdf_text": "Վերբեռնեք ձեր պահպանված",
   "home_job_first_text_first": "Թող Աշխատանքը գտնի ձեզ",
   "home_job_first_text_second": "Ստեղծեք անվճար պրոֆիլ՝ հեշտ աշխատանքի ընդունվելու համար",
   "home_job_first_text_button": "Գտեք աշխատանք",
@@ -189,5 +189,12 @@
   "chat_three": "Մուտքագրեք ձեր հաղորդագրությունը",
   "error_not_found_one": "Կարծես թե մոլորվել եք",
   "error_not_found_two": "Ձեր փնտրած էջը հասանելի չէ!",
-  "error_not_found_three": "Գնալ գլխավոր էջ"
+  "error_not_found_three": "Գնալ գլխավոր էջ",
+  "header_jobs_button": "Աշխատանքներ",
+  "header_search_input": "Տարածաշրջան",
+  "header_user_card_button": "Դիմել աշխատանքի համար",
+  "header_menu_profile": "Անձնական էջ",
+  "header_menu_switch": "Փոխել էջը",
+  "header_menu_sign_out": "Դուրս գալ",
+  "header_not_see_all": "Դիտել բոլորը"
 }

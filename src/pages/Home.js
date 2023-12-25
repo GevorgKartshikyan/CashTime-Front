@@ -126,7 +126,7 @@ function Home() {
                 <label htmlFor="input-city" className="join__bottom__form__label">
                   <img className="join__bottom__form__icon" src={JobLocationIcon} alt="" />
                   <Autocomplete
-                    placeholder="Location"
+                    placeholder={t('header_search_input')}
                     className="join__bottom__form__city"
                     apiKey={mapKey}
                     onPlaceSelected={handlePlaceSelect}

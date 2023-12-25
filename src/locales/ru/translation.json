@@ -2,7 +2,7 @@
   "join_left_title": "Присоединяйтесь к CashTime в качестве клиента или фрилансера и начните легко зарабатывать",
   "manu_main": "Главная страница",
   "manu_message": "Сообщество",
-  "manu_offer": "Рекомендация",
+  "manu_offer": "Предложение",
   "manu_profile": "Профиль",
   "manu_login": "Вход",
   "manu_signUp": "Зарегистрироваться",
@@ -12,7 +12,7 @@
   "join_bottom_title": "Найдите работу с частичной занятостью по вашему выбору, легко и быстро",
   "job_title_text": "Должность",
   "city_name_text": "Города",
-  "job_hiring_block_title": "Вакансии найма сейчас",
+  "job_hiring_block_title": "Вакансии",
   "upload_pdf_text": "Загрузите свои сохраненные ",
   "home_job_first_text_first": "Позвольте работе найти вас",
   "home_job_first_text_second": "Создайте бесплатный профиль, чтобы легко получить работу",
@@ -189,5 +189,12 @@
   "chat_three": "Введите сообщение",
   "error_not_found_one": "Выгляди так, будто ты потерялся",
   "error_not_found_two": "страница, которую вы ищете, недоступна!",
-  "error_not_found_three": "Перейти на главную страницу"
+  "error_not_found_three": "Перейти на главную страницу",
+  "header_jobs_button": "Вакансии",
+  "header_search_input": "Местоположение",
+  "header_user_card_button": "Подать заявку",
+  "header_menu_profile": "Профиль",
+  "header_menu_switch": "Сменить Аккаунт",
+  "header_menu_sign_out": "Выход",
+  "header_not_see_all": "Посмотреть все"
 }
