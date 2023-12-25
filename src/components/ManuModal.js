@@ -34,7 +34,7 @@ function ManuModal(props) {
       </button>
       <button type="button" className="manu-modal__line" onClick={() => navigate('/confirm-review')}>
         <img className="manu-modal__line__img" src={completedWork} alt="" />
-        <span className="manu-modal__line__text">Completed Works</span>
+        <span className="manu-modal__line__text">{t('header_menu_completed_works')}</span>
       </button>
       <button type="button" onClick={() => handleSwitch()} className="manu-modal__line">
         <img className="manu-modal__line__img" src={Switch} alt="" />

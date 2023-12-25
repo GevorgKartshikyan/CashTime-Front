@@ -196,5 +196,6 @@
   "header_menu_profile": "Profile",
   "header_menu_switch": "Switch Account",
   "header_menu_sign_out": "Sign out",
-  "header_not_see_all": "See all"
+  "header_not_see_all": "See all",
+  "header_menu_completed_works": "Completed Works"
 }
