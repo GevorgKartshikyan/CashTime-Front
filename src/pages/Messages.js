@@ -115,10 +115,7 @@ function Messages() {
     window.location.href = '/login';
     return null;
   }
-
-  console.log(messages);
   console.log(files);
-
   return (
     <>
       <Header />
