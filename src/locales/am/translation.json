@@ -197,5 +197,8 @@
   "header_menu_switch": "Փոխել էջը",
   "header_menu_sign_out": "Դուրս գալ",
   "header_not_see_all": "Դիտել բոլորը",
-  "header_menu_completed_works": "\nԱվարտված աշխատանքներ"
+  "header_menu_completed_works": "\nԱվարտված աշխատանքներ",
+  "header__menu__list-offer": "Նոր աշխատանք",
+  "header__menu__list-offer-cv": "Ստեղծել CV",
+  "header_users_button": "Աշխատողներ"
 }

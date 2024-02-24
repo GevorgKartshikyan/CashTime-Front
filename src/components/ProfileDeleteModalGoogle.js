@@ -29,26 +29,26 @@ function ProfileDeleteModalGoogle({ closeModal }) {
       <div className="profile-delete-modal__small">
         <button onClick={() => closeModal(false)} type="button" className="profile-delete-modal__small__closeBtn">X</button>
         <p className="reset-password-modal__small__text">
-          Уважаемый пользователь.
+          Dear user
           <br />
-          На ваш адрес электронной
-          почты был отправлен
-          код подтверждения для удаление аккаунта.
-          Пожалуйста, введите этот код ниже:
+          To your email address
+          mail has been sent
+          confirmation code for account deletion.
+          Please enter this code below:
         </p>
 
         <p className="profile-delete-modal__small__text">
-          Если вы уверены, что хотите продолжить и удалить свой аккаунт,
-          введите код который был отправлен на ваш адрес электронной
-          почты и нажмите
-          &quot;Удалить аккаунт&ldquo;.
-          В противном случае вы можете вернуться на главную страницу сайта.
+          If you are sure you want to proceed and delete your account,
+          enter the code that was sent to your email address
+          mail and click
+          &quot;Delete account&ldquo;.
+          Otherwise, you can return to the main page of the site.
         </p>
         <input className="profile-delete-modal__small__input" maxLength={4} type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
 
         <button className="profile-delete-modal__small__btn" onClick={handleDeleteProfile} type="button">Delete Account</button>
         <p className="profile-delete-modal__small__text">
-          Мы сожалеем о вашем решении уйти и надеемся, что в будущем вы можете вернуться к нам.
+          We regret your decision to leave and hope that you can return to us in the future.
         </p>
       </div>
     </div>

@@ -83,11 +83,11 @@ function ConfirmModalNotices({
               <p style={{ fontSize: 16 }}>
                 &quot;A freelancer
                 {' '}
-                <strong>{`${friendName} ${friendLastName}`}</strong>
+                <strong>{`${friendName || ''} ${friendLastName || ''}`}</strong>
                 {' '}
                 responded to the job
                 {' '}
-                <strong>{jobName ? `${jobName.toUpperCase()}` : 'No Job Name'}</strong>
+                <strong>{jobName ? `${jobName.toUpperCase()}` : ''}</strong>
                 {' '}
                 you posted. Please note
                 that we,
@@ -127,7 +127,7 @@ function ConfirmModalNotices({
             ) : (
               <p style={{ fontSize: 16 }}>
                 &quot;
-                <strong>{`${friendName} ${friendLastName}`}</strong>
+                <strong>{`${friendName || ''} ${friendLastName || ''}`}</strong>
                 {' '}
                 responded to you for work.
                 {' '}
@@ -178,7 +178,7 @@ function ConfirmModalNotices({
                 , we warn you that a message will
                 be sent from your name to the freelancer
                 {' '}
-                <strong>{`${friendName} ${friendLastName}`}</strong>
+                <strong>{`${friendName || ''} ${friendLastName || ''}`}</strong>
                 {' '}
                 with the text
               </p>
@@ -198,7 +198,7 @@ function ConfirmModalNotices({
               <i>
                 &quot;Hello
                 {' '}
-                <strong>{`${friendName} ${friendLastName}`}</strong>
+                <strong>{`${friendName || ''} ${friendLastName || ''}`}</strong>
                 ,
 
                 Thank you for choosing me. I would like to share some
@@ -207,7 +207,7 @@ function ConfirmModalNotices({
                 you&apos;re interested in additional information, please
                 don&apos;t hesitate to ask
                 Best regards,
-                <strong>{userName}</strong>
+                <strong>{userName || ''}</strong>
                 &quot;
               </i>
             </p>

@@ -24,13 +24,13 @@ function ProfileDeleteModal({ closeModal }) {
         <button className="profile-delete-modal__small__btn" onClick={handleDeleteProfile} type="button">Delete Account</button>
 
         <p className="profile-delete-modal__small__text">
-          Если вы уверены, что хотите продолжить и удалить свой аккаунт,
-          введите свои пароль и нажмите
-          &quot;Удалить аккаунт&ldquo;.
-          В противном случае вы можете вернуться на главную страницу сайта.
+          If you are sure you want to proceed and delete your account,
+          enter your password and click
+          &quot;Delete account&ldquo;.
+          Otherwise, you can return to the main page of the site.
         </p>
         <p className="profile-delete-modal__small__text">
-          Мы сожалеем о вашем решении уйти и надеемся, что в будущем вы можете вернуться к нам.
+          We regret your decision to leave and hope that you can return to us in the future.
         </p>
       </div>
     </div>

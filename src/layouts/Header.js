@@ -120,7 +120,7 @@ function Header() {
                 <ul>
                   <li>
                     <NavLink to="/offer">
-                      {profile?.role === 'employer' ? 'Employees' : t('header_jobs_button')}
+                      {profile?.role === 'employer' ? t('header_users_button') : t('header_jobs_button')}
                     </NavLink>
                   </li>
                   <li>
@@ -132,10 +132,17 @@ function Header() {
                     <li>
                       <NavLink to="/create-job" className="header__menu__list-offer">
                         <strong>+</strong>
-                        New Project
+                        {t('header__menu__list-offer')}
                       </NavLink>
                     </li>
-                  ) : null}
+                  ) : (
+                    <li>
+                      <NavLink to="/create-cv" className="header__menu__list-offer">
+                        <strong>+</strong>
+                        {t('header__menu__list-offer-cv')}
+                      </NavLink>
+                    </li>
+                  )}
                   <li>
                     <NavLink to="/messages" className="header__menu__list-message">
                       <img src={MessageIcon} alt="" />

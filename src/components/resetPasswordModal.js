@@ -93,12 +93,12 @@ function ResetPasswordModal({ closeModal }) {
           <div className="reset-password-modal__small">
             <button onClick={() => closeModal(false)} type="button" className="reset-password-modal__small__closeBtn">X</button>
             <p className="reset-password-modal__small__text">
-              Уважаемый пользователь.
+              Dear user.
               <br />
-              На ваш адрес электронной
-              почты был отправлен
-              код подтверждения для смены пароля.
-              Пожалуйста, введите этот код ниже:
+              To your email address
+              mail has been sent
+              confirmation code to change the password.
+              Please enter this code below:
             </p>
             <input value={validationCode} maxLength={4} className="reset-password-modal__small__input" type="text" onChange={(ev) => setValidationCode(ev.target.value)} />
             {validationCodeError

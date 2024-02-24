@@ -37,7 +37,7 @@ function ChatBoxCard({
           <div className="chatBoxCard__info__text">
             <p>
               You’ve received a request from
-              <span style={{ marginLeft: 10, color: '#4A62B6' }}>{`${name} ${lastName}`}</span>
+              <span style={{ marginLeft: 10, color: '#4A62B6' }}>{`${name || ''} ${lastName || ''}`}</span>
               {method === 'job' ? (
                 <p>
                   From your  published job
@@ -46,7 +46,7 @@ function ChatBoxCard({
                     <strong>
                       {jobTitle ? `(
                     ${jobTitle.length > 12 ? `${jobTitle?.slice(0, 12)?.toUpperCase()}...` : jobTitle?.toUpperCase()}
-                    )` : 'No Name Job'}
+                    )` : ''}
                     </strong>
                   </span>
                 </p>
